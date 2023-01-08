@@ -1,0 +1,306 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usetikzlibrary{cd}
+\usepackage{stmaryrd}
+
+\input{macros}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Tropical Geometry and the Lambda Calculus}
+
+\author{\IEEEauthorblockN{Davide Barbarossa}
+\IEEEauthorblockA{\textit{Universit\`a di Bologna}\\
+Bologna, Italy \\
+davide.barbarossa2@unibo.it}
+\and
+\IEEEauthorblockN{Paolo Pistone}
+\IEEEauthorblockA{\textit{Universit\`a Roma Tre}\\
+Rome, Italy\\
+paolo.pistone@uniroma3.it}
+}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+In the recent years, more and more interest in the programming language community has been directed towards the analysis of \emph{quantitative} properties of algorithms, such as e.g.~number of computation steps, convergence probability, 
+approximation bounds, 
+as opposed to purely \emph{qualitative} properties like e.g.~termination or program equivalence. 
+
+Notably, a significative effort has been made in order to extend, or adapt, well-established qualitative methods, like type systems, relational logics or denotational semantics, to account for quantitative properties. We can mention, for example, 
+intersection type systems aimed at capturing time or space resources \cite{Beniamino}, or convergence probabilities \cite{UgoBreuvart, LICS2022},  relational logics to account for probabilistic properties like e.g.~differential privacy \cite{Barthes} or metric preservation \cite{Reed2010, dallago}, as well as the study of denotational models for 
+probabilistic \cite{PCOH, QBS} or differential \cite{difflambda} extensions of the $\lambda$-calculus. 
+Usually, the main reason to resort to such logical, type-theoretical or denotational approaches is to obtain methods which are \emph{modular} and \emph{compositional}, that is, where properties of complex algorithms can be deduced from properties of their component parts.   
+
+\subsection{Two kinds of quantitative approaches}
+
+Among such quantitative approaches, two different directions have received a considerable attention in recent years. 
+
+On the one hand there is the approach based on \emph{non-idempotent} intersection types \cite{} and their semantical counterpart, the so-called \emph{relational semantics} \cite{}, which have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{}, and have also been shown suitable to capture probabilistic properties \cite{Manzo}. 
+
+On the other hand there is the approach of \emph{program metrics} \cite{} and \emph{quantitative equational theories} \cite{Mardare}: when considering probabilistic or approximated computations, rather than knowing whether two programs compute \emph{the same} function, which is rarely the case, it is often more useful to know whether they compute functions that do not differ \emph{too much}. This has motivated the study of denotational semantics in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{} and coinductive methods \cite{}, and was recently extended to account for the the full $\lambda$-calculus \cite{LICS2021, FSCD2022}.
+
+In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{linearlogic} (i.e.~of using its input exactly once), plays a crucial role.
+In the relational semantics linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs leads to consider \emph{analytic} maps, i.e.~formal infinite series of monomials of the form $a_{n}\cdot x^{n}$.
+By contrast, in metric semantics linear programs correspond to \emph{non-expansive} maps, i.e.~to functions that do not increase distances, while the possibility of duplicating inputs leads to interpret \emph{bounded} programs (i.e.~programs with a fixed duplication bound) as \emph{Lipschitz-continuous} maps \cite{Gabo2017}, and general programs as maps satisfying coarser 
+continuity conditions (see e.g.~\cite{LICS2021}).
+
+
+A natural question is thus whether these two, apparently unrelated, ways of interpreting linearity and duplication can be somehow connected. At a first glance, there seems to be a fundamental ``logarithmic'' gap between the two approaches.
+In the relational semantics a typical ``duplicating'' map is obtained by composing the diagonal with multiplication:
+$$
+\begin{tikzcd}
+\mathbb R \ar{rrr}{x\mapsto \langle x, x\rangle}
+ & &  &
+ \mathbb R\times \mathbb R 
+ \ar{rrr}{\langle x,y\rangle \mapsto x\cdot y}
+ & & & \mathbb R
+\end{tikzcd}
+$$
+yielding the square product function $\lambda x.x^{2}$.
+However, in metric semantics this function needs not even exist (as these models are often restricted to Lipschitz-continuous maps \cite{Gabo2017})! Instead, a typical ``duplicating'' map can be obtained by composing the diagonal with the sum 
+$$
+\begin{tikzcd}
+\mathbb R \ar{rrr}{x\mapsto \langle x, x\rangle}
+ & &  &
+ \mathbb R\times \mathbb R 
+ \ar{rrr}{\langle x,y\rangle \mapsto x+y}
+ & & & \mathbb R
+\end{tikzcd}
+$$
+yielding the linear (and Lipschitz) function $\lambda x.2x$.
+
+As this example seems to suggest, there seems to be a sort of ``logarithmic'' gap between the two approaches. Can this be made explicit?
+
+
+
+\subsection{Tropical Geometry: a ``logarithmic'' version of usual geometry} 
+
+In very simple words, tropical geometry describes what happens to usual algebra and geometry when we replace ``$\cdot$'' by  ``$+$'', and ``$+$'' by ``$\min$''. It can thus be seen as a sort of ``logarithmic'' version of usual geometry (this idea can be made precise via the so-called \emph{Maslov deformation} \cite{}).
+Tropical geometry is a kind of \emph{idempotent} mathematics, since the role of addition is 
+played by the idempotent operation $\min$.
+For instance, a quadratic polynomial like e.g.~$p(x)=ax^{2}+bx+c$ corresponds in the tropical word correspond to the \emph{linear} function
+$$
+\trop p(\alpha)=\min\{2\alpha + a, \alpha+b, c\}
+$$ 
+
+The tropicalization of usual algebraic concepts comes with the important advantage that many intractable properties may become efficiently tractable, in a computational way (e.g.~finding roots of polynomials). For this reason, methods from tropical geometry are more and more applied in computer science, e.g.~for convex analysis and machine learning \cite{}.
+
+Coming back to our previous discussion of program semantics, tropical geometry might seem to provide precisely what we are looking for: a way to see polynomials as linear (i.e.~Lipschitz) functions.
+At this point, it is worth mentioning that a tropical variant of relational semantics has already been considered \cite{}, and shown capable of capturing \emph{optimal} probabilistic properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and the abstract study of metric spaces and non-expansive functions, and more generally, of the study of \emph{quantale-enriched} categories, have also been observed \cite{}.
+
+The goal of this paper is to make such intuitive connections precise, yielding a way to relate, conceptually, two different quantitative approaches to higher-order algorithms, as well as suggesting new potential applications of tropical geometry to the study of quantitative properties of programs.
+
+
+\subsection{Contributions}
+
+Our contributions in this paper are threefold:
+\begin{itemize}
+
+\item We study the relational model over the tropical semi-ring, showing that
+\emph{bounded} simply typed terms correspond to tropical polynomials, while general
+ simply typed lambda terms correspond to a generalization of \emph{tropical Laurent series} \cite{}. Moreover, we show that such maps are concave and locally Lipschitz-continuous, yielding a full-scale metric semantics for the $\lambda$-calculus.
+Moreover, we exploit the differential structure of the relational model to study the \emph{tropical Taylor expansion} of a $\lambda$-term, which can be seen as an approximation of the term by way of Lipschitz-continuous maps.
+
+
+\item Using the relational model as our main reference, we suggest a list of potential applications of tropical methods to the study of quantitative properties of non-deterministic/probabilistic functional programs like differential privacy, convergence \emph{log-probabilities} and the number of computation steps in the best case.
+
+\item We conclude by putting the correspondence between differential and metric properties made possible by the tropical viewpoint at the right level of generality. 
+By recalling and suitably extending a well-known correspondence between Lawvere's \emph{generalized metric spaces} (GMS) \cite{} and modules over the tropical semi-ring \cite{}, we show that the category of \emph{complete}  GMSs provides a model of the differential $\lambda$-calculus which extends the tropical relational model.
+\end{itemize}
+%
+%\section{Bounded and Differential $\lambda$-Calculi}
+%
+%
+%Bounded Simply Typed $\lambda$-calculus $\BSTLC$:
+%$$
+%A::= o \mid !_{n}A \multimap A
+%$$
+%
+%
+%Resource Simply Typed $\lambda$-calculus $\RSTLC$:
+%$$
+%A::= o \mid [A, \dots , A] \multimap A
+%$$
+%
+%
+%Define a translation of types $(-)^{\C R}$ from $\BSTLC$ to $\RSTLC$ by $o^{\C R}=o$ and $(!_{n}A\multimap B)^{\C R}=
+%[\underbrace{A^{\C R},\dots, A^{\C R}}_{n\text{ times}}]\multimap B^{\C R}$.
+%
+%\begin{proposition}
+%$\Gamma \vdash_{\BSTLC} M:A$ implies 
+%$\Gamma^{\C R}\vdash_{\RSTLC}M:A^{\C R}$.
+%\end{proposition}
+%
+
+
+
+
+
+
+\section{Tropical Geometry}
+
+- The tropical semi-ring $\Lawv$ coincides with the Lawvere quantale.
+
+
+- tropical linear algebra: the category $\LREL$
+
+
+- tropical polynomials and tropical roots
+
+
+- tropical Laurent series and tropical roots
+
+
+- tropicalization of analytic functions and their roots: 
+$\trop P$ 
+
+
+
+- the differential operator 
+
+
+
+\section{The Tropical Relational Model}
+
+
+Describe the model in a parametric way over a continuous semi-ring, as in Manzonetto et al.
+
+
+
+
+
+Define the tropicalization $\trop$ from the $\BB R$-based model
+to the $\Lawv$-based model.
+
+Focus on \emph{bounded} simply typed $\lambda$-calculus $\BSTLC$:
+$$
+A::= o \mid !_{n}A \multimap A
+$$
+The interpretation of a bounded type is defined as 
+$\model A= \Lawv^{\nodel A}$, where 
+$\nodel A$ is defined by $\nodel o=\B 1$ and 
+$\nodel{!_{n}A\multimap B}:= \C M_{\leq n}(\nodel A) \times \nodel B$.
+
+Bounded types are interesting
+because of the following proposition:
+\begin{proposition}
+For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) are polynomials.
+
+
+\end{proposition}
+\begin{proof}
+It suffices to check that $\nodel A$ is finite for all bounded types $A$. Indeed this implies that a morphism $f:\model A\to \model B$ corresponds to a finite matrix $\widehat f: \nodel A \times \nodel B \to \Lawv$.
+\end{proof}
+
+For example (here $!_{n}(\Lawv^{X}):= \Lawv^{\C M_{\leq n}(X)}$):
+\begin{itemize}
+\item a map $f\in \LREL( !_{1}\Lawv, \Lawv)$ is of the form $f(x)=\min \{x+a,b\}$;
+
+\item a map $f\in \LREL(!_{2}\Lawv, \Lawv)$ is a ``quadratic'' polynomial $f(x)=\min\{2x+a, x+b, c\}$.
+
+
+
+\end{itemize}
+
+
+
+
+Discuss the tropical Taylor expansion $\trop\C T(M)$. 
+
+
+
+
+
+\section{Analytic Results}
+
+
+
+- the metric on the tensor is the usual tensor metric, the metric on the function space is the usual function metric, the metric on multisets is the multiset metric
+
+- concavity
+
+- Lipschitz-continuity. Highlight compositional reasoning based on Lipschitz.
+
+- Discussion of unary tropical Laurent series, i.e.~$f:\Lawv \to \Lawv$:
+\begin{itemize}
+
+\item $f$ is locally a polynomial (i.e.~a $\min$) but not globally
+
+\item singular points: the famous example
+
+\item tropical roots
+
+
+\end{itemize}
+
+
+
+- discussion of the tropical Taylor expansion: 
+
+
+- characterization of the functional metric using derivatives
+
+
+
+\section{Applications}
+
+General discussion: optimization properties behave in a Lipschitz way.
+
+
+- differential privacy and Lipschitzness
+
+
+- log-probabilities and tropical roots 
+
+
+- counting computation steps (from Manzonetto, but add relational ``Lipschitz'' reasoning)
+
+
+- measuring duplications of discrete functions (needs finiteness!)
+
+
+
+
+
+
+\section{Quasi-metric Spaces and $\Lawv$-Modules}
+
+
+- correspondence between $\Lawv$-modules and $\Lawv$-categories.
+
+
+- exponential structure of $\LCAT$.
+
+
+- $\LCAT_{!}$ is a cartesian closed differential category
+
+
+\section{Related Work}
+
+
+\section{Conclusion}
+
+
+
+
+\end{document}
