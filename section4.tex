@@ -1,36 +1,8 @@
+\subsubsection{Bounded}
 
+Quanto vogliamo essere precisi in questa sottosottosezione ?
 
 - non-linear programs correspond to non-linear maps.
-
-
-
-
-- tropical polynomials and tropical roots -> bounded lambda-terms
-(the operation $\C M_{\leq n}(-)$ defines a graded linear exponential comonad) via the adjunction
-$$
-\LREL(Z\otimes !_{\leq n}X,Y) \simeq \LREL(Z, !_{\leq n}X\multimap Y) 
-$$
-
-- tropical Laurent series and tropical roots -> unbounded lambda-terms (the operation $\C M(-)$ defines a linear exponential comonad) via the adjunction
-$$
-\LREL(!(Z\& X),Y) \simeq \LREL(!Z, !X\multimap Y) 
-$$
-
-
-- tropicalization of analytic functions and their roots: 
-$\trop P$ 
-
-
-
-- the differential operator: formal differentiation of tropical Laurent series. Differentiation in $\LREL_{!}$.
-
-
-
-- $\LREL_{!}$ is a differential CCC satisfying Taylor. 
-Discuss the tropical Taylor expansion $\trop\C T(M)$. 
-
-
-
 
 Focus on \emph{bounded} simply typed $\lambda$-calculus $\BSTLC$:
 $$
@@ -58,6 +30,22 @@ For example (here $!_{n}(\Lawv^{X}):= \Lawv^{\C M_{\leq n}(X)}$):
 
 \item a map $f\in \LREL(!_{2}\Lawv, \Lawv)$ is a ``quadratic'' polynomial $f(x)=\min\{2x+a, x+b, c\}$.
 
+- tropical polynomials and tropical roots $->$ bounded lambda-terms
+(the operation $\C M_{\leq n}(-)$ defines a graded linear exponential comonad) via the adjunction
+$$
+\LREL(Z\otimes !_{\leq n}X,Y) \simeq \LREL(Z, !_{\leq n}X\multimap Y) 
+$$
+
+\subsubsection{Unbounded}
+
+- tropical Laurent series and tropical roots $->$ unbounded lambda-terms (the operation $\C M(-)$ defines a linear exponential comonad) via the adjunction
+$$
+\LREL(!(Z\& X),Y) \simeq \LREL(!Z, !X\multimap Y) 
+$$
+
+That is:
+
+- $\LREL_!$ is CCC (Giulio)
 
 
 \end{itemize}
