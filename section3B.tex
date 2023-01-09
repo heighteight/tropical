@@ -1,0 +1,55 @@
+\subsubsection{Bounded}
+
+Quanto vogliamo essere precisi in questa sottosottosezione ?
+
+- non-linear programs correspond to non-linear maps.
+
+Focus on \emph{bounded} simply typed $\lambda$-calculus $\BSTLC$:
+$$
+A::= o \mid !_{n}A \multimap A
+$$
+The interpretation of a bounded type is defined as 
+$\model A= \Lawv^{\nodel A}$, where 
+$\nodel A$ is defined by $\nodel o=\B 1$ and 
+$\nodel{!_{n}A\multimap B}:= \C M_{\leq n}(\nodel A) \times \nodel B$.
+
+Bounded types are interesting
+because of the following proposition:
+\begin{proposition}
+For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) are polynomials.
+
+
+\end{proposition}
+\begin{proof}
+It suffices to check that $\nodel A$ is finite for all bounded types $A$. Indeed this implies that a morphism $f:\model A\to \model B$ corresponds to a finite matrix $\widehat f: \nodel A \times \nodel B \to \Lawv$.
+\end{proof}
+
+For example (here $!_{n}(\Lawv^{X}):= \Lawv^{\C M_{\leq n}(X)}$):
+\begin{itemize}
+\item a map $f\in \LREL( !_{1}\Lawv, \Lawv)$ is of the form $f(x)=\min \{x+a,b\}$;
+
+\item a map $f\in \LREL(!_{2}\Lawv, \Lawv)$ is a ``quadratic'' polynomial $f(x)=\min\{2x+a, x+b, c\}$.
+
+- tropical polynomials and tropical roots $->$ bounded lambda-terms
+(the operation $\C M_{\leq n}(-)$ defines a graded linear exponential comonad) via the adjunction
+$$
+\LREL(Z\otimes !_{\leq n}X,Y) \simeq \LREL(Z, !_{\leq n}X\multimap Y) 
+$$
+
+\subsubsection{Unbounded}
+
+- tropical Laurent series and tropical roots $->$ unbounded lambda-terms (the operation $\C M(-)$ defines a linear exponential comonad) via the adjunction
+$$
+\LREL(!(Z\& X),Y) \simeq \LREL(!Z, !X\multimap Y) 
+$$
+
+That is:
+
+- $\LREL_!$ is CCC (Giulio)
+
+
+\end{itemize}
+
+
+
+
