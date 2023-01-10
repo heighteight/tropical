@@ -1,10 +1,10 @@
+[Section III.A, Weighted], immediately gives:
 
-- $\LREL$ is SMCC (Giulio): linear lambda-terms through the symmetric monoidal adjunction 
-$$
-\LREL(Z\otimes X, Y) \simeq \LREL (Z, X\multimap Y)
-$$
-(with $\LREL(X,Y)\simeq \Lawv^{X\times Y}$.
+\begin{fact}\label{fact:LREL_SMCC}
+ $\LREL$ is a Symmetric Monoidal Closed Category.
+\end{fact}
 
+Its monoidal structures is given by a tensor product $\otimes$ acting on the objects as the Cartesian product of sets, and as the Kronecker product of matrices on morphisms.
+Its closed structures is given by $X\multimap Y:=X\times Y$ with the usual evaluation and curry morphisms yielding a symmetric monoidal adjunction: $\LREL(Z\otimes X, Y) \simeq \LREL (Z, X\multimap Y)$.
 
-
-
+Fact~\ref{fact:LREL_SMCC} means that $\LREL$ is a model of Intuitionistic Multiplicative Linear Logic (IMLL), and thus we can interpret \emph{linear} $\lam$-terms in it.
