@@ -24,8 +24,9 @@
 
 % METRIC STUFF
 \newcommand{\Lawv}{\BB L}
-
-\newcommand{\LREL}{\Lawv\SF{Rel}}
+\newcommand{\QualREL}[1]{#1 \SF{Rel}}
+\newcommand{\QREL}{\QualREL{Q}}
+\newcommand{\LREL}{\QualREL{\Lawv}}
 \newcommand{\LCAT}{\Lawv\SF{CCat}}
 
 
@@ -35,6 +36,12 @@
 \newcommand{\trop}[1]{\SF t #1}
 \newcommand{\model}[1]{\llbracket#1\rrbracket}
 \newcommand{\nodel}[1]{\langle #1\rangle}
+
+
+% MISCELLANEOUS
+
+\newcommand{\HOM}[3]{\SF{Hom}_{#1}(#2,#3)}
+
 
 
 %MATH EVIRONMENTS
