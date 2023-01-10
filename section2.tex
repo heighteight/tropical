@@ -5,7 +5,7 @@ In this section we discuss in some more detail the two approaches in quantitativ
 
 \subsection{Metric approach: bounded $\lambda$-terms as Lipschitz functions}
 
-- Metric models: functions as Lipschitz maps, differential privacy.
+
 As recalled in the Introduction, in many situations (typically, when dealing with computationally expensive function) one does not look for algorithms to compute some function \emph{exactly}, but rather to approximate it (e.g.~in an efficient way) within some error bound. In other common situations (typically, in differential privacy \cite{}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
 
 A natural way to account for these situations is to consider denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which measures differences of behavior. 
@@ -22,12 +22,10 @@ can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R
 These observations have led to the study of \emph{bounded} typed $\lambda$-calculi (like the system $\mathsf{Fuzz}$ \cite{Reed_2010}),
 which have been applied in the study of higher-order differential privacy \cite{}. In these calculi, which are inspired from Girard's \emph{bounded linear logic} \cite{}, function types are of the form $!_{r}X \multimap Y$, and programs are interpreted as $r$-Lipschitz maps. In categorical terms, the re-scaling operation $!_{r}(-)$ can be characterized as a  \emph{graded linear exponential comonad} \cite{}. 
 
-- Problem with unrestricted duplications
 Then, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
 More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesian closed, so it is not a model of the simply typed $\lambda$-calculus (yet, $\Met$ contains several cartesian closed \emph{sub-}categories, see e.g.~\cite{}).
 Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~ over any compact set). However, constructing cartesian closed categories of locally Lipschitz maps is challenging. Yet, some examples exist in the literature (see \cite{EhrhardPCOHdiff, PistoneLICS2021}), and a new example will be exhibited in this paper.
 
-- Bounded Linear Logic/lambda-calculus, why Met is only a model of BLL, and why it is difficult (but not impossible!) to construct models of full lambda
 % - Metric models: functions as Lipschitz maps, differential privacy.
 %
 %- Problem with unrestricted duplications
@@ -36,13 +34,6 @@ Still, one might observe that the program $M$ above is actually Lipschitz-contin
 
 \subsection{Resource approach: differential $\lambda$-terms as polynomials}
 
-- Differential lambda-calculus: differential operator, Taylor expansion (vs. 1)
-A different analysis of duplication and linearity in higher-order programs arises from works on \emph{differential} and \emph{resource} $\lambda$-calculi \cite{}, and the related field of non-idempotent intersection types (which, however, we will not consider in this paper, for space reasons).
-Notably, these approaches provide an elegant way to relate bounded and unbounded duplications through a notion of  \emph{Taylor expansion} of $\lambda$-terms.   
-
-- resource lambda-terms, Taylor expansion (vs. 2)
-
-- resource lambdas are polynomials, so not linear. 
 The key ingredient of these approaches is a notion of \emph{linear application}, which in the syntax of the differential $\lambda$-calculus is written $\Der[M]\cdot N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once. More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
 %Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
 %For example, if $M$ is the term $\lambda fx.f(fx)$ considered before, $\Der[M]$ takes a first input $N$ and passes it linearly to $M$. Notice that there are two ways of doing so, corresponding to the two bound occurrences of $f$ in $M$: either by applying $N$ to $fx$, or by 
@@ -78,8 +69,6 @@ F_{\leq 2}(f,x)=\widehat f_{2} x^{2}  + \widehat f_{1}x +  \widehat f_{0}
 Going back to our previous question, we can now reformulate it as follows: can we make the relational semantics \emph{Lipschitz}, hence amenable to metric and sensitivity analysis? The goal of this paper is to show that this is indeed possible and actually quite natural, by appealing to tropical mathematics.
  
 \subsection{Tropical mathematics: a possible synthesis}
-
-- generalities about tropical maths (tropicalisation $\trop P$  of polynomials and of Laurent series, and their roots -- all that without $\LREL$)
 The fundamental observation that led to the study of mathematics over the \emph{tropical semi-ring} $\Lawv=([0,\infty],\min,+)$ was that, by replacing everywhere the ``$+$'' by the ``$\min$'' and the ``$\times$'' by the ``$+$'', the computation of many algebraic and geometric objects becomes combinatorial and simple. 
 
 For instance, the tropicalization of a cubic polynomial $p(x)=ax^{3}+bx^{2}+cx+d$ yields a piecewise-linear function 
