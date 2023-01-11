@@ -1,6 +1,51 @@
-- differential categories
+Until now we simply specialised well-known results in our tropical case, with the intent of showing how do things read in this particular case.
+Now we go further, by showing that $\LREL_!$ actually admits a \emph{differential structure}, turning it into a model of the $\STDLC$.
+This is where the \emph{metric} and the \emph{differential} viewpoints converge, as explained in the Introduction and Section II, and it will be generalised in Section 6.
 
-- the tropical differential operator: formal differentiation of tropical Laurent series. Differentiation in $\LREL_{!}$.
+A model of the $\STDLC$ is usually understood as so-called \emph{Cartesian closed differential categories} (CC$\partial$C), see [Giulio,?] for details.
+In order to treat the $+$ and the constructor $D[\_]\cdot (\_)$ of $\STDLC$, the main features of a CC$\partial$C $\C C$ are that:
 
-- $\LREL_{!}$ is a differential CCC satisfying Taylor. 
-Discuss the tropical Taylor expansion $\trop\C T(M)$. 
+1) $\C C$ is a left-additive-CCC, i.e.\ its Homsets are commutative monoids and its Cartesian closed structure is well behaved w.r.t.\ this monoid structure;
+
+2) $\C C$ is equipped with a differential operator map $D:\HOM{\C C}{X}{Y}\to \HOM{\C C}{X\times X}{Y}$ (here $\times$ is the Cartesian product of $\C C$) satisfying $8$ axioms, called D1, ..., D7, D-curry.
+
+Let us show the differential structure of $\LREL_!$ (remember that the Cartesian product of $\LREL_!$ is the disjoint union $+$): 
+\begin{definition}
+ The \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$,
+ $(Dt)_{\mu_1\oplus\mu_2,b}:=t_{\mu_2*\mu_1,b}$ if $\#\mu_1=1$ and $(Dt)_{\mu_1\oplus\mu_2,b}:=\infty$ otherwise.
+\end{definition}
+
+\begin{example}
+ \`E BENE METTERE UN ESEMPIO DI COME OPERA QUESTO DIFFERENZIALE (senn\`o non si capisce).
+ Secondo me conviene con un $D^2$ di qualcosa.
+\end{example}
+
+\begin{theorem}\label{thm:LREL!CCDC}
+ $\LREL_!$ equipped with $D$, is a CC$\partial$C.
+\end{theorem}
+\begin{proof}
+ The properties 1) and 2) are tedious technical checks.
+ If the first are quite straightforward, while the second deserve more attention.
+ Let us give the idea for ?
+\end{proof}
+
+There is more: not only $\LREL_!$ is a model of the $\STDLC$, but this model is also well-behaved w.r.t.\ to the \lamcalc Taylor expansion.
+This is expressed by the following property (see [Definition 4.22, Giulio], where it is called the fact of ``modeling the Taylor expansion'').
+
+\begin{theorem}\label{thm:modelsTaylor}
+ In $\LREL_!$ equipped with $D$, all morphisms can be Taylor expanded, i.e.\ in $\LREL_!$ we have the following equality:
+ \[
+  \RM{eval}^{X,Y}\circ_!\langle t,s\rangle =
+  \inf\limits_{n\in\N}
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ \langle \RM{id},\infty \rangle}.
+ \]
+ for all $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$.
+\end{theorem}
+Here, $\Lambda^-:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$ is the uncarry operator and $\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is an operator corresponding to the syntactical \emph{differential substitution}.
+\begin{proof}
+ Che ci scriviamo ??
+\end{proof}
+
+This property is interesting because of [Theorem 4.23,Giulio], which says that, then, in the model the series corresponding to the Taylor expansion of an ordinary $\lam$-term $M$ converges to $M$.
+
+- Discuss the tropical Taylor expansion $\trop\C T(M)$ ?? 

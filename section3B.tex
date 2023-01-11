@@ -1,55 +1,62 @@
-\subsubsection{Bounded}
+\subsubsection{Bounded duplications}
 
-Quanto vogliamo essere precisi in questa sottosottosezione ?
+It is known ([reference??]) that the maps $X\mapsto \C M_{\leq n}(X)$ ($n\in\BB N$) lift to functors $!_n:\LREL\to\LREL$.
+The sequence $(!_n)_{n\in\N}$ can be then turned into a $\N$-graded linear exponential comonad on (the SMC) $\LREL$, satisfying the adjunction:
+$\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
+Therefore, $\LREL$, together with $(!_n)_{n\in\N}$, is a model for $\BSTLC$. 
+Concretely, a type $A::= o \mid !_{n}A \multimap A$ (i tipi meglio dirli in Section II) is in interpreted as $\model o=\B 1$ and 
+$\model{!_{n}A\multimap B}:= \C M_{\leq n}(\model A) \times \model B$.
 
-- non-linear programs correspond to non-linear maps.
-
-Focus on \emph{bounded} simply typed $\lambda$-calculus $\BSTLC$:
-$$
-A::= o \mid !_{n}A \multimap A
-$$
-The interpretation of a bounded type is defined as 
-$\model A= \Lawv^{\nodel A}$, where 
-$\nodel A$ is defined by $\nodel o=\B 1$ and 
-$\nodel{!_{n}A\multimap B}:= \C M_{\leq n}(\nodel A) \times \nodel B$.
-
-Bounded types are interesting
-because of the following proposition:
+Bounded types are interesting because of the following proposition:
 \begin{proposition}
-For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) are polynomials.
-
-
+For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) correspond to polynomials.
 \end{proposition}
 \begin{proof}
-It suffices to check that $\nodel A$ is finite for all bounded types $A$. Indeed this implies that a morphism $f:\model A\to \model B$ corresponds to a finite matrix $\widehat f: \nodel A \times \nodel B \to \Lawv$.
+It suffices to check that $\model A$ is finite for all bounded types $A$. Indeed this implies that a morphism $t:\model A\to \model B$ is a finite matrix $t: \model A \times \model B \to \Lawv$.
+Hence, its corresponding map $\widehat t:\Lawv^{\model A} \to \Lawv^{\model B}$ is a polynomial.
 \end{proof}
 
 For example (here $!_{n}(\Lawv^{X}):= \Lawv^{\C M_{\leq n}(X)}$):
 \begin{itemize}
 \item a map $f\in \LREL( !_{1}\Lawv, \Lawv)$ is of the form $f(x)=\min \{x+a,b\}$;
-
 \item a map $f\in \LREL(!_{2}\Lawv, \Lawv)$ is a ``quadratic'' polynomial $f(x)=\min\{2x+a, x+b, c\}$.
-
-- tropical polynomials and tropical roots $->$ bounded lambda-terms
-(the operation $\C M_{\leq n}(-)$ defines a graded linear exponential comonad) via the adjunction
-$$
-\LREL(Z\otimes !_{\leq n}X,Y) \simeq \LREL(Z, !_{\leq n}X\multimap Y) 
-$$
-
-\subsubsection{Unbounded}
-
-- tropical Laurent series and tropical roots $->$ unbounded lambda-terms (the operation $\C M(-)$ defines a linear exponential comonad) via the adjunction
-$$
-\LREL(!(Z\& X),Y) \simeq \LREL(!Z, !X\multimap Y) 
-$$
-
-That is:
-
-- $\LREL_!$ is CCC (Giulio)
-
-
 \end{itemize}
 
+- tropical polynomials and tropical roots ?? Meglio in Section II
+
+\subsubsection{Unbounded duplications}
+
+If in the previous subsection we considered \emph{bounded} multisets via the graded comonad $(!_n)_{n\in\N}$, it is immediate to see that \emph{unbounded} multisets yield a comonad able to interpret the $\STLC$:
+following [Corollary III.6, Weighted] we have:
+
+\begin{fact}
+ $\LREL$ is Lafont.
+\end{fact}
+
+Therefore, it is well known that the map $X\mapsto \finMS{X}$ lifts to a functor $!:\LREL\to\LREL$ which %satisfies the adjunction $\LREL(!(Z\& X),Y) \simeq \LREL(!Z, !X\multimap Y)$, at 
+is a Lafont-exponential.
+In particular, [Theorem III.7, Weighted] says that:
+\begin{fact}
+ The coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$.
+\end{fact}
+
+It is instructive at this point to see what its CCC-structure looks like in our tropical world.
+In particular, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t:\Lawv^{!X\times Z}$ where $(s\circ_! t)_{\mu,c}$ is:
+\[
+ \inf\limits_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1*\cdots *\mu_n}
+ \set{s_{[b_1,\dots,b_n],c} + \sum\limits_{i=1}^n t_{\mu_i,b_i}}.
+\]
+The exponential object $X\multimap Y$ is $!X+Y$ (where $+$ is the disjoint union).
+Remember that in $\Lawv$ the neutral element for addition is $\infty$ and the neutral for multiplication is $0$, so for instance the evaluation morphism is the matrix $\RM{eval}^{X,Y}\in\Lawv^{!((X\multimap Y) + X)\times Y}\simeq\Lawv^{(!!X\times !Y\times !X)\times Y}$ given by $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=0$ if $\rho_1=[\mu]$ and $\rho_2=[b]$, and $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=\infty$ otherwise.
+
+\begin{remark}[Tropical Laurent series]
+ As usual, a matrix $t\in\HOM{\LREL_!}{X}{Y}$ operates as a linear map $\widehat t:\Lawv^{!X}\to\Lawv^Y$.
+ But we can also ``express it in the base $X$'', i.e.\ see it as a map $t^!:\Lawv^X\to\Lawv^Y$, by setting $t^!(x):=t\circ_! x$ (we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
+ This is the notion of \emph{non-linear} map generated by the CCC-structure of $\LREL_!$.
+ Concretely, we have:
+ $t^!(x)_b=\inf\limits_{\mu\in !X} \set{\mu x+ t_{\mu,b}}$, where $\mu x:=\sum\limits_{a\in X} \mu(a)x_a$.
+ Since in the general case of $\QREL$, $t^!$ is a Laurent series with operations in $Q$, let us call \emph{tropical Laurent series} the functions of shape $t^!$ for some $t\in\HOM{\LREL_!}{X}{Y}$.
+\end{remark}
 
 
 
