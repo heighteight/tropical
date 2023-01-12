@@ -1,19 +1,57 @@
 
 
-
-General discussion: optimization properties behave in a Lipschitz way.
-
-
-- differential privacy and Lipschitzness
-
-
-- log-probabilities and tropical roots 
+In this section we illustrate a few directions in which the tropical semantics just introduced could be used to analyze quantitative properties of higher-order programs. 
+The general pattern is to consider a program $M$, which can be expressed in the form of a polynomial or a power series, and 
+investigate what quantitative properties of $M$ can be deduced from properties of its tropicalization $\trop M$ (which are often easier to study).
+By the way, this is the approach taken in several well-studied applications of tropical geometry (e.g.~for optimization problems related to machine learning \cite{}).
 
 
-- counting computation steps (from Manzonetto, but add relational ``Lipschitz'' reasoning)
+
+\subsection{Best Case Analysis and Metric Reasoning}
+
+The possibility of using the relational model over the tropical semi-ring for ``best case'' resource analysis has already been explored in \cite{Manzo}. Notably, they considered an interpretation of a language for $\B{PCF}$ with non-deterministic choice in which each $\lambda$-abstraction and each occurrence of the fixpoint operator $Y$ is assigned a ``weight'' 1, and showed that for any program $M$ of type $\B{nat}$, 
+the value of the interpretation $\model{M}\in \Lawv^{\BB N}$ on a particular natural number $k$, i.e.~$\model{M}(k)\in \Lawv$, corresponds to the \emph{minimum} number of $\beta$- or $\TT{fix}$-redexes reduced in a reductions sequence from $M$ to $\underline n$. 
+In the next paragraph we will illustrate an analogous ``best case'' analysis for probabilistic programs.
+
+What does the metric analysis of the tropical model in the previous sections add to that? Firstly, the possibility of \emph{comparing} different programs with respect to their quantitative properties. For example, in the $\B{PCF}$ semantics recalled above, the distance between two programs $M$ and $N$ of type $\B{nat}$, provides a bound on the difference between the  ``best case'' computation time of $M$ and that of $N$. Typically, by taking, instead of the $\infty$-norm metric on $\Lawv^{\BB N}$,  
+a \emph{non symmetric} distance (a viewpoint we explicitly take in Section \ref{section6}) $q(\B x, \B y)=\sup_{n}\{\B y_{n}\dotdiv \B x_{n}\}$, a ``distance'' $q(\model{M},\model{N})\leq \epsilon$ would indicate that $\model{M}$ \emph{improves} on $\model{N}$ of at most $\epsilon$ steps at each computation. 
+
+Secondly, the Lipschitz conditions studied in the previous section allow us to reason on program distances in a \emph{compositional} way: suppose, as before, that $M,N:A$ are two programs such that $M$ improves on $N$ by $\epsilon$, and let $\TT C[-]:A \to \B{nat}$ indicate a context; knowing that the interpretation of $\TT C$ is $k$-Lipschitz-continuous on some open set containing both $\model M$ and $\model N$, allows us to immediately deduce that $\TT C[M]$ improves on $\TT C[N]$ by $k \epsilon$. 
+Observe that this will typically be the case when the Taylor expansions of $\TT C[M]$ and $\TT C[N]$ actually yields a \emph{finite} sum of at most $k$ terms, i.e.~when 
+\begin{align}
+\TT C[M] = \sum_{i=0}^{k} \TT D^{(k)}\Big[\lambda x.\TT C[x]\Big]\cdot M^{k}
+\end{align}
+and similarly for $\TT C[N]$. It is here worth recalling that, for $\STDLC$, a well-known result \cite{} is that the Taylor expansion of a closed $\lambda$-term is always finite, although its non-zero coefficients may be arbitrarily high. 
+Notably, these observations suggest to study tropical versions of \emph{finiteness spaces} \cite{}, 
+a variant of the relational semantics modeling strongly normalizing programs via \emph{finite} power series.
 
 
-- measuring duplications of discrete functions (needs finiteness!)
+
+
+
+\subsection{Tropical Polynomials and Log-Probabilities}
+
+
+
+
+
+\subsection{Tropical Laurent Series and Differential Privacy}
+
+
+%
+%General discussion: optimization properties behave in a Lipschitz way.
+%
+%
+%- differential privacy and Lipschitzness
+%
+%
+%- log-probabilities and tropical roots 
+%
+%
+%- counting computation steps (from Manzonetto, but add relational ``Lipschitz'' reasoning)
+%
+%
+%- measuring duplications of discrete functions (needs finiteness!)
 
 
 
