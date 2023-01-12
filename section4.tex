@@ -1,36 +1,80 @@
-- $\Lawv^X$ is a normed cone and Scott continuity w.r.t.\ cone order
+In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
+
+Let us start by recalling Example~\ref{ex:famous_ex}.
+By plotting its graph {\color{red}vogliamo plottarlo?}, we see first of all that the function is non-decreasing and concave.
+It is easy to see that this is actually always the case:
+
+\begin{proposition}
+ Any tropical Laurent series $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
+\end{proposition}
+
+The $f$ of Example~\ref{ex:famous_ex} is continuous on $\BB R_{\geq0}=\Lawv-\set{\infty}$ (w.r.t.\ the usual norm of real numbers).
+By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we could generalise this property by dropping the case of $x$ having some $0$ coordinate:
+
+\begin{theorem}\label{thm:cont}
+ Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
+\end{theorem}
+\begin{proof}
+ The result follows after proving that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
+\end{proof}
+
+Not only the $f$ of Example~\ref{ex:famous_ex} is continuous, but it is also locally Lipschitz on $\BB R_{>0}$.
+Actually, we can prove the following:
+
+\begin{theorem}
+ Let $f:\Lawv\to\Lawv$ a tropical Laurent series with matrix $\widehat f:\N\to\Lawv$.
+ For all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N$ s.t.:
+ \begin{enumerate}
+  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv$;
+  \item If $f(x_0)=\infty$ for some $x_0<\infty$, then $\C F_\epsilon=\emptyset$;
+  \item On all $[\epsilon,\infty]$, $f$ coincides with the tropical \emph{polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\widehat f(n)}$.
+ \end{enumerate}
+ In particular, $f$ is locally Lipschitz on all $\BB R_{>0}$.
+\end{theorem}
+\begin{proof}
+ We can let $\C F_\epsilon:=\set{n\in\N \mid
+ \widehat f(n)<\infty \textit{ and } \widehat f(m)> \widehat f(m)+\epsilon \textit{ for all } m<n}$.
+\end{proof}
+
+Remark that, in coherence with the previous result, in Example~\ref{ex:famous_ex} $f(x)$ is indeed a $\min$ for all $x>0$.
+At $x=0$ we have $f(x=0)=\inf\limits_{n\in\N} \frac{1}{2^n}=0$ which is \emph{not} a min.
+Also, while the derivative of $f$ is bounded on all $\BB R_{>0}$, at $x=0$ it tends to $\infty$.
+This phenomenon is reminiscent of [Example 7, PCoh]
+%Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
+, which actually motivated our first investigations.
+
+We could generalise the locally Lipschitz property as follows:
+\begin{theorem}
+ Let $f:\Lawv^X\to\Lawv$.
+ If $f$ is non-decreasing, concave and continuous, then it is locally Lipschitz.
+\end{theorem}
+\begin{proof}
+ Refinement of the arguments used for Theorem~\ref{thm:cont}.
+ {\color{red}Che ci scriviamo?}
+\end{proof}
+
+Highlight compositional reasoning based on Lipschitz.\\
 
 - the metric on the tensor is the usual tensor metric, the metric on the function space is the usual function metric, the metric on multisets is the multiset metric
 
-- concavity
-
-- Lipschitz-continuity. Highlight compositional reasoning based on Lipschitz.
-
-- Discussion of unary tropical Laurent series, i.e.~$f:\Lawv \to \Lawv$:
-\begin{itemize}
-
-\item $f$ is locally a polynomial (i.e.~a $\min$) but not globally
-
-\item singular points: the famous example
-
-\item tropical roots
-
-
-\end{itemize}
-
 {\color{red}
-- extend this result to functions $\Lawv^{X}\to \Lawv^{Y}$ with $X,Y$ finite (as this will be useful in section V)} 
+- extend this result to functions $\Lawv^{X}\to \Lawv^{Y}$ with $X,Y$ finite (as this will be useful in section V) Quale ?} 
 
 
 
 - discussion of the tropical Taylor expansion: 
 
 
-- characterization of the functional metric using derivatives
+- characterization of the functional metric using derivatives\\
 
+Let us end this section by mentioning another point of view on tropical Laurent series.
+$\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
+Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete normed cone.
+The normed cone structure induces an order on it, called its \emph{cone order}, by setting:
+$x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
+This order makes it a Scott-continuous dcpo.
+Furthermore we have:
 
-
-
-
-
-
+\begin{proposition}
+  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}$, w.r.t.\ the cone orders on the domain and codomain.
+\end{proposition}
