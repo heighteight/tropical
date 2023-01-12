@@ -10,23 +10,25 @@ In order to treat the $+$ and the constructor $D[\_]\cdot (\_)$ of $\STDLC$, the
 2) $\C C$ is equipped with a differential operator map $D:\HOM{\C C}{X}{Y}\to \HOM{\C C}{X\times X}{Y}$ (here $\times$ is the Cartesian product of $\C C$) satisfying $8$ axioms, called D1, ..., D7, D-curry.
 
 Let us show the differential structure of $\LREL_!$ (remember that the Cartesian product of $\LREL_!$ is the disjoint union $+$): 
+
 \begin{definition}
- The \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$,
- $(Dt)_{\mu_1\oplus\mu_2,b}:=t_{\mu_2*\mu_1,b}$ if $\#\mu_1=1$ and $(Dt)_{\mu_1\oplus\mu_2,b}:=\infty$ otherwise.
+ Let $\widetilde{(\cdot)}:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$, $\widetilde t_{\mu\oplus\rho,b}:= t_{\mu*\rho,b}$, and $d:\HOM{\LREL}{!(X+X)}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$, $(dt)_{\mu\oplus\rho,b}:=t_{\rho\oplus\mu,b}$ if $\#\mu_1=1$ and $(dt)_{\mu\oplus\rho,b}:=\infty$ otherwise.
+ The \emph{tropical differential operator} is the map $D:=d\circ\widetilde{(\cdot)}:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$.
 \end{definition}
 
 \begin{example}
- \`E BENE METTERE UN ESEMPIO DI COME OPERA QUESTO DIFFERENZIALE (senn\`o non si capisce).
- Secondo me conviene con un $D^2$ di qualcosa.
+For $t\in\HOM{\LREL}{!X}{Y}$, we have:
+ $(Dt)_{\mu\oplus\rho,b}=t_{\rho*\mu,b}$ if $\#\mu_1=1$ and it is $\infty$ otherwise.
+ Analogously, we have:
+ $D^2 t\in\HOM{\LREL_!}{(X+X)+(X+X)}{Y}$, where $(D^2 t)_{(\rho\oplus\rho')\oplus(\nu\oplus\nu'),b}$ equals $t_{\nu*\nu'*\rho',b}$ if $\rho=\emptyset$ and $\#\rho'=1=\#\nu$; it equals $t_{\rho*\nu',b}$ if $\rho'=\emptyset=\nu$ and $\#\rho=1$; it equals $\infty$ otherwise.
 \end{example}
 
 \begin{theorem}\label{thm:LREL!CCDC}
  $\LREL_!$ equipped with $D$, is a CC$\partial$C.
 \end{theorem}
 \begin{proof}
- The properties 1) and 2) are tedious technical checks.
- If the first are quite straightforward, while the second deserve more attention.
- Let us give the idea for ?
+ The properties 1) are quite straightforward.
+ Properties 2) are tedious technical checks.
 \end{proof}
 
 There is more: not only $\LREL_!$ is a model of the $\STDLC$, but this model is also well-behaved w.r.t.\ to the \lamcalc Taylor expansion.
@@ -37,7 +39,7 @@ This is expressed by the following property (see [Definition 4.22, Giulio], wher
  \[
   \RM{eval}^{X,Y}\circ_!\langle t,s\rangle =
   \inf\limits_{n\in\N}
-  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ \langle \RM{id},\infty \rangle}.
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
  \]
  for all $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$.
 \end{theorem}
@@ -47,5 +49,3 @@ Here, $\Lambda^-:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$ is the
 \end{proof}
 
 This property is interesting because of [Theorem 4.23,Giulio], which says that, then, in the model the series corresponding to the Taylor expansion of an ordinary $\lam$-term $M$ converges to $M$.
-
-- Discuss the tropical Taylor expansion $\trop\C T(M)$ ?? 
