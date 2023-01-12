@@ -194,8 +194,7 @@ and thus coincides with the sum-metric over basic tensors;
 
 We now want to show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
 
-FOLLOW SECTION III.C for definitions of models of LL and DiLL.
-
+First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies, Weight}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting the fact that tensors and products commute in $\Mod$, we define $!$ as the product of the symmetric algebras $!_{n}$.  
 
 For any $\Lawv$-module $M$, $n\in \BB N$ and permutation $\sigma\in \F S_{n}$, define the homomorphism $\langle \sigma\rangle: M^{\otimes_{n}}\to M^{\otimes_{n}}$ by letting 
 $\langle\sigma\rangle (x_{1}\otimes \dots \otimes x_{n})=x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$ on basic tensors, and extending by continuity on the whole tensor module. 
@@ -245,20 +244,45 @@ X(x_{\sigma(i)},y_{\tau(i)})
 where $\alpha=[x_{1},\dots, x_{n}]$ and $\beta= [y_{1},\dots, y_{n}]$.
 
 
-Also in this case, the construction above generalizes the situation in $\LREL$: for the modules of the form $\Lawv^{X}$, the symmetric algebra construction coincides with the usual one, provided by multisets.
+
+
+Using the fact that $\prod_{i}M_{i}\otimes  N\simeq (\prod_{i}M_{i})\otimes N$ holds in $\Mod$ [\cite{}, p.~???], we obtain the following:
+\begin{theorem}
+The functor $!M:= \prod_{n\in \BB N}!_{n}M$ is a Lafont exponential in $\Mod$.
+Hence, $\Mod_{!}$ (equivalently, $\GMet_{!}$) is cartesian closed. 
+\end{theorem}
+
+Also in this case of exponentials, the constructions above generalize the situation in $\LREL$:
 \begin{proposition}
 For any set $X$, 
 $!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{n}(X)}$, where
-$\C M_{n}(X)$ is the set of multisets of $X$ of cardinality $n$. 
+$\C M_{n}(X)$ is the set of multisets of $X$ of cardinality $n$, and 
+$!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. 
 \end{proposition}
 
+To conclude, we mush show that $\Mod$ is actually a model of $\STDLC$, that is, a cartesian closed differential category:
+\begin{enumerate}
+\item $\Mod$ is a left-additive-CCC, since each hom-set is a commutative monoid with respect to $\infty$ and $\min$, and the cartesian closed structure is well-behaved with respect to that;
 
+\item $\Mod$ can be equipped with a differential operator defined, for $f:!M\to N$, by 
+\begin{align}\label{eq:dermod}
+\Der[f](\alpha)=
+\bigvee\left\{
+f(\beta\cup [x]) \ \Big \vert  \ 
+\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
+\right\}
+\end{align}
+where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
+and $S: !(X\times Y)\to !X\otimes !Y$ is the Seely isomorphism \cite{}, 
+satisfying all axioms (D1)-(D7) and (DCurry), see the Appendix.
+\end{enumerate}
 
-At this point, we can define the exponential comonad as 
-$!M:= \prod_{n\in \BB N}!_{n}M$, obtaining a Lafont category.
-ECC....
+This leads then to:
+\begin{theorem}
+$\Mod_{!}$ (equivalently, $\GMet_{!}$), equipped with $\Der$, is a $CC\partial C$.
+\end{theorem}
 
-
+Notice that, when $f:!(\Lawv^{X})\to \Lawv^{Y}$, so that $f$ is described by a matrix $\widehat f: \multiset(X)\times Y\to \Lawv$, one can check that \eqref{eq:dermod} coincides with the definition of the differential operator in $\LREL$.
 
 
 
