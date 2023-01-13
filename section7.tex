@@ -1,9 +1,50 @@
 
-- correspondence between $\Lawv$-modules and $\Lawv$-categories.
+The connections between the differential $\lambda$-calculus (and differential linear logic), the relational semantics, and the theory of non-idempotent intersection types is very well-studied (see \cite{}, and more recently, \cite{} for a more abstract perspective, and \cite{} for a 2-categorical, or proof-relevant, extension).
+As we said, the relational semantics over the tropical semi-ring was quickly explored in \cite{}, to provide a ``best case'' resource analysis of a $\B{PCF}$-like language with non-deterministic choice. 
+\emph{Probabilistic coherent spaces} \cite{}, a variant of  the relational semantics, provide an interpretation of higher-order probabilistic programs
+as analytic functions. In \cite{} it was observed that such functions satisfy a local Lipschitz condition somehow reminiscent of our examples in Section \ref{section4}.
 
 
-- exponential structure of $\LCAT$.
+The study of linear or bounded type systems for sensitivity analysis was initiated in \cite{} and later developed \cite{}.
+As recalled in the paper, the use bounded exponentials ensures that well-typed programs satisfy a Lipschitz condition.
+Related approaches, although not based on metrics, are provided by \emph{differential logical relations} \cite{} and \emph{change action} models \cite{}.
 
 
-- $\LCAT_{!}$ is a cartesian closed differential category
+More generally, the literature on program metrics in denotational semantics is vast. Since [6] metric spaces, also in Lawvere's generalized sense \cite{}, have been exploited as an alternative framework to standard, domain-theoretic, denotational semantics. 
+While standard categories of metric spaces are not models of the full simply typed $\lambda$-calculus, several constructions of cartesian closed categories of metric spaces can be found in the literature. For instance, 
+\emph{ultra}-metric spaces \cite{} form a CCC, and have been shown to model $\B{PCF}$ \cite{}.
+Also \emph{partial} metrics, introduced in \cite{}, have been shown to provide models of $\STLC$, under suitable generalizations \cite{}.
+More generally, \cite{} provides a general characterization of exponentiable objects in categories of (generalized) metric spaces, and \cite{} provides other ways to construct CCCs of
+(generalized) metrics, including one based on locally Lipschitz maps, 
+using ideas from {differential logical relations}.
+
+Motivated by connections with computer science and fuzzy set-theory, 
+the abstract study of generalized metric spaces in the framework of \emph{quantale}- or even \emph{quantaloid}-enriched categories has led to a vast literature in recent years \cite{}, 
+and its connections with tropical mathematics are discussed in \cite{}. Moreover, applications of quantale-modules to both logic and computer science have also been studied \cite{}.
+
+Connections between program metrics and the differential $\lambda$-calculus have been already suggested in \cite{}; moreover, \emph{cartesian difference categories} \cite{} have been proposed as a way to relate derivatives in differential categories with those found in change action models.
+
+
+
+Finally, applications of tropical mathematics in computer science abound, notably in optimization methods for machine learning \cite{} (typically, for neural networks with peicewise linear activation), linear regression \cite{}, convex analysis \cite{}, as well as finite automata \cite{}.
+While our discussion in Section \ref{section5} is inspired by a well-known application of tropical polynomials \cite{},  
+the vast literature in this domain lets us think that other ways to 
+apply tropical semantics to the analysis of higher-order programs might be studied.
+
+%
+%Other connections tropical/metric -> Fuji, ??
+%Applications of tropical to computer science.
+%Log-probabilities.
+%Quantale-modules -> Abramski?
+%
+%
+ 
+
+
+
+
+
+
+
+
 
