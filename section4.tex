@@ -4,7 +4,7 @@ Let us start by recalling Example~\ref{ex:famous_ex}.
 By plotting its graph {\color{red}vogliamo plottarlo?}, we see first of all that the function is non-decreasing and concave.
 It is easy to see that this is actually always the case:
 
-\begin{proposition}
+\begin{proposition}\label{prop:nondecr+conc}
  Any tropical Laurent series $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
 \end{proposition}
 
@@ -12,7 +12,7 @@ The $f$ of Example~\ref{ex:famous_ex} is continuous on $\BB R_{\geq0}=\Lawv-\set
 By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we could generalise this property by dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
- Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
+ Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
 \end{theorem}
 \begin{proof}
  The result follows after proving that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
@@ -36,6 +36,9 @@ Actually, we can prove the following:
  \widehat f(n)<\infty \textit{ and } \widehat f(m)> \widehat f(m)+\epsilon \textit{ for all } m<n}$.
 \end{proof}
 
+We believe that a variant of such result holds in $\Lawv^X$ for $X$ finite.
+We do not know what happens if $X$ is infinite.
+
 Remark that, in coherence with the previous result, in Example~\ref{ex:famous_ex} $f(x)$ is indeed a $\min$ for all $x>0$.
 At $x=0$ we have $f(x=0)=\inf\limits_{n\in\N} \frac{1}{2^n}=0$ which is \emph{not} a min.
 Also, while the derivative of $f$ is bounded on all $\BB R_{>0}$, at $x=0$ it tends to $\infty$.
@@ -52,6 +55,11 @@ We could generalise the locally Lipschitz property as follows:
  Refinement of the arguments used for Theorem~\ref{thm:cont}.
  {\color{red}Che ci scriviamo?}
 \end{proof}
+
+Proposition~\ref{prop:nondecr+conc} and Theorem~\ref{thm:cont} immediately entail:
+\begin{corollary}\label{cor:TLSlocLip}
+ Tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on on $\BB R_{>0}$.
+\end{corollary}
 
 Highlight compositional reasoning based on Lipschitz.\\
 
@@ -76,5 +84,5 @@ This order makes it a Scott-continuous dcpo.
 Furthermore we have:
 
 \begin{proposition}
-  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}$, w.r.t.\ the cone orders on the domain and codomain.
+  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders on the domain and codomain.
 \end{proposition}
