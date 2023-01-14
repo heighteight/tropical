@@ -24,16 +24,66 @@ Observe that this will typically be the case when the Taylor expansions of $\TT 
 and similarly for $\TT C[N]$. It is here worth recalling that, for $\STDLC$, a well-known result \cite{} is that the Taylor expansion of a closed application $MN$ is always finite, although its non-zero coefficients may be arbitrarily high. 
 Notably, these observations suggest to study tropical versions of \emph{finiteness spaces} \cite{}, 
 a variant of the relational semantics modeling strongly normalizing programs via \emph{finite} power series.
+We mention this point in the Section~\ref{sec:concl}
 
 
+\subsection{Maslov dequantisation}
 
-
+{\color{red}MI SA CHE QUESTO PEZZETTO SERVE ANCHE QUI, O NO?}
+{\color{red}L'ho scritta qui cos\`i ma non merita una sezione tutta per se, non so se/come vogliamo dire Maslov}
+First, let us recall that for any non-negative real $t$, the functions $\phi_{t}(x)=-t\log x$ and $\psi_{t}(\alpha)=e^{-\alpha/t}$ are inverse of each other and define thus continuous (w.r.t.\ the usual topologies) bijections between the space of probabilities $[0,1]$ and $\BB R_{\geq 0}\cup\set{\infty}$ (we write $\log$ for the natural logarithm).
+Moreover, if we set $\alpha \widetilde+ \beta:= \frac{\alpha+\beta}{2}$, $\alpha\sumt{t}\beta=\phi_{t}(\psi_{t}(\alpha)\widetilde{+}\psi_{t}(\beta))=-\log (e^{-\alpha/t}+e^{-\beta/t})-\phi_{t}(2)$ and $\alpha\prodt{t} \beta:=\phi_{t}(\psi_{t}(\alpha)\psi_{t}(\beta))=\alpha+\beta$, it is known that: $\lim\limits_{t\to 0}\alpha\sumt{t} \beta= \min\{\alpha,\beta\}$.
+In this sense, setting $\Lawv_t:=([0,\infty],\sumt{t},\prodt{t})$, one says that $\Lawv_t\to_{t\to 0^+}\Lawv$.
+Moreover, setting $\widetilde\Lawv:=([0,\infty],\widetilde+,\cdot)$, it can be shown that $\Lawv_t\simeq\widetilde\Lawv$ for all $t>0$, so the $\Lawv_t$ are all isomorphic, whereas at the limit we have a discontinuity: it can be shown that $\Lawv_t\not\simeq\Lawv$.
+These considerations are called the \emph{Maslov dequantisation} of $\Lawv$ [??].
+%Moreover, the two tropical  operations $\min$ and $+$ on $\BB R_{\geq 0}\cup\set{\infty}$ can be obtained via these bijections as the limit of the operations $\alpha\sumt{t}\beta=\phi_{t}(\psi_{t}(\alpha)\widetilde{+}\psi_{t}(\beta))=-\log (e^{-\alpha/t}+e^{-\beta/t})-\phi_{t}(2)$ and $\alpha\prodt{t} \beta=\phi_{t}(\psi_{t}(\alpha)\psi_{t}(\beta))=\alpha+\beta$; we have: $\lim_{t\to 0}\alpha\sumt{t} \beta= \min\{\alpha,\beta\}$ and $\lim_{t\to 0}\alpha\prodt{t}y= \alpha+\beta$. 
 
 \subsection{Tropical Polynomials and Log-Probabilities}
 
-{\color{red}MI SA CHE QUESTO PEZZETTO SERVE ANCHE QUI, O NO?}
-First, let us recall that for any positive real $t$, the functions $\phi_{t}(x)=-t\log x$ and $\psi_{t}(\alpha)=e^{-\alpha/t}$ define continuous bijections between the space of probabilities $[0,1]$ and $\Lawv$. Moreover, the two tropical  operations $\min$ and $+$ can be obtained via these bijections by letting $\alpha\sumt{t}\beta=\phi_{t}(\psi_{t}(\alpha)+\psi_{t}(\beta)$ and $\alpha\prodt{t} \beta=\phi_{t}(\psi_{t}(\alpha)\psi_{t}(\beta))$, and observing that $\lim_{t\to 0}\alpha\sumt{t} \beta= \min\{\alpha,\beta\}$ and $\lim_{t\to 0}\alpha\prodt{t}y= \alpha+\beta$. 
+Let us consider in this subsection a probabilistic extension of $\lam$-calculus, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.
+These terms are typed via the rule:
+\[
+ \dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
+\]
+and similar for $\Gamma\vdash pM+qN:A$.
+We add the rule:
+\[
+ M\oplus_p N \to pM+(1-p)N
+\]
+so that such terms play the role of probabilistic choices of parameter $p$, as well as the rule:
+\[
+ pM+qM\to (p+q)M.
+\]
 
+\begin{remark}
+{\color{red}By using [Weighted], it can be shown that $\LREL_!$ still is a model of such calculus. GIUSTIFICARLO BENE ?}
+\end{remark}
+
+Let us consider $M:=(I\oplus_p\Omega)\oplus_ps((I\oplus_p\Omega)\oplus_p(I\oplus_p\Omega))$.
+Reducing to normal form, we have:
+\[
+ M\twoheadrightarrow (p^2+(1-p)p^2+(1-p)^3)I+(p(1-p)+2(1-p)^2p)\Omega.
+\]
+Setting $q:=1-p$, we can consider the two weights of $I$ and $\Omega$ as polynomials in the variables $p$ and $q$, and call
+$Q_1(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ the weight of $I$, while
+$Q_2(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ is the weight of $\Omega$,
+where the $P$'s are the following monomials in $p,q$:
+$P_{00}(p,q):=p^2$,
+$P_{100}(p,q):=qp^2$,
+$P_{111}(p,q):=q^3$,
+$P_{01}(p,q):=pq$,
+$P_{110}(p,q)=P_{101}(p,q):=q^2p$.
+The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicate the path of the reduction that led from $M$ to the respective occurrence of $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').
+For instance, in order to reach $I_{100}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.
+The $P_{100}(p,q):=qp^2$ gives then the probability (as a function of $p,q$) of obtaining such occurrence of $I$ in the normal form if we were to sample at each time we reduce a $\oplus_p$.
+Moreover, the polynomials $Q_{1,2}(p,q)$ give the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
+
+The tropical point of view allows us to express two natural questions about this situation:
+\begin{enumerate}
+ \item What is the maximum likelihood estimator for the event ``$M$ produces $I_\omega$''?
+This means asking what is the choice of the parameters $p,q$ that maximizes the probability of getting $I_\omega$ by reducing $M$.
+ \item Knowing that $M$ produced $I$ (similarly for $\Omega$), which occurrence $I_\omega$ is the most likely to have been produced ? I.e., which is the most likely path $\omega$ to have been taken?
+\end{enumerate}
 
 
 
