@@ -109,22 +109,22 @@ Finally, in Section \ref{section6} we show that the connection between the metri
  
 \section{Tropical mathematics: a possible synthesis}
 
-At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv$ \cite{}, which is at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{}.
-Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In our case we have $\Lawv=([0,\infty], \geq,+)$. Observe that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
-In particular, as discussed in Section \ref{section3}, tropical linear algebra coincides with the study of matrices with values taken over $\Lawv$.
-At the same time, a (pseudo-)metric is a function $d:X\times X\to \Lawv$ satisfying usual axioms, e.g.~the triangular law (indeed, such $d$ can be seen as a $\Lawv$-\emph{enriched category}, see Section \ref{section6}). 
+At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{}.
+Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
+A consequence of these observation is that, as discussed in Section \ref{section3}, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
+In particular, a (pseudo-)metric on a set $X$ is nothing but a ``$\Lawv$-valued matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we discuss in Section \ref{section6}). 
 
-
-A \emph{tropical polynomial} is a piecewise linear function $\varphi:\Lawv\to \Lawv$ of the form 
+Going beyond linear algebra, a \emph{tropical polynomial} is defined as a piecewise linear function $\varphi:\Lawv\to \Lawv$ of the form 
 \begin{align}\label{eq:polytrop}
 \varphi(\alpha)= \min_{i=1,\dots,k}\left\{ i\alpha + c_{i}\right\}
 \end{align}
-with coefficients $c_{i}$ taken from $\Lawv$. A value $\alpha\in \Lawv$ is a \emph{root} of the polynomial $P$ when
-the minimum at $\varphi(\alpha)$ is attained at least twice (equivalently, when 
- $\varphi$ is not differentiable at $\alpha$). In other words, the tropical roots of $\varphi$ coincide with the points where the slope of $\varphi$ changes.
-
+where the coefficients $c_{i}$ are taken from $\Lawv$. 
+%A value $\alpha\in \Lawv$ is a \emph{root} of the polynomial $P$ when
+%the minimum at $\varphi(\alpha)$ is attained at least twice (equivalently, when 
+% $\varphi$ is not differentiable at $\alpha$). In other words, the tropical roots of $\varphi$ coincide with the points where the slope of $\varphi$ changes. 
+%
 Intuitively, tropical polynomials look much like standard polynomials, although with ``$+$'' replaced by ``$\min$'', and ``$\times$'' replaced by ``$+$''. 
-In fact, this intuition can be made precise as follows: for any positive real $t$, the tropical polynomials are in one to one correspondence with the functions $f:[0,1]\to [0,1]$ which can be written as a \emph{parameterized} polynomial 
+In fact, this intuition can be made precise as follows: for any positive real $t$, the tropical polynomials like $\varphi$ are in one-to-one correspondence with the functions $f:[0,1]\to [0,1]$ which can be written as a \emph{parameterized} polynomial 
 $f_{t}(x)= \sum_{i=1}^{n}t^{c_{i}}x^{n}$, with the $c_{i}\in [0,\infty]$. 
 %Hence, for any polynomial $p(x)= 
 %For instance, the tropicalization of a cubic polynomial $p(x)=ax^{3}+bx^{2}+cx+d$ yields a piecewise-linear function 
@@ -137,17 +137,17 @@ $f_{t}(x)= \sum_{i=1}^{n}t^{c_{i}}x^{n}$, with the $c_{i}\in [0,\infty]$.
 
 
 
-More generally, for any function $f:[0,1]\to [0,1]$ which can be written as a (parameterized) \emph{power series} of the form $f(x)= \sum_{n}t^{c_{n}}x^{n}$ (such functions arise naturally from the interpretation of probabilistic programs, as we'll recall in Section \ref{section5}), we can define its \emph{tropicalization} $\trop f: \Lawv \to \Lawv$
-as the function 
+More generally, for any function $f:[0,1]\to [0,1]$ which can be written as a (parameterized) \emph{power series} of the form $f_{t}(x)= \sum_{n}t^{c_{n}}x^{n}$ (as we'll see, such functions arise naturally from the interpretation of probabilistic programs, as we'll recall in Section \ref{section5}), we can define its \emph{tropicalization} $\trop f: \Lawv \to \Lawv$
+as the function defined as follows:
 \begin{align}
-\trop f(\alpha) =\inf_{n}\left\{ i\alpha+c_{i}\right\}
+\trop f(\alpha) =\inf_{n}\left\{ n\alpha+c_{n}\right\}
 \end{align}
 Such functions, called \emph{tropical Laurent series} \cite{}, will be discussed in more detail in Section \ref{section5}.
 
-The functions $\varphi$ and $f$ can be related by a limit passage as follows: the functions $\phi_{t}(x)= -\log_{t}x$ and $\varphi_{t}(\alpha)= t^{-\alpha}$ define continuous bijections between $[0,1]$ and $[0,\infty]$ and, by letting
-$\varphi_{t}: [0,\infty]\to [0,\infty]$ be defined by 
-$\varphi_{t}(\alpha)= \phi_{t}\circ f \circ \psi_{t}$, one has that 
-$\varphi= \lim_{t\to 0}\varphi_{t}$. 
+The functions $f$ and $\trop f$ can be related by a limit passage as follows: the functions $\phi_{t}(x)= -\log_{t}x$ and $\varphi_{t}(\alpha)= t^{-\alpha}$ define continuous bijections between $[0,1]$ and $[0,\infty]$ and, by letting
+$\trop_{t}f: [0,\infty]\to [0,\infty]$ be defined by 
+$\trop_{t}f(\alpha)= \phi_{t}\circ f \circ \psi_{t}$, one has that 
+$\trop f= \lim_{t\to 0}\trop_{t}f$. 
 Indeed, one can check that the ``parameterized'' sums and product $\alpha \sumt{t}\beta:= \phi_{t}(\psi_{t}(\alpha)+\psi_{t}(\beta))= \log_{t}(t^{-\alpha}+t^{-\beta})$ and 
 $\alpha \prodt{t}\beta:= \phi_{t}( \psi_{t}(\alpha)\psi_{t}(\beta))=
 \log_{t}(t^{-\alpha}t^{-\beta})$ converge respectively to $\min\{\alpha,\beta\}$ and $\alpha+\beta$, when $t\to 0$ (this remark is an example of the so-called \emph{Maslov dequantization}, relating the semi-ring $\BB R$ with the tropical semiring $((-\infty, \infty], \min, +)$, see e.g.~\cite{}).
