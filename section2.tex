@@ -69,7 +69,26 @@ F_{\leq 2}(f,x)=\widehat f_{2} x^{2}  + \widehat f_{1}x +  \widehat f_{0}
 Going back to our previous question, we can now reformulate it as follows: can we make the relational semantics \emph{Lipschitz}, hence amenable to metric and sensitivity analysis? The goal of this paper is to show that this is indeed possible and actually quite natural, by appealing to tropical mathematics.
  
 \subsection{Tropical mathematics: a possible synthesis}
-The fundamental observation that led to the study of mathematics over the \emph{tropical semi-ring} $\Lawv=([0,\infty],\min,+)$ was that, by replacing everywhere the ``$+$'' by the ``$\min$'' and the ``$\times$'' by the ``$+$'', the computation of many algebraic and geometric objects becomes combinatorial and simple. 
+
+{\color{red}Lista delle cose da dire:}
+
+1) Def di quantale, come lattice e come complete idempotent semiring.
+Among the the so-called \emph{tropical semirings}, we consider the \emph{Lawvere quantale/semiring}.
+
+2) Def di $\Lawv$, the \emph{Lawvere quantale}: seen as the idempotent complete semiring, it is $(\BB R_{\geq0}\cup\set{\infty},\inf,\infty,\cdot,0)$.
+Seen as lattice it is defined by the order $\preceq$, which is the reversed order $\geq$ of the usual order $\leq$ on $\BB R_{\geq0}\cup\set{\infty}$.
+
+3) Maslov dequantisation:
+
+First, let us recall that for any non-negative real $t$, the functions $\phi_{t}(x)=-t\log x$ and $\psi_{t}(\alpha)=e^{-\alpha/t}$ are inverse of each other and define thus continuous (w.r.t.\ the usual topologies) bijections between the space of probabilities $[0,1]$ and $\BB R_{\geq 0}\cup\set{\infty}$ (we write $\log$ for the natural logarithm).
+Moreover, if we set $\alpha \widetilde+ \beta:= \frac{\alpha+\beta}{2}$, $\alpha\sumt{t}\beta=\phi_{t}(\psi_{t}(\alpha)\widetilde{+}\psi_{t}(\beta))=-\log (e^{-\alpha/t}+e^{-\beta/t})-\phi_{t}(2)$ and $\alpha\prodt{t} \beta:=\phi_{t}(\psi_{t}(\alpha)\psi_{t}(\beta))=\alpha+\beta$, it is known that: $\lim\limits_{t\to 0}\alpha\sumt{t} \beta= \min\{\alpha,\beta\}$.
+In this sense, setting $\Lawv_t:=([0,\infty],\sumt{t},\prodt{t})$, one says that $\Lawv_t\to_{t\to 0^+}\Lawv$.
+Moreover, setting $\widetilde\Lawv:=([0,\infty],\widetilde+,\cdot)$, it can be shown that $\Lawv_t\simeq\widetilde\Lawv$ for all $t>0$, so the $\Lawv_t$ are all isomorphic, whereas at the limit we have a discontinuity: it can be shown that $\Lawv_t\not\simeq\Lawv$.
+
+4) Def di $\trop$ di un polinomio/serie, (\`e la stessa formula, dipende solo se gli indici sono finiti/infiniti).
+Come sta scritto sotto, giusto un po' pi\`u formale (per esempio, scriverlo come Definizione).
+
+The fundamental observation that led to the study of mathematics over the \emph{tropical semi-ring} $\Lawv=([0,\infty],\min,+)$ was that, by replacing everywhere the ``$+$'' by the ``$\min$'' and the ``$\times$'' by the ``$+$'', many algebraic and geometric objects becomes combinatorial and their computation simpler. 
 
 For instance, the tropicalization of a cubic polynomial $p(x)=ax^{3}+bx^{2}+cx+d$ yields a piecewise-linear function 
 \begin{align}
@@ -82,16 +101,15 @@ More generally, the tropicalization of a power series $f(x)=\sum_{n}\widehat f_{
 \end{align}
 a class of functions that we will study in detail in Section \ref{section4}.
 
-Since polynomials correspond to linear (hence Lipschitz) functions in tropical mathematics, the reconstruction of the relational semantics over the tropical semi-ring, presented in Section \ref{section3} and Section \ref{section4}, will provide a metric semantics of the differential $\lambda$-calculus, bridging sensitivity and resource analysis. 
+
+\subsection{Outline of the paper}
+
+Since polynomials correspond to piecewise linear (hence Lipschitz) functions in tropical mathematics, the reconstruction of the relational semantics over the tropical semi-ring, presented in Section \ref{section3} and Section \ref{section4}, will provide a metric semantics of the differential $\lambda$-calculus, bridging sensitivity and resource analysis. 
 In Section \ref{section5} we will suggest potential applications of this approach, relating well-studied applications of program metrics, resource analysis with current uses of tropical mathematics in computer science.  
 Finally, in Section \ref{section6} we will show that the connection between the metric and differential analysis of higher-order programs extends well beyond the relational semantics, through a more abstract correspondence between  
 \emph{generalized metric spaces} (in the sense of Lawvere \cite{}) and modules over the tropical semi-ring.
 
 %- generalities about tropical maths (tropicalisation $\trop P$  of polynomials and of Laurent series, and their roots -- all that without $\LREL$)
-
-
-
-
 
 
 
