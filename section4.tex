@@ -1,5 +1,22 @@
 In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
+\subsection{Results on Tropical Laurent Series}
+{\color{red}
+
+- recall Trop Laurent Series (TLS) tropical roots
+
+- Example 1
+
+- The morphisms of $\LREL_{!}$ can be seen as generalizations of TLS
+
+- Remark: for $f:\Lawv^{X}\to \Lawv^{Y}$, if $X$ is finite, $f$ is a finite variable TLS; if $f$ is written as a finite $\min$, it is a tropical polynomial. 
+
+- Maybe Theorem 7 could even go here?? Saying something like: after the remark above, we can prove a result that confirms what seen in Example 1, for the case when $X$ is finite: $f$ can LOCALLY be seen as a polynomial, the degree of such polynomials potentially diverging when $\epsilon\to 0$. Indeed...
+
+
+- bisognerebbe anche dire due parole sul differenziale e dell'espansione di Taylor come operazione sulle TLS invece che sulle matrici. 
+}
+
 Let us start by recalling Example~\ref{ex:famous_ex}.
 By plotting its graph {\color{red}vogliamo plottarlo?}, we see first of all that the function is non-decreasing and concave.
 It is easy to see that this is actually always the case:
@@ -7,6 +24,10 @@ It is easy to see that this is actually always the case:
 \begin{proposition}\label{prop:nondecr+conc}
  Any tropical Laurent series $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
 \end{proposition}
+
+\subsection{$\Lawv^{X}$ as a normed space.}
+
+{\color{red}Move here also the cone part}
 
 The $f$ of Example~\ref{ex:famous_ex} is continuous on $\BB R_{\geq0}=\Lawv-\set{\infty}$ (w.r.t.\ the usual norm of real numbers).
 By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we could generalise this property by dropping the case of $x$ having some $0$ coordinate:
@@ -21,7 +42,7 @@ By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$
 Not only the $f$ of Example~\ref{ex:famous_ex} is continuous, but it is also locally Lipschitz on $\BB R_{>0}$.
 Actually, we can prove the following:
 
-\begin{theorem}
+\begin{theorem}\label{theorem:fepsilon}
  Let $f:\Lawv\to\Lawv$ a tropical Laurent series with matrix $\widehat f:\N\to\Lawv$.
  For all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N$ s.t.:
  \begin{enumerate}
@@ -46,35 +67,103 @@ This phenomenon is reminiscent of [Example 7, PCoh]
 %Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
 , which actually motivated our first investigations.
 
-We could generalise the locally Lipschitz property as follows:
-\begin{theorem}
- Let $f:\Lawv^X\to\Lawv$.
- If $f$ is non-decreasing, concave and continuous, then it is locally Lipschitz.
-\end{theorem}
+
+
+
+\subsection{$\Lawv^{X}$ as a metric space.}
+
+
+
+The norm $\|-\|_\infty$ naturally induces a metric $\|\B x-\B y\|_{\infty}$ over the spaces $\Lawv^{X}$. 
+We now study the Lipschitz properties of tropical Laurent series w.r.t.~these metrics. 
+
+A first result is the following:
+\begin{proposition}\label{prop:troplinear}
+All tropical linear functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
+\end{proposition}
+\begin{proof}[Proof sketch]
+Using the fact that $f(\B x)_{b}= \inf_{a\in X}\check f_{a,b}+\B x_{a}$,
+the problem reduces to checking that $|(\check f_{a,b}-\B x_{a})- (\check f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
+This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
+%\begin{proof}
+%Using $f(\B x)_{b}= \inf_{a\in X}\check f_{a,b}+\B x_{a}$,
+%first observe that $|(\check f_{a,b}-\B x_{a})- (\check f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$; we now have
+%$|f(\B x)_{b}-f(\B y)_{b}| \leq |(\inf_{a\in X}\check f_{a,b}-\B x_{a})-(\inf_{a\in X}\check f_{a,b}-\B y_{a})| \leq
+%\sup_{a\in X}|(\check f_{a,b}-\B x_{a})- (\check f_{a,b}-\B y_{a})|\leq 
+% \| \B x-\B y\|_{\infty}$.
+%\end{proof}
+
+Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
+
+Using the fact that the tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$ are in bijection with the elements of the hom-set $\LREL(X,Y)\simeq \Lawv^{X\times Y}$ through the map $f\mapsto \check f$, the following proposition provides a useful characterization of the functional metrics in $\LREL$:
+\begin{proposition}
+For all sets $X,Y$ and tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $\| \check f-\check g\|_{\infty} =  \sup_{\B x\in \Lawv^{X}}
+\| f(\B x)-g(\B x)\|_{\infty}$.\end{proposition}
+
+To study what happens in the case of tropical Laurent series, let us first consider the case of bounded exponentials $!_{\leq n}X$:
+\begin{proposition}\label{prop:boundedlip}
+All tropical linear functions $f: \Lawv^{\C M_{\leq n}(X)}\to \Lawv^{Y}$ are $n$-Lipschitz-continuous.
+\end{proposition}
+\begin{proof}[Proof sketch]
+Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \check f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
+$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
+it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
+\end{proof}
+This result is perfectly analogous to what happens in standard models for sensitivity analysis based on the re-scaling trick recalled in Section \ref{section2}.
+
+We can now look at what happens in the case of the full exponential comonad, i.e.~with the tropical Laurent series.
+First, let us observe that, as expected, tropical polynomials 
+correspond to Lipschitz functions:
+\begin{proposition}
+Any tropical polynomial $\varphi:\Lawv^{\{1,\dots, K\}}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+\end{proposition}
 \begin{proof}
- Refinement of the arguments used for Theorem~\ref{thm:cont}.
- {\color{red}Che ci scriviamo?}
+This immediately follows from Prop.~\ref{prop:boundedlip}, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(\{1,\dots, K\})}}$ to $\Lawv$.
 \end{proof}
 
-Proposition~\ref{prop:nondecr+conc} and Theorem~\ref{thm:cont} immediately entail:
-\begin{corollary}\label{cor:TLSlocLip}
- Tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on on $\BB R_{>0}$.
-\end{corollary}
-
-Highlight compositional reasoning based on Lipschitz.\\
-
-- the metric on the tensor is the usual tensor metric, the metric on the function space is the usual function metric, the metric on multisets is the multiset metric
-
-{\color{red}
-- extend this result to functions $\Lawv^{X}\to \Lawv^{Y}$ with $X,Y$ finite (as this will be useful in section V) Quale ?} 
+The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tropical Laurent series with \emph{finitely many} variables are always locally Lipschitz over $(0,\infty)^{X}$. Yet, we can prove a more general statement, covering also the infinitary case.
 
 
+\begin{theorem}
+ All tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+The core of the proof is a convex analysis argument (see the Appendix) showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
+\end{proof}
 
-- discussion of the tropical Taylor expansion: 
+
+The results just presented translate into the following facts about the interpretation of higher-order programs:
+\begin{corollary}
+For any $\lambda$-term $M$:
+\begin{enumerate}
+\item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M:\model\Gamma \to \model A$ is a Lipschitz map.
+\item if $\Gamma \vdash_{\STLC}M:A$, then $\model M: \model\Gamma \to \model A$ is a locally Lipschitz map.
+\end{enumerate}
+\end{corollary} 
 
 
-- characterization of the functional metric using derivatives\\
+Finally, let us discuss the differential structure. We show that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
+\begin{proposition}
+For all tropical Laurent series $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
+the functions
+$\delta^{(n)}f, \delta^{(n)}g: \Lawv^{\C M_{\leq n}(X)}\to \Lawv ^{Y}$, with 
+ $\delta^{(n)}f(\B x)= \Der^{(n)}f(\B x, \infty)$, appearing in their Taylor expansions, are $n$-Lipschitz-continuous, and moreover 
+\begin{align}
+\| \check f-\check g\|_{\infty}= \sup_{n} \| \check{\delta^{(n)}f}- \check{\delta^{(n)}g}\|_{\infty}
+\end{align}
+%where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
+%(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
+\end{proposition} 
 
+
+%A consequence of this result is that the distance between two differential programs can always be approximated via bounded programs:
+%\begin{corollary}
+%For all $\lambda$-terms $M,N: A\to B$ of $\STDLC$, for all $\epsilon >0$, there exists $K\in \BB N$ such that 
+%$|\|\model{M}-\model{N}\|_{\infty}- | \| \model{
+%\end{corollary}
+
+
+{\color{red}MOVE:
 Let us end this section by mentioning another point of view on tropical Laurent series.
 $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
 Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete normed cone.
@@ -86,3 +175,4 @@ Furthermore we have:
 \begin{proposition}
   Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders on the domain and codomain.
 \end{proposition}
+}
