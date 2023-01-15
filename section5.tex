@@ -29,13 +29,13 @@ We mention this point in the Section~\ref{sec:concl}
 
 \subsection{Tropical Polynomials and Log-Probabilities}
 
-Let us consider in this subsection a probabilistic extension of $\lam$-calculus, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.
+Let us consider in this subsection a probabilistic extension of $\lam$-calculus, call it $\STLC_\oplus$, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.
 These terms are typed via the rule:
 \[
  \dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
 \]
 and similar for $\Gamma\vdash pM+qN:A$.
-We add the rule:
+We add the reduction rule:
 \[
  M\oplus_p N \to pM+(1-p)N
 \]
@@ -44,36 +44,85 @@ so that such terms play the role of probabilistic choices of parameter $p$, as w
  pM+qM\to (p+q)M.
 \]
 
-\begin{remark}
-{\color{red}By using [Weighted], it can be shown that $\LREL_!$ still is a model of such calculus. GIUSTIFICARLO BENE ?}
-\end{remark}
-
-Let us consider $M:=(I\oplus_p\Omega)\oplus_ps((I\oplus_p\Omega)\oplus_p(I\oplus_p\Omega))$.
+Let us consider $M:=(I\oplus_p\Omega)\oplus_p((I\oplus_p\Omega)\oplus_p(I\oplus_p\Omega))$.
 Reducing to normal form, we have:
 \[
  M\twoheadrightarrow (p^2+(1-p)p^2+(1-p)^3)I+(p(1-p)+2(1-p)^2p)\Omega.
 \]
-Setting $q:=1-p$, we can consider the two weights of $I$ and $\Omega$ as polynomials in the variables $p$ and $q$, and call
-$Q_1(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ the weight of $I$, while
-$Q_2(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ is the weight of $\Omega$,
+Setting $q:=1-p$, we can consider the two weights of $I$ and $\Omega$ as polynomials in the variables $p$ and $q$.
+Let us call
+$Q_1(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ the weight of $I$ and
+$Q_2(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ the weight of $\Omega$,
 where the $P$'s are the following monomials in $p,q$:
 $P_{00}(p,q):=p^2$,
 $P_{100}(p,q):=qp^2$,
 $P_{111}(p,q):=q^3$,
 $P_{01}(p,q):=pq$,
 $P_{110}(p,q)=P_{101}(p,q):=q^2p$.
-The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicate the path of the reduction that led from $M$ to the respective occurrence of $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').
+The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicates the path of the reduction that led from $M$ to the respective occurrence $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').
 For instance, in order to reach $I_{100}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.
-The $P_{100}(p,q):=qp^2$ gives then the probability (as a function of $p,q$) of obtaining such occurrence of $I$ in the normal form if we were to sample at each time we reduce a $\oplus_p$.
-Moreover, the polynomials $Q_{1,2}(p,q)$ give the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
+$P_{\omega}(p,q)$ gives then the probability (as a function of $p,q$) of obtaining the respective occurrence $I_{\omega}$ or $\Omega_\omega$ in the normal form, if we were to sample at each time we reduce a $\oplus_p$.
+It can thus also be read as the likelihood function of such event.
+The polynomials $Q_{1,2}(p,q)$ give instead the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
 
 The tropical point of view allows us to express two natural questions about this situation:
 \begin{enumerate}
- \item What is the maximum likelihood estimator for the event ``$M$ produces $I_\omega$''?
+ \item What is the maximum likelihood estimator for the event ``$M$ produces $I_\omega$'' (similarly for $\Omega$)?
 This means asking what is the choice of the parameters $p,q$ that maximizes the probability of getting $I_\omega$ by reducing $M$.
- \item Knowing that $M$ produced $I$ (similarly for $\Omega$), which occurrence $I_\omega$ is the most likely to have been produced ? I.e., which is the most likely path $\omega$ to have been taken?
+ \item Knowing that $M$ produced $I$ (similarly for $\Omega$), which is the choice of the parameters $p,q$ that maximizes the probability that the produced occurrence of $I$ was a fixed $I_{\omega_0}$ (i.e. that among the paths leading to $I$, the one taken was $\omega_0$)?
 \end{enumerate}
 
+For 1), we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)$ belong to:
+\begin{equation}
+  \begin{array}{r@{}c@{}l@{}}
+   \underset{(x,y)}{\RM{arg max}} P_\omega (x,y)
+   & = &
+   \underset{(x,y)}{\RM{arg min}}\set{-\log_c P_\omega (x,y)}
+   \\
+   & = &
+   \underset{(x,y)}{\RM{arg max}}\set{(\trop P_\omega) (-\log_c x,-\log_c y)} \label{eq:argmax}
+  \end{array}
+\end{equation}
+where the equalities hold for all $0<c\neq1$.
+
+For 2), %the $\omega_0$ is s.t.\ $\max\limits_{\omega\in\set{00,100,111}} \, P_\omega(x,y) = P_{\omega_0}(x,y)$. So
+we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and
+$\max\limits_{\omega\in\set{00,100,111}} \, P_\omega(x,y) = P_{\omega_0}(x,y)$.
+This last condition is equivalent to ask that:
+\begin{equation}
+  \begin{array}{l@{}l@{}}
+    \min\limits_{\omega\in\set{00,100,111}} \, -\log_c P_\omega(x,y) = -\log_c P_{\omega_0}(x,y)
+   & \textit{ i.e.: }
+   \\
+   (\trop Q_1)( -\log_c x, -\log_c y) = (\trop P_{\omega_0})( -\log_c x, -\log_c y). &  \label{eq:max}
+  \end{array}
+\end{equation}
+In both cases, the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
+
+\begin{fact}
+ By using [Weighted], it can be shown that $\LREL_!$ is a model of such calculus $\STLC_\oplus$. {\color{red}GIUSTIFICARLO BENE ?}
+\end{fact}
+
+Now, in $\LREL$, seen as a model of such probabilistic $\lam$-calculus, the interpretation of a term already computes the tropicalisation of the polynomials expressing the probabilities, because the underlying semiring of the model is tropical.
+For instance, for our running example $M$:
+\[\model M = \min\left\{\trop{Q_1}(p,1-p) \cdot \model I, \trop{Q_2}(p,1-p) \cdot \model \Omega\right\}.\]
+So, assuming the interpretation of a term known and assuming the tropical polynomials are extracted from it, one could study the optimisation problems \ref{eq:argmax}, \ref{eq:max} \emph{without} having to reduce the term.
+
+\begin{example}\label{ex:study}
+ For our running example $M$, we have $\trop Q_1(x,y)=\min\set{2x,y+2x,3y}$ and $\trop Q_2(x,y)=\min\set{x+y,2y+x}$.
+ Studying $\trop Q_1$ we see that {\color{red}Vogliamo plottare $\trop Q_1$ ?}
+ $\trop Q_1(x,y)=3y$ iff $y\leq \frac{2}{3}x$, and it coincides with $2x$ otherwise.
+ Remembering that $3y=P_{111}(x,y)$, we can now solve the optimisation problem~\ref{eq:max} for $\omega_0=111$:
+ via the substitution $x:=-\log_c p$, $y:=-\log_c (1-p)$, Equation~\ref{eq:max} is equivalent to $-\log_c (1-p)\leq -\frac{2}{3}\log_c p$, i.e.\ $1-p\geq p^{\frac{2}{3}}$.
+ This means that, for $p\in[0,1]$ s.t.\ $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), the most likely occurrence of $I$ to obtain, knowing that $M$ produced $I$, is $I_{111}$.
+ Remembering that $2x=P_{00}(x,y)$, for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $I$ to be sampled is the occurrence $I_{00}$.
+ We have thus answered question 2) above.
+\end{example}
+
+\begin{remark}
+ Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_2$ give, by definition of tropical root, the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable paths of samples during the reduction of $M$ to its normal form.
+ Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable occurrences of $I$ that are sampled by $M$ during the reduction, knowing that some $I$ was sampled.
+\end{remark}
 
 
 \subsection{Resource Analysis for Differential Privacy}
