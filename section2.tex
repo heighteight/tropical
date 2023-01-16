@@ -20,7 +20,7 @@ can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R
 
 These observations have led to the study of \emph{bounded} typed $\lambda$-calculi (like the system $\mathsf{Fuzz}$ \cite{Reed_2010}), which have been applied in the study of higher-order differential privacy \cite{}. The types of such systems are defined \cite{} by combining linear constructors with a \emph{graded exponential comonad} $!_{r}(-)$ \cite{}.
 In the following sections we will sometimes make reference to a basic type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined as below
-\begin{align}
+\begin{align}\label{eq:Btyped}
 A::= o \  \mid \  (!_{\leq n}A) \multimap A  
 \end{align}
 where $n$ indicates a natural number. Intuitively, $!_{\leq n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input at most $n$ times. More details about $\BSTLC$ are provided in the Appendix.
