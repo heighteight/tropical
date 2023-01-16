@@ -3,13 +3,13 @@
 In this section we illustrate a few directions in which the tropical semantics just introduced could be used to analyze quantitative properties of higher-order programs. 
 The general pattern is to consider a program $M$, which can be expressed in the form of a polynomial or a power series, and 
 investigate what quantitative properties of $M$ can be deduced from properties of its tropicalization $\trop M$ (which are often easier to study).
-By the way, this is the approach taken in several well-studied applications of tropical geometry (e.g.~for optimization problems related to machine learning \cite{}).
+By the way, this is the approach taken in several well-studied applications of tropical geometry (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}).
 
 
 
 \subsection{Best Case Analysis and Metric Reasoning}
 
-The possibility of using the relational model over the tropical semi-ring for ``best case'' resource analysis has already been explored in \cite{Manzo}. Notably, they considered an interpretation of a language for $\B{PCF}$ with non-deterministic choice in which each $\lambda$-abstraction and each occurrence of the fixpoint operator $Y$ is assigned a ``weight'' 1, and showed that for any program $M$ of type $\B{nat}$, 
+The possibility of using the relational model over the tropical semi-ring for ``best case'' resource analysis has already been explored in \cite{Manzo2013}. Notably, they considered an interpretation of a language for $\B{PCF}$ with non-deterministic choice in which each $\lambda$-abstraction and each occurrence of the fixpoint operator $Y$ is assigned a ``weight'' 1, and showed that for any program $M$ of type $\B{nat}$, 
 the value of the interpretation $\model{M}\in \Lawv^{\BB N}$ on a particular natural number $k$, i.e.~$\model{M}(k)\in \Lawv$, corresponds to the \emph{minimum} number of $\beta$- or $\TT{fix}$-redexes reduced in a reductions sequence from $M$ to $\underline n$. 
 In the next paragraph we will illustrate an analogous ``best case'' analysis for probabilistic programs.
 
@@ -21,8 +21,8 @@ Observe that this will typically be the case when the Taylor expansions of $\TT 
 \begin{align}
 \TT C[M] = \sum_{i=0}^{k} \TT D^{(k)}\Big[\lambda x.\TT C[x]\Big]\cdot M^{k}
 \end{align}
-and similarly for $\TT C[N]$. It is here worth recalling that, for $\STDLC$, a well-known result \cite{} is that the Taylor expansion of a closed application $MN$ is always finite, although its non-zero coefficients may be arbitrarily high. 
-Notably, these observations suggest to study tropical versions of \emph{finiteness spaces} \cite{}, 
+and similarly for $\TT C[N]$. It is here worth recalling that, for $\STDLC$, a well-known result \cite{difflambda} is that the Taylor expansion of a closed application $MN$ is always finite, although its non-zero coefficients may be arbitrarily high. 
+Notably, these observations suggest to study tropical versions of \emph{finiteness spaces} \cite{Ehrhard2005}, 
 a variant of the relational semantics modeling strongly normalizing programs via \emph{finite} power series.
 We mention this point in the Section~\ref{sec:concl}
 
@@ -100,7 +100,7 @@ This last condition is equivalent to ask that:
 In both cases, the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
 
 \begin{fact}
- By using [Weighted], it can be shown that $\LREL_!$ is a model of such calculus $\STLC_\oplus$. {\color{red}GIUSTIFICARLO BENE ?}
+ By using \cite{Manzo2013}, it can be shown that $\LREL_!$ is a model of such calculus $\STLC_\oplus$. {\color{red}GIUSTIFICARLO BENE ?}
 \end{fact}
 
 Now, in $\LREL$, seen as a model of such probabilistic $\lam$-calculus, the interpretation of a term already computes the tropicalisation of the polynomials expressing the probabilities, because the underlying semiring of the model is tropical.
@@ -129,7 +129,7 @@ So, assuming the interpretation of a term known and assuming the tropical polyno
 
 The typical situation in differential privacy is where one considers a probabilistic query $f: \mathsf{db}\to [0,1]^{X}$ over some database, and one requires that $f$ should not be \emph{too sensitive} to small changes in the output, in other to prevent potential leaks of private information about individual items in $\mathsf{db}$ (for instance, an element $x\in\mathsf{db}$ could be the list of students of some university and $f(x)$ indicates the percentage of female students$\mathsf{db}$).
 
-More formally, differential privacy is defined as follows \cite{}:
+More formally, differential privacy is defined as follows \cite{Reed2010}:
 \begin{definition}
 Let $f: \mathsf{db}\to [0,1]^{X}$ and $\epsilon \in \BB R_{\geq 0}$. $f$ is said \emph{$\epsilon$-differentially private} if for all $x,x'\in \mathsf{db}$
 differing by $L$ items, for all $s\in X$, 
@@ -138,10 +138,10 @@ f(x)(s) \ = \ e^{\epsilon L} f(x')(s)
 $$
 \end{definition}
 
-A well-studied approach to ensure differential privacy for higher-order programs is to use bounded type systems like $\mathsf{Fuzz}$ \cite{}. Indeed, such systems come with an \emph{a priori} warrant that well-typed programs are Lipschitz.
+A well-studied approach to ensure differential privacy for higher-order programs is to use bounded type systems like $\mathsf{Fuzz}$ \cite{Reed2010}. Indeed, such systems come with an \emph{a priori} warrant that well-typed programs are Lipschitz.
 
 The use of tropical semantics suggests how resource analysis could also be used to provide bounds for differential privacy. 
-Suppose our probabilistic query $f$ can be expressed as a power series (this is what happens e.g.~in \emph{probabilistic coherent spaces} \cite{}). Then, if we discover, either by studying differential properties of $f$, or using methods from convex analysis as suggested in the previous section (e.g.~Theorem \ref{??}), 
+Suppose our probabilistic query $f$ can be expressed as a power series (this is what happens e.g.~in \emph{probabilistic coherent spaces} \cite{Ehrhard2011}). Then, if we discover, either by studying differential properties of $f$, or using methods from convex analysis as suggested in the previous section (e.g.~Theorem \ref{??}), 
  that the tropicalization $\trop f$ satisfies a Lipschitz condition, we may use this fact to deduce that $f$ is differentially private, as shown by the result below.
 
 %

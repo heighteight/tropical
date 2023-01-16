@@ -4,8 +4,8 @@ As we have seen, the morphisms of $\LREL$ can be seen as continuous functions be
 
 For instance, natural questions are: (1) Is this correspondence restricted to $\Lawv$-modules of the form $\Lawv^{X}$ (i.e.~with a fixed base), or does it hold in some sense for arbitrary $\Lawv$-modules? (2) Is this correspondence restricted to the $\infty$-norm metric, or does it hold for other metrics too?
 
-An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{}. 
-This correspondence, recalled in this section, and the fact that it leads to the definition of a linear $\Lawv$-category (i.e.~a model of the linear $\lambda$-calculus) of genealized metric spaces extending $\LREL$, is mostly a \emph{collage} of  \emph{folklore} results with more abstract results contained in recent literature in enriched category theory \cite{}.
+An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}. 
+This correspondence, recalled in this section, and the fact that it leads to the definition of a linear $\Lawv$-category (i.e.~a model of the linear $\lambda$-calculus) of genealized metric spaces extending $\LREL$, is mostly a \emph{collage} of  \emph{folklore} results with more abstract results contained in recent literature in enriched category theory \cite{Fuji, Stubbe2006, Shen2014}.
 Beyond this reconstruction, our main contribution is to show that this correspondence can be lifted to a model of the full differential $\lambda$-calculus, by a suitable generalization of the construction of the exponential comonad of $\LREL$.
 
 %
@@ -40,7 +40,7 @@ Like $\LREL$, the category $\Mod$ has the relevant structure to interpret the li
 $\Mod$ is a linear $\Lawv$-category.
 \end{proposition}
 \begin{proof}[Proof sketch]
-The hom-sets $\Hom(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. Moreover, the tensor product of $\Lawv$-modules $M\otimes N$ \cite{} can be defined as the quotient of the usual tensor product of sup-lattices (see e.g.~\cite{}), under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$.
+The hom-sets $\Hom(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. Moreover, the tensor product of $\Lawv$-modules $M\otimes N$ can be defined as the quotient of the usual tensor product of sup-lattices (see e.g.~\cite{Russo2007}), under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$.
 Notably, any element of $M\otimes N$ can be identified with a join of basic tensors $x\otimes y$, corresponding to the equivalence class of the pair $\langle x,y\rangle$.
 
 Beyond the required adjointness of the internal hom and the tensor, one can check that $\Mod$ is actually \emph{$^{*}$-autonomous}, since it satisfies $(M^{\op})^{\op}\simeq M$ and 
@@ -67,10 +67,10 @@ Lawvere was the first to observe that a metric space can be described as a \emph
 0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
 X(y,z)+X(x,y)&\geq  X(x,z) \tag{$\Lawv$-cat 2}
 \end{align}
-This structure is often referred as a \emph{generalized metric space} \cite{}, or as a \emph{quasi-metric space} \cite{}. 
+This structure is often referred as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}, or as a \emph{quasi-metric space}. 
 Notice that a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is just a non-expansive map $f:X\to Y$, i.e.~it must satisfy $Y(f(x),f(y))\leq X(x,y)$.
 
-A $\Lawv$-category is \emph{skeletal} \cite{} when 
+A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when 
 $X(x,y)=0$ implies $x=y$, and 
  \emph{symmetric} when it coincides with its opposite category $X^{\op}(x,y):=X(y,x)$, i.e.~when $X(x,y)=X(y,x)$. 
  A metric space, in the usual sense, is thus the same as a skeletal and symmetric $\Lawv$-category.
@@ -105,7 +105,7 @@ Observe that, since the distance $M(x,y)$ coincides with the Yoneda embedding $\
 
 \subsection{Complete $\Lawv$-Categories Correspond to $\Lawv$-Modules}
 
-Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{}).
+Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{Willerton2013, Rutten1998}).
 
 First, let us recall that functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$.
 
@@ -194,7 +194,7 @@ and thus coincides with the sum-metric over basic tensors;
 
 We now want to show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
 
-First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies, Weight}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting the fact that tensors and products commute in $\Mod$, we define $!$ as the product of the symmetric algebras $!_{n}$.  
+First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting the fact that tensors and products commute in $\Mod$, we define $!$ as the product of the symmetric algebras $!_{n}$.  
 
 For any $\Lawv$-module $M$, $n\in \BB N$ and permutation $\sigma\in \F S_{n}$, define the homomorphism $\langle \sigma\rangle: M^{\otimes_{n}}\to M^{\otimes_{n}}$ by letting 
 $\langle\sigma\rangle (x_{1}\otimes \dots \otimes x_{n})=x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$ on basic tensors, and extending by continuity on the whole tensor module. 
@@ -246,7 +246,7 @@ where $\alpha=[x_{1},\dots, x_{n}]$ and $\beta= [y_{1},\dots, y_{n}]$.
 
 
 
-Using the fact that $\prod_{i}M_{i}\otimes  N\simeq (\prod_{i}M_{i})\otimes N$ holds in $\Mod$ [\cite{}, p.~???], we obtain the following:
+Using the fact that $\prod_{i}M_{i}\otimes  N\simeq (\prod_{i}M_{i})\otimes N$ holds in $\Mod$ (see e.g.~\cite{Russo2007}), we obtain the following:
 \begin{theorem}
 The functor $!M:= \prod_{n\in \BB N}!_{n}M$ is a Lafont exponential in $\Mod$.
 Hence, $\Mod_{!}$ (equivalently, $\GMet_{!}$) is cartesian closed. 
@@ -273,7 +273,7 @@ f(\beta\cup [x]) \ \Big \vert  \
 \right\}
 \end{align}
 where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
-and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{}, 
+and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, 
 satisfying all axioms (D1)-(D7) and (DCurry), see the Appendix.
 \end{enumerate}
 

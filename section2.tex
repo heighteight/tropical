@@ -6,19 +6,19 @@ In this section we discuss in some more detail the two approaches in quantitativ
 \subsection{Metric approach: bounded $\lambda$-terms as Lipschitz functions}
 
 
-As recalled in the Introduction, in many situations (typically, when dealing with computationally expensive function) one does not look for algorithms to compute some function \emph{exactly}, but rather to approximate it (e.g.~in an efficient way) within some error bound. In other common situations (typically, in differential privacy \cite{}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
+As recalled in the Introduction, in many situations (typically, when dealing with computationally expensive function) one does not look for algorithms to compute some function \emph{exactly}, but rather to approximate it (e.g.~in an efficient way) within some error bound. In other common situations (typically, in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
 
 A natural way to account for these situations is to consider denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which measures differences of behavior. 
 A fundamental insight coming from this line of works is that \emph{affine} programs, that is, programs that may use their input at most once, correspond to \emph{non-expansive} (or $1$-Lipschitz) maps, that is, to functions $f$ for which the distances
 $d(f(x),f(y))$ produced in output are bounded by the distances $d(x,y)$ in input. 
 A more formal way of stating this observation is that the category $\Met$ of pseudo-metric spaces and non-expansive provides a model of the \emph{affine} simply typed $\lambda$-calculus, being both a \emph{symmetric monoidal closed} category (i.e.~a model of \emph{linear} $\STLC$) and a cartesian category in which cartesian and monoidal unit coincide. 
 
-As observed in \cite{Gabo2017}, the metric approach is not restricted to affine programs, but can be extended to programs with \emph{bounded} duplications. The fundamental intuition is that a program duplicating its input $K$ times will give rise to a $K$-\emph{Lipschitz-continuous} map.
+As observed in \cite{Reed2010, Gaboardi2017}, the metric approach is not restricted to affine programs, but can be extended to programs with \emph{bounded} duplications. The fundamental intuition is that a program duplicating its input $K$ times will give rise to a $K$-\emph{Lipschitz-continuous} map.
 For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which duplicates the functional input $f$, yields a $2$-Lipschitz map between the metric space $\BB R\multimap \BB R$ of non-expansive real functions and itself: if $f,g$ are two non-expansive maps differing by at most $\epsilon$ (i.e.~for which $|f(x)-g(x)|\leq \epsilon$ holds for all $x\in \BB R$), then the application of $M$ to $f$ and $g$ will produce two maps differing by at most $2\epsilon$. 
 By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $r\cdot X$ (i.e.~with distance $d_{r}(x,y)=r\cdot d(x,y)$) and $Y$, the program $M$ above 
 can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
 
-These observations have led to the study of \emph{bounded} typed $\lambda$-calculi (like the system $\mathsf{Fuzz}$ \cite{Reed_2010}), which have been applied in the study of higher-order differential privacy \cite{}. The types of such systems are defined \cite{} by combining linear constructors with a \emph{graded exponential comonad} $!_{r}(-)$ \cite{}.
+These observations have led to the study of \emph{bounded} typed $\lambda$-calculi (like the system $\mathsf{Fuzz}$ \cite{Reed2010}), which have been applied in the study of higher-order differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
 In the following sections we will sometimes make reference to a basic type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined as below
 \begin{align}\label{eq:Btyped}
 A::= o \  \mid \  (!_{\leq n}A) \multimap A  
@@ -27,26 +27,26 @@ where $n$ indicates a natural number. Intuitively, $!_{\leq n}A\multimap B$ is t
 
 
 Now, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
-More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, $\Met$ contains several cartesian closed \emph{sub-}categories, see e.g.~\cite{}).
-Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~ over any compact set). However, constructing cartesian closed categories of locally Lipschitz maps is challenging. Yet, some examples exist in the literature (see \cite{EhrhardPCOHdiff, PistoneLICS2021}), and a new example will be exhibited in this paper.
+More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, $\Met$ contains several cartesian closed \emph{sub-}categories, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
+Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~ over any compact set). However, constructing cartesian closed categories of locally Lipschitz maps is challenging. Yet, some examples exist in the literature (see \cite{Ehrhard2011, PistoneLICS}), and a new example will be exhibited in this paper.
 
 
 \subsection{Resource approach: differential $\lambda$-terms as polynomials}
 
-A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} (and differential linear logic) and its categorical models. 
+A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic, see e.g.~\cite{dill}) and its categorical models. 
 The key ingredient is that a \emph{differential operator} $\Der$ is added to the usual syntax of the $\lambda$-calculus, with the intuition that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Der[M]\cdot N$, which still has type $A\to B$, corresponds to a \emph{linear application} of $N$ to $M$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Der[M]\cdot N$ has type $A\to B$, since $M$ might still ask for other copies of an input of type $A$). 
 
-Interestingly, the categorical study of such differential operators has led to introduce a family of categories, called \emph{cartesian differential categories} $C\partial C$ \cite{}, which provide an abstract axiomatization of differentiation, in the usual mathematical sense. More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
+Interestingly, the categorical study of such differential operators has led to introduce a family of categories, called \emph{cartesian differential categories} $C\partial C$ \cite{Blute2009}, which provide an abstract axiomatization of differentiation, in the usual mathematical sense. More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
 \begin{itemize}
 \item $\C C$ is left-additive, i.e.~its hom-sets are commutative monoids, and the cartesian structure is well-behaved w.r.t.~this monoid structure;
 \item $\C C$ is equipped with a differential operator $D:
 \C C(X,Y)\to \C C(X\times X,Y)$ satisfying 7 axioms $D1,\dots, D7$, which translate usual properties of the differential (e.g.~the linearity of $D$ in one of its two variables, the chain rule,  Schwarz's theorem etc.).
 \end{itemize}
 
-Correspondingly, the syntax of the simply typed \emph{differential} $\lambda$-calculus ($\STDLC$) is defined by enriching $\STLC$ with a monoid structure $0,+$ over terms, as well as with the differential operator $\Der[-]\cdot (-)$, together with a notion of \emph{linear substitution} (see \cite{} for details).
+Correspondingly, the syntax of the simply typed \emph{differential} $\lambda$-calculus ($\STDLC$) is defined by enriching $\STLC$ with a monoid structure $0,+$ over terms, as well as with the differential operator $\Der[-]\cdot (-)$, together with a notion of \emph{linear substitution} (see \cite{difflambda} for details).
 The models of $\STDLC$ are the 
 cartesian \emph{closed} differential categories ($CC\partial C$), 
-which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential are both well-behaved with respect to the closed structure (see \cite{}). 
+which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential are both well-behaved with respect to the closed structure (see \cite{Manzo2010}). 
 
 
 Another suggestive similarity between program derivatives and 
@@ -112,7 +112,7 @@ Finally, in Section \ref{section6} we show that the connection between the metri
 
 \subsection{Tropical numbers}
 
-At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{}.
+At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
 Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
 A consequence of these observations is that, as discussed in Section \ref{section3}, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
 In particular, a (pseudo-)metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we discuss in Section \ref{section6}). 
@@ -145,7 +145,7 @@ as the function defined as follows:
 \begin{align}
 \trop f(\alpha) =\inf_{n}\left\{ n\alpha+c_{n}\right\}
 \end{align}
-Such functions, called \emph{tropical Laurent series} \cite{}, will be discussed in more detail in Section \ref{section5}.
+Such functions, called \emph{tropical Laurent series} \cite{Porzio2021}, will be discussed in more detail in Section \ref{section5}.
 
 The functions $f$ and $\trop f$ can be related by a limit passage as follows: the functions $\phi_{t}(x)= -\log_{t}x$ and $\varphi_{t}(\alpha)= t^{-\alpha}$ define continuous bijections between $[0,1]$ and $[0,\infty]$ and, by letting
 $\trop_{t}f: [0,\infty]\to [0,\infty]$ be defined by 
@@ -153,7 +153,7 @@ $\trop_{t}f(\alpha)= \phi_{t}\circ f \circ \psi_{t}$, one has that
 $\trop f= \lim_{t\to 0}\trop_{t}f$. 
 Indeed, one can check that the ``parameterized'' sums and product $\alpha \sumt{t}\beta:= \phi_{t}(\psi_{t}(\alpha)+\psi_{t}(\beta))= \log_{t}(t^{-\alpha}+t^{-\beta})$ and 
 $\alpha \prodt{t}\beta:= \phi_{t}( \psi_{t}(\alpha)\psi_{t}(\beta))=
-\log_{t}(t^{-\alpha}t^{-\beta})$ converge respectively to $\min\{\alpha,\beta\}$ and $\alpha+\beta$, when $t\to 0$ (this remark is an example of the so-called \emph{Maslov dequantization}, relating the semi-ring $\BB R$ with the tropical semiring $((-\infty, \infty], \min, +)$, see e.g.~\cite{}).
+\log_{t}(t^{-\alpha}t^{-\beta})$ converge respectively to $\min\{\alpha,\beta\}$ and $\alpha+\beta$, when $t\to 0$ (this remark is an example of the so-called \emph{Maslov dequantization}, relating the semi-ring $\BB R$ with the tropical semiring $((-\infty, \infty], \min, +)$, see e.g.~\cite{Litvinov2007}).
 
 
 
