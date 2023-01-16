@@ -124,7 +124,7 @@ This immediately follows from Prop.~\ref{prop:boundedlip}, since a tropical poly
 The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tropical Laurent series with \emph{finitely many} variables are always locally Lipschitz over $(0,\infty)^{X}$. Yet, we can prove a more general statement, covering also the infinitary case.
 
 
-\begin{theorem}
+\begin{theorem}\label{thmTLSlocLip}
  All tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}$.
 \end{theorem}
 \begin{proof}[Proof sketch]
@@ -140,6 +140,14 @@ For any $\lambda$-term $M$:
 \item if $\Gamma \vdash_{\STLC}M:A$, then $\model M: \model\Gamma \to \model A$ is a locally Lipschitz map.
 \end{enumerate}
 \end{corollary} 
+\begin{proof}
+\begin{enumerate}
+\item It suffices to remark that if $A$ is a type of the $\BSTLC$, then $\model A$ is a finite set, by definition of the interpretation (Remark~\ref{rmk:ModelsOfBSTLC}).
+Therefore a morphism $t:\model A\to \model B$ is a finite matrix $t: \model A \times \model B \to \Lawv$.
+Hence, its corresponding map $\widehat t:\Lawv^{\model A} \to \Lawv^{\model B}$ is a (tropical) polynomial, which is a Lipschitz functions.
+\item Trivial from Theorem~\ref{thmTLSlocLip}.
+\end{enumerate}
+\end{proof}
 
 
 Finally, let us discuss the differential structure. We show that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:

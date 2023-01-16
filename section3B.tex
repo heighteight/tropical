@@ -45,13 +45,15 @@ Remark that we find usual \emph{tropical polynomials} of tropical geometry as a 
  Then go by straightforward induction on $M$, using that the projections and evaluation of  $\LREL$ are descrete.
 \end{proof}
 
-{\color{red} Point to Sec VI}
+The fact that ordinary $\lam$-terms become only descrete matrices may seem a restrictive property.
+In Section~\ref{sec:app} we will however discuss how we can use this model in order to make it keep track of quantitative effects of programs.
 
 \begin{example}\label{ex:famous_ex}
  The function $f:\Lawv\to\Lawv$, $f(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ is a tropical Laurent series: it is of shape $f=t^!$, for $t\in\Lawv^{!\set{*}\times\set{*}}$, $t_{\mu,*}:=2^{-\# \mu}$.
 By Proposition~\ref{prop:descrete}, $f$ is not the interpretation of a $\lam$-term, because its matrix is not descrete. Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
 \end{example}
 
+\begin{remark}\label{rmk:ModelsOfBSTLC}
 It is known {\color{red}(([reference??] e dire meglio)} that the maps $X\mapsto \C M_{\leq n}(X)$ ($n\in\BB N$) lift to functors $!_n:\LREL\to\LREL$.
 The sequence $(!_n)_{n\in\N}$ can be then turned into a $\N$-graded linear exponential comonad on (the SMC) $\LREL$, satisfying the adjunction:
 $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
@@ -59,7 +61,7 @@ Therefore, $\LREL$, together with $(!_n)_{n\in\N}$, is a model for $\BSTLC$.
 Concretely, a type %$A::= o \mid !_{n}A \multimap A$
 {\color{red}(i tipi meglio dirli in Section II)} is in interpreted as $\model o=\B 1$ and 
 $\model{!_{n}A\multimap B}:= \C M_{\leq n}(\model A) \times \model B$.
-
+\end{remark}
 %Bounded types are interesting because of the following proposition:
 %\begin{proposition}
 %For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) correspond to polynomials.
