@@ -1,12 +1,10 @@
 
 
-As we have seen, the morphisms of $\LREL$ can be seen as continuous functions between the $\Lawv$-modules $\Lawv^{X}$, when the latter are taken with the metric induced by the $\infty$-norm. This viewpoint gives a metric flavor to $\LREL$, and allowed us to relate differential and metric structure. Yet, how far can this correspondence between tropical linear/non-linear algebra and metric topology be pushed?
-
-For instance, natural questions are: (1) Is this correspondence restricted to $\Lawv$-modules of the form $\Lawv^{X}$ (i.e.~with a fixed base), or does it hold in some sense for arbitrary $\Lawv$-modules? (2) Is this correspondence restricted to the $\infty$-norm metric, or does it hold for other metrics too?
+As we have seen, the morphisms of $\LREL$ can be seen as continuous functions between the $\Lawv$-modules $\Lawv^{X}$, when the latter are taken with the metric induced by the $\infty$-norm. This viewpoint gives a metric flavor to $\LREL$, and allowed us to relate differential and metric structure. Yet, how far can this correspondence be pushed?
+In particular, is this correspondence restricted to $\Lawv$-modules of the form $\Lawv^{X}$ (i.e.~with a fixed base), or does it hold in some sense for arbitrary $\Lawv$-modules? Is this correspondence restricted to the $\infty$-norm metric, or does it hold for other metrics too?
 
 An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}. 
-This correspondence, recalled in this section, and the fact that it leads to the definition of a linear $\Lawv$-category (i.e.~a model of the linear $\lambda$-calculus) of genealized metric spaces extending $\LREL$, is mostly a \emph{collage} of  \emph{folklore} results with more abstract results contained in recent literature in enriched category theory \cite{Fuji, Stubbe2006, Shen2014}.
-Beyond this reconstruction, our main contribution is to show that this correspondence can be lifted to a model of the full differential $\lambda$-calculus, by a suitable generalization of the construction of the exponential comonad of $\LREL$.
+In this section we first reconstruct this correspondence, by combining some {folklore} results with more abstract ones from recent literature in enriched category theory \cite{Fuji, Stubbe2006, Shen2014}. Then we show that this correspondence can be lifted to a model of the full differential $\lambda$-calculus, by suitably generalizing the construction of the exponential comonad of $\LREL$.
 
 %
 %also extends exploit this correspondence to prove that arbitrary $\Lawv$-modules (equivalently, arbitrary \emph{complete} generalized metric spaces) provide a model of the differential $\lambda$-calculus, hence generalizing the tropical relational model.
@@ -15,8 +13,8 @@ Beyond this reconstruction, our main contribution is to show that this correspon
 \subsection{$\Lawv$-Modules}
 
 
-A $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$ (notice that this is the usual notion of module over the Lawvere quantale $\Lawv$, not that of module over the tropical semi-ring).
-A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
+A $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
+A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
  
  
  
@@ -27,35 +25,34 @@ Any $\Lawv$-module $M$ has a dual $M^{\op}$, with reversed order and (right-)act
  
  
  While the $\Lawv^{X}$ have a fixed base, for an arbitrary $\Lawv$-module one can retrieve a base via the \emph{Yoneda embedding}
-$\Yon: M \to \Hom(M^{\op},\Lawv)$, where $\Yon(x)(y)=\inf\{\epsilon\mid \epsilon\star y\succeq x\}$. 
+$\Yon: M \to \Mod(M^{\op},\Lawv)$, where $\Yon(x)(y)=\inf\{\epsilon\mid \epsilon\star y\succeq x\}$. 
 
 
-\begin{proposition}\label{prop:yonemod}
+\begin{proposition}[cf.~\cite{Stubbe2014, Shen2014}]\label{prop:yonemod}
 For any $\Lawv$-module $M$, the Yoneda embedding has a left-adjoint $\sup(f)=\bigvee_{x\in M}f(x)\star x$.
 \end{proposition}
 
 
 Like $\LREL$, the category $\Mod$ has the relevant structure to interpret the linear $\lambda$-calculus:
 \begin{proposition}
-$\Mod$ is a linear $\Lawv$-category.
+$\Mod$ is a SMCC.
 \end{proposition}
-\begin{proof}[Proof sketch]
-The hom-sets $\Hom(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. Moreover, the tensor product of $\Lawv$-modules $M\otimes N$ can be defined as the quotient of the usual tensor product of sup-lattices (see e.g.~\cite{Russo2007}), under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$.
+%\begin{proof}
+The hom-sets $\Mod(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. Moreover, the tensor product of $\Lawv$-modules $M\otimes N$ can be defined as the quotient of the usual tensor product of sup-lattices under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$ (see e.g.~\cite{Russo2007}).
 Notably, any element of $M\otimes N$ can be identified with a join of basic tensors $x\otimes y$, corresponding to the equivalence class of the pair $\langle x,y\rangle$.
-
 Beyond the required adjointness of the internal hom and the tensor, one can check that $\Mod$ is actually \emph{$^{*}$-autonomous}, since it satisfies $(M^{\op})^{\op}\simeq M$ and 
 $\Hom(M,N^{\op})\simeq (M\otimes N)^{\op}$.
 Finally, both products and coproducts in $\Mod$ are given by the Cartesian products of the underlying posets, with action defined pointwise.
 %
 %, similarly to the case of sup-lattices \cite{}, as the quotient of the free sup-lattice $\C P(M\times N)$ under the smallest congruence containing all pairs $((\bigvee A,y),\bigcup_{a\in A}\{(a,y)\})$, for $A\subseteq M, y\in N$, 
 %$((x,\bigvee B),\bigcup_{b\in B}\{(x,b)\})$, for all $x\in A$, $B\subseteq N$, and all pairws $\{
-\end{proof}
+%\end{proof}
 
 
 \begin{remark}
-The structure of linear $\Lawv$-category of $\Mod$ coincides with that of $\LREL$ for the modules $\Lawv^{X}$. Indeed, one can prove that $\Hom(\Lawv^{X},\Lawv^{Y})\simeq \Lawv^{X\times Y} $ (using the fact that module homomorphisms are in bijection with $\Lawv$-matrices), and 
-moreover $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y} $ and 
-$\Pi_{i\in I}\Lawv^{X_{i}}\simeq \Lawv^{\coprod_{i\in I}X_{i}}$.
+The SMCC structure of $\Mod$ coincides with that of $\LREL$ for the modules $\Lawv^{X}$: we already know that $\Mod(\Lawv^{X},\Lawv^{Y})\simeq \Lawv^{X\times Y} $, and 
+one can prove $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y} $ (cf.~\cite{Russo2007}).% and 
+%$\Pi_{i\in I}\Lawv^{X_{i}}\simeq \Lawv^{\coprod_{i\in I}X_{i}}$.
 \end{remark}
 
 
@@ -67,7 +64,7 @@ Lawvere was the first to observe that a metric space can be described as a \emph
 0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
 X(y,z)+X(x,y)&\geq  X(x,z) \tag{$\Lawv$-cat 2}
 \end{align}
-This structure is often referred as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}, or as a \emph{quasi-metric space}. 
+This structure is often referred as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}.%, or as a \emph{quasi-metric space}. 
 Notice that a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is just a non-expansive map $f:X\to Y$, i.e.~it must satisfy $Y(f(x),f(y))\leq X(x,y)$.
 
 A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when 
@@ -85,12 +82,12 @@ $X(x,y)=0$ implies $x=y$, and
  
 
 For any $\Lawv$-category $X$, the presheafs $[X^{\op},\Lawv]$ on $X$ form another $\Lawv$-category, with metric $[X^{\op},\Lawv](f,g)= \sup_{x\in X}\Lawv(f(x),g(x))$.
-Notice that, when $X$ has the discrete metric, $[X,\Lawv]$ coincides with $\Lawv^{X}$.
+Notice that, when $X$ has the discrete metric, the metric space $[X,\Lawv]^{\sym}$ coincides with $\Lawv^{X}$ with the norm metric.
 The \emph{Yoneda embedding} is the faithful functor $\Yon: X\to [X^{\op},\Lawv]$ given by $\Yon(x)(y)=X(y,x)$.
 
 
 
-Interestingly, a fundamental example of $\Lawv$-categories is provided by $\Lawv$-modules. 
+Actually, a well-studied example of $\Lawv$-categories is provided by $\Lawv$-modules. 
 
 \begin{proposition}
 Any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
@@ -105,28 +102,33 @@ Observe that, since the distance $M(x,y)$ coincides with the Yoneda embedding $\
 
 \subsection{Complete $\Lawv$-Categories Correspond to $\Lawv$-Modules}
 
-Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{Willerton2013, Rutten1998}).
+Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973, Rutten1998}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{Willerton2013, Rutten1998}).
 
 First, let us recall that functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$.
 
 
 \begin{definition}
-Let $X,Y,Z$ be $\Lawv$-enriched category,
+Let $X,Y,Z$ be $\Lawv$-categories,
 $\Phi: Z\pfun Y$ be a distributor and  $f:Y\to X$ be a functor.
-A functor $g:Z\to X$ is the \emph{$\Phi$-weighted colimit of $f$ over $X$}, noted $\colim(\Phi,f)$, if for all $z\in z$ and $x\in X$
+A functor $g:Z\to X$ is the \emph{$\Phi$-weighted colimit of $f$ over $X$}, noted $\colim(\Phi,f)$, if for all $z\in Z$ and $x\in X$
 \begin{align}
 X(g(z),x)= \sup_{y\in Y}\left\{X(f(y),x)\menus \Phi(y,z)\right\}
 \end{align} 
-A functor $f:X\to Y$ is said \emph{continuous} if it commutes with all existing weighted colimits in $X$, i.e.~$f(\colim(\Phi,g))=\colim(\Phi,f\circ g)$. A $\Lawv$-enriched category 
+A functor $f:X\to Y$ is \emph{continuous} if it commutes with all existing weighted colimits in $X$, i.e.~$f(\colim(\Phi,g))=\colim(\Phi,f\circ g)$. A $\Lawv$-enriched category 
 $X$ is said \emph{categorically complete} (or just \emph{complete}) if all weighted colimits over $X$ exist. 
 \end{definition}
 
 We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors. 
 
 A useful alternative characterization of complete $\Lawv$-categories is the following:
-\begin{proposition}
+\begin{proposition}[cf.~\cite{Stubbe2006, Shen2014}]
 A $\Lawv$-category is complete iff $\Yon$ has a left-adjoint. 
 \end{proposition}
+\begin{proof}
+For one side, if $X$ is complete, one can define $\sup : [X^{\op},\Lawv]\to X$ as a weighted colimit via $X(\sup x,b)=\sup_{a\in X}
+X(a,b)-x_{a}$. Conversely, if a left-adjoint $\sup $ exists, one can define $\mathrm{colim}(\Phi,f):= \sup \Psi$, where $\Psi_{a}=\inf_{b\in X}X(a,f(b))+\Phi_{b}$. 
+\end{proof}
+
 Indeed, using this fact, together with Proposition \ref{prop:yonemod}, we arrive at the following:
 \begin{proposition}
 For any $\Lawv$-module, the associated $\Lawv$-category is complete. 
@@ -157,31 +159,33 @@ $X(y,x)=\inf\{ \epsilon \mid X(\epsilon\otimes y,x )=0\}$.
 This leads to the following:
 
 
-\begin{theorem}
+\begin{theorem}[cf.~\cite{Stubbe2006}]
 $\Mod$ and $\GMet$ are isomorphic categories.
 \end{theorem}
 
 
-Since $\Mod$ (and thus $\GMet$ too) is a linear $\Lawv$-category, it is worth making its metric structure explicit. Given complete $\Lawv$-categories $X,X_{i},Y$, we have that:
-\begin{itemize} 
-\item the distance on the hom-set $\Hom(X,Y)$ is given by 
+Since $\Mod$ (and thus $\GMet$ too) is a SMCC, it is worth making its metric structure explicit. Given complete $\Lawv$-categories $X,Y$, we have that the distance on the hom-set $\Mod(X,Y)$ is given by 
 \begin{align}
-\Hom(X,Y)(f,g)= \sup_{x\in X}Y(f(x),g(x));
+\Mod(X,Y)(f,g)= \sup_{x\in X}Y(f(x),g(x));
 \end{align}
-\item the distance on the tensor $X\otimes Y$ is given by
+and the distance on basic tensors 
+of $X\otimes Y$ is given by
 \begin{align}
-(X\otimes Y)(\alpha, \beta)=
-\sup_{i}\inf_{j}X(x_{i},x'_{j})+Y(y_{j},y'_{j}),
+%(X\otimes Y)(\alpha, \beta)=
+%\sup_{i}\inf_{j}X(x_{i},x'_{j})+Y(y_{j},y'_{j}),
+(X\otimes Y)(x\otimes y, x'\otimes y')=
+X(x,x')+Y(y,y')
 \end{align}
-where $\alpha=\bigvee_{i}x_{i}\otimes y_{i}$ and 
-$\beta=\bigvee_{j}x'_{j}\otimes y'_{j}$, 
-and thus coincides with the sum-metric over basic tensors;
-\item the distance on the bi-product $\Pi_{i\in i}X_{i}$ is given by
-\begin{align}
-(\Pi_{i\in I}X_{i})(f,g)= \sup_{i\in I}X_{i}(f(x),g(x));
-\end{align}
+and is extended to arbitrary joins by continuity.
+%where $\alpha=\bigvee_{i}x_{i}\otimes y_{i}$ and 
+%$\beta=\bigvee_{j}x'_{j}\otimes y'_{j}$, 
+%and thus coincides with the sum-metric over basic tensors;
+%\item the distance on the bi-product $\Pi_{i\in i}X_{i}$ is given by
+%\begin{align}
+%(\Pi_{i\in I}X_{i})(f,g)= \sup_{i\in I}X_{i}(f(x),g(x));
+%\end{align}
 
-\end{itemize}
+%\end{itemize}
 
 
 
@@ -194,7 +198,7 @@ and thus coincides with the sum-metric over basic tensors;
 
 We now want to show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
 
-First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting the fact that tensors and products commute in $\Mod$, we define $!$ as the product of the symmetric algebras $!_{n}$.  
+First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting suitable properties of $\Mod$, we may define $!$ as the product of the symmetric algebras.  
 
 For any $\Lawv$-module $M$, $n\in \BB N$ and permutation $\sigma\in \F S_{n}$, define the homomorphism $\langle \sigma\rangle: M^{\otimes_{n}}\to M^{\otimes_{n}}$ by letting 
 $\langle\sigma\rangle (x_{1}\otimes \dots \otimes x_{n})=x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$ on basic tensors, and extending by continuity on the whole tensor module. 
@@ -207,23 +211,18 @@ $M^{\otimes_{n}}$ via the least congruence generated by the action $\langle \sig
 \end{definition}
 
 
-To prove that the map $h:\Sym_{n}(M)\to M^{\otimes_{n}} $ is the equalizer of the diagram formed by all homomorphisms $\langle \sigma\rangle$, it is useful to provide an alternative characterization of it. 
+To prove that the map $[x]\mapsto x:\Sym_{n}(M)\to M^{\otimes_{n}} $ is the equalizer of the diagram formed by all morphisms $\langle \sigma\rangle$, it is useful to provide an alternative characterization of it. 
 
 \begin{definition}
 Let $M$ be a $\Lawv$-module and $n\in \BB N$. An element $x\in M^{\otimes_{n}}$ is said \emph{permutation-invariant} (in short, \emph{p-invariant}) if for all $\sigma\in \F S_{n}$, 
 $\langle \sigma \rangle (x)=x$. 
-
-
  A \emph{$\Lawv$-multiset} (with $n$ elements) is an element of $M^{\otimes_{n}}$ of the form 
- \begin{align}
- [x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}
- x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}
- \end{align}
-where $x_{1},\dots, x_{n}\in M$.
+$ [x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}
+ x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$, where $x_{1},\dots, x_{n}\in M$.
 \end{definition} 
 
 \begin{proposition}
-Any $\Lawv$-multiset is p-invariant. Moreover, the set $!_{n}M$ of p-invariant elements of $M^{\otimes_{n}}$ is a $\Lawv$-submodule of $M^{\otimes_{n}}$, in which element can be written as a join of $\Lawv$-multisets.
+Any $\Lawv$-multiset is p-invariant. Moreover, the set $!_{n}M$ of p-invariant elements of $M^{\otimes_{n}}$ is a $\Lawv$-submodule of $M^{\otimes_{n}}$, whose elements can be written as joins of $\Lawv$-multisets.
 \end{proposition}
 
 Since $!_{n}M$ is included in $M$, using the properties of p-invariant one can easily deduce that $!_{n}M$ provides the desired equalizer. It suffices then to show that $!_{n}M$ is isomorphic to the symmetric algebra.
@@ -252,37 +251,32 @@ The functor $!M:= \prod_{n\in \BB N}!_{n}M$ is a Lafont exponential in $\Mod$.
 Hence, $\Mod_{!}$ (equivalently, $\GMet_{!}$) is cartesian closed. 
 \end{theorem}
 
-Also in this case of exponentials, the constructions above generalize the situation in $\LREL$:
+Also in the case of exponentials, the constructions for $\Mod$ generalize those of $\LREL$:
 \begin{proposition}
-For any set $X$, 
-$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{n}(X)}$, where
-$\C M_{n}(X)$ is the set of multisets of $X$ of cardinality $n$, and 
-$!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. 
+$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{\leq n}(X)}$, $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. In particular, $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
 \end{proposition}
 
-To conclude, we mush show that $\Mod$ is actually a model of $\STDLC$, that is, a cartesian closed differential category:
-\begin{enumerate}
-\item $\Mod$ is a left-additive-CCC, since each hom-set is a commutative monoid with respect to $\infty$ and $\min$, and the cartesian closed structure is well-behaved with respect to that;
+To conclude, we mush show that $\Mod$ is a CC$\partial$C.
+Firstly, $\Mod$ is a left-additive-CCC, since each hom-set is a commutative monoid with respect to $\infty$ and $\min$, and the cartesian closed structure is well-behaved with respect to that.
 
-\item $\Mod$ can be equipped with a differential operator defined, for $f:!M\to N$, by 
+Secondly, $\Mod$ can be equipped with a differential operator $E$ defined, for $f:!M\to N$, by 
 \begin{align}\label{eq:dermod}
-\Der[f](\alpha)=
+Ef(\alpha)=
 \bigvee\left\{
 f(\beta\cup [x]) \ \Big \vert  \ 
 \iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
 \right\}
 \end{align}
 where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
-and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, 
-satisfying all axioms (D1)-(D7) and (DCurry), see the Appendix.
-\end{enumerate}
+and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, and $E$ satisfies all required axioms.
+%\end{enumerate}
 
-This leads then to:
+Notice that, when $f\in \Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$, its derivative $E f$ coincides with the derivative $D_{!}f$ described in Section \ref{section4}. 
+
+All this leads then to:
 \begin{theorem}
-$\Mod_{!}$ (equivalently, $\GMet_{!}$), equipped with $\Der$, is a $CC\partial C$.
+$\Mod_{!}$ (equivalently, $\GMet_{!}$), equipped with $E$, is a $CC\partial C$.
 \end{theorem}
-
-Notice that, when $f:!(\Lawv^{X})\to \Lawv^{Y}$, so that $f$ is described by a matrix $\widehat f: \multiset(X)\times Y\to \Lawv$, one can check that the matrix associated with \eqref{eq:dermod} coincides with the definition of the differential operator in $\LREL$.
 
 
 

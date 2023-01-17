@@ -1,21 +1,35 @@
-We have shown that:
 
-- intuitively, the interplay between tropical mathematics and $\lam$-calculus \emph{could} relate the metric and differential approaches on approximations of $\lam$-calc (introduction+section 2)
 
-- this relation \emph{can} take place, because the natural category $\LREL$ and its generalised versions are metric models of the differential $\lam$-calculus (section 3 and 6)
 
-- this relation \emph{seems} to provide applications in different fields (section 5).
+In our opinion, the main goals of this paper are two. Firstly,  to
+demonstrate the existence of a conceptual bridge between two different well-studied quantitative approaches to higher-order programs, and to highlight the possibility of transferring results and techniques from one approach to the other. 
+Secondly, to suggest that tropical mathematics, a
+field which has been largely and successfully applied in computer science, could be used to study quantitative properties of higher-order programs.
 
-Therefore, we mainly set the basis for future interplays between all these areas, hopefully motivating the interest in such an interplay.
-For instance, the general questions are:
+While the first goal has been developed in detail, and at different levels of abstraction, for the second goal we only sketched a few interesting directions (best-case analysis, log-probabilities, differential privacy). We believe that exploring in more depth these ideas could be a fruitful direction; moreover, 
+since both generalized metrics and quantale-modules have been largely applied in computer science, 
+a natural question is whether the generalized approach of Section \ref{section6} could  lead to new applications of metric and tropical methods to the $\lambda$-calculus.
 
-- Can we improve the results of section 4 ?
-
-- Can we develop and make the applications of section 5 useful ?
-
-- What does the general setting of section 6 give in terms of theoretical and applied results ?
-
-- Do tools from tropical \emph{geometry} provide something for $\lam$-calculus ? (for instance, the role of tropical roots, tropical varieties,...)
-
-- Finally, there is a last point which we think of interest and we did not mention through the paper: the inclusion of finiteness spaces in the picture.
-Say what could they do and why.
+Finally, as suggested in Section \ref{section5}, an interesting direction to look at is the semantics of finiteness spaces \cite{Ehrhard2005}, which allows to model typable terms by means of \emph{finitary} Taylor expansions. Indeed, knowing that the application of a program $M$ to $N$ expands as a finite sum of linear applications (hence by a Lipschitz function in our setting), may allow one to predict how sensitive $M$ will be ``around $N$''.
+%
+%We have shown that:
+%
+%- intuitively, the interplay between tropical mathematics and $\lam$-calculus \emph{could} relate the metric and differential approaches on approximations of $\lam$-calc (introduction+section 2)
+%
+%- this relation \emph{can} take place, because the natural category $\LREL$ and its generalised versions are metric models of the differential $\lam$-calculus (section 3 and 6)
+%
+%- this relation \emph{seems} to provide applications in different fields (section 5).
+%
+%Therefore, we mainly set the basis for future interplays between all these areas, hopefully motivating the interest in such an interplay.
+%For instance, the general questions are:
+%
+%- Can we improve the results of section 4 ?
+%
+%- Can we develop and make the applications of section 5 useful ?
+%
+%- What does the general setting of section 6 give in terms of theoretical and applied results ?
+%
+%- Do tools from tropical \emph{geometry} provide something for $\lam$-calculus ? (for instance, the role of tropical roots, tropical varieties,...)
+%
+%- Finally, there is a last point which we think of interest and we did not mention through the paper: the inclusion of finiteness spaces in the picture.
+%Say what could they do and why.
