@@ -265,15 +265,16 @@ Finally, let us discuss the differential structure. The differential operator $D
 \begin{equation}
 D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\check f_{\mu*a}+x_{a}+\mu y\right\}
 \end{equation}
+One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
 Moreover, the Taylor formula \eqref{eq:taylorcat} yields 
 a Taylor formula for tLs of the form 
 $f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
 The following result shows that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
 \begin{proposition}
-For all tropical Laurent series $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
-the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz-continuous, and moreover 
-$\| \check f-\check g\|_{\infty}= \sup_{n} \| {\delta^{(n)}(f)}- {\delta^{(n)}(g)}\|_{\infty}$, 
-where $\delta^{(n)}(h)$ indicates the matrix of $D_{!}^{(n)}(h)(!_{n}x,\infty)$.
+For all tLs $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
+the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz. Moreover 
+$\| \check f-\check g\|_{\infty}= \sup_{n} \| {\delta^{(n)}f}- {\delta^{(n)}g}\|_{\infty}$, 
+where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
 %where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
 %(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
 \end{proposition} 
