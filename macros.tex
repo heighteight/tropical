@@ -20,6 +20,7 @@
 \newcommand{\Yon}{\B{Y}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\matr}[1]{\hat{#1}}
 
 \newcommand\pfun{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
 
@@ -31,7 +32,7 @@
 \newcommand{\lam}{\lambda}
 
 \newcommand{\STLC}{\RM{STLC}}
-\newcommand{\BSTLC}{\C B\RM{STLC}}
+\newcommand{\BSTLC}{\mathsf b\RM{STLC}}
 \newcommand{\RSTLC}{\C R\RM{STLC}}
 \newcommand{\STDLC}{\RM{ST}\partial\RM{LC}}
 \newcommand{\Real}{\SF{Real}}
@@ -54,7 +55,7 @@
 \newcommand{\sym}{\mathrm{sym}} 
 \newcommand{\menus}{\dotdiv} 
 
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
 \newcommand{\absv}[1]{\left\lvert#1\right\rvert}
 
 % TROPICAL STUFF
@@ -68,7 +69,7 @@
 
 % MISCELLANEOUS
 
-\newcommand{\HOM}[3]{\SF{Hom}_{#1}(#2,#3)}
+\newcommand{\HOM}[3]{{#1}(#2,#3)}
 \newcommand{\N}{\BB N}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\multiset}{\C M_{\mathrm{fin}}}

@@ -19,8 +19,8 @@ By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the s
 can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
 
 These observations have led to the study of \emph{bounded} typed $\lambda$-calculi, like the system $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied in the study of higher-order differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
-In the following sections we will sometimes make reference to a basic type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined via $A::= o \  \mid \  (!_{\leq n}A) \multimap A  $, 
-where $n\in \BB N$. Intuitively, $!_{\leq n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input at most $n$ times. More details about $\BSTLC$ are provided in the Appendix.
+In the following sections we will sometimes make reference to a basic type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined via $A::= o  \mid   (!_{n}A) \multimap A  $, 
+where $n\in \BB N$. Intuitively, $!_{ n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input \emph{at most} $n$ times. More details about $\BSTLC$ are provided in the Appendix.
 
 
 Now, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
@@ -43,7 +43,7 @@ Interestingly, the categorical study of these differential operators has led to 
 Correspondingly, the syntax of the simply typed \emph{differential} $\lambda$-calculus ($\STDLC$) is defined by enriching $\STLC$ with a monoid structure $0,+$ over terms, as well as with the differential operator $\Der[-]\cdot (-)$, together with a notion of \emph{linear substitution} (see \cite{difflambda} for details).
 The models of $\STDLC$ are the 
 cartesian \emph{closed} differential categories ($CC\partial C$), 
-which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential are both well-behaved with respect to the closed structure (see \cite{Manzo2010}). 
+which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential are both well-behaved with respect to the closed structure (see \cite{Manzo2012}). 
 
 
 Another suggestive similarity between program derivatives and 
@@ -107,7 +107,7 @@ Finally, in Section \ref{section6} we show that the connection between the metri
 \section{Tropical mathematics%: a possible synthesis
 }\label{sectionnew}
 
-\subsection{Tropical numbers}
+\subsection{Tropicalization of polynomials and power series}
 
 At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
 Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
@@ -116,9 +116,10 @@ In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\La
 
 Going beyond linear algebra, a \emph{tropical polynomial} is defined as a piecewise linear function $\varphi:\Lawv\to \Lawv$ of the form 
 \begin{align}\label{eq:polytrop}
-\varphi(\alpha)= \min_{i=1,\dots,k}\left\{ i\alpha + c_{i}\right\}
+\varphi(\alpha)= \min_{i_{1},\dots, i_{k}}\left\{ i_{j}\alpha + c_{i_{j}}\right\}
 \end{align}
-where the coefficients $c_{i}$ are taken from $\Lawv$. 
+where the $i_{j}$ are natural numbers and the coefficients $c_{i_{j}}$ are taken from $\Lawv$. For instance, the polynomial
+$\varphi_{3}(\alpha)=\min\{ 3\alpha+1/8,2\alpha+1/4, \alpha+1/2, \alpha\}$ will be discussed in Section \ref{section4}, and its graph is illustrated in Fig.~\ref{fig:plot1}.
 %A value $\alpha\in \Lawv$ is a \emph{root} of the polynomial $P$ when
 %the minimum at $\varphi(\alpha)$ is attained at least twice (equivalently, when 
 % $\varphi$ is not differentiable at $\alpha$). In other words, the tropical roots of $\varphi$ coincide with the points where the slope of $\varphi$ changes. 

@@ -10,7 +10,7 @@ In this section we first reconstruct this correspondence, by combining some {fol
 %also extends exploit this correspondence to prove that arbitrary $\Lawv$-modules (equivalently, arbitrary \emph{complete} generalized metric spaces) provide a model of the differential $\lambda$-calculus, hence generalizing the tropical relational model.
 %
 
-\subsection{$\Lawv$-Modules}
+\subsection{$\Lawv$-modules}
 
 
 A $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
@@ -57,7 +57,7 @@ one can prove $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y} $ (cf.~\cite{R
 
 
 
-\subsection{$\Lawv$-Categories}
+\subsection{$\Lawv$-categories}
 
 Lawvere was the first to observe that a metric space can be described as a \emph{$\Lawv$-enriched} category. Indeed, spelling out the definition, a $\Lawv$-enriched category (in short, a $\Lawv$-category) is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$, satisfying 
 \begin{align}
@@ -100,7 +100,7 @@ Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Law
 Observe that, since the distance $M(x,y)$ coincides with the Yoneda embedding $\B Y$ in $\Mod$, the latter also coincides with the Yoneda embedding of the associated $\Lawv$-category (this justifies the use of a unique symbol for both embeddings).
 
 
-\subsection{Complete $\Lawv$-Categories Correspond to $\Lawv$-Modules}
+\subsection{Complete $\Lawv$-categories correspond to $\Lawv$-modules}
 
 Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973, Rutten1998}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{Willerton2013, Rutten1998}).
 
@@ -193,7 +193,7 @@ and is extended to arbitrary joins by continuity.
 
 
 
-\subsection{Exponential and Differential Structure}
+\subsection{Exponential and differential Structure}
 
 
 We now want to show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
