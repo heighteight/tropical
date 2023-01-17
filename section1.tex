@@ -13,7 +13,7 @@ Among such quantitative approaches, two different directions have received a con
 
 On the one hand there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximated computations, rather than knowing whether two programs compute \emph{the same} function, which is rarely the case, it is often more useful to know whether they compute functions that do not differ \emph{too much}. This has motivated the study of denotational semantics in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
 
-On the other hand there is the approach based on \emph{differential} or \emph{resource-aware} extensions of the $\lambda$-calculus, which is well-connected with the \emph{relational semantics} \cite{Manzo2010, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable to capture probabilistic properties \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
+On the other hand there is the approach based on \emph{differential} \cite{difflambda} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected with the \emph{relational semantics} \cite{Manzo2010, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable to capture probabilistic properties \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
 
 
 In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using its input exactly once), plays a crucial role.
@@ -22,7 +22,7 @@ By contrast, in the standard semantics of the differential $\lambda$-calculus, l
 
 
 A natural question is thus whether these two, apparently unrelated, ways of interpreting linearity and duplication can be somehow connected. At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
-in metric models $n$ times duplication results in a linear (hence Lipschitz) function $n\cdot x$, while in differential models this results in a monomial $x^{n}$, which is not Lipschitz. The fundamental insight of this article is that a natural way to overcome 
+in metric models $n$ times duplication results in a linear (hence Lipschitz) function $n\cdot x$, while in differential models this results in a polynomial $x^{n}$, which is not Lipschitz. The fundamental insight of this article is that a natural way to overcome 
 this obstacle and bridge the two viewpoints 
 is to develop differential semantics in the framework of 
 tropical mathematics.
@@ -64,17 +64,17 @@ Tropical mathematics was introduced in the seventies by the Brazilian mathematic
 %
 %
 % interpreting the usual ``$\times$'' and  ``$+$'' operations by  ``$+$'' by ``$\min$''. It can thus be seen as a sort of ``logarithmic'' version of usual geometry (this idea can be made precise via the so-called \emph{Maslov deformation} \cite{}).
-Tropical mathematics is a form of \emph{idempotent} mathematics, since the role of addition is 
-played by the idempotent operation $\min$.
+%Tropical mathematics is a form of \emph{idempotent} mathematics, since the role of addition is 
+%played by the idempotent operation $\min$.
 For instance, a quadratic polynomial like e.g.~$p(x)=ax^{2}+bx+c$, when interpreted over the tropical semi-ring, becomes the piecewise linear function
 $
 \varphi(\alpha)=\min\{2\alpha + a, \alpha+b, c\}
 $.
 
-The tropicalization of usual algebraic concepts comes with the important advantage that many intractable properties may become efficiently tractable, in a computational way (e.g.~finding roots of polynomials, or studying geometric invariants like e.g.~the genus). For this reason, methods from tropical geometry are more and more applied in computer science, e.g.~for convex analysis and machine learning (see \cite{Maragos2021} for a recent survey).
+As working on the idempotent $\min,+$-semiring is often easier that working with addition and multiplication, the tropicalization of  algebraic concepts makes several intractable properties (e.g.~finding roots of polynomials, or studying geometric invariants like e.g.~the genus) become tractable. For this reason, methods from tropical geometry are more and more applied in computer science, e.g.~for convex analysis and machine learning (see \cite{Maragos2021} for a recent survey).
 
-Coming back to our previous discussion of program semantics, tropical geometry might seem to provide precisely what we are looking for, since polynomials become Lipschitz functions.
-At this point, it is worth mentioning that a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{optimal} probabilistic properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and the abstract study of metric spaces and non-expansive functions, and more generally, of the study of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}, have also been observed \cite{Fuji}.
+Coming back to our previous discussion of program semantics, tropical geometry might seem to provide precisely what we are looking for, as the monomials $x^{n}$ turn precisely into the Lipschitz functions $nx$.
+At this point, it is worth mentioning that a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and the abstract study of metric spaces and non-expansive functions, and more generally, of the study of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}, have also been observed \cite{Fuji}.
 
 The goal of this paper is to study the tropical semantics of the differential $\lambda$-calculus and use it to connect it with metric semantics. This bridge does not only provide a conceptual unification of two different quantitative approaches to higher-order algorithms, but it also 
 suggests ways in which techniques for resource-analysis could be used for sensitivity analysis and vice-versa, opening the way for new potential applications of tropical geometry to the study of quantitative properties of higher-order programs.
@@ -87,11 +87,13 @@ Our contributions in this paper are threefold:
 
 \item We study the relational model over the tropical semi-ring, showing that
 \emph{bounded} simply typed terms correspond to tropical polynomials, while general
- simply typed lambda terms correspond to a generalization of \emph{tropical Laurent series} \cite{Porzio2021}. Moreover, we show that such maps are concave and locally Lipschitz-continuous, yielding a full-scale metric semantics for the $\lambda$-calculus.
-Moreover, we exploit the differential structure of the relational model to study the \emph{tropical Taylor expansion} of a $\lambda$-term, which can be seen as an approximation of the term by way of Lipschitz-continuous maps.
+ simply typed lambda terms correspond to a generalization of \emph{tropical Laurent series} \cite{Porzio2021}. Moreover, we show that such maps are locally Lipschitz-continuous, yielding a full-scale metric semantics for the $\lambda$-calculus.
+%Moreover, we exploit the differential structure of the relational model to study the \emph{tropical Taylor expansion} of a $\lambda$-term, which can be seen as an approximation of the term by way of Lipschitz-continuous maps.
 
 
-\item Using the relational model as our main reference, we suggest a list of potential applications of tropical methods to the study of quantitative properties of non-deterministic/probabilistic functional programs like differential privacy, convergence \emph{log-probabilities} and the number of computation steps in the best case.
+\item Using the relational model as our main reference, we suggest a few potential applications of tropical methods to the study of quantitative properties of non-deterministic/probabilistic functional programs like counting best-case computation steps, 
+measuring convergenge log-probabilities, and 
+differential privacy.
 
 \item We conclude by putting the correspondence between differential and metric properties made possible by the tropical viewpoint at the right level of generality. 
 By recalling and suitably extending a well-known correspondence between Lawvere's \emph{generalized metric spaces} (GMS) \cite{Lawvere1973, Stubbe2014} and modules over the tropical semi-ring \cite{Russo2007}, we show that the category of \emph{complete}  GMSs provides a model of the differential $\lambda$-calculus which extends the tropical relational model.

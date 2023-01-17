@@ -1,36 +1,38 @@
 %\subsubsection{Unbounded duplications}
 
-In order to interpret the $\STLC$, we need a Cartesia closed category (CCC).
-It is well known ({\color{red}Ref?}) that it is always possible to construct a CCC by taking the \emph{co-Kleisli} $\C C_!$ of a so-called \emph{Lafont category} $\C C$, where $!$ is its \emph{Lafont exponential} comonad.
-Let us quickly recall the ideas behind these notions.
-
+In order to interpret the $\STLC$, we need a Cartesian closed category (CCC).
+It is well known ({\color{red}Ref?}) that it is always possible to construct a CCC by taking the \emph{co-Kleisli} $\C C_!$ of a so-called \emph{Lafont category} $\C C$.
+%, a construction we now quickly recall.
+%defined via a \emph{Lafont exponential} comonad $!$.
+%Let us quickly recall the ideas behind these notions.
 A SMCC is Lafont when it has finite products and it is equipped with a comonad $!$ (its \emph{Lafont exponential}) which, at level of objects, sends $X$ to an object $!X$ being the free commutative comonoid on $X$.
-Such object $!X$ represents the \emph{bang} connective of linear logic:
-the infinite duplications granted by $!X$ are provided by the infinite product $X^0\otimes X\otimes X^2\otimes X^3\otimes\cdots$, each factor representing a possible number of duplications.
-Is well known that, under mild conditions satisfied by $\QREL$, one can explicit this idea via the fact that the map $X\mapsto \finMS{X}$ lifts to a functor $!:\QREL\to\QREL$ which is a Lafont-exponential comonad.
-In our case, specialising [Corollary III.6, Weighted], we have:
+Such object $!X$ represents the \emph{bang} connective of linear logic, granting infinite duplications via the infinite product $X^0\otimes X\otimes X^2\otimes X^3\otimes\cdots$, each factor representing a possible number of duplications.
+It is well known that, under mild conditions satisfied by $\QREL$, one can explicit this idea via the fact that the map $X\mapsto \finMS{X}$ (where $\finMS{X}$ is the set of finite multi-sets on $X$) lifts to a functor $!:\QREL\to\QREL$ which is a Lafont-exponential comonad.
+Specialising [Corollary III.6, \cite{Manzo2013}] to our case, we have:
 
 \begin{fact}
  $\LREL$ is Lafont.
 \end{fact}
 
 Let us recall that the coKleisli category $\C C_!$ of a category $\C C$ w.r.t.\ a comonad $!$ is the category whose elements are the same of $\C C$, and $\HOM{\C C_!}{X}{Y}:=\HOM{\C C}{!X}{Y}$, with composition $\circ_!$ defined by making use of the co-multiplication of $!$.
-We will explicit this constructions in our tropical setting in the next lines.
-
-As already mentioned, one obtains a CCC from a Lafont category by defining the exponential $X\to Y:=!X \multimap Y$.
-In our case, specialising [Theorem III.7, Weighted] we have indeed:
+%We will explicit this constructions in our tropical setting in the next lines.
+As already mentioned, one obtains a CCC from a Lafont category by defining the exponential objects as $X\to Y:=!X \multimap Y$.
+In our case, specialising [Theorem III.7, \cite{Manzo2013}] we have indeed:
 \begin{fact}
  The coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$.
 \end{fact}
 
 %It is instructive what its CCC-structure looks like in our tropical world.
-In our tropical setting, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$ where $(s\circ_! t)_{\mu,c}$ is:
-\[
+In our tropical setting, 
+the exponential object $X\multimap Y$ is $!X\times Y$, and 
+the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$ where $(s\circ_! t)_{\mu,c}$ is:
+\begin{align}
  \inf\limits_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1*\cdots *\mu_n}
- \set{s_{[b_1,\dots,b_n],c} + \sum\limits_{i=1}^n t_{\mu_i,b_i}}.
-\]
-The exponential object $X\multimap Y$ is $!X+Y$ (where $+$ is the disjoint union).
-Remember that in $\Lawv$ the neutral element for addition is $\infty$ and the neutral for multiplication is $0$, so for instance the evaluation map is the matrix $\RM{eval}^{X,Y}\in\Lawv^{!((X\multimap Y) + X)\times Y}\simeq\Lawv^{(!!X\times !Y\times !X)\times Y}$ given by $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=0$ if $\rho_1=[\mu]$ and $\rho_2=[b]$, and $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=\infty$ otherwise.
+ \left\{s_{[b_1,\dots,b_n],c} + \sum\limits_{i=1}^n t_{\mu_i,b_i}\right\}.
+\end{align}
+% (where $+$ is the disjoint union). 
+
+%Remember that in $\Lawv$ the neutral element for addition is $\infty$ and the neutral for multiplication is $0$, so for instance the evaluation map is the matrix $\RM{eval}^{X,Y}\in\Lawv^{!((X\multimap Y) \times X)\times Y}\simeq\Lawv^{(!!X\times !Y\times !X)\times Y}$ given by $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=0$ if $\rho_1=[\mu]$ and $\rho_2=[b]$, and $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=\infty$ otherwise.
 
 As it is well known, the Cartesian closed structure %of a category $\C C$ 
 allows to define a sound interpretation $\model{\Gamma\vdash M:A}\in\HOM{}{\model \Gamma}{\model A}$ of terms as morphisms.
@@ -40,21 +42,25 @@ In our case, we have:
  The interpretation $\model M$ of a $\lam$-term $M$ in $\LREL$ is a \emph{discrete} matrix, i.e.\ its coefficients are either $0$ or $\infty$.
 \end{proposition}
 \begin{proof}
- First easily prove that composition preserves descreteness.
- Then go by straightforward induction on $M$, using that the projections and evaluation of  $\LREL$ are descrete.
+ First easily prove that composition preserves discreteness.
+ Then go by straightforward induction on $M$, using that the projections and evaluation of  $\LREL$ are discrete.
 \end{proof}
 
-The fact that ordinary $\lam$-terms become only descrete matrices may seem a restrictive property.
-In Section~\ref{sec:app} we will however discuss how we can use this model in order to make it keep track of quantitative effects of programs.
+While ordinary $\lam$-terms yield discrete matrices, 
+as discussed in Section~\ref{sec:app}, the other coefficients from $[0,\infty]$ will appear when considering quantitative effects like computation steps or probabilities.
+%, give rise to  we will however discuss how 
+%we can use this model in order to make it keep track of quantitative effects of programs.
 
 \begin{remark}\label{rmk:ModelsOfBSTLC}
-It is known {\color{red}(([reference??] e dire meglio)} that the maps $X\mapsto \C M_{\leq n}(X)$ ($n\in\BB N$) lift to functors $!_n:\LREL\to\LREL$.
+%Similarly to It is known {\color{red}(([reference??] e dire meglio)} 
+The exponential $!$ can be ``decomposed'' into a family of \emph{graded} exponentials $!_n:\LREL\to\LREL$ ($n\in\BB N$), defined by functors $X\mapsto \C M_{\leq n}(X)$. %  lift to functors 
 The sequence $(!_n)_{n\in\N}$ can be then turned into a $\N$-graded linear exponential comonad on (the SMC) $\LREL$, satisfying the adjunction:
 $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
 Therefore, $\LREL$, together with $(!_n)_{n\in\N}$, is a model for $\BSTLC$. 
-Concretely, the types of this calculus (Equation~\ref{eq:Btyped}) are interpreted as: $\model o=\B 1$ and 
+In particular, bounded arrow types are interpreted via
+%Concretely, the types of this calculus (Equation~\ref{eq:Btyped}) are interpreted as: $\model o=\B 1$ and 
 $\model{!_{n}A\multimap B}:= \C M_{\leq n}(\model A) \times \model B$.
-Remark that such types are thus interpreted as finite sets.
+Notice that, for any type $A$ of $\BSTLC$, its interpretation $\model{A}$ is a finite set.
 \end{remark}
 %Bounded types are interesting because of the following proposition:
 %\begin{proposition}

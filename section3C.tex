@@ -1,13 +1,15 @@
-Until now we simply specialised well-known results in our tropical case, with the intent of showing how do things read in this particular case.
-Now we go further, by showing that $\LREL_!$ actually admits a \emph{differential structure}, turning it into a model of the $\STDLC$.
-This is where the \emph{metric} and the \emph{differential} viewpoints converge, as explained in the Introduction and Section II, and it will be generalised in Section 6.
+Until now we simply specialised well-known results in our tropical case, with the intent of showing how things read in this particular case.
+Now we go further, by showing that $\LREL_!$ actually admits a \emph{differential structure}, turning it into a model of the $\STDLC$, i.e.~a $CC\partial C$.
+This viewpoint
+%, is where the \emph{metric} and the \emph{differential} viewpoints converge, as explained in the Introduction and Section II, and it 
+will be further generalised in Section \ref{section6}.
 
-A model of the $\STDLC$ is usually understood as so-called \emph{Cartesian closed differential categories} (CC$\partial$C), see \cite{Manzo2010} for details.
-In order to treat the $+$ and the constructor $D[\_]\cdot (\_)$ of $\STDLC$, the main features of a CC$\partial$C $\C C$ are that:
-
-1) $\C C$ is a left-additive-CCC, i.e.\ its Homsets are commutative monoids and its Cartesian closed structure is well behaved w.r.t.\ this monoid structure;
-
-2) $\C C$ is equipped with a differential operator map $D:\HOM{\C C}{X}{Y}\to \HOM{\C C}{X\times X}{Y}$ (here $\times$ is the Cartesian product of $\C C$) satisfying $8$ axioms, called D1, ..., D7, D-curry.
+%A model of the $\STDLC$ is usually understood as so-called \emph{Cartesian closed differential categories} (CC$\partial$C), see \cite{Manzo2010} for details.
+%In order to treat the $+$ and the constructor $D[\_]\cdot (\_)$ of $\STDLC$, the main features of a CC$\partial$C $\C C$ are that:
+%
+%1) $\C C$ is a left-additive-CCC, i.e.\ its Homsets are commutative monoids and its Cartesian closed structure is well behaved w.r.t.\ this monoid structure;
+%
+%2) $\C C$ is equipped with a differential operator map $D:\HOM{\C C}{X}{Y}\to \HOM{\C C}{X\times X}{Y}$ (here $\times$ is the Cartesian product of $\C C$) satisfying $8$ axioms, called D1, ..., D7, D-curry.
 
 Let us show the differential structure of $\LREL_!$ (remember that the Cartesian product of $\LREL_!$ is the disjoint union $+$): 
 
@@ -24,25 +26,34 @@ For $t\in\HOM{\LREL}{!X}{Y}$, we have:
  $\LREL_!$ equipped with $D$, is a CC$\partial$C.
 \end{theorem}
 \begin{proof}
- The properties 1) are quite straightforward.
- Properties 2) are tedious technical checks.
+ Left-additivity (with respect to $\min$) is quite straightforward.
+ The other axioms of CC$\partial$C's are checked in the Appendix.
 \end{proof}
 
-There is more: not only $\LREL_!$ is a model of the $\STDLC$, but this model is also well-behaved w.r.t.\ to the \lamcalc Taylor expansion.
+There is more: not only $\LREL_!$ is a model of the $\STDLC$, but this model is also well-behaved w.r.t.\ to the Taylor expansion of $\lam$-terms.
 This is expressed by the following property (see [Definition 4.22, \cite{Manzo2010}], where it is called the fact of ``modeling the Taylor expansion'').
 
 \begin{theorem}\label{thm:modelsTaylor}
- In $\LREL_!$ equipped with $D$, all morphisms can be Taylor expanded, i.e.\ in $\LREL_!$ we have the following equality:
- \[
-  \RM{eval}^{X,Y}\circ_!\langle t,s\rangle =
+ In $\LREL_!$ equipped with $D$, all morphisms can be Taylor expanded, i.e.\ in $\LREL_!$ we have that, for all
+$t\in\HOM{\LREL_!}{Z}{X\multimap Y}$ and $s\in\HOM{\LREL_!}{Z}{X}$, the evaluation of $t$ over $s$ yields 
+ \begin{align}\label{eq:taylorcat}
+  \RM{ev}\circ_!\langle t,s\rangle =
   \inf\limits_{n\in\N}
   \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
- \]
- for all $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$.
-\end{theorem}
-Here, $\Lambda^-:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$ is the uncarry operator and $\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is an operator corresponding to the syntactical \emph{differential substitution} of $\STDLC$.
-\begin{proof}
- {\color{red}(Che ci scriviamo ??}
-\end{proof}
+ \end{align}
+ \end{theorem}
+It is worth discussing the formula above a bit more. 
+Here, $\Lambda^-$
+%:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
+ is the uncurry operator and 
+%$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
+$u\star s= (Du)\circ \langle s,\infty\rangle$ corresponds to linear application of $s$ to $u$. Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical interpretation of the Taylor formula \eqref{eq:taylor}.
+In other words, \eqref{eq:taylorcat} says that the series corresponding to the Taylor expansion of an ordinary $\lam$-term $M$ converges to $M$ [Theorem 4.23, \cite{Manzo2010}].
 
-This property is interesting because of [Theorem 4.23, \cite{Manzo2010}], which says that, then, in the model the series corresponding to the Taylor expansion of an ordinary $\lam$-term $M$ converges to $M$.
+%
+% corresponding to the syntactical \emph{differential substitution} of $\STDLC$.
+%%\begin{proof}
+% {\color{red}(Che ci scriviamo ??}
+%\end{proof}
+
+

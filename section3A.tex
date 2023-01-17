@@ -1,9 +1,9 @@
-The linear simply typed $\lam$-calculus is a restriction of the ordinary $\lam$-calculus in which programs can only use their arguments \emph{exatly once} during the computation.
-This is the notion of linearity taken into account by linear logic, and indeed this calculus can be embedded in the Intuitionistic Multiplicative fragment of it (called \emph{IMLL}).
+The linear simply typed $\lam$-calculus is a restriction of the ordinary $\lam$-calculus in which programs can only use their arguments \emph{exactly once}.
+This is the notion of linearity taken into account by linear logic, and indeed this calculus can be embedded in its \emph{intuitionistic multiplicative} fragment \emph{IMLL}.
 
 More precisely, the linear $\lam$-calculus is obtained from the ordinary one by adding the constraint that each $\lam$-abstracted variable appears exactly once in the scope of the $\lam$-abstraction.
 
-In order to frame it in a category $\C C$, one needs a symmetric tensor product $\otimes$ together with exponential objects $X\multimap Y$ s.t.\ the evaluation and curry maps yield a \emph{symmetric monoidal adjunction}: $\C C(Z\otimes X, Y) \simeq \C C (Z, X\multimap Y)$.
+In order to frame it in a category $\C C$, one needs a symmetric tensor product $\otimes$ together with internal hom-set objects $X\multimap Y$ s.t.\ the evaluation and curry maps yield a \emph{symmetric monoidal adjunction}: $\C C(Z\otimes X, Y) \simeq \C C (Z, X\multimap Y)$.
 This gives the notion of Symmetric Monoidal Closed Category (SMCC).
 
 [Section III.A, \cite{Manzo2013}], immediately gives:
@@ -12,6 +12,6 @@ This gives the notion of Symmetric Monoidal Closed Category (SMCC).
  $\LREL$ is a SMCC, thus a model of the linear $\STLC$.
 \end{fact}
 
-Its monoidal structures is given by a tensor product $\otimes$ acting on the objects as the Cartesian product of sets, and as the \emph{Kronecker product} {(\color{red} Ref?)} of matrices on morphisms.
-Its closed structures is given by $X\multimap Y:=X\times Y$ with the usual evaluation and curry maps.
+Its monoidal structure is given by a tensor product $\otimes$ acting on the objects as the Cartesian product of sets, and as the \emph{Kronecker product} {(\color{red} Ref?)} of matrices on morphisms.
+Its closed structures is also given by the Cartesian product on sets, with the usual evaluation and curry maps.
 Actually, the SMCC $\LREL$ is even a model of IMLL.

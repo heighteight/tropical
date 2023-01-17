@@ -1,11 +1,41 @@
-For a fixed \emph{continuous} semi-ring $Q$ [Def. II.5, \cite{Manzo2013}], the well-known \emph{quantitative relational model}, is the category $\QREL$ of sets and set-indexed matrices with coefficients in $Q$ (\cite{Manzo2013} would call it $Q^\Pi$).
-We must fix a convention for matrices: following \cite{Manzo2013, Hofmann2014, Ehrhard2005}, we fix $\HOM{\QREL}{X}{Y}:=Q^{X\times Y}$ with composition $st:X\times Z\to Q$ of $s:Y\times Z\to Q$ and $t:X\times Y\to Q$ defined by $(st)_{a,c}:=\sum\limits_{b\in Y} s_{b,c}t_{a,b}$.
+
+The study of matrices with values over the tropical semi-ring can be seen as a special case of the
+\emph{quantitative relational semantics} \cite{Manzo2013}, a well-studied semantics of the $\lambda$-calculus. 
+
+For a fixed \emph{continuous} semi-ring $Q$ [Def. II.5, \cite{Manzo2013}], the category $\QREL$ has sets as objects and set-indexed matrices with coefficients in $Q$ as morphisms (\cite{Manzo2013} would call it $Q^\Pi$).
+The identity morphism of $\QREL$ is the matrix $i:X\times X\to Q$ given by $i_{a,a}=1$ and $i_{a,b\neq a}=0$, and composition of morphisms $t:X\times Y\to Q$ and $s:Y\times Z\to Q$ is given by 
+$(st)_{a,c}:=\sum\limits_{b\in Y} s_{b,c}t_{a,b}$.
+Notice that the assumption of $Q$ being continuous 
+%(which can be weakened, see \cite{???})
+ is used in order to make this potentially infinite sum converge.
+ 
+ As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ identifies $\HOM{\QREL}{X}{Y}$ with the set of linear maps from $Q^X$ to $Q^Y$ via
+ \begin{equation}
+ \hat t(x)_a:=\sum\limits_{b\in Y} t_{a,b}x_a
+ \end{equation}
+ 
+ 
+ \begin{remark}
+ Following \cite{Manzo2013, Hofmann2014, Ehrhard2005}, we 
+ chose to see a matrix from $X$ to $Y$ as a map $s:X\times Y\to Q$.
+% 
+% fix $\HOM{\QREL}{X}{Y}:=Q^{X\times Y}$ with composition $st:X\times Z\to Q$ of $s:Y\times Z\to Q$ and $t:X\times Y\to Q$ defined by $(st)_{a,c}:=\sum\limits_{b\in Y} s_{b,c}t_{a,b}$.
 In linear algebra, a map $X\times Y\to Q$ is usually called a ``$Y\times X$-matrix'', meaning $Y$ rows and $X$ columns.
-In particular, the product of such a matrix for a vector defines a map $Q^Y\to Q^X$.
-Instead, we prefer to see a $t\in\HOM{\QREL}{X}{Y}$ as giving rise to a map $\hat t:Q^X\to Q^Y$ defined by $\hat t(x)_a:=\sum\limits_{b\in Y} t_{a,b}x_a$.
-In $\QREL^{op}$ (which corresponds to systematically taking transpose matrices), composition coincides with the product matrix/matrix and $\hat{(\cdot)}$ with the product matrix/vector.
-In order to avoid confusion, we will refer to a $t\in Q^{X\times Y}$ just as a \emph{matrix from $X$ to $Y$}.
-As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ identifies $\HOM{\QREL}{X}{Y}$ with the set of linear maps from $Q^X$ to $Q^Y$.
+In particular, the product of such a matrix for a vector defines a map $Q^Y\to Q^X$, hence the opposite of what shown above.
+\end{remark}
+%
+%In $\QREL^{op}$ (which corresponds to systematically taking transpose matrices), composition coincides with the product matrix/matrix and $\hat{(\cdot)}$ with the product matrix/vector.
+%In order to avoid confusion, we will refer to a $t\in Q^{X\times Y}$ just as a \emph{matrix from $X$ to $Y$}.
+%
+%
+%
+%We must fix a convention for matrices: following \cite{Manzo2013, Hofmann2014, Ehrhard2005}, we fix $\HOM{\QREL}{X}{Y}:=Q^{X\times Y}$ with composition $st:X\times Z\to Q$ of $s:Y\times Z\to Q$ and $t:X\times Y\to Q$ defined by $(st)_{a,c}:=\sum\limits_{b\in Y} s_{b,c}t_{a,b}$.
+%In linear algebra, a map $X\times Y\to Q$ is usually called a ``$Y\times X$-matrix'', meaning $Y$ rows and $X$ columns.
+%In particular, the product of such a matrix for a vector defines a map $Q^Y\to Q^X$.
+%Instead, we prefer to see a $t\in\HOM{\QREL}{X}{Y}$ as giving rise to a map $\hat t:Q^X\to Q^Y$ defined by $\hat t(x)_a:=\sum\limits_{b\in Y} t_{a,b}x_a$.
+%In $\QREL^{op}$ (which corresponds to systematically taking transpose matrices), composition coincides with the product matrix/matrix and $\hat{(\cdot)}$ with the product matrix/vector.
+%In order to avoid confusion, we will refer to a $t\in Q^{X\times Y}$ just as a \emph{matrix from $X$ to $Y$}.
+%As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ identifies $\HOM{\QREL}{X}{Y}$ with the set of linear maps from $Q^X$ to $Q^Y$.
 
 \begin{remark}
  The category $\QREL$ is (equivalent to) a subcategory of the category $Q\SF{Mod}$ of \emph{complete} $Q$-semimodules.
@@ -13,16 +43,14 @@ As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ i
  We take this viewpoint in Section~\ref{section6}.
 \end{remark}
 
-The assumption of $Q$ being continuous (which can be weakened, see \cite{???}) is used in order to make the potentially infinite sum, appearing in the formula for the composition, converge.
 
-In the following, we always consider the category $\LREL$, where $\Lawv$ is the already introduced Lawvere quantale, seen as the idempotent complete semiring $(\BB R_{\geq0}\cup\set{\infty},\inf,\infty,+,0)$.
-The category $\LREL$ is well-defined because $\Lawv$ is a continuous semiring (w.r.t.\ its quantale order $\preceq$.
-This amounts to check that $\min$ and $+$ commute with the $\inf$ (as operations on $\BB R_{\geq0}\cup\set{\infty}$, which is immediate), and that $(\Lawv,\preceq)$ is a cpo with $\infty$ as bottom element (which is immediate since in $\Lawv$ we have $\vee = \inf$) .
-
-\begin{remark}
- In $\LREL$, the formula for the composition becomes the tropicalisation of the one defining it in $\QREL$, i.e.\ $(st)_{a,c}:=\inf\limits_{b\in Y}\set{s_{b,c}+t_{a,b}}$;
- similarly, the linear functions $f:\Lawv^X\to \Lawv^Y$, which we call \emph{tropical linear}, are exactly those of shape $f(x)=\inf\limits_{b\in Y} \set{\check f_{a,b}+x_a}$, for some matrix $\check f$ from $X$ to $Y$.
-\end{remark}
+The tropical relational semantics is thus provided by the category $\LREL$ of matrices with values over $\Lawv$ (which, being a quantale, is indeed a continuous semi-ring).
+%, where $\Lawv$ is the already introduced Lawvere quantale, seen as the idempotent complete semiring $(\BB R_{\geq0}\cup\set{\infty},\inf,\infty,+,0)$.
+%The category $\LREL$ is well-defined because $\Lawv$ is a continuous semiring (w.r.t.\ its quantale order $\preceq$.
+%This amounts to check that $\min$ and $+$ commute with the $\inf$ (as operations on $\BB R_{\geq0}\cup\set{\infty}$, which is immediate), and that $(\Lawv,\preceq)$ is a cpo with $\infty$ as bottom element (which is immediate since in $\Lawv$ we have $\vee = \inf$) .
+It is worth observing that the formula for composition in $\LREL$ is the tropicalisation of the one defining it in $\QREL$, i.e.\ $(st)_{a,c}:=\inf\limits_{b\in Y}\set{s_{b,c}+t_{a,b}}$;
+ similarly, the linear functions $f:\Lawv^X\to \Lawv^Y$ induced by matrices, which we call \emph{tropical linear}, are exactly those of shape $f(x)=\inf\limits_{b\in Y} \set{\check f_{a,b}+x_a}$, for some matrix $\check f$ from $X$ to $Y$.
+%\end{remark}
 
 Since $\Lawv$ is a continuous (commutative) semiring, [Proposition III.3, \cite{Manzo2013}] immediately applies and gives:
 
@@ -35,4 +63,4 @@ $\HOM{\LREL}{X}{Y}$ is a continuous $\Lawv$-semimodule, with semimodule operatio
 $\LREL$ is a continuous $\Lawv$-category, i.e.\ composition of morphisms commutes with $\inf$'s;
 $\LREL$ is linear, i.e.\ pre- and post-composition with any morphism in any $\HOM{\LREL}{X}{Y}$ are automorphisms on it.
 
-In the next sections we will see how $\LREL$ gives rise to denotational models of variants of the $\lam$-calculus.
+In the next sections we will see how $\LREL$ gives rise to denotational models of several variants of the $\lam$-calculus.
