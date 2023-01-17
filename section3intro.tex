@@ -11,7 +11,7 @@ Notice that the assumption of $Q$ being continuous
  
  As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ identifies $\HOM{\QREL}{X}{Y}$ with the set of linear maps from $Q^X$ to $Q^Y$ via
  \begin{equation}
- \hat t(x)_a:=\sum\limits_{b\in Y} t_{a,b}x_a
+ \hat t(x)_b:=\sum\limits_{a\in X} t_{a,b}x_a
  \end{equation}
  
  
@@ -20,8 +20,7 @@ Notice that the assumption of $Q$ being continuous
  chose to see a matrix from $X$ to $Y$ as a map $s:X\times Y\to Q$.
 % 
 % fix $\HOM{\QREL}{X}{Y}:=Q^{X\times Y}$ with composition $st:X\times Z\to Q$ of $s:Y\times Z\to Q$ and $t:X\times Y\to Q$ defined by $(st)_{a,c}:=\sum\limits_{b\in Y} s_{b,c}t_{a,b}$.
-In linear algebra, a map $X\times Y\to Q$ is usually called a ``$Y\times X$-matrix'', meaning $Y$ rows and $X$ columns.
-In particular, the product of such a matrix for a vector defines a map $Q^Y\to Q^X$, hence the opposite of what shown above.
+Notice that usual linear algebra conventions correspond to working in $\LREL^{\op}$: a matrix $X\times Y\to Q$ is usually called a ``$Y\times X$-matrix'', meaning $Y$ rows and $X$ columns, and the usual matrix-vector product defines a map $Q^Y\to Q^X$.
 \end{remark}
 %
 %In $\QREL^{op}$ (which corresponds to systematically taking transpose matrices), composition coincides with the product matrix/matrix and $\hat{(\cdot)}$ with the product matrix/vector.

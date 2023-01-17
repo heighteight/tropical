@@ -16,7 +16,7 @@ In the next paragraph we will illustrate an analogous ``best case'' analysis for
 What does the metric analysis from the previous sections add to that? Firstly, the possibility of \emph{comparing} different programs with respect to their quantitative properties. For example, in the $\B{PCF}$ semantics recalled above, the distance between two programs $M$ and $N$ of type $\B{nat}$, provides a bound on the difference between the  ``best case'' computation time of $M$ and that of $N$. For instance, by taking, instead of the $\infty$-norm metric on $\Lawv^{\BB N}$,  
 the \emph{non symmetric} distance (or quasi-metric, a viewpoint we explicitly take in Section \ref{section6}) $q(\B x, \B y)=\sup_{n}\{\B y_{n}\dotdiv \B x_{n}\}$, a ``distance'' $q(\model{M},\model{N})\leq \epsilon$ would indicate that $\model{M}$ \emph{improves} on $\model{N}$ of at most $\epsilon$ steps at each computation. 
 
-Secondly, the Lipschitz conditions studied in the previous section allow us to reason on program distances in a \emph{compositional} way: suppose, as before, that $M,N:A$ are two programs such that $M$ improves on $N$ by $\epsilon$, and let $\TT C[-]:A \to \B{nat}$ indicate a context; knowing that the interpretation of $\TT C$ is $k$-Lipschitz-continuous on some open set containing both $\model M$ and $\model N$, allows us to immediately deduce that $\TT C[M]$ improves on $\TT C[N]$ by $k \epsilon$. 
+Secondly, the Lipschitz conditions from Section \ref{section4} allow us to reason on program distances in a \emph{compositional} way: suppose, as before, that $M,N:A$ are two programs such that $M$ improves on $N$ by $\epsilon$, and let $\TT C[-]:A \to \B{nat}$ indicate a context; knowing that the interpretation of $\TT C$ is $k$-Lipschitz-continuous on some open set containing both $\model M$ and $\model N$, allows us to immediately deduce that $\TT C[M]$ improves on $\TT C[N]$ by $k \epsilon$. 
 Observe that this will typically be the case when the Taylor expansions of $\TT C[M]$ and $\TT C[N]$ actually yields a \emph{finite} sum of at most $k$ terms, i.e.~when 
 \begin{align}
 \TT C[M] = \sum_{i=0}^{k} \TT D^{(k)}\Big[\lambda x.\TT C[x]\Big]\cdot M^{k}
@@ -24,7 +24,7 @@ Observe that this will typically be the case when the Taylor expansions of $\TT 
 and similarly for $\TT C[N]$. It is here worth recalling that, for $\STDLC$, a well-known result \cite{difflambda} is that the Taylor expansion of a closed application $MN$ is always finite, although its non-zero coefficients may be arbitrarily high. 
 Notably, these observations suggest to study tropical versions of \emph{finiteness spaces} \cite{Ehrhard2005}, 
 a variant of the relational semantics modeling strongly normalizing programs via \emph{finite} power series.
-We mention this point in the Section~\ref{sec:concl}
+We mention this point in Section~\ref{section8}
 
 
 \subsection{Tropical Polynomials and Log-Probabilities}
@@ -123,64 +123,3 @@ So, assuming the interpretation of a term known and assuming the tropical polyno
  Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_2$ give, by definition of tropical root, the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable paths of samples during the reduction of $M$ to its normal form.
  Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable occurrences of $I$ that are sampled by $M$ during the reduction, knowing that some $I$ was sampled.
 \end{remark}
-
-
-\subsection{Resource Analysis for Differential Privacy}
-
-The typical situation in differential privacy is where one considers a probabilistic query $f: \mathsf{db}\to [0,1]^{X}$ over some database, and one requires that $f$ should not be \emph{too sensitive} to small changes in the output, in other to prevent potential leaks of private information about individual items in $\mathsf{db}$ (for instance, an element $x\in\mathsf{db}$ could be the list of students of some university and $f(x)$ indicates the percentage of female students$\mathsf{db}$).
-
-More formally, differential privacy is defined as follows \cite{Reed2010}:
-\begin{definition}
-Let $f: \mathsf{db}\to [0,1]^{X}$ and $\epsilon \in \BB R_{\geq 0}$. $f$ is said \emph{$\epsilon$-differentially private} if for all $x,x'\in \mathsf{db}$
-differing by $L$ items, for all $s\in X$, 
-$$
-f(x)(s) \ = \ e^{\epsilon L} f(x')(s)
-$$
-\end{definition}
-
-A well-studied approach to ensure differential privacy for higher-order programs is to use bounded type systems like $\mathsf{Fuzz}$ \cite{Reed2010}. Indeed, such systems come with an \emph{a priori} warrant that well-typed programs are Lipschitz.
-
-The use of tropical semantics suggests how resource analysis could also be used to provide bounds for differential privacy. 
-Suppose our probabilistic query $f$ can be expressed as a power series (this is what happens e.g.~in \emph{probabilistic coherent spaces} \cite{Ehrhard2011}). Then, if we discover, either by studying differential properties of $f$, or using methods from convex analysis as suggested in the previous section (e.g.~Theorem \ref{??}), 
- that the tropicalization $\trop f$ satisfies a Lipschitz condition, we may use this fact to deduce that $f$ is differentially private, as shown by the result below.
-
-%
-%We have seen how a higher-order probabilistic program, which is expressed as a polynomial, can be tropicalized. This operation can be extended to programs expressed as power series by taking the limit. 
-%
-\begin{proposition}
-Let $f: [0,1]^{X}\to [0,1]^{Y}$ be an analytic function. If $\trop f$ is Lipschitz over some open set $U$, then $f$ is differentially private over $\psi_{t}(U)$, for small enough $t$.
-\end{proposition}
-\begin{proof}
-We consider the case $X=Y=\B 1$ for simplicity. 
-Express $f$ as a power series $f(x)=\sum_{n}\psi_{e}(\widehat f_{n})x^{n}$, so that $\trop f(\alpha)= \inf_{n}\left \{
-n\alpha + \widehat f_{n}
-\right\}$.
-Let us define a family of intermediate functions $\trop_{t}f(\alpha)=\phi_{t}(\stackrel{t}{\sum_{n}}\widehat{f}_{n}\times_{t}n\alpha)$. These, by construction, satisfy
-\begin{align}\label{eq:phit}
-f(\phi_{t}(\alpha)) = \phi_{t}(\trop_{t}f(\alpha))
-\end{align}
-and, using the fact that $\alpha\sumt{t}\beta\to\min\{\alpha,\beta\}$ and $\alpha\prodt{t}\beta\to \alpha+\beta$, we can deduce that $\trop f(\alpha)=\lim_{t\to 0}\trop_{t}f(\alpha)$ (for this, we use the fact that for all $m\in \BB N$,
-$\min_{i\leq m}\alpha_{i}\leq \stackrel{t}{\sum}_{i\leq m}\alpha_{i}\leq 
-(\min_{i\leq m}\alpha_{i})+t\log m$).
-
-Now, using the fact that $\trop f$ and $\trop_{t} f$ come arbitrarily close with $t$ small enough, together with \eqref{eq:phit}, the Lipschitz condition  
-$|\trop f(\phi_{t}(x))-\trop f(\phi_{t}(y))|\leq L\cdot |\phi_{t}(x)-\phi_{t}(y)|$ translates into the differential privacy condition 
-$f(x) \leq e^{L\cdot |\log x-\log y|} f(y)$ (supposing $y\geq x$ and $f(y)\neq 0$).
-\end{proof}
-
-%General discussion: optimization properties behave in a Lipschitz way.
-%
-%
-%- differential privacy and Lipschitzness
-%
-%
-%- log-probabilities and tropical roots 
-%
-%
-%- counting computation steps (from Manzonetto, but add relational ``Lipschitz'' reasoning)
-%
-%
-%- measuring duplications of discrete functions (needs finiteness!)
-
-
-
