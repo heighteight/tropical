@@ -1,57 +1,126 @@
-In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
-\subsection{Results on Tropical Laurent Series}
+As morphisms in $\LREL$ correspond to tropical linear functions, morphisms in the coKleisli category $\LREL_{!}$ 
+correspond to a generalization of tropical Laurent series, i.e.~the tropicalization of power series. 
+The study of power series in tropical mathematics is very recent (see e.g.~\cite{Porzio2021}) and many properties of these functions still have to be well-understood. 
 
-Recall the definition of \emph{tropical polynomials} and \emph{tropical Laurent series} (of one variable $x\in\Lawv$) given respectively by Equation~\ref{eq:polytrop} and Equation~\ref{eq:defTLS}.
-A $x\in[0,\infty)$ is said to be a (finite) \emph{tropical root} of a tropical Laurent series $f:\Lawv\to\Lawv$ iff $f$ is not differentiable at $x$ (w.r.t.\ the usual topology on $\BB R_{\geq0}$.
-This is equivalent to ask that the $\inf$ defining $f$ at $x$ is obtained \emph{at least} twice.{\color{red} \`e vero anche per TLS o solo per poly questo? Inoltre, Robol parla anche di finite end-points of the domain: nel nostro caso sarebbe $x=0$}
+In this section we recall some known facts about tropical Laurent series, and we establish some new properties, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
 
-\begin{example}\label{ex:famous_ex}
- The function $f:\Lawv\to\Lawv$ defined by $f(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ is a tropical Laurent series.
-\end{example}
+%
+%In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
-By plotting its graph {\color{red}vogliamo plottarlo?}, we observe several properties that we will lift to the more general case that we will consider in the next lines, and this example will serve as running one.
+\subsection{From Tropical Polynomials to tLs}
 
-\begin{remark}%[Tropical Laurent series]
- As usual, a matrix $t\in\HOM{\LREL_!}{X}{Y}$ operates as a linear map $\widehat t:\Lawv^{!X}\to\Lawv^Y$.
- But we can also ``express it in the base $X$'', i.e.\ see it as a map $t^!:\Lawv^X\to\Lawv^Y$, by setting $t^!(x):=t\circ_! x$ (we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
+A tropical polynomial, as we saw, is a piece-wise linear function of the form $\varphi(x)=\min_{i=1,\dots,k}\{ix+c_{i}\}$. For instance, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{in+2^{-i}\}$
+are plotted in Fig.~\ref{fig:plot1} for $n=2,3,4$.
+A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ correspond with the points where the slope of $\varphi$ changes (i.e.~the points where the minimum defining $\varphi$ is attained twice). A simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
+
+
+
+As anticipated in Section \ref{sectionnew}, a tropical Laurent series (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function that can be expressed as $f(x)=\inf_{n}\{nx+\check f_{n}\}$, with $\check  f_{n}$ a sequence in $\Lawv$. In other words, a tLs is a ``limit'' of tropical polynomials of higher and higher degree. For instance, the function $\varphi(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ (illustrated in Fig.~\ref{fig:plot1}), that we will take as our running example, 
+is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials. For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+\begin{axis}[samples=250]
+\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1)};
+\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
+\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
+
+\addplot[violet,domain=0:0.8] {min(
+10*x+1/1424,
+9*x+1/712,
+8*x+1/356,
+7*x+1/128,
+6*x+1/64,
+5*x+1/32,
+4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
+
+
+\end{axis}
+
+\end{tikzpicture}
+\end{center}
+\label{fig:plot1}
+\caption{Plot of the tropical polynomials $\varphi_{2}$ (in red), $\varphi_{3}$ (in blue), $\varphi_{4}$ (in orange) and of their limit tLs $\varphi$ (in violet).}
+\end{figure} 
+
+%
+%
+%We will take as our running example
+%%given respectively by Equation~\ref{eq:polytrop} and Equation~\ref{eq:defTLS}.
+%A positive $x\in[0,\infty)$ is said to be a (finite) \emph{tropical root} of a tropical Laurent series $f:\Lawv\to\Lawv$ iff $f$ is not differentiable at $x$ (w.r.t.\ the usual topology on $\BB R_{\geq0}$.
+%This is equivalent to ask that the $\inf$ defining $f$ at $x$ is obtained \emph{at least} twice.{\color{red} \`e vero anche per TLS o solo per poly questo? Inoltre, Robol parla anche di finite end-points of the domain: nel nostro caso sarebbe $x=0$}
+
+%\begin{example}\label{ex:famous_ex}
+% The function $f:\Lawv\to\Lawv$ defined by $f(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ is a tropical Laurent series.
+%\end{example}
+
+%By plotting its graph {\color{red}vogliamo plottarlo?}, we observe several properties that we will lift to the more general case that we will consider in the next lines, and this example will serve as running one.
+
+%\begin{remark}%[Tropical Laurent series]
+ As usual, a matrix $t\in\HOM{\LREL_!}{X}{Y}$ yields a linear map $\widehat t:\Lawv^{!X}\to\Lawv^Y$, but we can also ``express it in the base $X$'', i.e.\ see it as a map $t^!:\Lawv^X\to\Lawv^Y$, by setting $t^!(x):=t\circ_! x$.
+%  (we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
  This is the notion of \emph{non-linear} map generated by the CCC-structure of $\LREL_!$.
- Concretely, we have:
- \[t^!(x)_b=\inf\limits_{\mu\in !X} \set{\mu x+ t_{\mu,b}}\] where $\mu x:=\sum\limits_{a\in X} \mu(a)x_a$.
- The functions of such shape are generalisations of usual tropical Laurent series: they are the case for infinite variables.
- We will call them simply \emph{tropical Laurent series (tLs)}.
- %Since in the general case of $\QREL$, $t^!$ is a Laurent series with operations in $Q$, let us call \emph{tropical Laurent series} the functions of shape $t^!$ for some $t\in\HOM{\LREL_!}{X}{Y}$.
+ Concretely, we have
+ \begin{equation}
+ t^!(x)_b=\inf\limits_{\mu\in !X} \set{\mu x+ t_{\mu,b}}
+ \end{equation}
+ where $\mu x:=\sum\limits_{a\in X} \mu(a)x_a$.
+ These functions correspond then to tLs with possibly infinitely many variables (in fact, as many as the elements of $X$). %In the following we will also refer to them as tLs. 
+ 
+% 
+% We will call them simply \emph{tropical Laurent series (tLs)}.
+% %Since in the general case of $\QREL$, $t^!$ is a Laurent series with operations in $Q$, let us call \emph{tropical Laurent series} the functions of shape $t^!$ for some $t\in\HOM{\LREL_!}{X}{Y}$.
+%\end{remark}
+%
+%We find the usual notion of tLs of one variable as follows:
+
+%\begin{remark}
+Notice that, by identifying $!\set{*}\simeq \N$ and $\Lawv^{\set{*}}\simeq\Lawv$, the tLs generated by the morphisms in $\HOM{\LREL_!}{\set{*}}{\set{*}}$ are exactly the functions $f:\Lawv\to\Lawv$ of shape $f(x)=\inf\limits_{n\in\N}\set{nx+\widehat f(n)}$, for some $\widehat f:\N\to\Lawv$, i.e.\ usual tLs's of one variable.
+% \end{remark}
+ \begin{remark}
+ Our running example is indeed of shape $\varphi=t^!$, for $t\in\Lawv^{!\set{*}\times\set{*}}$, $t_{\mu,*}:=2^{-\# \mu}$.
+% By Proposition~\ref{prop:descrete}, $f$ is not the interpretation of a $\lam$-term, because its matrix is not discrete.
+% Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
 \end{remark}
 
-We find the usual notion of tLs of one variable as follows:
 
-\begin{remark}
- Indentifying $!\set{*}\simeq \N$ and $\Lawv^{\set{*}}\simeq\Lawv$, the tropical Laurent series generated by the morphisms in $\HOM{\LREL_!}{\set{*}}{\set{*}}$ are exactly the functions $f:\Lawv\to\Lawv$ of shape $f(x)=\inf\limits_{n\in\N}\set{nx+\widehat f(n)}$, for some $\widehat f:\N\to\Lawv$, i.e.\ usual tLs's of one variable.
-Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they corrispond to the ones for which the support $\set{n\in\N\mid\widehat f(n)\neq\infty}$ of $\widehat f$ is \emph{finite}.
-Actually, for us \emph{tropical polynomial} will mean a function $f:\Lawv^X\to\Lawv^Y$ of shape $f(x)_b:=\min\limits_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, for a \emph{finite} set $\C F\subseteq \, !X$.
-This is again the generalisation of usual tropical polynomials to the case of infinitely many variables.
-\end{remark}
 
-\begin{remark}
- The $f$ of Example~\ref{ex:famous_ex} is indeed of shape $f=t^!$, for $t\in\Lawv^{!\set{*}\times\set{*}}$, $t_{\mu,*}:=2^{-\# \mu}$.
- By Proposition~\ref{prop:descrete}, $f$ is not the interpretation of a $\lam$-term, because its matrix is not descrete.
- Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
-\end{remark}
+ In a similar way, the tropical polynomials can be identified with the tLs
+$f:\Lawv^X\to\Lawv^Y$ 
+ for which the support $\C F=\set{\mu\in!X\mid\check f_{\mu,b}\neq\infty}$ is \emph{finite}, which have thus shape $f(x)_b:=\min\limits_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$.
+ This is again the generalisation of usual tropical polynomials to the case of infinitely many variables.
 
-Looking at Example~\ref{ex:famous_ex}, we see that the function is non-decreasing and concave.
-It is easy to see that this is actually always the case:
+% 
+% , i.e.~for a \emph{finite} set $\C F\subseteq \, !X$.
+%%Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they 
+%correspond to the tLs for which the support $\set{n\in\N\mid\widehat f(n)\neq\infty}$ of $\widehat f$ is \emph{finite}. 
+%Actually, for us \emph{tropical polynomial} will mean a function 
+%\end{remark}
+
+Looking at Fig~\ref{fig:plot1}, we see that the function $\varphi$, just like the polynomials $\varphi_{1}$, is non-decreasing and concave.
+It can be shown that this is indeed always the case:
 
 \begin{proposition}\label{prop:nondecr+conc}
  Any tLs $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
 \end{proposition}
 
-In Example~\ref{ex:famous_ex}, it can be proven by hand that $f(x)$ is a $\min$ for all $x>0$.
-At $x=0$ we have $f(x=0)=\inf\limits_{n\in\N} \frac{1}{2^n}=0$ which is thus the only point \emph{not} being a $\min$.
+%In Example~\ref{ex:famous_ex}, 
+Again, by looking at Fig~\ref{fig:plot1}, it appears that $\varphi$ behaves \emph{locally} like the polynomials $\varphi_{n}$. In particular, for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. Indeed, we can compute  by hand that $\varphi$ coincides with $\varphi_{n}$ 
+for $\epsilon \geq \log2/2^{n+1}$.
+However, at
+%
+%$x\in [\epsilon,\infty]$, with $\epsilon>0$
+%It can be proven by hand that $\varphi(x)$ is a $\min$ for all $x>0$.
+ $x=0$ we have that $\varphi(x=0)=\inf\limits_{n\in\N} \frac{1}{2^n}=0$, and this is the only point where the $\inf$ is \emph{not} a $\min$.
 Also, while the derivative of $f$ is bounded on all $\BB R_{>0}$, at $x=0$ it tends to $\infty$.
-This phenomenon is reminiscent of [Example 7, PCoh],
+This phenomenon is reminiscent of [Example 7, \cite{Ehrhard2005}],
 %Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
 which actually motivated our first investigations.
 In fact, these properties are shared by all tLs with \emph{finitely} many variables, as shown by the following result.
+
+
 Remark that $!\set{1,\dots,k}$ can be identified with $\N^k$.
 So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and one variable $f(x)$ in output) can be given as a $\widehat f:\N^k\to\Lawv$, and $f$ has shape $f(x)=\inf\limits_{n\in \N^k}\set{nx+\widehat f(n)}$, where $nx$ is the scalar product.
 
@@ -64,15 +133,13 @@ So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and o
   \item On all $[\epsilon,\infty]^k$, $f$ coincides with the tropical \emph{polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\widehat f(n)}$.
  \end{enumerate}
 \end{theorem}
-\begin{proof}
- Call $\leq$ the well-founded pointwise order on $\N^k$.
- Now we can let $\C F_\epsilon:=\set{n\in\N \mid
- \widehat f(n)<\infty \textit{ and } \widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$.
-\end{proof}
+%\begin{proof}
+%Call $\leq$ the well-founded pointwise order on $\N^k$.
+%Now we can let $\C F_\epsilon:=\set{n\in\N \mid
+%\widehat f(n)<\infty \textit{ and } \widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$.
+%\end{proof}
 
-{\color{red}
-- bisognerebbe anche dire due parole sul differenziale e dell'espansione di Taylor come operazione sulle TLS invece che sulle matrici. 
-}
+
 
 
 \subsection{$\Lawv^{X}$ as a normed cone}
