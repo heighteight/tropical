@@ -148,12 +148,14 @@ So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and o
 
 \begin{theorem}\label{theorem:fepsilon}
  Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tLs with matrix $\widehat f:\N^k\to\Lawv$.
- For all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ s.t.:
- \begin{enumerate}
-  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
-  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
-  \item On all $[\epsilon,\infty]^k$, $f$ coincides with the tropical \emph{polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\widehat f(n)}$.
- \end{enumerate}
+ For all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
+% 
+% \begin{enumerate}
+%  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
+%  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
+  %\item 
+$f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\widehat f(n)}$.
+% \end{enumerate}
 \end{theorem}
 %\begin{proof}
 %Call $\leq$ the well-founded pointwise order on $\N^k$.
