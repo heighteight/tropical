@@ -20,8 +20,8 @@ As anticipated in Section \ref{sectionnew}, a tropical Laurent series (of one va
 is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials. For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
 
 \begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.6]
+\begin{subfigure}{0.24\textwidth}
+\begin{tikzpicture}[scale=0.55]
 \begin{axis}[samples=250]
 \addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1)};
 \addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
@@ -40,9 +40,27 @@ is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in gene
 \end{axis}
 
 \end{tikzpicture}
-\end{center}
+\caption{}
 \label{fig:plot1}
-\caption{Plot of the tropical polynomials $\varphi_{2}$ (in red), $\varphi_{3}$ (in blue), $\varphi_{4}$ (in orange) and of their limit tLs $\varphi$ (in violet).}
+\end{subfigure}
+\begin{subfigure}{0.24\textwidth}
+\begin{tikzpicture}[scale=0.55]
+\begin{axis}[samples=50, view={15}{45}]
+\addplot3[orange,domain=0:2] {min(2*x, 2*x+y, 3*y)};
+
+
+\end{axis}
+\end{tikzpicture}
+\caption{}
+\label{fig:plot2}
+\end{subfigure}
+\label{fig:plot12}
+\caption{
+%\ref{fig:plot1}
+ (a) Plot of the tropical polynomials $\varphi_{2}$ (in red), $\varphi_{3}$ (in blue), $\varphi_{4}$ (in orange) and of their limit tLs $\varphi$ (in violet).\\
+%\ref{fig:plot2}
+(b) Plot of
+$\varphi(x,y)=\min\{2x, 2x+y,3y\}$.}
 \end{figure} 
 
 %
@@ -152,10 +170,10 @@ This order makes it a Scott-continuous dcpo.
 Furthermore we have:
 
 \begin{proposition}
-  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders on the domain and codomain.
+  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
+  % on the domain and codomain.
 \end{proposition}
-
-The $f$ of Example~\ref{ex:famous_ex} is continuous on $\BB R_{\geq0}=\Lawv-\set{\infty}$ (w.r.t.\ the usual norm of real numbers).
+The tLs $\varphi$ is continuous on $\BB R_{\geq0}=\Lawv-\set{\infty}$ (w.r.t.\ the usual norm of real numbers).
 By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we could generalise this property by dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
@@ -170,19 +188,20 @@ By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$
 
 
 The norm $\norm{\cdot}_\infty$ naturally induces a metric $\|\B x-\B y\|_{\infty}$ over the spaces $\Lawv^{X}$. 
-We now study the Lipschitz properties of tropical Laurent series w.r.t.~these metrics. 
-
-First of all, remark that Theorem~\ref{theorem:fepsilon} implies that tLs $f$ of finitely many variables are locally Lipschitz (and thus continuous) on all $\BB R_{>0}$.
+A consequence of Theorem~\ref{theorem:fepsilon} is that tLs with finitely many variables are locally Lipschitz on all $\BB R_{>0}$.
 In this subsection we will refine and generalise this result.
+%
+%We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics. 
 
-A first result is the following:
+Let us first look at tropical linear functions:
+
 
 \begin{proposition}\label{prop:troplinear}
 All tropical linear functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
 \end{proposition}
-\begin{proof}[Proof sketch]
-Using the fact that $f(\B x)_{b}= \inf_{a\in X}\check f_{a,b}+\B x_{a}$,
-the problem reduces to checking that $|(\check f_{a,b}-\B x_{a})- (\check f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
+%\begin{proof}[Proof sketch]
+%Using the fact that $f(\B x)_{b}= \inf_{a\in X}\check f_{a,b}+\B x_{a}$,
+%the problem reduces to checking that $|(\check f_{a,b}-\B x_{a})- (\check f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
 This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
 %\begin{proof}
 %Using $f(\B x)_{b}= \inf_{a\in X}\check f_{a,b}+\B x_{a}$,
@@ -193,34 +212,31 @@ This result shows that, in analogy with that happens in usual metric semantics, 
 %\end{proof}
 
 Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
-
-Using the fact that the tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$ are in bijection with the elements of the hom-set $\LREL(X,Y)\simeq \Lawv^{X\times Y}$ through the map $f\mapsto \check f$, the following proposition provides a useful characterization of the functional metrics in $\LREL$:
+The following proposition provides a useful characterization of the functional metrics in $\LREL$, relying on 
+the bijection between $\HOM{\LREL}{X}{Y}$ and set of tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$.
 \begin{proposition}
-For all sets $X,Y$ and tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $\| \check f-\check g\|_{\infty} =  \sup_{\B x\in \Lawv^{X}}
+For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $\| \check f-\check g\|_{\infty} =  \sup_{\B x\in \Lawv^{X}}
 \| f(\B x)-g(\B x)\|_{\infty}$.\end{proposition}
 
-To study what happens in the case of tropical Laurent series, let us first consider the case of bounded exponentials $!_{\leq n}X$:
+Let us now consider the case of bounded exponentials $!_{\leq n}X$:
 \begin{proposition}\label{prop:boundedlip}
-All tropical Laurent series $f: \Lawv^{X}\to \Lawv^{Y}$ for which $\check f:{\C M_{\leq n}(X)}\times Y\to \Lawv$, are $n$-Lipschitz-continuous.
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\check f:{\C M_{\leq n}(X)}\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
 \end{proposition}
 \begin{proof}[Proof sketch]
-Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \check f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
-$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
-it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
+This follows from Proposition \ref{prop:troplinear} and the remark that, for all $x\in \Lawv^{X}$, $\| (!_{n} x)-(!_{n} y)\|_{\infty}\leq n\cdot \| x- y\|_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to $\C M_{\leq n}(X)$.%
+%Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \check f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
+%$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
+%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
 \end{proof}
-This result is perfectly analogous to what happens in standard models for sensitivity analysis based on the re-scaling trick recalled in Section \ref{section2}.
+This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 
-We can now look at what happens in the case of the full exponential comonad, i.e.~with the tropical Laurent series.
-First, let us observe that, as expected, tropical polynomials 
-correspond to Lipschitz functions:
-\begin{proposition}
-Any tropical polynomial $\varphi:\Lawv^{\{1,\dots, K\}}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+We can now look at what happens with tLs, i.e.~when considering the full exponential $!$.
+First, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(X)}}$ to $\Lawv$, from Proposition \ref{prop:boundedlip} we deduce:
+\begin{proposition}\label{prop:polylip}
+Any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{proposition}
-\begin{proof}
-This immediately follows from Prop.~\ref{prop:boundedlip}, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(\{1,\dots, K\})}}$ to $\Lawv$.
-\end{proof}
 
-The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tropical Laurent series with \emph{finitely many} variables are always locally Lipschitz over $(0,\infty)^{X}$. Yet, we can prove a more general statement, covering also the infinitary case.
+The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz over $(0,\infty)^{X}$. Yet, we can prove a more general statement, covering also the infinitary case.
 
 
 \begin{theorem}\label{thmTLSlocLip}
@@ -240,24 +256,24 @@ For any $\lambda$-term $M$:
 \end{enumerate}
 \end{corollary} 
 \begin{proof}
-\begin{enumerate}
-\item It suffices to remark that if $A$ is a type of the $\BSTLC$, then $\model A$ is a finite set, by definition of the interpretation (Remark~\ref{rmk:ModelsOfBSTLC}).
-Therefore a morphism $t:\model A\to \model B$ is a finite matrix $t: \model A \times \model B \to \Lawv$.
-Hence, its corresponding map $\widehat t:\Lawv^{\model A} \to \Lawv^{\model B}$ is a (tropical) polynomial, which is a Lipschitz functions.
-\item Trivial from Theorem~\ref{thmTLSlocLip}.
-\end{enumerate}
+As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite  and  its corresponding map $\widehat t:\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Prop.~\ref{prop:polylip}.
+Claim 2) follows directly from Theorem~\ref{thmTLSlocLip}.
 \end{proof}
 
 
-Finally, let us discuss the differential structure. We show that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
+Finally, let us discuss the differential structure. The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}(f):(\Lawv^{X})^{2}\to \Lawv^{Y}$, linear in its first variable, and given by 
+\begin{equation}
+D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\check f_{\mu*a}+x_{a}+\mu y\right\}
+\end{equation}
+Moreover, the Taylor formula \eqref{eq:taylorcat} yields 
+a Taylor formula for tLs of the form 
+$f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
+The following result shows that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
 \begin{proposition}
 For all tropical Laurent series $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
-the functions
-$\delta^{(n)}f, \delta^{(n)}g: \Lawv^{\C M_{\leq n}(X)}\to \Lawv ^{Y}$, with 
- $\delta^{(n)}f(\B x)= \Der^{(n)}f(\B x, \infty)$, appearing in their Taylor expansions, are $n$-Lipschitz-continuous, and moreover 
-\begin{align}
-\| \check f-\check g\|_{\infty}= \sup_{n} \| \check{\delta^{(n)}f}- \check{\delta^{(n)}g}\|_{\infty}
-\end{align}
+the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz-continuous, and moreover 
+$\| \check f-\check g\|_{\infty}= \sup_{n} \| {\delta^{(n)}(f)}- {\delta^{(n)}(g)}\|_{\infty}$, 
+where $\delta^{(n)}(h)$ indicates the matrix of $D_{!}^{(n)}(h)(!_{n}x,\infty)$.
 %where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
 %(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
 \end{proposition} 
