@@ -29,6 +29,7 @@ We mention this point in Section~\ref{section8}
 
 \subsection{Tropical Polynomials and Log-Probabilities}
 
+
 Let us consider in this subsection a probabilistic extension of $\STLC$, call it $\STLC_\oplus$:
 we add a ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the rules:
 \[
@@ -65,8 +66,10 @@ $P_{01}(p,q):=pq$,
 $P_{110}(p,q)=P_{101}(p,q):=q^2p$.
 They correspond to the respective reduction path from $M$ to the normal term of the same address.
 $P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$ in $M$ after reducing it to normal form.
-Thinking, as we will, to $p,q$ as parameters, it can thus also be read as the \emph{likelihood function} of such event.
+Thinking of $p,q$ as parameters, $P_{\omega}$ can thus be read as the \emph{likelihood function} of the event $\omega$.
 The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead the whole probability of obtaining $\true$ after such samplings, and $Q_{0}(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ the one for $\false$.
+
+
 %Let us consider in this subsection a probabilistic extension of $\lam$-calculus, call it $\STLC_\oplus$, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.These terms are typed via the rule:
 %\[
 %\dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
@@ -85,15 +88,19 @@ The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead
 %\]
 %The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicates the path of the reduction that led from $M$ to the respective occurrence $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').For instance, in order to reach $I_{100}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.$P_{\omega}(p,q)$ gives then the probability (as a function of $p,q$) of obtaining the respective occurrence $I_{\omega}$ or $\Omega_\omega$ in the normal form, if we were to sample at each time we reduce a $\oplus_p$.It can thus also be read as the likelihood function of such event.The polynomials $Q_{1,2}(p,q)$ give instead the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
 
-The tropical point of view allows now to express two natural questions about this situation:
+This way the probabilistic evaluation of $M$ is presented in the form of a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}. Indeed, typical questions in this case would be:
+%
+%The tropical point of view allows now to express two natural questions about this situation:
 \begin{enumerate}
  \item What is the \emph{maximum likelihood estimator} for the event ``$M$ produces $\true_\omega$'' (similarly for $\false_\omega$)?
  This means asking which is the choice of the parameters $p,q$ that maximizes the probability of getting $\true_\omega$ by repeatedly sampling $M$.
  \item Knowing that $M$ produced $\true$ (similarly for $\false$), which is the choice of the parameters $p,q$ that maximizes the probability that the produced occurrence of $\true$ was a fixed $\true_{\omega_0}$ (i.e. that among the paths leading to $\true$, the one taken was $\omega_0$)?
 \end{enumerate}
+A similar argument could be done by replacing $\true$ and $\false$ by, respectively, a converging and a diverging term (e.g.~in a $\B{PCF}$-style language), so 1) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
 
-These are questions much in the style of those asked in {\color{red}Ref?} in the framework of {\color{red}??}.
-
+%These are questions much in the style of those asked in {\color{red}Ref?} in the framework of {\color{red}??}.
+Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega}$, which is more easily solved by 
+passing to the tropical polynomial $\trop P_{\omega}$. 
 For 1), we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)$ belong to:
 \begin{equation}
   \begin{array}{r@{}c@{}l@{}}
@@ -119,17 +126,22 @@ This last condition is equivalent to ask that:
    (\trop Q_1)( -\log_c x, -\log_c y) = (\trop P_{\omega_0})( -\log_c x, -\log_c y). &  \label{eq:max}
   \end{array}
 \end{equation}
-In both cases, the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
+In both cases, passing to $\trop P_{\omega}$ makes the problem easier, as this may be reduced to computing the tropical roots of the polynomial (which can be done in linear time \cite{Noferini2015}). %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
 
 \begin{remark}
- By adapting [Section IV, Section VI, \cite{Manzo2013}], it can be seen that $\LREL_!$ is a model of $\STLC_\oplus$.
+ By adapting [Section IV, \cite{Manzo2013}], it can be seen that $\LREL_!$ is a model of $\STLC_\oplus$.
  In particular, if we set $\model \bool:=\set{0,1}$, our running example $M$ is interpreted as $\model M\in\Lawv^{\set{0,1}}$ giving the tropicalised probabilities: $\model M_0=(\trop Q_0)(p,1-p)$, $\model M_1=(\trop Q_1)(p,1-p)$.
 \end{remark}
 
 %Now, in $\LREL$, seen as a model of such probabilistic $\lam$-calculus, the interpretation of a term already computes the tropicalisation of the polynomials expressing the probabilities, because the underlying semiring of the model is tropical.
 %For instance, for our running example $M$:
 %\[\model M = \min\left\{\trop{Q_1}(p,1-p) \cdot \model I, \trop{Q_0}(p,1-p) \cdot \model \Omega\right\}.\]
-Therefore, assuming the interpretation of a term known and assuming the tropical polynomials (in $p$ and $q$, not after the substitution $q:=1-p$) are extracted from it, one could study the optimisation problems \ref{eq:argmax}, \ref{eq:max} \emph{without} having to reduce the term.
+Therefore, assuming the interpretation of a term is known, 
+so that one can extract the associated tropical polynomials from it,
+% (in $p$ and $q$, not after the substitution $q:=1-p$) 
+% are extracted from it, 
+one could study the optimisation problems \ref{eq:argmax}, \ref{eq:max} \emph{without} having to actually reduce the term. 
+
 
 %\begin{example}\label{ex:study}
 For our running example $M$, we have $\trop Q_1(x,y)=\min\set{2x,y+2x,3y}$ and $\trop Q_0(x,y)=\min\set{x+y,2y+x}$.
@@ -141,7 +153,7 @@ Remembering that $2x=P_{00}(x,y)$, for the other values of $p$ (for example, $p=
 We have thus answered question 2) above.
 %\end{example}
 
-\begin{remark}
- Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_0$ give, by definition of tropical root, the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable paths of samples from $M$ to its normal form.
+\begin{remark}\label{rem:troproots}
+ Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_0$ provide, by definition, the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable paths of samples from $M$ to its normal form.
  Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are sampled by $M$ during its reduction to normal form, knowing that some $\true$ was sampled.
 \end{remark}
