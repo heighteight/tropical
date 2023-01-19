@@ -1,0 +1,222 @@
+
+\subsubsection{The language $\BSTLC$}
+TO BE ADDED
+
+
+
+
+\subsubsection{$(\LREL, !_{n})$ is a model of Bounded Linear Logic}
+
+Given SMCs $\C C,\C D$,  let $\B{SMC}_{l}(\C C, \C D)$ indicate the category of symmetric lax monoidal functors and monoidal natural transformations between them.
+$\B{SMC}_{l}(\C C, \C D)$  is itself a SMC, with monoidal structure defined pointwise.
+
+The set 
+$\BB N$ can be seen as the category with objects the natural numbers and a morphism between $r$ and $r'$ precisely when $r\leq r'$. 
+Moreover, $\BB N$ can be seen as a SMC in two ways:
+\begin{itemize}
+
+\item we indicate as $\BB N^{+}$ the SMC with monoidal product given by addition;
+\item we indicate as $\BB N^{\times}$ the SMC with monoidal product given by multiplication.
+\end{itemize}
+
+
+%Below we let $\BB^{\min}$ indicate the monoid $(Q,\min,0)$ and $\Lawv^{+}$ indicate the monoid $(Q,+,0)$.
+
+\begin{definition}[cf.~\cite{Katsumata2018}]
+A \emph{$\BB N$-graded linear exponential comonad} on a symmetric monoidal category $\C C$ is a tuple
+$(D, w,c,\epsilon,\delta)$ where:
+\begin{itemize}
+
+\item $D: \BB N\to \B{SMC}_{l}(\C C, \C C)$ is a functor. We write 
+$m_{r}:\{\star\} \to D(r)(\{\star\})$ and $m_{r,A,B}: D(r)(A)\otimes D(r)(B) \to D(r)(A\otimes B)$ for the symmetric lax monoidal structure of $D(r)$;
+
+\item $(D,w,c): \BB N^{+}\to \B{SMC}_{l}(\C C, \C C)$ is a symmetric colax monoidal functor;
+
+\item $(D,\epsilon,\delta):\BB N^{\times}\to (\B{SMC}_{l},\mathrm{Id},\circ) $ is a colax monoidal functor.
+
+
+
+\end{itemize}
+further satisfying the axioms below:
+\begin{align}
+w_{A}& =  w_{D(s)(A)}\circ \delta_{0,s,A}\\
+w_{A} & = D(s)(w_{A} )\circ \delta_{s,0,A} \\
+(\delta_{r,s,A}\otimes \delta_{r',s,A})\circ c_{rs,r's,A}
+&=
+c_{r,r',D(s)(A)}\circ \delta_{r+r',s,A}\\
+m_{s,D(r)(A),D(r')(A)}\circ (\delta_{r,s,A}\otimes \delta_{s,r',A})\circ c_{sr,sr',A}&=
+D(s)(c_{r,r',A})\circ \delta_{s,r+r',A}
+\end{align}
+\end{definition}
+
+
+Concretely, the definition above requires 6 natural transformations:
+\begin{align*}
+m_{r} & :\{\star\}\to  D(r)(\{\star\})\\
+m_{r,A,B}& :  D(r)(A)\otimes D(r)(B)\to  D(r)(A\otimes B)\\
+w_{A}& : D(0)(A)\to \{\star\} \\
+c_{r,r',A}& : D(r+r')(A) \to D(r)(A)\otimes D(r')(A) \\
+\epsilon_{A}& : D(1)(A)\to A \\
+\delta_{r,r',A}&: D(r r')(A)\to D(r)(D(r')(A))
+\end{align*}
+subject to the following list of equations:
+\begin{itemize}
+\item $D(r)$ is a lax monoidal functor:
+\begin{align}
+m_{r,A\otimes B,C}\circ (m_{r,A,B}\otimes D(r)(C)) & = 
+m_{r,A, B\otimes C}\circ (D(r)(A)\otimes m_{r,B,C})\\
+m_{r,A,\{\star\}}\circ (D(r)(A)\otimes m_{r}) & = D(r)(A)\\
+m_{r,\{\star\}, B}\circ (m_{r}\otimes D(r)(B))&= D(r)(B)
+\end{align}
+
+
+\item $(D,w,c)$ is a symmetric colax monoidal functor:
+\begin{align}
+(c_{r,s,-}\otimes D(t)(-))\circ c_{r+s,t} & =
+(D(r)(-)\otimes c_{s,t,-})\circ c_{r,s+t}\\
+(D(r)(-)\otimes w_{-})\circ c_{r,0,-} & = D(r)(-) \\
+(w_{-}\otimes D(r)(-))\circ c_{0,r,-} & = D(r)(-)
+\end{align}
+
+
+\item $(D,\epsilon,\delta)$ is a colax monoidal functor:
+\begin{align}
+\delta_{r,s, D(t)(-)}\circ \delta_{(rs),t,-} & =
+D(r)(\delta_{s,t,-})\circ \delta_{r,st,-}\\
+D(r)(\epsilon_{-}) \circ \delta_{r,1,-} & = D(r)(-) \\
+\epsilon_{D(r)(-)} \circ \delta_{1,r,-} & = D(r)(-)
+\end{align}
+
+\end{itemize}
+
+
+
+\begin{definition}
+We define the following structure $(M,w,c,\epsilon,\delta)$ over the category $Q\mathsf{Rel}$ as follows:
+\begin{itemize}
+\item for any set $X$ and $n\in \BB N$, let $M(n)(X)=\C M_{\leq n}(X)$;
+
+\item for all $f: X\times Y\to Q$, let $M(n)(f): M(n)(X)\times M(n)(Y)\to Q$ be defined by 
+\begin{align*}
+M(n)(f)(\alpha,\beta)=
+\begin{cases}
+\min_{\sigma\in \F S_{k}}\sum_{i=1}^{k}f(x_{i},y_{\sigma(i)}) & 
+\text{ if }\alpha=[x_{1},\dots, x_{k}], \beta=[y_{1},\dots, y_{k}]\\
+\infty & \text{ otherwise}
+\end{cases}
+\end{align*}
+
+
+\item $m_{r}(\star, \{\star\})=0$ and $m_{r}(\star, \emptyset)=\infty$;
+
+\item $m_{r,A,B}: D(r)(A)\times D(r)(B)\times D(r)(A\times B)\to Q$ is defined by 
+\begin{align*}
+m_{r,A,B}((\alpha,\beta), \gamma)=
+\begin{cases}
+0 & \text{ if } \alpha=[x_{1},\dots, x_{k}], \beta=[y_{1},\dots, y_{k}], \gamma= [(x_{1},y_{1}),\dots, (x_{k},y_{k})]\\
+\infty & \text{ otherwise}
+\end{cases}
+\end{align*}
+
+\item $w_{A}:D(0)(A)\times \{\star\}\to Q$ is given by $w_{A}(\emptyset, \star)=0$ and is $\infty$ otherwise (observe that $D(0)(A)\simeq \{\star\}$);
+
+\item $c_{r,s,A}: D(r+s)(A)\times D(r)(A)\times D(s)(A)\to Q$ is given by $c_{r,r',A}(\langle\alpha, \beta,\gamma\rangle)=0$ if $\alpha=\beta+\gamma$, and is $\infty$ otherwise;
+
+\item $\epsilon_{A}(\emptyset, a)=\infty$, $\epsilon_{A}([a],a)=0$, $\epsilon_{A}([b],a)=\infty$ $(b\neq a)$,
+
+\item $\delta_{r,r',A}(\alpha, B)=0$ if $\alpha= \sum B$ (where $\sum B$ indicates the multiset obtained by the sum of all multisets contained in $B$) and is $\infty$ otherwise.
+
+
+
+
+\end{itemize}
+
+\end{definition}
+
+
+
+Let us check that this defines a $\BB N$-graded linear exponential comonad.
+
+\begin{itemize}
+
+\item $D(r)$ is a lax monoidal functor:
+ $$ m_{r,A\times B,C}\circ (m_{r,A,B}\times D(r)(C))(\langle \alpha,\beta,\gamma,\delta\rangle)
+ :
+ D(r)(A)\times D(r)(B)\times D(r)(C) \times D(r)(A\times B\times C)\to Q
+ $$
+ is equal to $0$ 
+precisely when $\alpha=[x_{1},\dots, x_{k}]$, $\beta=[y_{1},\dots, y_{k}]$, $\gamma=[z_{1},\dots, z_{k}]$ and 
+$\delta= [(x_{1},y_{1},z_{1}),\dots, (x_{k},y_{k},z_{k})]$, and is $\infty $ in all other cases.
+
+Observe that
+$m_{r,A,B\times C}\circ (D(r)(A)\times m_{r,B,C})(\langle\alpha,\beta,\gamma, \delta\rangle)
+  $ is equal to $0$ in the same situation, and is $\infty$ otherwise.
+ 
+ We conclude that the two matrices coincide.
+ 
+ Furthermore, we have that 
+ $m_{r,A,\{\star\}}\circ (D(r)(A)\times m_{r})(\langle \alpha,\beta\rangle): D(r)(A)\times \{\star\} \times D(r)(A)$ is equal to $0$ 
+ precisely when $\alpha=\beta$ and is $\infty$ otherwise, that is, it coincides with $\mathrm{id}_{D(r)(A)}$. 
+ 
+
+
+\item $(D,w,c)$ is a symmetric colax monoidal functor.
+
+
+$((c_{r,s,A}\times D(t)(A))\circ c_{r+s,t,A}) (\langle \alpha,\beta,\gamma,\delta\rangle)
+: D(r+s+t)(A)\times D(r)(A)\times D(s)(A)\times D(t)(A)$
+is equal to $0$ when $\alpha=\beta+\gamma+\delta$, and is $\infty$ otherwise, and the same holds for
+$((D(r)(A)\times c_{s,t,A})\circ c_{r,s+t,A}) (\langle \alpha,\beta,\gamma,\delta\rangle)
+$.
+
+Furthermore, 
+$((D(r)(A)\times w_{A})\circ c_{r,0,A})(\alpha,\beta)
+: D(r)(A)\times D(r)(A)\to Q$ is equal to $0$ when 
+$\alpha=\beta$, and is $\infty$ otherwise, so it coincides with 
+$\mathrm{id}_{D(r)(A)}$.
+
+\item $(D,\epsilon,\delta)$ is a colax monoidal functor:
+
+$(\delta_{r,s,D(t)(A)}\circ \delta_{rs,t,A})
+(\alpha, \Phi)
+: D(rst)(A) \times D(r)(D(s)(D(t)(A))) \to Q
+$
+is $0$ precisely when $\alpha = \sum \sum \Phi$, and is $\infty$ otherwise, and similarly for 
+$(D(r)(\delta_{s,t,A})\circ \delta_{r,st,A})(\alpha,\Phi)$.
+
+
+Furthermore, 
+$(D(r)(\epsilon_{A})\circ \delta_{r,1})( \alpha,\beta ):
+D(r)(A) \times D(r)(A)\to Q
+$ is equal to $0$ when $\alpha=\beta$ and is $\infty$ otherwise, so it coincides with $\mathrm{id}_{D(r)(A)}$.
+
+
+\end{itemize}
+
+
+Let us check the further equations:
+\begin{itemize}
+
+\item $(w_{D(s)(A)}\circ \delta_{0,s,A})(\langle \emptyset,\star\rangle: D(0)(A)\times \{\star\}\to Q$ is 0, precisely like $w_{A}$.
+
+\item A similar argument holds for the second equation.
+
+\item $((\delta_{r,s,A}\times \delta_{r',s,a})\circ c_{rs,r's,A})
+(\langle \alpha, \Phi,\Psi  \rangle)
+:
+D(rs+r's)(A)\times  D(r)(s)(A)\times D(r')(s)(A)\to Q
+$
+is equal to $0$ when $\alpha=\sum \Phi + \sum \Psi$, and is $\infty$ otherwise.
+
+
+
+Now, 
+using the fact that $D(rs+r's)(A)=D((r+r')s)(A)$, we can check that the same holds for 
+$c_{r,r',D(s)(A)}\circ \delta_{r+r',s,A})(\langle \alpha, \Phi,\Psi  \rangle)$: it is $0$ when 
+$\alpha= \sum\Phi+\Psi= \sum \Phi+\sum \Psi$.
+
+
+\item A similar argument holds for the fourth equation.
+
+\end{itemize}
+

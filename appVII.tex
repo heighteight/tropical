@@ -1,126 +1,3 @@
-
-
-In the following we let $Q$ indicate the Lawvere quantale $([0,\infty], \geq, +,0)$. 
-$Q$ can be seen as:
-\begin{itemize}
-\item a category $Q_{0}$ with a unique object and morphisms being the elements of $Q$, with identity 0 and composition $+$;
-
-\item a degenerate category $Q_{1}$ with objects the elements of $Q$, and  
-a morphism between $x$ and $y$ whenever $x\geq y$;
-
-\item a 2-category $Q_{2}$ with 0-cells and 1-cells as in $Q_{0}$, and 2-cells the morphisms of $Q_{1}$.
-
-\end{itemize}
-These categorical formulations of $Q$ will help us here and there. 
-
-We let $x-y$ indicate truncated subtraction. Notice that 
-$x \leq (x-y)+y$ and $(x+y)-y\leq x$. This corresponds to the fact that ``$\_-y$'', as a functor from $
-Q_{1}$ to itself, 
- is \emph{right-adjoint} to the functor ``$\_+y$''. Equivalently, 
- $x+y \geq z $ iff $x\geq z-y$.
-
-
-
-
-$Q\mathsf{Rel}$ is the category of sets and $Q$-relations, where a $Q$-relation 
-$R:X\pfun Y$ is a function $R: X\times Y\to Q$, with identity $1_{X}:X\pfun X$ given by 
-$$1_{X}(x,y)=\begin{cases} 0 & \text{ if }x=y\\ \infty & \text{ otherwise}\end{cases}$$
-and composition of $R:X\pfun Y$ and $S:Y\pfun Z$ given by 
-$$
-(S\cdot R)(x,z)= \inf_{y\in Y}R(x,y)+S(y,z)
-$$ 
-
-\begin{remark}
-$Q\mathsf{Rel}$ is also a (degenerate) 2-category, where for $R,S:X\pfun Y$, $R\To S$ iff for all $x\in X$, $y\in Y$, $R(x,y)\geq S(x,y)$. 
-
-\end{remark}
-
-
-Composition with $R:X\pfun Y$ in Q$\mathsf{Rel}$ yields a functor
-$$
-R\cdot \_ : Q\mathsf{Rel}(A,X)   \longrightarrow Q\mathsf{Rel}(A,Y)
-$$
-which
-has a right-adjoint
-$$
-\_ \multimapinv R : Q\mathsf{Rel}(A,Y)   \longrightarrow Q\mathsf{Rel}(A,X)
-$$
-given, for $S:A\pfun Y$ by 
-\begin{align*}
-(S\multimapinv R)(a,x)= \sup_{y\in Y}S(a,y) -R(x,y)
-%(R\multimap S)(a,x)= \sup_{y\in Y}
-\end{align*}
-
-%
-%\begin{lemma}
-%\begin{itemize}
-%\item[i.] $ (R\multimapinv T)\cdot
-%(T\multimapinv S)\leq R \multimapinv S $.
-%
-%\item[ii.] $R\multimapinv T \leq (R\multimapinv S)\multimapinv (T\multimapinv S)$.
-%\end{itemize}
-%\end{lemma}
-%\begin{proof}
-%\begin{align*}
-%(R\multimapinv S)(x,y)&= \sup_{z}R(x,z)-S(y,z) \\
-%&=\sup_{z} (R(x,z)-T(z,z))+(T(z,z)-S(y,z))\\
-%&= \inf_{w}\left(\sup_{z}R(x,z)-T(w,z)\right) +\left(\sup_{z'}T(w,z')-S(z',y)\right)
-%\\
-%&= \inf_{w}(R\multimapinv T)(x,w)+(T\multimapinv S)(w,y)  
-%\\
-%&= (R\multimapinv T)\cdot (T\multimapinv S)(x,y)
-%\end{align*}
-%
-%\end{proof}
-
-\subsubsection{$Q$-categories.}
-
-
-A \emph{$Q$-category}, or \emph{generalized (quasi-)metric space} is a small $Q$-enriched category. Concretely, it is given by a pair $(X,q)$ made of a set $X$ and a $Q$-relation $q: X\pfun X$ satisfying:
-\begin{align}
-q(x,x) & = 0 \tag{Q1} \\
-q(x,z)+q(z,y) & \geq q(x,y) \tag{Q2}
-\end{align}
-A $Q$-category is \emph{skeletal} if it further satisfies
-\begin{align}
-q(x,y) & = 0 \ \To \ x=y \tag{Q3}
- \end{align}
- and \emph{symmetric} if it satisfies
- \begin{align}
-q(x,y) & = q(y,x) \tag{Q4}
- \end{align}
-For simplicity, in the following we indicate the distance function of a $Q$-category $X$ simply as $X(x,y)$. 
-
-\begin{remark}
-In more abstract terms, a $Q$-category can be identified with a \emph{monad} in $Q\mathsf{Rel}$, seen as a 2-category: it is given by a 1-cell $q:X\pfun X$ together with 2-cells $1_{X}\To  q$ and $q\cdot q \To q$. 
-\end{remark}
-
-
-We let $x\simeq y$ indicate the equivalence relation defined by  $X(x,y)=X(x',y)$ holds for all $y\in X$. 
-Notice that $x\simeq y$ coincides with $x=y$ precisely when $X$ is skeletal.
-
-Every $Q$-category $X$ is also a preorder $(X,\preceq_{X})$, with $x\preceq_{X}y$ iff $X(x,y)=0$. Moreover, if $X$ is skeletal, then $\preceq_{X}$ is an order.
-
-For every $Q$-category $X$, the category $X^{\mathrm{op}}$ has same objects as $X$, and $X^{\mathrm{op}}(x,y)=X(y,x)$. 
-
-
-
-\begin{example}
-$Q$ is a $Q$-category with the distance $Q(x,y)=y-x$. 
-The category $Q^{\mathrm{op}}$ has distance $Q^{\mathrm{op}}(x,y)=Q(y,x)$.
-\end{example}
-
-\begin{example}
-For every $Q$-category $X$, the distance $\C S(X)(x,y)=\max\{X(x,y),X^{\mathrm{op}}(x,y)\}$ defines a symmetric $Q$-category $\C S(X)$. In the case of $Q$, $\C S(Q)$ is just the Euclidean distance.
-\end{example}
-
-
-
-
-
-
-A \emph{functor} between $Q$-categories $X$ and $Y$ is just a non-expansive function $f:X\to Y$, that is, satisfying $Y(f(x),f(y))\leq X(x,y)$.
-
 %
 \begin{remark}\label{rem:functor}
 Given $f:X\to Q$, $f$ is a functor precisely when for all $x,y\in X$ $f(x)\leq\inf_{x'\in X}f(x')+X(x',x)$. 
@@ -129,165 +6,136 @@ Conversely, if $f(x)\leq f(x')+X(x',x)$ holds for all $x'$, then
 $Q(f(x),f(x'))=f(x')-f(x)\leq X(x',x)$. 
 \end{remark}
 
-%Indeed, being a functor means that any arrow $X(x,y)$ is mapped into an arrow $Y(f(x),f(y))$, that is, $Y(f(x),f(y))
-
-\begin{example}
-For every $Q$-category $X$, the $Q$-category $[X,Q]$ has objects all functors from $X$ to $Q$ (where the latter is seen as a $Q$-category), and $[X,Q](f,g)=\sup_{x\in X}Q(f(x),g(x))$.
-
-When $X$ has the discrete metric, $[X,Q]=Q^{X}$ and $\C S([X,Q])(f,g)=\| f-g\|_{\infty}$.
-
- 
-\end{example}
-
-
-\begin{example}
-For every $Q$-categories $X,Y$ we can define:
-\begin{itemize}
-\item a $Q$-category $X\otimes Y$ with 
-$(X\otimes Y)(\langle x,y\rangle, \langle x',y'\rangle)=X(x,x')+Y(y,y')$;
-\item a $Q$-category $X\times Y$ with 
-$(X\times Y)(\langle x,y\rangle, \langle x',y'\rangle)=\max\{X(x,x'),Y(y,y')\}$. 
-\end{itemize}
-\end{example}
-
-\subsubsection{$Q$-distributors.}
-
-%We let $Q\mathsf{Cont}$ indicate the category of $Q$-categories and continuous functors. 
-
-A \emph{$Q$-distributor} $\Phi: X\pfun Y$ is a $Q$-relation $\Phi: X\times Y\to Q$ satisfying
-\begin{align*}
-\Phi\cdot X   \leq\Phi \qquad \qquad
-Y \cdot \Phi  \leq \Phi
-\end{align*}
-
-\begin{remark}
-Using Remark \ref{rem:functor}, it follows that $\Phi$ is a $Q$-distributor precisely when it is a functor $\Phi: X^{\mathrm{op}}\otimes Y \to Q$:
-the condition $\Phi(x,y) \leq X(x,x')+\Phi(x',y)$ implies that $\Phi$ is a functor over $X^{\mathrm{op}}$, while
-the condition $\Phi(x,y) \leq \Phi(x,x')+Y(x',y)$ implies that $\Phi$ is a functor over $Y$.
-But this implies then 
-$\Phi(x,y) \leq X(x,x') +\Phi(x',y')+Y(y',y)$ and thus $Q(\Phi(x',y'),\Phi(x,y))\leq X(x,x')+Y(y',y)$.
-\end{remark}
-
-
-%where $(\Phi\cdot X)_{x,y}= \inf_{z\in X}\Phi_{x,z}+X(z,y)$ and 
-%$(y\cdot \Phi)_{x,y}= \inf_{z\in X}Y(x,z)+\Phi_{z,y}$.
-
-The identity distributor $1_{X}:X\pfun X$ is given by $(1_{X})_{x,y}=X(x,y)$. 
-Distributors $\Phi:X\pfun Y$ and $\Psi:Y\pfun Z$ compose via $\Psi\cdot \Phi:X\pfun Z$. 
-We let $Q\mathsf{Dist}$ indicate the category of $Q$-categories and $Q$-distributors. 
-
-\begin{remark}
-Usually distributors $\Phi: X\pfun Y$ are presented as $Q$-relations $\Phi:Y\times X\to Q$ (notice the inversion of $X$ and $Y$), that is, as functors $\Phi: X\times Y^{\mathrm{op}}\to Q$. We chose to invert the presentation of distributors for uniformity with the usual notations in models of the differential $\lambda$-calculus. 
-\end{remark}
-
-Any functor $f:X\to Y$ induces two adjoint distributors $f^{\circ}:X\pfun Y$ and $f_{\circ}:Y\pfun X$ given by $f^{\circ}(x,y)=Y(f(x),y)$ and $f_{\circ}(y,x)=Y(f(y),x)$.
-Here adjoint means that $1_{X}\leq f_{\circ}\cdot f^{\circ} $ and $f^{\circ}\cdot f_{\circ}\geq 1_{Y}$. 
-
 
 
 \begin{remark}[Yoneda embedding]
-%$Q$ is a $Q$-category with $Q(x,y)=|x-y|$. 
-%For any $Q$-category $X$ we can define a new $Q$-category $\mathsf{Dist}(X,Q)$ (that we note simply as $[X,Q]$) whose objects are the distributors $\B x:\B 1\pfun X$, or equivalently, the functors from $X$ to $Q$, i.e.~those $\B x\in Q^{X}$ such that $|\B x_{a}-\B x_{b}|\leq X(a,b)$, or equivalently $\B x_{a}+X(a,b) \geq \B x_{b}$.
+%$\Lawv$ is a $\Lawv$-category with $Q(x,y)=|x-y|$. 
+%For any $\Lawv$-category $X$ we can define a new $\Lawv$-category $\mathsf{Dist}(X,Q)$ (that we note simply as $[X,Q]$) whose objects are the distributors $x:\{\star\}\pfun X$, or equivalently, the functors from $X$ to $\Lawv$, i.e.~those $x\in \Lawv^{X}$ such that $|x_{a}-x_{b}|\leq X(a,b)$, or equivalently $x_{a}+X(a,b) \geq x_{b}$.
 
 
-The \emph{Yoneda embedding} is the faithful functor $\C Y: X\to [X,Q]$ given by $\C Y(x)(y)=X(y,x)$. The functoriality and faithfulness of $\C Y$ follow from
+The \emph{Yoneda embedding} is the faithful functor $\B Y: X\to [X,Q]$ given by $\B Y(x)(y)=X(y,x)$. The functoriality and faithfulness of $\B Y$ follow from
 \begin{align}
-[X,Q](\C Y(x),\C Y(x'))= X(x,x') \tag{Yoneda}
+[X,Q](\B Y(x),\B Y(x'))= X(x,x') \tag{Yoneda}
 \end{align}
 which is proved as follows: for all $y\in X$ we have 
 \begin{align*}
-Q( \C Y(x)(y),\C Y(x')(y))&= \C Y(x')(y)-\C Y(x)(y) \\
+Q( \B Y(x)(y),\B Y(x')(y))&= \B Y(x')(y)-\B Y(x)(y) \\
 &= X(y,x')-X(y,x) \leq X(x,x')
 \end{align*}
 where the last step follows from $X(y,x)+X(x,x')\geq X(y,x')$. 
-From this we deduce that $[X,Q](\C Y(x),\C Y(x'))=\sup_{y\in X}Q( \C Y(x)(y),\C Y(x')(y))\leq X(x,x')$. 
+From this we deduce that $[X,Q](\B Y(x),\B Y(x'))=\sup_{y\in X}Q( \B Y(x)(y),\B Y(x')(y))\leq X(x,x')$. 
 For the converse direction, we have  
 \begin{align*}
 X(x,x') &  = X(x,x') - 0 \\ &=
 X(x,x')- X(x,x)
-\\& =\C Y(x')(x)-\C Y(x)(x)= Q(\C Y(x)(x),\C Y(x')(x))\\
-&\leq [X,Q](\C Y(x), \C Y(x'))
+\\& =\B Y(x')(x)-\B Y(x)(x)= Q(\B Y(x)(x),\B Y(x')(x))\\
+&\leq [X,Q](\B Y(x), \B Y(x'))
 \end{align*}
 \end{remark}
 
 
 \begin{remark}
 The \emph{opposite Yoneda embedding} is the faithful functor
-$\C Y^{\mathrm{op}}: X\to [X,Q]^{\mathrm{op}}$ given by $\C Y^{\mathrm{op}}(x)(y)=X(x,y)$. The functoriality and faithfulness of $\C Y^{\mathrm{op}}$ follow from
+$\B Y^{\mathrm{op}}: X\to [X,Q]^{\mathrm{op}}$ given by $\B Y^{\mathrm{op}}(x)(y)=X(x,y)$. The functoriality and faithfulness of $\B Y^{\mathrm{op}}$ follow from
 \begin{align}\label{eq:yonedaop}
-[X,Q](\C Y^{\mathrm{op}}(x),\C Y^{\mathrm{op}}(x'))= X(x',x) \tag{Yoneda$^{\mathrm{op}}$}
+[X,Q](\B Y^{\mathrm{op}}(x),\B Y^{\mathrm{op}}(x'))= X(x',x) \tag{Yoneda$^{\mathrm{op}}$}
 \end{align}
-which is proved similarly to the case of $\C Y$.
+which is proved similarly to the case of $\B Y$.
 \end{remark}
 
-\subsubsection{cocompleteness}
+\subsubsection{completeness}
 
 
 
-Let $\Phi:Y\pfun Z$ be a distributor and $f:Y\to X$ be a functor.
-A functor $ g:Z\to X$ is called the \emph{$\Phi$-weighted colimit of $f$} if it satisfies, for all
-$z\in Z$ and 
- $x\in X$, 
+
+
+
+Composition with $r:X\pfun Y$ yields a functor
 $$
-X(g(z), x) \ = \  \sup_{y\in Y}X(f(y),x) - \Phi(y,z)
+r\cdot \_ : \LREL(A,X)   \longrightarrow \LREL(A,Y)
 $$
-If this colimit exists, we write it as $\mathrm{colim}(\Phi,f)$.
+which
+has a right-adjoint
+$$
+\_ \multimapinv r : \LREL(A,Y)   \longrightarrow \LREL(A,X)
+$$
+given, for $s:A\pfun Y$ by 
+\begin{align*}
+(s\multimapinv r)(a,x)= \sup_{y\in Y}s(a,y) \dotdiv r(x,y)
+%(R\multimap S)(a,x)= \sup_{y\in Y}
+\end{align*}
 
 
-A $Q$-category $X$ is said \emph{cocomplete} if it admits all weighted colimits, and a functor $f:X\to Y$ of $Q$-categories is said \emph{cocontinuous} if it commutes with all weighted colimits, meaning that $f \circ \mathrm{colim}(\Phi,g)= \mathrm{colim}(\Phi, f\circ g)$.
 
 
+%
+%
+%Let $\Phi:Y\pfun Z$ be a distributor and $f:Y\to X$ be a functor.
+%A functor $ g:Z\to X$ is called the \emph{$\Phi$-weighted colimit of $f$} if it satisfies, for all
+%$z\in Z$ and 
+% $x\in X$, 
+%$$
+%X(g(z), x) \ = \  \sup_{y\in Y}X(f(y),x) - \Phi(y,z)
+%$$
+%If this colimit exists, we write it as $\mathrm{colim}(\Phi,f)$.
+%
+%
+%A $\Lawv$-category $X$ is said \emph{complete} if it admits all weighted colimits, and a functor $f:X\to Y$ of $\Lawv$-categories is said \emph{continuous} if it commutes with all weighted colimits, meaning that $f \circ \mathrm{colim}(\Phi,g)= \mathrm{colim}(\Phi, f\circ g)$.
+%
+%
+%
+%We let $\GMet$ indicate the category of skeletal and complete $\Lawv$-categories and continuous functors. 
+%
+%
 
-We let $Q\mathsf{CCat}$ indicate the category of skeletal and cocomplete $Q$-categories and cocontinuous functors. 
-
-
+For a $\Lawv$-category $X$, we write $x\simeq y$ when $X(x,y)=X(y,x)=0$. $\simeq$ coincides with $=$ precisely when $x$ is skeletal.
 
 \begin{proposition}\label{prop:yonedasup}
-Let $X$ be a $Q$-category. Then $X$ is cocomplete iff the Yoneda embedding has a left-adjoint.
+Let $X$ be a skeletal $\Lawv$-category. Then $X$ is complete iff the Yoneda embedding has a left-adjoint.
 \end{proposition}
 \begin{proof}
- For all $\B x\in [X,Q]$, let $\sup\B x$ be defined as a weighted colimit via
+ For all $ x\in [X,Q]$, let $\sup x$ be defined as a weighted colimit via
 $$
-X(\sup\B x, y)= \sup_{z\in X} X(z,y)-\B x_{z}
+X(\sup x, b)= \sup_{a\in X} X(a,b)-x_{a}
 $$
-that is, $\sup \B x= \mathrm{colim}( \B x, \mathrm{id}_{X})$, where $\B x$ is seen as a distributor $\B x:\B 1\pfun X$.
+that is, $\sup  x= \mathrm{colim}(  x, \mathrm{id}_{X})$, where $ x$ is seen as a distributor $x:\{\star\}\pfun X$.
 
 
 Let us check that $\sup: [X,Q]\to X$ is a functor. First, let us check the  inequality
 \begin{align}\label{eq:in1}
-(X\multimapinv\B y)\cdot (\B y\multimapinv\B x)\geq (X\multimapinv\B x)\end{align}
+(X\multimapinv y)\cdot ( y\multimapinv x)\geq (X\multimapinv x)\end{align}
 as follows:
 \begin{align*}
-\left((X\multimapinv \B y)\cdot (\B y\multimapinv\B x)\right)(a)&=
- \left (\sup_{b}X(b,a)-\B y_{b}\right)+\left(\sup_{b}\B y_{b}-\B x_{b}\right)\\
+\left((X\multimapinv  y)\cdot ( y\multimapinv x)\right)(a)&=
+ \left (\sup_{b}X(b,a)- y_{b}\right)+\left(\sup_{b} y_{b}-x_{b}\right)\\
 &\geq
-\sup_{b}(X(b,a)-\B y_{b})+(\B y_{b}-\B x_{b})
+\sup_{b}(X(b,a)- y_{b})+( y_{b}-x_{b})
 \\
-&=\sup_{b}(X(b,a)-\B y_{b}+\B y_{b})-\B x_{b}
+&=\sup_{b}(X(b,a)- y_{b}+ y_{b})-x_{b}
 \\
-&=\sup_{b} X(b,a)-\B x_{a}\\
-&= (X\multimapinv \B x)(a)
+&=\sup_{b} X(b,a)-x_{a}\\
+&= (X\multimapinv x)(a)
 \end{align*}
 From \eqref{eq:in1} we deduce immediately the inequality below:
 \begin{align}\label{eq:in2}
-\B y\multimapinv \B x \geq (X\multimapinv \B x)\multimapinv(X\multimapinv\B y)
+ y\multimapinv x \geq (X\multimapinv x)\multimapinv(X\multimapinv y)
 \end{align}
 and we can now compute:
 \begin{align*}
-[X,Q](\B x, \B y)&= \sup_{a\in X}\B y_{a}-\B x_{a}\\
+[X,Q](x,  y)&= \sup_{a\in X} y_{a}-x_{a}\\
  &\stackrel{\tiny\eqref{eq:in2}}{\geq}
- \sup_{a\in X} \left( \sup_{b\in X}X(b,a)-\B x_{a}\right) -\left(  \sup_{b\in X}X(b,a)-\B y_{a}   \right )\\
- &= \sup_{a\in X}X(\sup \B x, a)-X(\sup \B y, a)\\
- &= [X,Q](\C Y^{\mathrm{op}}(\sup\B y),\C Y^{\mathrm{op}}(\sup \B x))
+ \sup_{a\in X} \left( \sup_{b\in X}X(b,a)-x_{a}\right) -\left(  \sup_{b\in X}X(b,a)- y_{a}   \right )\\
+ &= \sup_{a\in X}X(\sup x, a)-X(\sup  y, a)\\
+ &= [X,Q](\B Y^{\mathrm{op}}(\sup y),\B Y^{\mathrm{op}}(\sup x))
  \tag{\ref{eq:yonedaop}}
  \\
-&=X(\sup \B x, \sup \B y)
+&=X(\sup x, \sup  y)
 \end{align*}
 
 
-Then for all $x\in X$, $\sup \C Y(x)\simeq x$. Indeed we have 
+Then for all $x\in X$, $\sup \B Y(x)\simeq x$. Indeed we have 
 \begin{align*}
-X(\sup \C Y(x), y) & = \sup_{z\in X}X(z,y) -\C Y(x)(z) \\
+X(\sup \B Y(x), y) & = \sup_{z\in X}X(z,y) -\B Y(x)(z) \\
 & = \sup_{z\in X}X(z,y)-X(z,x)\\
 &= X(x,y)
 \end{align*}
@@ -295,38 +143,38 @@ X(\sup \C Y(x), y) & = \sup_{z\in X}X(z,y) -\C Y(x)(z) \\
 %%$X(x,y) \leq \sup_{z}X(z,y)-X(x,z)$.
 %
 
-Moreover, for all $\B x\in [X,Q]$, we have $\C Y(\sup \B x)\geq \B x$:  
+Moreover, for all $x\in [X,Q]$, we have $\B Y(\sup x)\geq x$:  
 \begin{align*}
-\C Y(\sup \B x)(a) &= X(a,\sup \B x)\\
-&= X(  \sup(\C Y(a)),\sup \B x) \\
-& \geq [X,Q]( \C Y(a), \B x)\\
-&\geq\B x_{a}-\C Y(a)(a) \\
+\B Y(\sup x)(a) &= X(a,\sup x)\\
+&= X(  \sup(\B Y(a)),\sup x) \\
+& \geq [X,Q]( \B Y(a), x)\\
+&\geq x_{a}-\B Y(a)(a) \\
 &=
- \B x_{a}-X(a,a)  = \B x_{a}
+ x_{a}-X(a,a)  = x_{a}
 \end{align*}
 %where in the last step we use the fact that 
-%$[X,Q](  \C Y(a),\B x)= \sup_{b}\B x_{b}-X(a,b) = \B x_{a}$.
+%$[X,Q](  \B Y(a),x)= \sup_{b}x_{b}-X(a,b) = x_{a}$.
 %
-%$\B y\in Q^{X}$, 
-% $\| \C Y(\sup\B x)- \B y\|_{\infty}=\| \C Y(\sup\B x)- \B x\|_{\infty}$. Indeed we have 
+%$ y\in \Lawv^{X}$, 
+% $\| \B Y(\sup x)-  y\|_{\infty}=\| \B Y(\sup x)- x\|_{\infty}$. Indeed we have 
 % \begin{align*}
-% \| \B x_{a}-\C Y(\sup\B x)\|_{\infty}&= \sup_{a\in X}|
-%\B x_{a}-\C Y(\sup\B x)(a)|\\ 
+% \| x_{a}-\B Y(\sup x)\|_{\infty}&= \sup_{a\in X}|
+%x_{a}-\B Y(\sup x)(a)|\\ 
 %&=
 %\sup_{a\in X}|
-%\B x_{a}-X(\sup\B x,a)|\\
+%x_{a}-X(\sup x,a)|\\
 % &=
-%\sup_{a\in X}\inf_{a'\in X}| \B x_{a}+X(a',a) -\B x_{a'}|\\
-%&= \sup_{a\in X}|\B x_{a}+ X(a,a)- \B x_{a}| = 0
+%\sup_{a\in X}\inf_{a'\in X}| x_{a}+X(a',a) -x_{a'}|\\
+%&= \sup_{a\in X}|x_{a}+ X(a,a)- x_{a}| = 0
 % \end{align*}
 %
 % 
 
-Conversely, if $\sup$ is well-defined and adjoint to $\C Y$, then 
-given $\Phi: Y\pfun \B 1$ and $f:Y\to X$, 
+Conversely, if $\sup$ is well-defined and adjoint to $\B Y$, then 
+given $\Phi: Y\pfun \{\star\}$ and $f:Y\to X$, 
 we can define
 $\mathrm{colim}(\Phi, f):= \sup\Psi$, where $\Psi=
- f^{\circ}\cdot \Phi: X\pfun \B 1$, since 
+ f^{\circ}\cdot \Phi: X\pfun \{\star\}$, since 
 \begin{align*}
 X(\sup \Psi, y)&=
 \sup_{z\in X}X(z,y)-\Psi(z) \\
@@ -340,13 +188,11 @@ X(\sup \Psi, y)&=
 
 
 \begin{definition}[MacNeill Completion]
-Let $X$ be a $Q$-category. For all $f: \B 1\pfun X$ and $g:X\pfun \B 1$, let $f \coh g$ iff 
+Let $X$ be a $\Lawv$-category. For all $f: \{\star\}\pfun X$ and $g:X\pfun \{\star\}$, let $f \coh g$ iff 
 $f  = X\multimapinv g $ and 
 $g = f\multimap X$. 
-
-
-The \emph{MacNeill completion of $X$} is the $Q$-category $\B M(X)$ made of those 
-$f:\B 1\pfun X$ such that $f\coh g$ for some $g:X\pfun \B 1$, with
+The \emph{MacNeill completion of $X$} is the $\Lawv$-category $\B M(X)$ made of those 
+$f:\{\star\}\pfun X$ such that $f\coh g$ for some $g:X\pfun \{\star\}$, with
 $\B M(X)(f,f')=[X,Q](f,f')$. 
 \end{definition}
 
@@ -361,56 +207,56 @@ f(x)=  \sup_{y\in X}\inf_{z\in X}X(x,y)-X(y,z) +f(z)
 
 
 \begin{proposition}
-Let $X$ be a $Q$-category. 
-If $X$ is cocomplete, then $\C Y$ is an isomorphism between $X$ and $\B M(X)$. 
+Let $X$ be a skeletal $\Lawv$-category. 
+If $X$ is complete, then $\B Y$ is an isomorphism between $X$ and $\B M(X)$. 
 \end{proposition}
 \begin{proof}
-For all $x\in X$, one can check that $\C Y(x)\in \B M(X)$. Indeed, we can check that $\C Y(x) \coh \C Y^{\mathrm{op}}(x)$:
+For all $x\in X$, one can check that $\B Y(x)\in \B M(X)$. Indeed, we can check that $\B Y(a) \coh \B Y^{\mathrm{op}}(a)$:
 \begin{align*}
-\C Y(x)(y)  &= X(y,x) \\
-&=  \sup_{z\in X}X(y,z  )- X(x,z)\\
-&= \sup_{z\in X}X(y,z  )- \C Y^{\mathrm{op}}(x)(z)\\
- &= (X\multimapinv \C Y^{\mathrm{op}}(x))(y)
+\B Y(a)(b)  &= X(b,a) \\
+&=  \sup_{c\in X}X(b,c  )- X(a,c)\\
+&= \sup_{c\in X}X(b,c  )- \B Y^{\mathrm{op}}(a)(c)\\
+ &= (X\multimapinv \B Y^{\mathrm{op}}(a))(b)
 \end{align*}
-Since $\sup\C Y(x) \simeq x$ holds, it suffices to show that if $\B x \coh \B y$, then 
-$\C Y(\sup \B x)=\B x$: 
+Since $\sup\B Y(a) \simeq a$ holds, it suffices to show that if $x \coh  y$, then 
+$\B Y(\sup x)=x$: 
 \begin{align*}
-\C Y(\sup \B x)(a) & \ \ = X(a, \sup\B x) \\
-&\ \ = \sup_{b\in X}X(a,b)-X(\sup\B x, b) \\
-&\ \ = \sup_{b\in X}\inf_{c\in X}X(a,b)- X(b,c) + \B x_{c} \\
- &\stackrel{{\tiny\text{(COH)}}}{=} \B x_{a}
+\B Y(\sup x)(a) & \ \ = X(a, \sup x) \\
+&\ \ = \sup_{b\in X}X(a,b)-X(\sup x, b) \\
+&\ \ = \sup_{b\in X}\inf_{c\in X}X(a,b)- X(b,c) + x_{c} \\
+ &\stackrel{{\tiny\text{(COH)}}}{=} x_{a}
 \end{align*}
 \end{proof}
 
 
 %
-%\begin{remark}[other notions of cocompleteness]
-%The categorical notion of cocompleteness subsumes several other notions of cocompleteness, in the sense of being (strictly) stronger:
+%\begin{remark}[other notions of completeness]
+%The categorical notion of completeness subsumes several other notions of completeness, in the sense of being (strictly) stronger:
 %\begin{itemize}
-%\item \emph{order-completeness} is the case when the pre-order $\preceq_{X}$ is cocomplete.   
-%Let $I\subseteq X$, so that $\mathrm{id}_{I}$ can be seen as a functor from the subcategory $I$ to $X$. Let $0_{I}: \B 1\pfun I$ be the distributor given by $(0_{I})_{i}=0$.
+%\item \emph{order-completeness} is the case when the pre-order $\preceq_{X}$ is complete.   
+%Let $I\subseteq X$, so that $\mathrm{id}_{I}$ can be seen as a functor from the subcategory $I$ to $X$. Let $0_{I}: \{\star\}\pfun I$ be the distributor given by $(0_{I})_{i}=0$.
 %Then $\mathrm{colim}(0_{I}, \mathrm{id}_{I})$ coincides with $\inf I$, via 
 %$$
 %X(\inf I, x) = \sup_{i\in I}X(i, x)
 %$$
-%Notice that in general an order-complete $Q$-category needs not be tensored, and thus it needs not be cocomplete.
+%Notice that in general an order-complete $\Lawv$-category needs not be tensored, and thus it needs not be complete.
 %
 %
 %
 %
 % 
 %
-%\item \emph{Cauchy-completeness} is the case where $X$ contains the points $\sup \B x, \sup\B y$, for any 
-% any two \emph{adjoint} presheaves $\B x,\B y\in [X,Q]$, i.e.~satisfying $0=\inf_{a}\B x_{a}+\B y_{a}$ and $\B x_{a}+ \B x_{b}\geq X(a,b)$. 
-% Notice that given a pair $(\B x, \B y)$ we can define a Cauchy sequence by finding $a_{n}$ satisfying 
-% $\B x_{a_{n}}+\B y_{a_{n}}\leq \frac{1}{n}$. Indeed this implies $X(a_{n},a_{n+1})\leq \B x_{a_{n}}+\B y_{a_{n+1}}\leq \B x_{a_{n}}+\B y_{a_{n}}+\B x_{a_{n+1}}+\B y_{a_{n+1}}=\frac{1}{n}+\frac{1}{n+1}$.
+%\item \emph{Cauchy-completeness} is the case where $X$ contains the points $\sup x, \sup y$, for any 
+% any two \emph{adjoint} presheaves $x, y\in [X,Q]$, i.e.~satisfying $0=\inf_{a}x_{a}+ y_{a}$ and $x_{a}+ x_{b}\geq X(a,b)$. 
+% Notice that given a pair $(x,  y)$ we can define a Cauchy sequence by finding $a_{n}$ satisfying 
+% $x_{a_{n}}+ y_{a_{n}}\leq \frac{1}{n}$. Indeed this implies $X(a_{n},a_{n+1})\leq x_{a_{n}}+ y_{a_{n+1}}\leq x_{a_{n}}+ y_{a_{n}}+x_{a_{n+1}}+ y_{a_{n+1}}=\frac{1}{n}+\frac{1}{n+1}$.
 % Conversely, any (equivalence class of) Cauchy sequences $a_{n}$ yields an adjoint pair given by
-% $\B x_{a}= \lim_{n}X(a_{n},a)$ and $\B y_{a}=\lim_{n}X(a,a_{n})$. 
+% $x_{a}= \lim_{n}X(a_{n},a)$ and $ y_{a}=\lim_{n}X(a,a_{n})$. 
 % 
 %% 
-%% \item \emph{Isbell-completeness} (or \emph{MacNeill cocompleteness}) is the case where $X$ contains the points $\sup \B x, \sup \B y$, for any two presheaves $\B x, \B y\in [X,Q]$ satisfying 
+%% \item \emph{Isbell-completeness} (or \emph{MacNeill completeness}) is the case where $X$ contains the points $\sup x, \sup  y$, for any two presheaves $x,  y\in [X,Q]$ satisfying 
 %% $
-%% \B x_{a}= \sup_{b\in X}X(b,a)-\B y_{b}
+%% x_{a}= \sup_{b\in X}X(b,a)- y_{b}
 %% $.
 %
 %
@@ -418,21 +264,24 @@ $\C Y(\sup \B x)=\B x$:
 %
 %\end{remark}
 
+From now on, all $\Lawv$-categories will be tacitly assumed to be skeletal. As observed in Section \ref{section6}, any $\Lawv$-category $X$ can be made skeletal by a suitable quotient.
 
-\subsubsection{Tensors and $Q$-Modules}
 
-Among weighted colimits, one is of big importance for us. 
-Any $\epsilon \in Q$ generates a constant distributor $(\epsilon):\B 1\pfun \B 1$, and any point $x\in X$ generates a constant functor $\Delta x: \B 1\to X$.
-Given a $Q$-category $X$, a point $x\in X$ and  $\epsilon \in Q$, the \emph{tensor of $x$ and $\epsilon$}, if it exists, is defined as
-$$
-\epsilon \otimes x := \mathrm{colim}((\epsilon), \Delta x)
-$$
-A $Q$-category $X$ is \emph{tensored} if for all $x\in X$ and $\epsilon \in Q$, it admits the tensor $\epsilon \otimes x$.
+\subsubsection{Tensors and $\Lawv$-Modules}
 
+%Among weighted colimits, one is of big importance for us. 
+%Any $\epsilon \in Q$ generates a constant distributor $(\epsilon):\{\star\}\pfun \{\star\}$, and any point $x\in X$ generates a constant functor $\Delta x: \{\star\}\to X$.
+%Given a $\Lawv$-category $X$, a point $x\in X$ and  $\epsilon \in Q$, the \emph{tensor of $x$ and $\epsilon$}, if it exists, is defined as
+%$$
+%\epsilon \otimes x := \mathrm{colim}((\epsilon), \Delta x)
+%$$
+\begin{definition}
+A $\Lawv$-category $X$ is said \emph{tensored} if for all $x\in X$ and $\epsilon \in Q$, it admits the tensor $\epsilon \otimes x$.
+\end{definition}
 
 \begin{proposition}
-A tensored $Q$-category $X$ is a $Q$-module $(X, \preceq_{X}, \otimes)$.
-A cocontinuous functor of cocomplete $Q$-categories is a $Q$-module morphism between the associated $Q$-modules.
+A tensored $\Lawv$-category $X$ is a $\Lawv$-module $(X, \preceq_{X}, \otimes)$.
+A continuous functor of complete $\Lawv$-categories is a $\Lawv$-module morphism between the associated $\Lawv$-modules.
 \end{proposition}
 \begin{proof}
 We must show that tensors induce a continuous action. Observe that tensors are characterized by the equation 
@@ -443,7 +292,7 @@ If $\epsilon=0$, then \eqref{eq:tensor} forces $x\otimes \epsilon\simeq x$.
 If $\epsilon=\delta+\eta$, then using the fact that $\alpha-(\epsilon+\delta)=(\alpha-\epsilon)-\delta$ 
 we deduce $X((x\otimes \epsilon)\otimes \delta, x')=X(x\otimes \epsilon, x')-\delta=(X(x,x')-\epsilon)-\delta=X(x,x')-(\epsilon+\delta)=X(x\otimes (\epsilon+\delta),x')$, which forces $x\otimes(\epsilon+\delta)\simeq (x\otimes \epsilon)\otimes \delta$.
 
-A cocontinuous functor $f:X\to Y$ commutes with sups and with $\otimes$, and is thus a $Q$-module morphism.
+A continuous functor $f:X\to Y$ commutes with sups and with $\otimes$, and is thus a $\Lawv$-module morphism.
 \end{proof}
 
 
@@ -471,19 +320,19 @@ $B= (\sup_{j\in J}a_{j}-b_{j})-\epsilon$, again with ``$-$'' usual subtraction, 
 
 
 \begin{lemma}
-In any cocomplete $Q$-category, $x\otimes \epsilon \simeq \sup(  \C Y(x)+\epsilon  )$.
-In the cocomplete $Q$-category $[X,Q]$, $\B x\otimes \epsilon= \B x+\epsilon$.
+In any complete $\Lawv$-category, $x\otimes \epsilon \simeq \sup(  \B Y(x)+\epsilon  )$.
+In the complete $\Lawv$-category $[X,Q]$, $x\otimes \epsilon= x+\epsilon$.
 \end{lemma}
 \begin{proof}
 We have 
 \begin{align*}
-X(\sup(\C Y(x)+\epsilon), x')& =\sup_{y\in X}X(z,x')- (\C Y(x)(z)+\epsilon)\\
+X(\sup(\B Y(x)+\epsilon), x')& =\sup_{y\in X}X(z,x')- (\B Y(x)(z)+\epsilon)\\
 &= \sup_{y\in X}X(z,x')-(X(z,x)+\epsilon)\\
 &= (\sup_{y\in X}X(z,x')-X(z,x))-\epsilon\\
 &= X(x,x')-\epsilon
 \end{align*}
-which shows $x\otimes \epsilon=\sup(\C Y(x)+\epsilon)$. In $[X,Q]$ we have 
-$[X,Q](\B x+\epsilon, \B x')=\sup_{a\in X}(\B x_{a}+\epsilon)-\B x'_{a}= (\sup_{a\in X}\B x_{a}-\B x'_{a})-\epsilon= [X,Q](\B x, \B x')-\epsilon$, which shows $\B x\otimes \epsilon \simeq \B x+\epsilon$, and since $[X,Q]$ is skeletal, $\B x\otimes \epsilon=\B x+\epsilon$.
+which shows $x\otimes \epsilon=\sup(\B Y(x)+\epsilon)$. In $[X,Q]$ we have 
+$[X,Q](x+\epsilon, x')=\sup_{a\in X}(x_{a}+\epsilon)-x'_{a}= (\sup_{a\in X}x_{a}-x'_{a})-\epsilon= [X,Q](x, x')-\epsilon$, which shows $x\otimes \epsilon \simeq x+\epsilon$, and since $[X,Q]$ is skeletal, $x\otimes \epsilon=x+\epsilon$.
 \end{proof}
 
 
@@ -491,19 +340,19 @@ The dual notion of tensors is the \emph{cotensor} $x\multimapinv \epsilon$. Form
 \begin{align*}
 X(x', x\multimapinv \epsilon)= X(x',x)-\epsilon
 \end{align*}
-In other words, in a tensored and cotensored $Q$-category we have $X(x\otimes \epsilon,y)= X(x,y\multimapinv \epsilon)$. 
+In other words, in a tensored and cotensored $\Lawv$-category we have $X(x\otimes \epsilon,y)= X(x,y\multimapinv \epsilon)$. 
 
 \begin{example}
-The $Q$-category $[X,Q]$ is cotensored, with $\B x\multimapinv \epsilon:= \B x-\epsilon$. Indeed we have $[X,Q](\B x, \B y\multimapinv \epsilon)=\sup_{a\in X}(\B y_{a}-\epsilon)-\B x_{a}=(\sup_{a\in X}\B y_{a}-\B x_{a})-\epsilon= [X,Q](\B x, \B y)-\epsilon$.
+The $\Lawv$-category $[X,Q]$ is cotensored, with $x\multimapinv \epsilon:= x-\epsilon$. Indeed we have $[X,Q](x,  y\multimapinv \epsilon)=\sup_{a\in X}( y_{a}-\epsilon)-x_{a}=(\sup_{a\in X} y_{a}-x_{a})-\epsilon= [X,Q](x,  y)-\epsilon$.
 \end{example}
 
 \begin{definition}
-A $Q$-category $X$ is \emph{order-complete} if it is a sup-lattice with respect to the order $\preceq_{X}$ (i.e.~all joins exist).
+A $\Lawv$-category $X$ is \emph{order-complete} if it is a sup-lattice with respect to the order $\preceq_{X}$ (i.e.~all joins exist).
 \end{definition}
 
 
 \begin{lemma}\label{lemma:supinf}
-Let $X$ be a $Q$-category. If $X$ is order-complete, then 
+Let $X$ be a $\Lawv$-category. If $X$ is order-complete, then 
 \begin{itemize}
 \item if $X$ is co-tensored, $X(\bigvee_{i}x_{i},y)=  \sup_{i}X(x_{i},y) $;
 \item if $X$ is tensored, $
@@ -556,24 +405,24 @@ We only prove the second claim, the first being proved similarly.
 \end{proof}
 
 \begin{proposition}\label{prop:tencoten}
-If a $Q$-category $X$ is tensored, cotensored and order-complete, then it is cocomplete.
+If a $\Lawv$-category $X$ is tensored, cotensored and order-complete, then it is complete.
 \end{proposition}
 \begin{proof}
-For all $\B x\in [X,Q]$, let $\sup \B x:= \bigvee_{a\in X}a\otimes\B x_{a}$. 
-Let us check that $X(\sup \B x, b)= \sup_{a\in X}X(a,b)-\B x_{a}$, using Lemma \ref{lemma:supinf}:
+For all $x\in [X,Q]$, let $\sup x:= \bigvee_{a\in X}a\otimes x_{a}$. 
+Let us check that $X(\sup x, b)= \sup_{a\in X}X(a,b)-x_{a}$, using Lemma \ref{lemma:supinf}:
 \begin{align*}
-X(\sup \B x, b) &= \sup_{a\in X}X(a\otimes \B x_{a},b)\\
-&=\sup_{a\in X}X(a,b)-\B x_{a}
+X(\sup x, b) &= \sup_{a\in X}X(a\otimes x_{a},b)\\
+&=\sup_{a\in X}X(a,b)-x_{a}
 \end{align*}
 We can thus conclude using Proposition \ref{prop:yonedasup}.
 \end{proof}
 
 \begin{proposition}\label{prop:tenfun}
-Let $X,Y$ be two tensored $Q$-categories, and $f:X\to Y$ be a function.
+Let $X,Y$ be two tensored $\Lawv$-categories, and $f:X\to Y$ be a function.
 \begin{itemize}
 \item[i.] $f$ is a functor iff $f$ is order-preserving and for all $x\in X$ and $\epsilon\in Q$, $f(x)\otimes \epsilon \preceq_{Y} f(x\otimes \epsilon)$.
 
-\item[ii.] $f$ is a cocontinuous functor iff $f$ commutes with joins and for all $x\in X$ and $\epsilon\in Q$, $f(x)\otimes \epsilon = f(x\otimes \epsilon)$.
+\item[ii.] $f$ is a continuous functor iff $f$ commutes with joins and for all $x\in X$ and $\epsilon\in Q$, $f(x)\otimes \epsilon = f(x\otimes \epsilon)$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -604,7 +453,7 @@ Y(f(x),f(x')) - X(x,x') = Y(f(x)\otimes X(x,x'), f(x'))=0
 that is $Y(f(x),f(x'))\leq X(x,x')$, so $f$ is a functor. 
 
 \item[ii.]
-Suppose $f$ is a cocontinuous functors, and let  $g:Y\to X$, be its right-adjoint, i.e.~satisfying $Y(f(x),y)=X(x,g(y))$. Then 
+Suppose $f$ is a continuous functors, and let  $g:Y\to X$, be its right-adjoint, i.e.~satisfying $Y(f(x),y)=X(x,g(y))$. Then 
 \begin{align*}
 Y(f(x\otimes \epsilon), y)& = X(x\otimes \epsilon, g(y)) \\
 &= X(x, g(y))-\epsilon \\
@@ -613,7 +462,7 @@ Y(f(x\otimes \epsilon), y)& = X(x\otimes \epsilon, g(y)) \\
 which implies that $f(x\otimes \epsilon)$ coincides with the tensor $f(x)\otimes \epsilon$. 
 Moreover, clearly also $f(x)\preceq_{Y}y$ iff $x\preceq_{X}g(y)$ holds, which means that $f$ is left-adjoint to $g$ also with respect to the order. 
 
-Conversely, suppose the function $f:X\to Y$ preserves joins and tensors. Since $f$ is order-preserving, by i.~it is a functor, so we must only prove that it is cocontinuous.
+Conversely, suppose the function $f:X\to Y$ preserves joins and tensors. Since $f$ is order-preserving, by i.~it is a functor, so we must only prove that it is continuous.
 Since $f$ preserves joins there exists a function $g:Y\to X$ which is right-adjoint to $f$ with respect to orders, i.e.~$f(x)\preceq_{Y}y$ iff $x\preceq_{X}g(y)$. 
 We need to prove then that $f$ is left-adjoint to $g$, i.e.~that $Y(f(x),y)=X(x,g(y))$.
 
@@ -645,21 +494,21 @@ whence $X(x,g(y))\leq Y(f(x),y)$.
 
 
 \begin{theorem}\label{thm:equivalence}
-The category $Q\mathsf{Mod}$ of $Q$-modules and $Q$-module morphism coincides with the category $Q\mathsf{CCat}$ of cocomplete skeletal $Q$-categories and cocontinuous functors.
+The category $\Mod$ of $\Lawv$-modules and $\Lawv$-module morphism coincides with the category $\GMet$ of complete skeletal $\Lawv$-categories and continuous functors.
 \end{theorem}
 \begin{proof}
-We have already seen that any cocomplete skeletal $Q$-category is a $Q$-module via tensors, 
-and that cocontinuous functors are $Q$-module morphisms.
-Let us now show that any $Q$-module is a cocomplete skeletal $Q$-category, and that a $Q$-module morphism is a cocontinuous functor.
+We have already seen that any complete skeletal $\Lawv$-category is a $\Lawv$-module via tensors, 
+and that continuous functors are $\Lawv$-module morphisms.
+Let us now show that any $\Lawv$-module is a complete skeletal $\Lawv$-category, and that a $\Lawv$-module morphism is a continuous functor.
 
-Let then $M=(M,\preceq, \star)$ be a $Q$-module. Define $M(x,y)= \inf\{ \delta \mid x\star \delta \succeq y\}$.
+Let then $M=(M,\preceq, \star)$ be a $\Lawv$-module. Define $M(x,y)= \inf\{ \delta \mid x\star \delta \succeq y\}$.
  It is clear that $M(x,x)=0$. Let us prove $M(x,y)+M(y,z) \succeq M(x,z)$: 
 from $x\star M(x,y)\succeq y$ and $y\star M(y,z)\succeq z$ we deduce 
 $x\star(M(x,y)+M(y,z))= (x\star M(x,y))\star M(y,z) \succeq y\star M(y,z)\succeq z$, and thus 
 $M(x,z)\preceq M(x,y)+M(y,z)$. 
 Observe that $M(x,y)=0$ iff $x=x\star 0\geq y$, so the order $\preceq_{M}$ coincides with the order of $M$.
 
-Let us check that the $Q$-category $M$ is tensored via $x\otimes \epsilon:=x\star\epsilon$.
+Let us check that the $\Lawv$-category $M$ is tensored via $x\otimes \epsilon:=x\star\epsilon$.
 Let $A_{x,y}= \{ \delta \mid (x\star\epsilon)\star \delta \geq y$ and 
 $B_{x,y}=\{\delta-\epsilon\mid x\star \delta \geq y\}$.
 Let us show that $A_{x,y}=B_{x,y}$: if $\delta \in A_{x,y}$, then 
@@ -678,260 +527,260 @@ $(x\star \delta)\star \epsilon=x\star(\delta+\epsilon)=x\star(\epsilon+\delta)=(
 
 
 
-Since $M$, as a $Q$-category, is order-complete, tensored and cotensored, it is cocomplete by Proposition \ref{prop:tencoten}.
+Since $M$, as a $\Lawv$-category, is order-complete, tensored and cotensored, it is complete by Proposition \ref{prop:tencoten}.
 
 
-To conclude, notice that if $f:X\to Y$ is a cocontinuous functor, then it commutes with tensors and, by 
-Proposition \ref{prop:tenfun} it commutes with joins, so it is a morphism of the respective $Q$-modules. Conversely, if $f:M\to N$ is a $Q$-module morphism, then, since $M$ and $N$ are both tensored $Q$-categories, the tensor coincides with the actions of $M$ and $N$, $f$ preserves the joins and the tensor, by Proposition \ref{prop:tenfun}, it is a cocontinuous functor of the respective $Q$-categories.
+To conclude, notice that if $f:X\to Y$ is a continuous functor, then it commutes with tensors and, by 
+Proposition \ref{prop:tenfun} it commutes with joins, so it is a morphism of the respective $\Lawv$-modules. Conversely, if $f:M\to N$ is a $\Lawv$-module morphism, then, since $M$ and $N$ are both tensored $\Lawv$-categories, the tensor coincides with the actions of $M$ and $N$, $f$ preserves the joins and the tensor, by Proposition \ref{prop:tenfun}, it is a continuous functor of the respective $\Lawv$-categories.
 \end{proof}
 
 
-\subsection{$Q\mathsf{Mod}$ is a $*$-Autonomous Category}
-
-
-
-Let us first observe that:
-\begin{itemize}
-\item the hom-set $Hom(M,N)$ of two $Q$-modules is a $Q$-module with order and action defined pointwise;
-
-\item for any $Q$-module $M=(M,\preceq, \star)$, there is a $Q$-module
-$M^{\mathrm{op}}=(M,\succeq, \multimapinv)$, with $\multimapinv$ defined as in the proof of Theorem \ref{thm:equivalence}.
-
-
-\end{itemize}
-
-
-
-Let $M,N$ be two $Q$-modules. For all $A\in Q^{M\times N}$, we define the function
-\begin{align*}
-H_{A} & : Q^{M} \longrightarrow Q^{N}%\\
-%K_{A} & : Q^{N} \longrightarrow Q^{M}
-\end{align*}
-via
-\begin{align*}
-H_{A}(\B x)(b)  &= \inf_{a\in M}\B x_{a}+A(a,b)\\
-%K_{A}(\B x)(b)  &= \sup_{a\in M}\B x_{a}-A(a,b)
-\end{align*}
-
-
-\begin{lemma}
-$H_{A}=H_{A'}$ iff $A=A'$. 
-\end{lemma}
-\begin{proof}
-We only need to prove one direction, so suppose $A\neq A'$ and let $a,b$ be such that $A(a,b)\neq A'(a,b)$.
-Let $\B x$ be defined by $\B x_{a}=1$ and $\B x_{a'}=\infty$ for all $a'\neq a$. Then $H_{A}(\B x)(b)=A(a,b)\neq A'(a,b)=H_{A'}(\B x)(b)$. 
-\end{proof}
-
-\begin{proposition}
-$Q^{M\times N}$ and $Hom(Q^{M},Q^{N})$ are isomorphic $Q$-modules.
-\end{proposition}
-\begin{proof}
-The map $A\mapsto H_{A}$ is injective, as shown above. We need to check that it commutes with joins:
-\begin{align*}
-H_{\bigvee_{i}A_{i}}(\B x)(b) & = \inf_{a}\B x_{a}+\bigvee_{i}A_{i}(a,b)\\
-&=  \inf_{a}\bigvee_{i}\B x_{a}+A_{i}(a,b)\\
-&=  \bigvee_{i}\inf_{a}\B x_{a}+A_{i}(a,b)\\
-&=  \bigvee_{i}H_{A_{i}}(\B x)(b)\end{align*} 
-(recall that $\inf$s are actually joins in $Q$!)
-
-We must prove that $H$ is surjective: for all $f\in Hom(Q^{M},Q^{N})$, let 
-$k_{f}\in Q^{M\times N}$ be given by $k_{f}(a,b)=f(e_{a})(b)$. 
-
-Then we have 
-\begin{align*}
-H_{k_{f}}(\B x)(b) & = \inf_{a}\B x_{a}+k_{f}(a,b) \\
-&= \inf_{a}\B x_{a}+ f(e_{a})(b)\\
-&= \left(\inf_{a}\B x_{a}+f(e_{a})\right)(b) \\
-&= \left(\inf_{a}f(\B x_{a}+e_{a})\right)(b) \\
-&= f(\inf_{a}\B x_{a}+e_{a})(b)\\
-&=
-f(\B x)(b)
-\end{align*}
-and conversely 
-\begin{align*}
-k_{H_{A}}(a,b)&= H_{A}(e_{a})(b)= \inf_{a'}(e_{a})_{a'}+A(a',b) =  A(a,b)
-\end{align*}
-\end{proof}
-
-
-More generally, we have the following result:
-\begin{proposition}
-Let $X,Y$ be two $Q$-modules. For any morphism $f: X\to Y$ there is a matrix $k_{f}\in Q^{X\times Y}$ such that 
-
-\end{proposition}
-\begin{proof}
-By composing $f$ with the isomorphisms $\C Y^{\mathrm{op}}:X\to \B M(X)$, with inverse $\sup(\B x)=\bigvee_{a\in x}a\otimes \B x_{a}$, we obtain 
-a morphism $\widehat f: \B M(X)\to \B M(Y)$  
-\begin{align*}
-\widehat f(\B x)(b)&:= \C Y^{\mathrm{op}}(f(\sup \B x))(b) \\
-&= Y( f(\bigvee_{a\in X}a\otimes \B x_{a}),b) \\
-&= Y( \bigvee_{a\in X}f(a)\otimes \B x_{a},b) \\
-&= \sup_{a\in X}Y(f(a),b)-\B x_{a}
-\end{align*}
-Observe that $\widehat f$ can be extended to a function $f^{*}$ from $Q^{X}$ to $Q^{Y}$.
-Now, $ f^{*}$ is generated by the matrix $k_{f}\in Q^{X\times Y}$ given by $k_{ f}(a,b)=f(e_{a})(b)$, so that for all $\B x\in Q^{X}$, 
-$f^{*}(\B x)(b)=\bigvee_{a\in X}k_{f}(a,b)+\B x_{a}$, and thus
-in particular, for all $\B x\in [X,Q]$, 
-$\widehat f(\B x)(b)=f^{*}(\B x)(b)$.
-\end{proof}
-
-\subsubsection{The Tensor Product of $Q$-Modules}
-
-The description of the tensor product of $Q$-modules requires some work. Let us first recall some important definitions:
-
-\begin{definition}[congruence on a sup-lattice]
-Let $(L, \leq)$ be a sup-lattice. An equivalence relation $R\subseteq L\times L$ is said a \emph{congruence} if it satisfies the following property:
-\begin{align}
-(\forall i\in I \ x_{i} Ry_{i})  \ \To  \ \left( \bigvee_{i}x_{i} \right ) R\left(\bigvee_{i}y_{i}\right)
-\tag{congruence}
-\end{align}
-\end{definition}
-
-\begin{lemma}
-For all suplattices $(L,\leq)$, if $R$ is a congruence, then $(L/R, \leq_{R})$ is a sup-lattice, where $[x]\leq_{R}[y]$ iff $(x\vee y) R y$ (i.e.~$[x\vee y]=[y]$), and $\bigvee_{i}[x_{i}]=\left [\bigvee_{i}x_{i}\right]$.
-\end{lemma}
-\begin{proof}
-Let us check that $\leq_{R}$ is an order. It is clear that $[x]\leq_{R}[x]$ holds. If $[x]\leq_{R}[y]$ and $[y]\leq_{R}[z]$ both hold, then 
-$(x\vee y)Ry$ and $(y\vee z)Rz$ hold; 
-then, since $R$ is a congruence $((x\vee y)\vee (y\vee z)) R (y\vee z)R z$, and moreover $x \vee (y\vee z) R (x \vee z)$, whence 
-$(x\vee z) R(x \vee y\vee z)R z$, so $[x]\leq_{R}[z]$.  
-If $[x]\leq_{R}[y]$ and $[y]\leq_{R}[x]$, then 
-$xR(x\vee y)R y$, thus $[x]=[y]$.
-
-Let us now check the definition of joins. 
-From $[x_{i}]\vee [\bigvee_{i}x_{i}]=[x_{i}\vee \bigvee_{i}x_{i}]= [\bigvee_{i}x_{i}]$ we deduce $[x_{i}]\leq_{R}[\bigvee x_{i}]$.
-Suppose now $[x_{i}]\leq [y]$ holds for all $i\in I$, that is, 
-$(x_{i}\vee y)Ry$; then, since $R$ is a congruence, 
-$(\bigvee_{i}(x_{i}\vee y))R y$, that is, 
-$((\bigvee_{i}x_{i})\vee y)Ry$, which implies 
-$[\bigvee_{i}x_{i}]\leq_{R}[y]$. We conclude then that $\bigvee_{i}[x_{i}]=[\bigvee_{i}x_{i}]$.
-\end{proof}
-
-
-\begin{corollary}\label{cor:bigvee}
-Let $(L,\leq)$ be a suplattice and $R$ be a congruence on $L$.
-Then, for any class $\beta\in L/R$, $\beta= [\bigvee\beta]$.
-\end{corollary}
-\begin{proof}
-$[\bigvee \beta]=[\bigvee\{ x \mid x\in \beta\}]= \bigvee \{[x]\mid x\in \beta\}=\beta$.
-\end{proof}
-
-
-\begin{proposition}\label{prop:smallestcongruence}
-Let $(L,\leq)$ be a sup-lattice. Let $R\subseteq L\times L$ be an equivalence relation, and for any ordinal $\alpha$, let the relation
-$R^{(\alpha)}\subseteq L\times L$ be defined by:
-\begin{itemize}
-\item $xR^{(0)}y$ iff either $xRy$, $x=y$ or $yRx$ holds;
-\item $xR^{(\alpha+1)}y$ iff one of the following holds:
-	\begin{itemize}
-	\item for some $z$, $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$ holds;
-	\item for some set $I$, and families $x_{i},y_{i}$, 
-	$x=\bigvee x_{i}, y=\bigvee_{i}y_{i}$ and $x_{i} R^{(\alpha)}y_{i}$ holds for all $i\in I$.
-
-	\end{itemize}
-\item $xR^{(\gamma)}y$ iff $xR^{(\delta)}y$ holds for some $\delta <\gamma$, for $\gamma$ limit.
-\end{itemize}
-Then the relation $R^{*}\subseteq L\times L$ given by 
-$$
-xR^{*} y  \ \Leftrightarrow \ \exists \alpha . \mathrm{OR}(\alpha) \land xR^{(\alpha)}y
-$$% defined as follows: $xR^{*} y$ iff
-%\begin{enumerate}
-%\item for any set $I$ and family $x_{i}$ such that $x=\bigvee_{i}x_{i}$, there exists a family $y_{i}$ such that $y=\bigvee_{i}y_{i}$ and $x_{i}R y_{i}$ holds for all $i\in I$;
-%\item for any set $I$ and family $y_{i}$ such that $y=\bigvee_{i}y_{i}$, there exists a family $x_{i}$ such that $x=\bigvee_{i}x_{i}$ and $x_{i}R y_{i}$ holds for all $i\in I$.
-%\end{enumerate}
-%%\begin{align*}
-%%xR^{*}y &\text{ iff }\  \forall I \ \forall x_{i} \  \text{ s.t. }
-%%\left\{
-%%\begin{matrix}
-%%x=\bigvee_{i\in I}x_{i} \\
-%%y=\bigvee_{i\in I}y_{i}\\
-%%x_{i}Ry_{i} \ (\forall i\in I)
-%%\end{matrix}
-%%\right\}
-%%\end{align*}
-is a congruence, and is the smallest congruence containing $R$.
-\end{proposition}
-\begin{proof}
-From $xR^{(0)}x$ it follows $xR^{*}x$.
-
-Let us prove by induction that for any ordinal $\alpha$, $R^{(\alpha)}$ is symmetric:
-for $\alpha=0$ this is immediate; suppose $xR^{(\alpha+1)}y$, then two cases are possible: either $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$, then by IH 
-$yR^{(\alpha)}z$ and $zR^{(\alpha)}x$, whence $yR^{(\alpha+1)}x$; oer
-$x_{i}R^{(\alpha)}y_{i}$ for some decompositions $x=\bigvee_{i}x_{i}$ and $y=\bigvee_{i}y_{i}$; then by IH $y_{i}R^{(\alpha)}x_{i}$, so $yR^{(\alpha+1)}x$ holds.
-Finally, if $\alpha$ is limit, then from $x R^{(\alpha)}y$ it follows
-$xR^{(\beta)}y$ for some $\beta<\alpha$, whence 
-$yR^{(\beta)}x$ by IH and we conclude $yR^{(\alpha)}x$.
-
-Now, if $xR^{*}y$ then $xR^{(\alpha)}y$ holds for some ordinal $\alpha$, and thus $yR^{(\alpha)}x$ holds too, whence $yR^{*}x$.
-
-
-Observe that $\alpha<\beta$ implies $R^{(\alpha)}\subseteq R^{(\beta)}$:
-this is obvious if $\beta$ is limit, otherwise, if $\beta=\alpha+1$, from $xR^{(\alpha)}y$ and $x R^{(\alpha)}x$ we deduce
-$xR^{(\alpha+1)}y$.
-
-
-Suppose now $xR^{*}y$ and $yR^{*}z$. Then $xR^{(\alpha)}y$ and $yR^{(\beta)}z$ hold for some 
-ordinals $\alpha$ and $\beta$; let $\gamma=\max\{\alpha,\beta\}$; then 
-we have $xR^{(\gamma)}y$ and $yR^{(\gamma)}z$, whence $xR^{(\gamma+1)}z$ and thus 
-$xR^{*}z$.
-
-
-Suppose $x_{i}R^{*}y_{i}$ holds for all $i\in I$; then 
-for all $i$ there is some ordinal $\alpha_{i}$ with 
-$x_{i}R^{(\alpha_{i})}y_{i}$. 
-Let $\gamma=\sup_{i}\alpha_{i}$, so that 
-$x_{i}R^{(\gamma)}y_{i}$; then we have
-$\bigvee_{i}x_{i} R^{(\gamma+1)}\bigvee y_{i}$, and thus
-$\bigvee_{i}x_{i} R^{*}\bigvee_{i}y_{i}$.
+\subsection{$\Mod$ is a $*$-Autonomous Category}
 
 %
-%$R^{*}$ is symmetric, reflexive and transitive, given that $R$ is. 
 %
-%Let $I$ be a set and 
-%suppose $x_{i}R^{*}y_{i}$ holds for all $i\in I$.
-%Observe now that if $x=\bigvee_{i\in I} x_{i}=\bigvee_{j\in J}x'_{j}$, then
-%\begin{enumerate}
-%\item $x_{i}=\bigvee_{j\in J}x_{i}\land x_{j}$;
-%\item $x= \bigvee_{(i,j)\in I\times J}x_{i}\land x'_{j}$. 
-%\end{enumerate}
-% $\bigvee_{j\in J}x_{i}\land x_{j}\leq x_{i} \leq x_{i}$ is clear.
-% Conversely, we have $x_{i}= x \land x_{i} = \left (\bigvee_{j\in J}x_{j}\right) \land x_{i}= \bigvee_{j\in J}x_{j}\land x_{i}= \bigvee_{j\in J}x_{i}\land x_{j}$. {\color{red}NOT TRUE IN ANY LATTICE!}
- 
+%Let us first observe that:
+%\begin{itemize}
+%\item the hom-set $\Mod(M,N)$ of two $\Lawv$-modules is a $\Lawv$-module with order and action defined pointwise;
 %
-% Then for each $i\in I$ there exists a set $J_{i}$ and sequences $x_{ij},y_{ij}$ such that 
-%$\bigvee_{j\in J_{i}}x_{ij}=x_{i}$, $\bigvee_{j\in J_{i}}y_{ij}=y_{i}$ and 
-%$x_{ij}Ry_{ij}$.
+%\item for any $\Lawv$-module $M=(M,\preceq, \star)$, there is a $\Lawv$-module
+%$M^{\mathrm{op}}=(M,\succeq, \multimapinv)$, with $\multimapinv$ defined as in the proof of Theorem \ref{thm:equivalence}.
 %
-%Let then $K= \prod_{i\in I}\{i\}\times J_{i}$; then for all $(i,j)\in K$, 
-%$x_{ij}R y_{ij}$, so we deduce that $\bigvee_{i\in I}x_{i}=\bigvee_{(i,j)\in K}x_{ij} R^{*} \bigvee_{(i,j)\in K}y_{ij}=\bigvee_{i\in I}y_{i}$, which proves that $R^{*}$ is a congruence.
-
-Suppose now $S$ is a congruence containing $R$.
-Let us show that for any ordinal $\alpha$, $R^{(\alpha)}\subseteq S$:
-\begin{itemize}
-\item $R^{(0)}\subseteq S$ holds since $S$ is an equivalence relation and contains $R$;
-
-\item if $x R^{(\alpha+1)}y$ holds, then two cases occur:
-	\begin{itemize}
-	\item $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$ hold, so by IH, 
-	$xSz$ and $zSy$, and since $S$ is transitive, $xSy$ holds;
-	\item $x=\bigvee_{i}x_{i}$, $y=\bigvee_{i}y_{i}$ and $x_{i}R^{(\alpha)}y_{i}$ holds; then by IH $x_{i}Sy_{i}$ holds, and since $S$ is a congruence, $xSy$ holds;
-	
-\item if $\alpha$ is limit and $xR^{(\alpha)}y$ holds, then $xR^{(\beta)}y$ holds for some $\beta<\alpha$, and by IH $xS y$ holds.
-	
-	\end{itemize}
-
-\end{itemize}
-Now, if $x R^{*} y$ holds, then $xR^{(\alpha)}y$ holds for some ordinal $\alpha$, whence $xS y$ holds.
-This shows that $R^{*}\subseteq S$.
 %
-%Then there exists a set $I$ so that $x=\bigvee_{i\in I}x_{i}$, $y=\bigvee_{i\in I}y_{i}$ and $x_{i}Ry_{i}$; now, since $S$ contains $R$, we deduce $x_{i}Sy_{i}$ for all $i\in I$, and since $S$ is a congruence, $xSy$ holds, which proves that $R^{*}\subseteq S$.
-\end{proof}
+%\end{itemize}
+%
+%
+%
+%Let $M,N$ be two $\Lawv$-modules. For all $A\in \Lawv^{M\times N}$, we define the function
+%\begin{align*}
+%H_{A} & : \Lawv^{M} \longrightarrow \Lawv^{N}%\\
+%%K_{A} & : \Lawv^{N} \longrightarrow \Lawv^{M}
+%\end{align*}
+%via
+%\begin{align*}
+%H_{A}(x)(b)  &= \inf_{a\in M}x_{a}+A(a,b)\\
+%%K_{A}(x)(b)  &= \sup_{a\in M}x_{a}-A(a,b)
+%\end{align*}
+%
+%
+%\begin{lemma}
+%$H_{A}=H_{A'}$ iff $A=A'$. 
+%\end{lemma}
+%\begin{proof}
+%We only need to prove one direction, so suppose $A\neq A'$ and let $a,b$ be such that $A(a,b)\neq A'(a,b)$.
+%Let $x$ be defined by $x_{a}=1$ and $x_{a'}=\infty$ for all $a'\neq a$. Then $H_{A}(x)(b)=A(a,b)\neq A'(a,b)=H_{A'}(x)(b)$. 
+%\end{proof}
+%
+%\begin{proposition}
+%$\Lawv^{M\times N}$ and $\Mod(\Lawv^{M},\Lawv^{N})$ are isomorphic $\Lawv$-modules.
+%\end{proposition}
+%\begin{proof}
+%The map $A\mapsto H_{A}$ is injective, as shown above. We need to check that it commutes with joins:
+%\begin{align*}
+%H_{\bigvee_{i}A_{i}}(x)(b) & = \inf_{a}x_{a}+\bigvee_{i}A_{i}(a,b)\\
+%&=  \inf_{a}\bigvee_{i}x_{a}+A_{i}(a,b)\\
+%&=  \bigvee_{i}\inf_{a}x_{a}+A_{i}(a,b)\\
+%&=  \bigvee_{i}H_{A_{i}}(x)(b)\end{align*} 
+%(recall that $\inf$s are actually joins in $\Lawv$!)
+%
+%We must prove that $H$ is surjective: for all $f\in \Mod(\Lawv^{M},\Lawv^{N})$, let 
+%$k_{f}\in \Lawv^{M\times N}$ be given by $k_{f}(a,b)=f(e_{a})(b)$. 
+%
+%Then we have 
+%\begin{align*}
+%H_{k_{f}}(x)(b) & = \inf_{a}x_{a}+k_{f}(a,b) \\
+%&= \inf_{a}x_{a}+ f(e_{a})(b)\\
+%&= \left(\inf_{a}x_{a}+f(e_{a})\right)(b) \\
+%&= \left(\inf_{a}f(x_{a}+e_{a})\right)(b) \\
+%&= f(\inf_{a}x_{a}+e_{a})(b)\\
+%&=
+%f(x)(b)
+%\end{align*}
+%and conversely 
+%\begin{align*}
+%k_{H_{A}}(a,b)&= H_{A}(e_{a})(b)= \inf_{a'}(e_{a})_{a'}+A(a',b) =  A(a,b)
+%\end{align*}
+%\end{proof}
+%
+%
+%More generally, we have the following result:
+%\begin{proposition}
+%Let $X,Y$ be two $\Lawv$-modules. For any morphism $f: X\to Y$ there is a matrix $k_{f}\in \Lawv^{X\times Y}$ such that 
+%
+%\end{proposition}
+%\begin{proof}
+%By composing $f$ with the isomorphisms $\B Y^{\mathrm{op}}:X\to \B M(X)$, with inverse $\sup(x)=\bigvee_{a\in x}a\otimes x_{a}$, we obtain 
+%a morphism $\widehat f: \B M(X)\to \B M(Y)$  
+%\begin{align*}
+%\widehat f(x)(b)&:= \B Y^{\mathrm{op}}(f(\sup x))(b) \\
+%&= Y( f(\bigvee_{a\in X}a\otimes x_{a}),b) \\
+%&= Y( \bigvee_{a\in X}f(a)\otimes x_{a},b) \\
+%&= \sup_{a\in X}Y(f(a),b)-x_{a}
+%\end{align*}
+%Observe that $\widehat f$ can be extended to a function $f^{*}$ from $\Lawv^{X}$ to $\Lawv^{Y}$.
+%Now, $ f^{*}$ is generated by the matrix $k_{f}\in \Lawv^{X\times Y}$ given by $k_{ f}(a,b)=f(e_{a})(b)$, so that for all $x\in \Lawv^{X}$, 
+%$f^{*}(x)(b)=\bigvee_{a\in X}k_{f}(a,b)+x_{a}$, and thus
+%in particular, for all $x\in [X,Q]$, 
+%$\widehat f(x)(b)=f^{*}(x)(b)$.
+%\end{proof}
 
+\subsubsection{The Tensor Product of $\Lawv$-Modules}
+%
+% Let us first recall some important definitions:
+%
+%\begin{definition}[congruence on a sup-lattice]
+%Let $(L, \leq)$ be a sup-lattice. An equivalence relation $R\subseteq L\times L$ is said a \emph{congruence} if it satisfies the following property:
+%\begin{align}
+%(\forall i\in I \ x_{i} Ry_{i})  \ \To  \ \left( \bigvee_{i}x_{i} \right ) R\left(\bigvee_{i}y_{i}\right)
+%\tag{congruence}
+%\end{align}
+%\end{definition}
+%
+%\begin{lemma}
+%For all suplattices $(L,\leq)$, if $R$ is a congruence, then $(L/R, \leq_{R})$ is a sup-lattice, where $[x]\leq_{R}[y]$ iff $(x\vee y) R y$ (i.e.~$[x\vee y]=[y]$), and $\bigvee_{i}[x_{i}]=\left [\bigvee_{i}x_{i}\right]$.
+%\end{lemma}
+%\begin{proof}
+%Let us check that $\leq_{R}$ is an order. It is clear that $[x]\leq_{R}[x]$ holds. If $[x]\leq_{R}[y]$ and $[y]\leq_{R}[z]$ both hold, then 
+%$(x\vee y)Ry$ and $(y\vee z)Rz$ hold; 
+%then, since $R$ is a congruence $((x\vee y)\vee (y\vee z)) R (y\vee z)R z$, and moreover $x \vee (y\vee z) R (x \vee z)$, whence 
+%$(x\vee z) R(x \vee y\vee z)R z$, so $[x]\leq_{R}[z]$.  
+%If $[x]\leq_{R}[y]$ and $[y]\leq_{R}[x]$, then 
+%$xR(x\vee y)R y$, thus $[x]=[y]$.
+%
+%Let us now check the definition of joins. 
+%From $[x_{i}]\vee [\bigvee_{i}x_{i}]=[x_{i}\vee \bigvee_{i}x_{i}]= [\bigvee_{i}x_{i}]$ we deduce $[x_{i}]\leq_{R}[\bigvee x_{i}]$.
+%Suppose now $[x_{i}]\leq [y]$ holds for all $i\in I$, that is, 
+%$(x_{i}\vee y)Ry$; then, since $R$ is a congruence, 
+%$(\bigvee_{i}(x_{i}\vee y))R y$, that is, 
+%$((\bigvee_{i}x_{i})\vee y)Ry$, which implies 
+%$[\bigvee_{i}x_{i}]\leq_{R}[y]$. We conclude then that $\bigvee_{i}[x_{i}]=[\bigvee_{i}x_{i}]$.
+%\end{proof}
+%
+%
+%\begin{corollary}\label{cor:bigvee}
+%Let $(L,\leq)$ be a suplattice and $R$ be a congruence on $L$.
+%Then, for any class $\beta\in L/R$, $\beta= [\bigvee\beta]$.
+%\end{corollary}
+%\begin{proof}
+%$[\bigvee \beta]=[\bigvee\{ x \mid x\in \beta\}]= \bigvee \{[x]\mid x\in \beta\}=\beta$.
+%\end{proof}
+%
+%
+%\begin{proposition}\label{prop:smallestcongruence}
+%Let $(L,\leq)$ be a sup-lattice. Let $R\subseteq L\times L$ be an equivalence relation, and for any ordinal $\alpha$, let the relation
+%$R^{(\alpha)}\subseteq L\times L$ be defined by:
+%\begin{itemize}
+%\item $xR^{(0)}y$ iff either $xRy$, $x=y$ or $yRx$ holds;
+%\item $xR^{(\alpha+1)}y$ iff one of the following holds:
+%	\begin{itemize}
+%	\item for some $z$, $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$ holds;
+%	\item for some set $I$, and families $x_{i},y_{i}$, 
+%	$x=\bigvee x_{i}, y=\bigvee_{i}y_{i}$ and $x_{i} R^{(\alpha)}y_{i}$ holds for all $i\in I$.
+%
+%	\end{itemize}
+%\item $xR^{(\gamma)}y$ iff $xR^{(\delta)}y$ holds for some $\delta <\gamma$, for $\gamma$ limit.
+%\end{itemize}
+%Then the relation $R^{*}\subseteq L\times L$ given by 
+%$$
+%xR^{*} y  \ \Leftrightarrow \ \exists \alpha . \mathrm{OR}(\alpha) \land xR^{(\alpha)}y
+%$$% defined as follows: $xR^{*} y$ iff
+%%\begin{enumerate}
+%%\item for any set $I$ and family $x_{i}$ such that $x=\bigvee_{i}x_{i}$, there exists a family $y_{i}$ such that $y=\bigvee_{i}y_{i}$ and $x_{i}R y_{i}$ holds for all $i\in I$;
+%%\item for any set $I$ and family $y_{i}$ such that $y=\bigvee_{i}y_{i}$, there exists a family $x_{i}$ such that $x=\bigvee_{i}x_{i}$ and $x_{i}R y_{i}$ holds for all $i\in I$.
+%%\end{enumerate}
+%%%\begin{align*}
+%%%xR^{*}y &\text{ iff }\  \forall I \ \forall x_{i} \  \text{ s.t. }
+%%%\left\{
+%%%\begin{matrix}
+%%%x=\bigvee_{i\in I}x_{i} \\
+%%%y=\bigvee_{i\in I}y_{i}\\
+%%%x_{i}Ry_{i} \ (\forall i\in I)
+%%%\end{matrix}
+%%%\right\}
+%%%\end{align*}
+%where $\mathrm{OR}(\alpha)$ is the property ``$\alpha$ is an ordinal'', 
+%is a congruence, and is the smallest congruence containing $R$.
+%\end{proposition}
+%\begin{proof}
+%From $xR^{(0)}x$ it follows $xR^{*}x$.
+%
+%Let us prove by induction that for any ordinal $\alpha$, $R^{(\alpha)}$ is symmetric:
+%for $\alpha=0$ this is immediate; suppose $xR^{(\alpha+1)}y$, then two cases are possible: either $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$, then by IH 
+%$yR^{(\alpha)}z$ and $zR^{(\alpha)}x$, whence $yR^{(\alpha+1)}x$; oer
+%$x_{i}R^{(\alpha)}y_{i}$ for some decompositions $x=\bigvee_{i}x_{i}$ and $y=\bigvee_{i}y_{i}$; then by IH $y_{i}R^{(\alpha)}x_{i}$, so $yR^{(\alpha+1)}x$ holds.
+%Finally, if $\alpha$ is limit, then from $x R^{(\alpha)}y$ it follows
+%$xR^{(\beta)}y$ for some $\beta<\alpha$, whence 
+%$yR^{(\beta)}x$ by IH and we conclude $yR^{(\alpha)}x$.
+%
+%Now, if $xR^{*}y$ then $xR^{(\alpha)}y$ holds for some ordinal $\alpha$, and thus $yR^{(\alpha)}x$ holds too, whence $yR^{*}x$.
+%
+%
+%Observe that $\alpha<\beta$ implies $R^{(\alpha)}\subseteq R^{(\beta)}$:
+%this is obvious if $\beta$ is limit, otherwise, if $\beta=\alpha+1$, from $xR^{(\alpha)}y$ and $x R^{(\alpha)}x$ we deduce
+%$xR^{(\alpha+1)}y$.
+%
+%
+%Suppose now $xR^{*}y$ and $yR^{*}z$. Then $xR^{(\alpha)}y$ and $yR^{(\beta)}z$ hold for some 
+%ordinals $\alpha$ and $\beta$; let $\gamma=\max\{\alpha,\beta\}$; then 
+%we have $xR^{(\gamma)}y$ and $yR^{(\gamma)}z$, whence $xR^{(\gamma+1)}z$ and thus 
+%$xR^{*}z$.
+%
+%
+%Suppose $x_{i}R^{*}y_{i}$ holds for all $i\in I$; then 
+%for all $i$ there is some ordinal $\alpha_{i}$ with 
+%$x_{i}R^{(\alpha_{i})}y_{i}$. 
+%Let $\gamma=\sup_{i}\alpha_{i}$, so that 
+%$x_{i}R^{(\gamma)}y_{i}$; then we have
+%$\bigvee_{i}x_{i} R^{(\gamma+1)}\bigvee y_{i}$, and thus
+%$\bigvee_{i}x_{i} R^{*}\bigvee_{i}y_{i}$.
+%
+%%
+%%$R^{*}$ is symmetric, reflexive and transitive, given that $R$ is. 
+%%
+%%Let $I$ be a set and 
+%%suppose $x_{i}R^{*}y_{i}$ holds for all $i\in I$.
+%%Observe now that if $x=\bigvee_{i\in I} x_{i}=\bigvee_{j\in J}x'_{j}$, then
+%%\begin{enumerate}
+%%\item $x_{i}=\bigvee_{j\in J}x_{i}\land x_{j}$;
+%%\item $x= \bigvee_{(i,j)\in I\times J}x_{i}\land x'_{j}$. 
+%%\end{enumerate}
+%% $\bigvee_{j\in J}x_{i}\land x_{j}\leq x_{i} \leq x_{i}$ is clear.
+%% Conversely, we have $x_{i}= x \land x_{i} = \left (\bigvee_{j\in J}x_{j}\right) \land x_{i}= \bigvee_{j\in J}x_{j}\land x_{i}= \bigvee_{j\in J}x_{i}\land x_{j}$. {\color{red}NOT TRUE IN ANY LATTICE!}
+% 
+%%
+%% Then for each $i\in I$ there exists a set $J_{i}$ and sequences $x_{ij},y_{ij}$ such that 
+%%$\bigvee_{j\in J_{i}}x_{ij}=x_{i}$, $\bigvee_{j\in J_{i}}y_{ij}=y_{i}$ and 
+%%$x_{ij}Ry_{ij}$.
+%%
+%%Let then $K= \prod_{i\in I}\{i\}\times J_{i}$; then for all $(i,j)\in K$, 
+%%$x_{ij}R y_{ij}$, so we deduce that $\bigvee_{i\in I}x_{i}=\bigvee_{(i,j)\in K}x_{ij} R^{*} \bigvee_{(i,j)\in K}y_{ij}=\bigvee_{i\in I}y_{i}$, which proves that $R^{*}$ is a congruence.
+%
+%Suppose now $S$ is a congruence containing $R$.
+%Let us show that for any ordinal $\alpha$, $R^{(\alpha)}\subseteq S$:
+%\begin{itemize}
+%\item $R^{(0)}\subseteq S$ holds since $S$ is an equivalence relation and contains $R$;
+%
+%\item if $x R^{(\alpha+1)}y$ holds, then two cases occur:
+%	\begin{itemize}
+%	\item $xR^{(\alpha)}z$ and $zR^{(\alpha)}y$ hold, so by IH, 
+%	$xSz$ and $zSy$, and since $S$ is transitive, $xSy$ holds;
+%	\item $x=\bigvee_{i}x_{i}$, $y=\bigvee_{i}y_{i}$ and $x_{i}R^{(\alpha)}y_{i}$ holds; then by IH $x_{i}Sy_{i}$ holds, and since $S$ is a congruence, $xSy$ holds;
+%	
+%\item if $\alpha$ is limit and $xR^{(\alpha)}y$ holds, then $xR^{(\beta)}y$ holds for some $\beta<\alpha$, and by IH $xS y$ holds.
+%	
+%	\end{itemize}
+%
+%\end{itemize}
+%Now, if $x R^{*} y$ holds, then $xR^{(\alpha)}y$ holds for some ordinal $\alpha$, whence $xS y$ holds.
+%This shows that $R^{*}\subseteq S$.
+%%
+%%Then there exists a set $I$ so that $x=\bigvee_{i\in I}x_{i}$, $y=\bigvee_{i\in I}y_{i}$ and $x_{i}Ry_{i}$; now, since $S$ contains $R$, we deduce $x_{i}Sy_{i}$ for all $i\in I$, and since $S$ is a congruence, $xSy$ holds, which proves that $R^{*}\subseteq S$.
+%\end{proof}
 
-We can now introduce the tensor of $Q$-modules, that will be defined as a suitable quotient lattice. 
+The tensor of $\Lawv$-modules can be introduced as a suitable quotient lattice. 
 
-\begin{definition}[tensor of $Q$-modules]
-Let $M$ and $N$ be $Q$-modules. The \emph{tensor product} $M\otimes_{Q}N$ of $M$ and $N$ is the $Q$-module defined as $\C P(M\times N)/ R^{*}$, where $R^{*}$ is the smallest congruence containing the relation $R$ defined by:
+\begin{definition}[tensor of $\Lawv$-modules]
+Let $M$ and $N$ be $\Lawv$-modules. The \emph{tensor product} $M\otimes N$ of $M$ and $N$ is the $\Lawv$-module defined as $\C P(M\times N)/ R^{*}$, where $R^{*}$ is the smallest congruence containing the relation $R$ defined by:
 \begin{align*}
 R'= \left\{
 \begin{matrix}
@@ -953,54 +802,54 @@ and the action is defined via $[A]\star \epsilon= \bigvee\{[ \{(x\star\epsilon,y
 
 
 
-Let a \emph{$Q$-bimorphism} be a map $f:M\times N\to L$ such that $f$ preserves joins in each variable separately, and moreover $f(x,y\star \epsilon)=f(x\star\epsilon,y)$. A $Q$-bimorphism $f:M\times N\to L$ is \emph{universal} if for all $L'$ and bimorphism $g:M\times N\to L'$ there is a unique sup-lattice homomorphism $h:L\to L'$ such that $g=h\circ f$.
+Let a \emph{$\Lawv$-bimorphism} be a map $f:M\times N\to L$ such that $f$ preserves joins in each variable separately, and moreover $f(x,y\star \epsilon)=f(x\star\epsilon,y)$. A $\Lawv$-bimorphism $f:M\times N\to L$ is \emph{universal} if for all $L'$ and bimorphism $g:M\times N\to L'$ there is a unique sup-lattice homomorphism $h:L\to L'$ such that $g=h\circ f$.
 
-\begin{proposition}[universal property of the tensor product]
-The tensor product $M\otimes_{Q}N$ is the codomain of the universal $Q$-bimorphism $M\times N \to M\otimes_{Q}N$.
+\begin{proposition}[universal property of the tensor product, cf.~\ref{Russo2007}]
+The tensor product $M\otimes N$ is the codomain of the universal $\Lawv$-bimorphism $M\times N \to M\otimes N$.
 \end{proposition}
 
 
 \begin{remark}
 
-For any $x\in M$ and $y\in N$, we indicate as $x\otimes_{Q}y$ the image of the pair $(x,y)$ under the universal $Q$-bimorphism $\tau:M\times N\to M\otimes_{Q}N$, or equivalently, as the $R^{*}$-equivalence class of $(x,y)$.
-Since joins in $M\otimes_{Q}N$ are given by  
+For any $x\in M$ and $y\in N$, we indicate as $x\otimes y$ the image of the pair $(x,y)$ under the universal $\Lawv$-bimorphism $\tau:M\times N\to M\otimes N$, or equivalently, as the $R^{*}$-equivalence class of $(x,y)$.
+Since joins in $M\otimes N$ are given by  
 $\bigvee_{i}[A_{i}]= [\bigcup_{i}A_{i}]$, we have then 
-that any element $[A]\in M\otimes_{Q}N$ can be written as 
+that any element $[A]\in M\otimes N$ can be written as 
 $[A]= \bigvee\{x\otimes y\mid (x,y)\in A\}$.
 
 %
-% Any element of $M\otimes_{Q}N$ is a join of tensors, that is
+% Any element of $M\otimes N$ is a join of tensors, that is
 %$$
-%M\otimes_{Q}N= \left\{ \bigvee_{i\in I}x_{i}\otimes_{Q}y_{i}\ \Bigg \vert \  x_{i}\in M, y_{i}\in N \right\}
+%M\otimes N= \left\{ \bigvee_{i\in I}x_{i}\otimes y_{i}\ \Bigg \vert \  x_{i}\in M, y_{i}\in N \right\}
 %$$
 \end{remark}
 
 
 
-\begin{lemma}
+\begin{lemma}[cf.~\ref{Russo2007}]
 \begin{itemize}
-\item $M\otimes_{Q}N\simeq N\otimes_{Q}M$;
+\item $M\otimes N\simeq N\otimes M$;
 
-\item $(M\otimes_{Q}N)\otimes_{Q}R \simeq M\otimes_{Q}(N\otimes_{Q}R)$.
+\item $(M\otimes N)\otimes R \simeq M\otimes (N\otimes R)$.
 \end{itemize}
 \end{lemma}
 
 \begin{proposition}
-$Hom(M\otimes_{Q}N, R)   \simeq   Hom(M, Hom(N,R))$ (as an isomorphism of sup-lattices).
+$\Mod(M\otimes N, R)   \simeq   \Mod(M, \Mod(N,R))$ (as an isomorphism of sup-lattices).
 \end{proposition}
 \begin{proof}
-Given $h:M\otimes_{Q}N\to R$, for all $x\in M$ define $h_{x}:N\to R$ by 
-$h_{x}(y)=h(x\otimes_{Q}y)$. We then have 
-$h_{x}(\bigvee_{i}y_{i})=h(x\otimes_{Q}\bigvee_{i}y_{i})=
-h(\bigvee_{i}x\otimes_{Q} y_{i})=
-\bigvee_{i}h(x\otimes_{Q} y_{i})=\bigvee_{i}h_{x}(y_{i})$ and 
-$h_{x}(y\star\epsilon)= h(x\otimes_{Q}(y\star \epsilon))=h((x\otimes_{Q}y)\star\epsilon)=h(x\otimes_{Q}y)\star \epsilon= h_{x}(y)\star\epsilon$, so $h_{x}\in Hom(N,R)$. Moreover, by a similar argument we have  $h_{\bigvee_{i}x_{i}}(y)=\bigvee_{i}h_{x_{i}}(y)$
-and $h_{x\star\epsilon}(y)=h_{x}(y)\star\epsilon$, so the map $x\mapsto h_{x}$ is a $Q$-module morphism. 
+Given $h:M\otimes N\to R$, for all $x\in M$ define $h_{x}:N\to R$ by 
+$h_{x}(y)=h(x\otimes y)$. We then have 
+$h_{x}(\bigvee_{i}y_{i})=h(x\otimes \bigvee_{i}y_{i})=
+h(\bigvee_{i}x\otimes  y_{i})=
+\bigvee_{i}h(x\otimes  y_{i})=\bigvee_{i}h_{x}(y_{i})$ and 
+$h_{x}(y\star\epsilon)= h(x\otimes (y\star \epsilon))=h((x\otimes y)\star\epsilon)=h(x\otimes y)\star \epsilon= h_{x}(y)\star\epsilon$, so $h_{x}\in \Mod(N,R)$. Moreover, by a similar argument we have  $h_{\bigvee_{i}x_{i}}(y)=\bigvee_{i}h_{x_{i}}(y)$
+and $h_{x\star\epsilon}(y)=h_{x}(y)\star\epsilon$, so the map $x\mapsto h_{x}$ is a $\Lawv$-module morphism. 
 
-Finally, for any family $h_{i}:M\otimes_{Q}N\to R$, we have 
-$(\bigvee_{i}h_{i})_{x}(y)=\bigvee_{i}h_{i}(x\otimes_{Q}y)=\bigvee_{i}(h_{i})_{x}(y)=(\bigvee_{i}h_{i})(x\otimes y)$, and thus we have a sup-lattice homomorphism $\zeta$ from $Hom(M\otimes_{Q}N,R)$ to $Hom(M,Hom(N,R))$ given by $\zeta(h)=h_{\_}$.
+Finally, for any family $h_{i}:M\otimes N\to R$, we have 
+$(\bigvee_{i}h_{i})_{x}(y)=\bigvee_{i}h_{i}(x\otimes y)=\bigvee_{i}(h_{i})_{x}(y)=(\bigvee_{i}h_{i})(x\otimes y)$, and thus we have a sup-lattice homomorphism $\zeta$ from $\Mod(M\otimes N,R)$ to $\Mod(M,\Mod(N,R))$ given by $\zeta(h)=h_{\_}$.
 
-Let us show that $\zeta$ has an inverse:  for all $f\in Hom(M,Hom(N,R))$, define $f': M\times N\to R$ by $f'(x,y):=f(x)(y)$. This is clearly a bimorphism, so there is a unique homomorphism $h_{f'}:M\otimes_{Q}N\to M\times N$ such that $f'=h_{f'}\circ \tau$, i.e.~such that 
+Let us show that $\zeta$ has an inverse:  for all $f\in \Mod(M,\Mod(N,R))$, define $f': M\times N\to R$ by $f'(x,y):=f(x)(y)$. This is clearly a bimorphism, so there is a unique homomorphism $h_{f'}:M\otimes N\to M\times N$ such that $f'=h_{f'}\circ \tau$, i.e.~such that 
 $h_{f'}(x\otimes y)=f'(x,y)=f(x)(y)$, and thus $\zeta(h_{f'})=f$.
 On the other hand, if $f=\zeta(h)$, then the uniqueness of $h_{f'}$ ensures that $h_{f'}=h$.
 \end{proof}
@@ -1011,73 +860,104 @@ On the other hand, if $f=\zeta(h)$, then the uniqueness of $h_{f'}$ ensures that
 
 \begin{proposition}
 \begin{itemize}
-\item[i.] $Hom(Q,M)\simeq M$.
-\item[ii.] $Hom(M,N)\simeq Hom(N^{\mathrm{op}},M^{\mathrm{op}})$.
-\item[iii.] $Hom(M, Q^{\mathrm{op}})\simeq M^{\mathrm{op}}$.
+\item[i.] $\Mod(Q,M)\simeq M$.
+\item[ii.] $\Mod(M,N)\simeq \Mod(N^{\mathrm{op}},M^{\mathrm{op}})$.
+\item[iii.] $\Mod(M, \Lawv^{\mathrm{op}})\simeq M^{\mathrm{op}}$.
 \end{itemize}
 (all isomorphisms of sup-lattices).
 \end{proposition}
 \begin{proof}
-Define $\alpha:M\to Hom(Q,M)$ by $\alpha(x)(\epsilon)=x\star\epsilon$ and 
-$\beta:Hom(Q,M)\to M$ by $\beta(f)=f(0)$. Then we have that 
+Define $\alpha:M\to \Mod(Q,M)$ by $\alpha(x)(\epsilon)=x\star\epsilon$ and 
+$\beta:\Mod(Q,M)\to M$ by $\beta(f)=f(0)$. Then we have that 
 $\alpha(\beta(f))(\epsilon)=\alpha(f(0))(\epsilon)=f(0)\star\epsilon=f(\epsilon)$, and 
 $\beta(\alpha(x))=\beta(\lambda \epsilon.x\star\epsilon)=x\star0=x$.
 
-If $f\in Hom(M,N)$, since it preserves joins, it has a right-adjoint $f^{*}:N^{\mathrm{op}}\to M^{\mathrm{op}}$, such that $f(x)\leq y$ iff $x\leq f^{*}(y)$. 
+If $f\in \Mod(M,N)$, since it preserves joins, it has a right-adjoint $f^{*}:N^{\mathrm{op}}\to M^{\mathrm{op}}$, such that $f(x)\leq y$ iff $x\leq f^{*}(y)$. 
 
 
-By i.~$Hom(Q,M^{\mathrm{op}})\simeq M^{\mathrm{op}}$ and we conclude by ii.
+By i.~$\Mod(Q,M^{\mathrm{op}})\simeq M^{\mathrm{op}}$ and we conclude by ii.
 \end{proof}
 
 \begin{proposition}
 \begin{itemize}
-\item[i.] $Hom(M,N)\simeq (M\otimes_{Q}N^{\mathrm{op}})^{\mathrm{op}}$.
-\item[ii.] $M\otimes_{Q}N\simeq Hom(M, N^{\mathrm{op}})^{\mathrm{op}}$.
-\item[iii.] $Q\otimes_{Q} M \simeq M\otimes_{Q}Q\simeq Q$.
+\item[i.] $\Mod(M,N)\simeq (M\otimes N^{\mathrm{op}})^{\mathrm{op}}$.
+\item[ii.] $M\otimes N\simeq \Mod(M, N^{\mathrm{op}})^{\mathrm{op}}$.
+\item[iii.] $Q\otimes  M \simeq M\otimes Q\simeq Q$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
-$Hom(M,N)\simeq Hom(M, Hom(N^{\mathrm{op}},Q^{\mathrm{op}}))
-\simeq Hom(M\otimes N^{\mathrm{op}},Q^{\mathrm{op}})\simeq
+$\Mod(M,N)\simeq \Mod(M, \Mod(N^{\mathrm{op}},\Lawv^{\mathrm{op}}))
+\simeq \Mod(M\otimes N^{\mathrm{op}},\Lawv^{\mathrm{op}})\simeq
 (M\otimes N^{\mathrm{op}})^{\mathrm{op}}$.
 Claim ii.~is proved similarly.
 
-For claim iii.~$Q\otimes_{Q}M\simeq M\otimes_{Q}M\simeq Hom(M, Q^{\mathrm{op}})^{\mathrm{op}}\simeq (M^{\mathrm{op}})^{\mathrm{op}}=M$. 
+For claim iii.~$Q\otimes M\simeq M\otimes M\simeq \Mod(M, \Lawv^{\mathrm{op}})^{\mathrm{op}}\simeq (M^{\mathrm{op}})^{\mathrm{op}}=M$. 
 \end{proof}
 
 
 By putting all previous results together we obtain:
 \begin{theorem}
-$Q\mathsf{Mod}$ is a $^{*}$-autonomous category.
+$\Mod$ is a $^{*}$-autonomous category.
 \end{theorem}
 
 
+Further useful properties are the following:
 
 
-\begin{proposition}\label{prop:Qtensor}
+\begin{proposition}\label{prop:Qtensor}[cf.~\cite{Russo2007}]
 \begin{itemize}
-\item[i.] $Q^{X}\otimes_{Q}M \simeq M^{X}$;
-\item[ii.] $Q^{X}\otimes_{Q}Q^{Y}\simeq Q^{X\times Y}$.
+\item[i.] $\Lawv^{X}\otimes M \simeq M^{X}$;
+\item[ii.] $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y}$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
 $M^{X}$ coincides with the product $\Pi_{x\in X}M$. We have then 
-$Q^{X}\otimes_{Q}M \simeq (\Pi_{x}Q)\otimes_{Q}M \simeq \Pi_{x}(Q\otimes_{Q}M) \simeq \Pi_{x}M\simeq M^{X}$.
+$\Lawv^{X}\otimes M \simeq (\Pi_{x}Q)\otimes M \simeq \Pi_{x}(Q\otimes M) \simeq \Pi_{x}M\simeq M^{X}$.
 
-For ii., using i.~we have $Q^{X}\otimes_{Q}Q^{Y}\simeq( Q^{Y})^{X}\simeq Q^{X\times Y}$.
+For ii., using i.~we have $\Lawv^{X}\otimes \Lawv^{Y}\simeq( \Lawv^{Y})^{X}\simeq \Lawv^{X\times Y}$.
 \end{proof}
 
 
-\subsubsection{The Tensor Product of $Q$-Categories}
+$\Mod$ admits biproducts, since products and coproducts exist in $\Mod$ and both coincide with the order product:
+$$
+\prod_{i\in I}X_{i} \simeq \coprod_{i\in I}X_{i}
+$$
+In particular, the projection and
+ injection morphisms $\pi_{i}:\prod_{i}X_{i}\to X_{i}$ and $\iota_{i}:X_{i} \to \prod_{i\in I}X_{i}$ are defined by 
+$$
+\pi_{i}\big( (x_{j})_{j\in I}\big) = x_{i} \qquad \qquad
+\iota_{i}(x)({j})= \begin{cases} x & \text{ if }i=j\\ \bot & \text{ otherwise}\end{cases}
+$$
+Moreover, biproducts commute with tensors as follows:
+\begin{proposition}\label{prop:productvstensor}[cf.~\cite{Russo2007}]
+$\prod_{i\in I} X\otimes Y_{i} \simeq X \otimes \prod_{i\in I}Y_{i}$.
+\end{proposition}
+\begin{proof}[Proof sketch]
+We just recall the isomorphism 
+$h: \prod_{i\in I} X\otimes Y_{i} \simeq X \otimes \prod_{i\in I}Y_{i}$, defined as follows:
+\begin{align*}
+h\Big( i\mapsto \bigvee_{k\in J_{i}}x_{i,k}\otimes y_{i,k}\Big ) = 
+\bigvee_{i\in I,k\in J_{i}}x_{i,k} \otimes \iota_{i}\big( (y_{j,k})_{j\in I}\big)
+\end{align*}
+and its inverse
+\begin{align*}
+k\Big( \bigvee_{k\in J}x_{k}\otimes \big(x_{k,i}\big)_{i\in I_{k}}\Big)(i)=
+\bigvee_{k\in J,i\in I_{k}}x_{k}\otimes \pi_{i}\big((x_{k,j})_{j\in I_{k}}\big).
+\end{align*}
+\end{proof}
 
 
 
-Thanks to Theorem \ref{thm:equivalence}, the $^{*}$-autonomous structure of $Q\mathsf{Mod}$ translates into a $^{*}$-autonomous structure for $Q\mathsf{CCat}$.
+\subsubsection{The Tensor Product of $\Lawv$-Categories}
 
-In $\mathsf{Met}$ the ``tensor product'' of two metric spaces $X$ and $Y$ is just their cartesian product, with the ``plus'' metric. What can we say about the tensor product in $Q\mathsf{CCat}$?
+
+
+Thanks to Theorem \ref{thm:equivalence}, the $^{*}$-autonomous structure of $\Mod$ translates into a $^{*}$-autonomous structure for $\GMet$.
+
+In $\mathsf{Met}$ the ``tensor product'' of two metric spaces $X$ and $Y$ is just their cartesian product, with the ``plus'' metric. What can we say about the tensor product in $\GMet$?
 
 % 
-%Let us start by discussing the construction of the tensor product $M\otimes_{Q}N$ of $Q$-modules $M$ and $N$ as a quotient of $\C P(M\times N)$. First, $\C P(M\times N)$ is the \emph{free} sup-lattice over $M\times N$: this means that any morphism 
+%Let us start by discussing the construction of the tensor product $M\otimes N$ of $\Lawv$-modules $M$ and $N$ as a quotient of $\C P(M\times N)$. First, $\C P(M\times N)$ is the \emph{free} sup-lattice over $M\times N$: this means that any morphism 
 %$f: M\times N \to L$, where $L$ is a sup-lattice, uniquely extends into a sup-lattice morphism $f^{*}:\C P(M\times N)\to L$, given by $f^{*}(A)=\bigvee_{x\in A}f(x)$. 
 %
 %
@@ -1092,7 +972,7 @@ In $\mathsf{Met}$ the ``tensor product'' of two metric spaces $X$ and $Y$ is jus
 %
 %
 %\end{proof}
-The goal of this subsection is to describe the $Q$-categorical structure of the tensor product explicitly. The main intuition is that the elements of $X\otimes_{Q}Y$ can be seen as joins of pairs $x\otimes y$ of elements $x\in X$, $y\in Y$. We will then show that the metric coincides with the ``plus'' metric over pairs $x\otimes y$, and extends continuously to joins. 
+The goal of this subsection is to describe the $\Lawv$-categorical structure of the tensor product explicitly. The main intuition is that the elements of $X\otimes Y$ can be seen as joins of pairs $x\otimes y$ of elements $x\in X$, $y\in Y$. We will then show that the metric coincides with the ``plus'' metric over pairs $x\otimes y$, and extends continuously to joins. 
 
 
 \begin{lemma}\label{lemma:tensorsum}
@@ -1112,17 +992,17 @@ $(m',n')\vee (m\star\delta_{1},n\star\delta_{2}) = (m'\vee (m\star\delta_{1}), n
 \begin{proposition}\label{prop:tensormetric}
 For all $m,m'\in N$ and $n,n'\in N$, 
 $$
-(M\otimes_{Q} N)(m\otimes_{Q} n, m'\otimes_{Q}n')= M(m,m') +N(n,n')
+(M\otimes  N)(m\otimes  n, m'\otimes n')= M(m,m') +N(n,n')
 $$
 More generally, 
 $$
-(M\otimes_{Q}N)([A],[B])= \sup_{(x,y)\in A}\inf_{(x',y')\in B}M(x,x')+N(y,y')
+(M\otimes N)([A],[B])= \sup_{(x,y)\in A}\inf_{(x',y')\in B}M(x,x')+N(y,y')
 $$
 \end{proposition}
 \begin{proof}
-By definition, $(M\otimes_{Q} N)(m\otimes_{Q} n, m'\otimes_{Q}n')$ is given by $\inf A$, where
+By definition, $(M\otimes  N)(m\otimes  n, m'\otimes n')$ is given by $\inf A$, where
 $$
-A=\{ \epsilon \mid (m\otimes_{Q}n)\star\epsilon \geq m'\otimes_{Q}n'\}
+A=\{ \epsilon \mid (m\otimes n)\star\epsilon \geq m'\otimes n'\}
 $$
 Let us show that $A$ coincides with 
 $$
@@ -1132,7 +1012,7 @@ $\epsilon \in B$.
 
 We can now conclude as follows:
 \begin{align*}
-(M\otimes_{Q} N)(m\otimes_{Q} n, m'\otimes_{Q}n')& =\inf A \\
+(M\otimes  N)(m\otimes  n, m'\otimes n')& =\inf A \\
 &= \inf B \\
 &= \inf \{ \delta_{1} \mid m\star\delta_{1} \geq  m'\}
 + \inf\{ \delta_{2} \mid  n\star \delta_{2}\geq n'\}\\
@@ -1140,78 +1020,24 @@ We can now conclude as follows:
 \end{align*}
 
 
-For the second claim, using the fact that $M\otimes_{Q}N$, as a $Q$-category, is both tensored and cotensored, using the fact that 
+For the second claim, using the fact that $M\otimes N$, as a $\Lawv$-category, is both tensored and cotensored, using the fact that 
 $[A]=\bigvee_{(x,y)\in A}x\otimes y$ and $[B]=\bigvee_{(x',y')\in B}z\otimes w$, and Lemma \ref{lemma:supinf}:
 \begin{align*}
-(M\otimes_{Q} N)([A],[B])&=
-\sup_{(x,y)\in A}(M\otimes_{Q}N)(x\otimes y, [B]) \\
-&=\sup_{(x,y)\in A}\inf_{(x',y')\in B}(M\otimes_{Q}N)(x\otimes y, x'\otimes y') 
+(M\otimes  N)([A],[B])&=
+\sup_{(x,y)\in A}(M\otimes N)(x\otimes y, [B]) \\
+&=\sup_{(x,y)\in A}\inf_{(x',y')\in B}(M\otimes N)(x\otimes y, x'\otimes y') 
 \\
 &=
 \sup_{(x,y)\in A} \inf_{(x',y')\in B}M(x,x')+N(y,y').
 \end{align*}
 \end{proof}
 
-\subsection{Products and Coproducts in $Q\mathsf{Mod}$}
 
-Products and coproducts exist in $Q\mathsf{Mod}$ and both coincide with the order product:
-$$
-\prod_{i\in I}X_{i} \simeq \coprod_{i\in I}X_{i}
-$$
-In particular, the projection and
- injection morphisms $\pi_{i}:\prod_{i}X_{i}\to X_{i}$ and $\iota_{i}:X_{i} \to \prod_{i\in I}X_{i}$ are defined by 
-$$
-\pi_{i}\big( (x_{j})_{j\in I}\big) = x_{i} \qquad \qquad
-\iota_{i}(x)({j})= \begin{cases} x & \text{ if }i=j\\ \bot & \text{ otherwise}\end{cases}
-$$
+\subsection{Exponential and Differential Structure of $\Mod$}
 
+\subsubsection{Symmetric Algebras in $\Mod$ }
 
-
-The following property is important
-\begin{proposition}\label{prop:productvstensor}
-$\prod_{i\in I} X\otimes Y_{i} \simeq X \otimes \prod_{i\in I}Y_{i}$.
-\end{proposition}
-\begin{proof}
-For a complete proof, see \texttt{https://arxiv.org/pdf/0909.4493.pdf}. Here we just recall the isomorphism 
-$h: \prod_{i\in I} X\otimes Y_{i} \simeq X \otimes \prod_{i\in I}Y_{i}$, defined as follows:
-\begin{align*}
-h\Big( i\mapsto \bigvee_{k\in J_{i}}x_{i,k}\otimes y_{i,k}\Big ) = 
-\bigvee_{i\in I,k\in J_{i}}x_{i,k} \otimes \iota_{i}\big( (y_{j,k})_{j\in I}\big)
-\end{align*}
-and its inverse
-\begin{align*}
-k\Big( \bigvee_{k\in J}x_{k}\otimes \big(x_{k,i}\big)_{i\in I_{k}}\Big)(i)=
-\bigvee_{k\in J,i\in I_{k}}x_{k}\otimes \pi_{i}\big((x_{k,j})_{j\in I_{k}}\big).
-\end{align*}
-\end{proof}
-
-
-
-\subsection{Exponential and Differential Structure of $Q\mathsf{Mod}$}
-
-\subsubsection{Symmetric Algebras in $Q\mathsf{Mod}$ }
-
-We start by constructing the exponential co-modality in the equivalent category $Q\mathsf{Mod}$.
-
-
-For all $n\in \BB N$ and $\sigma\in \F S_{n}$, let $\langle \sigma\rangle: X^{\otimes n}\to X^{\otimes n}$ be the morphism defined by 
-$$
-\langle \sigma \rangle (x_{1}\otimes \dots \otimes x_{n})=
-x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}
-$$
-and extended to all other points by continuity.
-%For any $Q$-module $X$, let $X_{\bullet}$ indicate the $Q$-module $X\times Q$.  
-%
-\begin{definition}Let $X$ be a $Q$-module and $n\in \BB N$. 
-An element $x\in X^{\otimes_{n}}$ is said \emph{permutation-invariant} (in short, \emph{p-invariant}) if for all $\sigma\in \F S_{n}$, 
-$\langle \sigma \rangle (x)=x$.
-
-For all $n\in \BB N$, $x_{1},\dots, x_{n}\in X$, the \emph{$Q$-multiset} $[x_{1},\dots, x_{n}]$ is the element of $X^{\otimes_{n}}$ defined as $0$ if $n=0$, and otherwise as follows:
-$$
-[x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}
-$$
-
-Given multisets $A$ and $B$, we define the multiset $A\cup B$ as follows:
+Given $\Lawv$-multisets $A$ and $B$, we define the multiset $A\cup B$ as follows:
 \begin{itemize}
 \item if $A=0$, then $A\cup B=B$;
 \item if $B=0$, then $A\cup B=A$;
@@ -1220,11 +1046,9 @@ Given multisets $A$ and $B$, we define the multiset $A\cup B$ as follows:
 
 \end{itemize}
 
-\end{definition}
-
 \begin{proposition}
-Let $X$ be a $Q$-module and $n\in \BB N$. Any $Q$-multiset $[x_{1},\dots, x_{n}]\in X^{\otimes_{n}}$ is p-invariant. Moreover, any p-invariant element $x\in X^{\otimes_{n}}$ can be written as 
-a join of $Q$-multisets.
+Let $X$ be a $\Lawv$-module and $n\in \BB N$. Any $\Lawv$-multiset $[x_{1},\dots, x_{n}]\in X^{\otimes_{n}}$ is p-invariant. Moreover, any p-invariant element $x\in X^{\otimes_{n}}$ can be written as 
+a join of $\Lawv$-multisets.
 \end{proposition}
 \begin{proof}
 For the first claim we have, for all $\sigma\in \F S_{n}$, 
@@ -1245,19 +1069,19 @@ $x=\bigvee_{i}[x_{1}^{i},\dots, x_{n}^{i}]$.
 
 
 \begin{proposition}
-For any $Q$-module $X$, the set $!_{n}X\subseteq X$ of p-invariant elements of $X^{\otimes_{n}}$ is a sub-$Q$-module of $X$.
+For any $\Lawv$-module $X$, the set $!_{n}X\subseteq X$ of p-invariant elements of $X^{\otimes_{n}}$ is a sub-$\Lawv$-module of $X$.
 \end{proposition}
 \begin{proof}
 If $x_{i}\in X^{\otimes_{n}}$ is a family of p-invariant elements, then 
 $x=\bigvee_{i}x_{i}$ is also p-invariant, since $\langle \sigma\rangle (x)=\bigvee_{i}\langle \sigma \rangle (x_{i})=\bigvee_{i}x_{i}=x$. Hence $!_{n}X$ is a sup-lattice.
 Moreover, for all $x\in !_{n}X$ and $\epsilon \in Q$, 
-$x\otimes \epsilon$ is also p-invariant, since $\langle \sigma \rangle (x\otimes \epsilon)= \langle \sigma \rangle (x)\otimes \epsilon=x\otimes \epsilon$. We conclude that $!_{n}X$ is a sup-lattice with a continuous action of $Q$, where both the order and the action are inherited from $X$, so it is a sub-$Q$-module of $X$.
+$x\otimes \epsilon$ is also p-invariant, since $\langle \sigma \rangle (x\otimes \epsilon)= \langle \sigma \rangle (x)\otimes \epsilon=x\otimes \epsilon$. We conclude that $!_{n}X$ is a sup-lattice with a continuous action of $\Lawv$, where both the order and the action are inherited from $X$, so it is a sub-$\Lawv$-module of $X$.
 \end{proof}
 
 
 The fundamental property of $!_{n}X$ is the following:
 \begin{proposition}
-For any $Q$-module $X$ and $n\in \BB N$, the inclusion morphism 
+For any $\Lawv$-module $X$ and $n\in \BB N$, the inclusion morphism 
 $\iota:!_{n}X\longrightarrow X^{\otimes_{n}}$ is the equalizer of the diagram
 $$
 \begin{tikzcd}
@@ -1274,7 +1098,7 @@ Since $\langle \sigma \rangle \circ h= \langle \mathrm{id}\rangle \circ h=h$, we
 \end{proof}
 
 \begin{remark}[metric structure of $!_{n}X$]
-As $!_{n}X$ is a sub-$Q$-module of $X^{\otimes_{n}}$, the distance function can be computed explicitly using Proposition \ref{prop:tensormetric}:
+As $!_{n}X$ is a sub-$\Lawv$-module of $X^{\otimes_{n}}$, the distance function can be computed explicitly using Proposition \ref{prop:tensormetric}:
 \begin{align*}
 !_{n}X( [x_{1},\dots, x_{n}], [y_{1},\dots, y_{n}]) & = 
 \sup_{\sigma\in \F S_{n}}\inf_{\tau\in \F S_{n}}
@@ -1284,10 +1108,10 @@ X(x_{\sigma(i)},y_{\tau(i)})
 \end{remark}
 
 
-We now show that the $Q$-module $!_{n}X$ is isomorphic to the symmetric algebra, which is used in the construction of the exponential modality in the relational model.
+We now show that the $\Lawv$-module $!_{n}X$ is isomorphic to the symmetric algebra, which is used in the construction of the exponential modality in the relational model.
 
 \begin{definition}[symmetric algebra]
-For any $Q$-module $X$ and $n\in \BB N$, we let $\mathrm{Sym}_{n}(X)$ indicate the $Q$-module defined as 
+For any $\Lawv$-module $X$ and $n\in \BB N$, we let $\mathrm{Sym}_{n}(X)$ indicate the $\Lawv$-module defined as 
 $\mathrm{Sym}_{n}(X):=\frac{X^{\otimes_{n}}}{\sim_{n}}
 $, where $\sim_{n}$ is the least congruence generated by the action $\langle \sigma\rangle$ of permutations $\sigma\in \F S_{n}$.\end{definition}
 
@@ -1308,8 +1132,29 @@ Observe that this implies that $[\bigvee[x]]=[x]$.
 
 
 Let us now show that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
-$y\leq x_{0}$ and 
-$z\sim^{\alpha}y$ holds, then $z\leq x_{0}$.
+$y\leq x_{0}$ and $z\sim y$ holds, then $z\leq x_{0}$.
+
+We will exploit the fact that $\sim$ is the least congruence containing the relation $\sim_{0}$ induced by the action of permutations. More precisely, $\sim$ can be defined explicitly as 
+$$
+x\sim y  \ \Leftrightarrow \ \exists \alpha . \mathrm{OR}(\alpha) \land x\sim^{(\alpha)}y
+$$
+where $\mathrm{OR}(\alpha)$ is the property ``$\alpha$ is an ordinal'', and the relations $\sim^{(\alpha)}$ are defined by induction as follows:
+\begin{itemize}
+\item $x\sim^{(0)}y$ iff either $x\sim_{0}y$, $x=y$ or $y\sim_{0}x$ holds;
+\item $x\sim^{(\alpha+1)}y$ iff one of the following holds:
+	\begin{itemize}
+	\item for some $z$, $x\sim^{(\alpha)}z$ and $z\sim^{(\alpha)}y$ holds;
+	\item for some set $I$, and families $x_{i},y_{i}$, 
+	$x=\bigvee x_{i}, y=\bigvee_{i}y_{i}$ and $x_{i} \sim^{(\alpha)}y_{i}$ holds for all $i\in I$.
+
+	\end{itemize}
+\item $x\sim^{(\gamma)}y$ iff $x\sim^{(\delta)}y$ holds for some $\delta <\gamma$, for $\gamma$ limit.
+\end{itemize}
+
+We will now prove, by induction on an ordinal $\alpha$, that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
+$y\leq x_{0}$ and $z\sim^{(\alpha)} y$ holds, then $z\leq x_{0}$.
+From this the claim will follow.
+
 \begin{itemize}
 \item if $z\sim^{0} y$, then either $z=y$, in which case the claim follows from the hypothesis, or $z=z_{1}\otimes \dots \otimes z_{n}$ and $y=y_{\sigma(1)}\otimes \dots \otimes y_{\sigma(n)}$; then from $y\leq x_{0}$ we deduce $z=\langle \sigma^{-1} \rangle(y)\leq \langle \sigma^{-1}\rangle(x_{0})=x_{0}$.
 
@@ -1363,38 +1208,38 @@ $h(k([x]))=[\bigvee[x]]=[x]$.
 
 The following lemma shows the compatibility of the construction of $!_{n}X$ with the usual construction of the exponential modality in weighted relational models.
 \begin{lemma}
-For any set $S$, there exists an isomorphism of $Q$-modules
-$$!_{n}Q^{S} \simeq Q^{\C M_{n}(S)}$$
+For any set $S$, there exists an isomorphism of $\Lawv$-modules
+$$!_{n}\Lawv^{S} \simeq \Lawv^{\C M_{n}(S)}$$
 where $\C M_{n}(X)$ indicates the set of multisets of $X$ of cardinality $ n$.
 \end{lemma}
 \begin{proof}
-Let us show that the morphism $h:Q^{\C M_{n}(S)}\to Q^{S\times \dots \times S}$ defined by 
+Let us show that the morphism $h:\Lawv^{\C M_{n}(S)}\to \Lawv^{S\times \dots \times S}$ defined by 
 $$
 h(f)(\langle s_{1},\dots, s_{n}\rangle)=h([s_{1},\dots, s_{n}])
 $$
 is the equalizer of the diagram 
 $$
 \begin{tikzcd}
-Q^{\C M_{n}(S)} \ar{r}{h} &Q^{S\times \dots \times S}\ar{r}{[\sigma]} &
-Q^{S\times \dots \times S}
+\Lawv^{\C M_{n}(S)} \ar{r}{h} &\Lawv^{S\times \dots \times S}\ar{r}{[\sigma]} &
+\Lawv^{S\times \dots \times S}
 \end{tikzcd}
 $$
-where $[\sigma](\B x)(\langle s_{1},\dots, s_{n}\rangle)=\B x(\langle x_{\sigma(1)},\dots, x_{\sigma(n)}\rangle)$, with $\sigma$ varying over $\F S_{n}$.
+where $[\sigma](x)(\langle s_{1},\dots, s_{n}\rangle)=x(\langle x_{\sigma(1)},\dots, x_{\sigma(n)}\rangle)$, with $\sigma$ varying over $\F S_{n}$.
 
-It is immediate that $h\circ [\sigma]=h\circ [\tau]$, for all $\sigma,\tau\in \F S_{n}$. Let now $k: C\to Q^{S\times \dots \times S}$ satisfy $k\circ [\sigma]=k\circ [\tau]$: then for all $c\in C$, $k(c)(\langle s_{1},\dots, s_{n}\rangle)=k(c)(\langle s_{\sigma(1)},\dots, s_{\sigma(n)}\rangle)$, so $k(c)$ actually defines a unique element of $Q^{\C M_{n}(S)}$, and thus $k$ splits in a unique way as $C \stackrel{k'}{\to} Q^{\C M_{n}(S)} \stackrel{h}{\to}Q^{S\times \dots \times S}$.
+It is immediate that $h\circ [\sigma]=h\circ [\tau]$, for all $\sigma,\tau\in \F S_{n}$. Let now $k: C\to \Lawv^{S\times \dots \times S}$ satisfy $k\circ [\sigma]=k\circ [\tau]$: then for all $c\in C$, $k(c)(\langle s_{1},\dots, s_{n}\rangle)=k(c)(\langle s_{\sigma(1)},\dots, s_{\sigma(n)}\rangle)$, so $k(c)$ actually defines a unique element of $\Lawv^{\C M_{n}(S)}$, and thus $k$ splits in a unique way as $C \stackrel{k'}{\to} \Lawv^{\C M_{n}(S)} \stackrel{h}{\to}\Lawv^{S\times \dots \times S}$.
 
 
 Now, to conclude it suffices to observe that, by Proposition \ref{prop:Qtensor}, 
-$Q^{S\times \dots \times S}\simeq (Q^{S})^{\otimes_{n}}$, and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $Q^{\C M_{n}(S)}\simeq !_{n}Q^{S}$.
+$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$, and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$.
 %
-%We define morphisms $h: !_{n}Q^{S}\to Q^{\C M_{n}(S)}$ and 
-%$k: Q^{\C M_{n}(S)}\to !_{n}Q^{S}$ given by 
+%We define morphisms $h: !_{n}\Lawv^{S}\to \Lawv^{\C M_{n}(S)}$ and 
+%$k: \Lawv^{\C M_{n}(S)}\to !_{n}\Lawv^{S}$ given by 
 %\begin{align*}
-%h([\B x_{1},\dots, \B x_{n}])(\{a_{1},\dots, a_{n}\})&=
+%h([x_{1},\dots, x_{n}])(\{a_{1},\dots, a_{n}\})&=
 %\sup_{\sigma\in \F S_{n}}\sum_{i=1}^{n}
-%\B x_{i}(a_{\sigma(i)})\\
+%x_{i}(a_{\sigma(i)})\\
 %k(f)& = 
-%\bigvee_{a_{1},\dots, a_{n}\in S}[\C Y(a_{1}),\dots, \C Y(a_{n})]+ f(\{a_{1},\dots, a_{n}\})
+%\bigvee_{a_{1},\dots, a_{n}\in S}[\B Y(a_{1}),\dots, \B Y(a_{n})]+ f(\{a_{1},\dots, a_{n}\})
 %\end{align*}
 %
 \end{proof}
@@ -1405,7 +1250,7 @@ $Q^{S\times \dots \times S}\simeq (Q^{S})^{\otimes_{n}}$, and then, since equali
 \subsubsection{Linear Differential Categories}
 
 
-There exist many equivalent way to describe linear differential structure over symmetric monoidal categories with biproducts. Here we chose the approach via bialgebra modalities (see Ehrhard's stuff, but also Lemay and company's stuff for a clearer picture).
+There exist many equivalent way to describe linear differential structure over symmetric monoidal categories with biproducts. Here we chose the approach via bialgebra modalities (see \cite{Lemay2017, Blute2019}).
 
 
 \begin{definition}[bialgebra modality]
@@ -1417,7 +1262,7 @@ Let $\BB C$ be an additive symmetric monoidal category. A \emph{bialgebra modali
 !\delta \circ \delta  & = \delta\circ !\delta
 \end{align}
 
-\item two natural transformations $\Delta:!X\to !X\otimes !X$ and $e:!X\to \B 1$ such that $(!X, \Delta, e)$ is a cocommutative comonoid, that is the following equations hold:
+\item two natural transformations $\Delta:!X\to !X\otimes !X$ and $e:!X\to \{\star\}$ such that $(!X, \Delta, e)$ is a cocommutative comonoid, that is the following equations hold:
 \begin{align}
 (\Delta \otimes  1)\circ \Delta & = ( 1\otimes \Delta )\circ \Delta \\
  ( 1\otimes e)\circ \Delta & = (e\otimes  1)\circ \Delta =1 \\
@@ -1428,7 +1273,7 @@ and $\delta$ preserves the comultiplication, that is
 (\delta \otimes \delta)\circ \Delta = \Delta \circ \delta
 \end{align}
 
-\item two natural transformations $\nabla: !X\otimes !X \to !X$ and $u:\B 1\to !X$ such that $(!X,\nabla, u)$ is a commutative monoid, that is, the following equations hold:
+\item two natural transformations $\nabla: !X\otimes !X \to !X$ and $u:\{\star\}\to !X$ such that $(!X,\nabla, u)$ is a commutative monoid, that is, the following equations hold:
 \begin{align}
 \nabla\circ (\nabla\otimes 1)  & = \nabla \circ (1\otimes \nabla) \\
  \nabla \circ(1\otimes u )& = \nabla \circ  (u\otimes 1) =1\\
@@ -1454,7 +1299,7 @@ u\circ e & = 1\\
 \end{definition}
 
 
-\begin{definition}
+\begin{definition}[cf.~\cite{Lemay2017}]
 A \emph{codereliction} for a bialgebra modality $(!,\delta,\epsilon,\Delta, e,\nabla,u)$ is a natural transformation $\eta:X\to !X$ satisfying the following equations:
 \begin{align}
 e\circ \eta & = 0\\
@@ -1470,7 +1315,7 @@ e\circ \eta & = 0\\
 \begin{definition}
 Let $\BB C$ be an additive (i.e.~monoid-enriched) symmetric monoidal category with biproducts.
  $\BB C$ is a \emph{monoidal storage category} if it has a coalgebra modality satisfying the \emph{Seely isomorphisms}, that is, the maps
- $e:!\top \to \B 1$ and $\chi:!(X\times Y) \to !X\otimes !Y$, with $\chi=\Delta \circ  !(\pi_{0})\otimes!(\pi_{1})$, are isomorphisms (whence $!\top\simeq \B 1$ and $!(X\times Y)\simeq !X\otimes !Y$).
+ $e:!\top \to \{\star\}$ and $\chi:!(X\times Y) \to !X\otimes !Y$, with $\chi=\Delta \circ  !(\pi_{0})\otimes!(\pi_{1})$, are isomorphisms (whence $!\top\simeq \{\star\}$ and $!(X\times Y)\simeq !X\otimes !Y$).
 \end{definition}
 
 
@@ -1483,7 +1328,7 @@ u\circ e & = !0
 \end{definition}
 
 We use the following result:
-\begin{theorem}[Lemay\&co]\label{theorem:lemay}
+\begin{theorem}[cf.~\cite{Lemay2017}]\label{theorem:lemay}
 Every additive symmetric monoidal category with an additive bialgebra modality and finite products satisfies the Seely isomorphisms.
 \end{theorem}
 
@@ -1494,7 +1339,7 @@ A \emph{linear differential category} is an additive symmetric monoidal category
 
 
 \begin{theorem}
-For any linear differential category $\BB C$, the co-Kleisli category $\BB C_{!}$ is a cartesian closed differential category, with deriving transformation $\mathsf{D}(f)$ defined as follows:
+For any linear differential category $\BB C$, the co-Kleisli category $\BB C_{!}$ is a cartesian closed differential category, with deriving transformation $Df$ defined as follows:
 $$
 \begin{tikzcd}
 !(X\times X)\  \simeq\  !X\otimes !X 
@@ -1505,10 +1350,10 @@ $$
 \end{theorem}
 
 
-\subsubsection{The Free Exponential Modality of $Q\mathsf{Mod}$}
+\subsubsection{The Free Exponential Modality of $\Mod$}
 
 
-Using the recipe from [Melli\'es, Tabareau, Tasson 2010], together with Proposition \ref{prop:productvstensor}, the free exponential modality of $Q\mathsf{Mod}$ can be defined as
+Using the recipe from \cite{Mellies2018}, together with Proposition \ref{prop:productvstensor}, the free exponential modality of $\Mod$ can be defined as
 $$
 ! X:= \prod_{n\in \BB N}!_{n}X
 $$
@@ -1832,7 +1677,7 @@ b_{1}\cup b_{2}\leq \beta_{k}(q+q')
 \end{align*}
 }
 
-Finally, let us check the compatibility of $\epsilon$ and $\nabla$, which in $Q\mathsf{Mod}$ reads as
+Finally, let us check the compatibility of $\epsilon$ and $\nabla$, which in $\Mod$ reads as
 $ \epsilon\circ \nabla=(\epsilon \otimes e)\vee (e\otimes \epsilon)$:
 \begin{align*}
 \epsilon \left(\nabla\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)\right) & =
@@ -1962,24 +1807,24 @@ $$
 
 
 \begin{theorem}
-$Q\mathsf{Mod}$ (equivalently, $Q\mathsf{CCat}$) is a linear differential category. Hence $Q\mathsf{Mod}_{!}$ (equivalently, $Q\mathsf{CCat}_{!}$) is a cartesian closed differential category. 
+$\Mod$ (equivalently, $\GMet$) is a linear differential category. Hence $\Mod_{!}$ (equivalently, $\GMet_{!}$) is a cartesian closed differential category. 
 \end{theorem}
-
-Let us compute the differential operator in $Q\mathsf{Mod}_{!}$: 
-given $f:!X \to Y$, we have
-\begin{align*}
-\mathsf{D}[f](\alpha) & = 
-\bigvee 
-\left \{
-f(\beta\cup[x])
-\ \Big \vert \ 
-\iota_{n}(\beta)\otimes \iota_{1}(x) \leq \alpha^{S}
-\right\}
-\end{align*}
+%
+%Let us compute the differential operator in $\Mod_{!}$: 
+%given $f:!X \to Y$, we have
+%\begin{align*}
+%E[f](\alpha) & = 
+%\bigvee 
+%\left \{
+%f(\beta\cup[x])
+%\ \Big \vert \ 
+%\iota_{n}(\beta)\otimes \iota_{1}(x) \leq \alpha^{S}
+%\right\}
+%\end{align*}
 
 %\begin{definition}
 %A coalgebra modality $(!,\delta,\epsilon,\Delta,e)$ is a \emph{monoidal coalgebra modality} if there exist natural transformations $m_{\otimes}:!X\otimes !Y \to !(X\otimes Y)$ 
-%and $m_{1}: \B 1 \to !\B 1$ such that 
+%and $m_{1}: \{\star\} \to !\{\star\}$ such that 
 %\begin{itemize}
 %\item $m_{\otimes},m_{k}$ show $(!,\delta,\epsilon)$ as a symmetric monoidal comonad, that is, the following equations hold:
 %
@@ -2021,223 +1866,6 @@ f(\beta\cup[x])
 %
 %
 
-\newpage
 
-
-\subsection{$Q$-Rel is a model of Bounded Linear Logic}
-
-
-Given SMCs $\BB C,\BB D$,  let $\B{SMC}_{l}(\BB C, \BB D)$ indicate the category of symmetric lax monoidal functors and monoidal natural transformations between them.
-$\B{SMC}_{l}(\BB C, \BB D)$  is itself a SMC, with monoidal structure defined pointwise.
-
-The set 
-$\BB N$ can be seen as the category with objects the natural numbers and a morphism between $r$ and $r'$ precisely when $r\leq r'$. 
-Moreover, $\BB N$ can be seen as a SMC in two ways:
-\begin{itemize}
-
-\item we indicate as $\BB N^{+}$ the SMC with monoidal product given by addition;
-\item we indicate as $\BB N^{\times}$ the SMC with monoidal product given by multiplication.
-\end{itemize}
-
-
-%Below we let $\BB^{\min}$ indicate the monoid $(Q,\min,0)$ and $Q^{+}$ indicate the monoid $(Q,+,0)$.
-
-\begin{definition}
-A \emph{$\BB N$-graded linear exponential comonad} on a symmetric monoidal category $\BB C$ is a tuple
-$(D, w,c,\epsilon,\delta)$ where:
-\begin{itemize}
-
-\item $D: \BB N\to \B{SMC}_{l}(\BB C, \BB C)$ is a functor. We write 
-$m_{r}:\B 1 \to D(r)(\B 1)$ and $m_{r,A,B}: D(r)(A)\otimes D(r)(B) \to D(r)(A\otimes B)$ for the symmetric lax monoidal structure of $D(r)$;
-
-\item $(D,w,c): \BB N^{+}\to \B{SMC}_{l}(\BB C, \BB C)$ is a symmetric colax monoidal functor;
-
-\item $(D,\epsilon,\delta):\BB N^{\times}\to (\B{SMC}_{l},\mathrm{Id},\circ) $ is a colax monoidal functor.
-
-
-
-\end{itemize}
-further satisfying the axioms below:
-\begin{align}
-w_{A}& =  w_{D(s)(A)}\circ \delta_{0,s,A}\\
-w_{A} & = D(s)(w_{A} )\circ \delta_{s,0,A} \\
-(\delta_{r,s,A}\otimes \delta_{r',s,A})\circ c_{rs,r's,A}
-&=
-c_{r,r',D(s)(A)}\circ \delta_{r+r',s,A}\\
-m_{s,D(r)(A),D(r')(A)}\circ (\delta_{r,s,A}\otimes \delta_{s,r',A})\circ c_{sr,sr',A}&=
-D(s)(c_{r,r',A})\circ \delta_{s,r+r',A}
-\end{align}
-\end{definition}
-
-
-Concretely, the definition above requires 6 natural transformations:
-\begin{align*}
-m_{r} & :\B 1\to  D(r)(\B 1)\\
-m_{r,A,B}& :  D(r)(A)\otimes D(r)(B)\to  D(r)(A\otimes B)\\
-w_{A}& : D(0)(A)\to \B 1 \\
-c_{r,r',A}& : D(r+r')(A) \to D(r)(A)\otimes D(r')(A) \\
-\epsilon_{A}& : D(1)(A)\to A \\
-\delta_{r,r',A}&: D(r r')(A)\to D(r)(D(r')(A))
-\end{align*}
-subject to the following list of equations:
-\begin{itemize}
-\item $D(r)$ is a lax monoidal functor:
-\begin{align}
-m_{r,A\otimes B,C}\circ (m_{r,A,B}\otimes D(r)(C)) & = 
-m_{r,A, B\otimes C}\circ (D(r)(A)\otimes m_{r,B,C})\\
-m_{r,A,\B 1}\circ (D(r)(A)\otimes m_{r}) & = D(r)(A)\\
-m_{r,\B 1, B}\circ (m_{r}\otimes D(r)(B))&= D(r)(B)
-\end{align}
-
-
-\item $(D,w,c)$ is a symmetric colax monoidal functor:
-\begin{align}
-(c_{r,s,-}\otimes D(t)(-))\circ c_{r+s,t} & =
-(D(r)(-)\otimes c_{s,t,-})\circ c_{r,s+t}\\
-(D(r)(-)\otimes w_{-})\circ c_{r,0,-} & = D(r)(-) \\
-(w_{-}\otimes D(r)(-))\circ c_{0,r,-} & = D(r)(-)
-\end{align}
-
-
-\item $(D,\epsilon,\delta)$ is a colax monoidal functor:
-\begin{align}
-\delta_{r,s, D(t)(-)}\circ \delta_{(rs),t,-} & =
-D(r)(\delta_{s,t,-})\circ \delta_{r,st,-}\\
-D(r)(\epsilon_{-}) \circ \delta_{r,1,-} & = D(r)(-) \\
-\epsilon_{D(r)(-)} \circ \delta_{1,r,-} & = D(r)(-)
-\end{align}
-
-\end{itemize}
-
-
-
-\begin{definition}
-We define the following structure $(M,w,c,\epsilon,\delta)$ over the category $Q\mathsf{Rel}$ as follows:
-\begin{itemize}
-\item for any set $X$ and $n\in \BB N$, let $M(n)(X)=\C M_{\leq n}(X)$;
-
-\item for all $f: X\times Y\to Q$, let $M(n)(f): M(n)(X)\times M(n)(Y)\to Q$ be defined by 
-\begin{align*}
-M(n)(f)(\alpha,\beta)=
-\begin{cases}
-\min_{\sigma\in \F S_{k}}\sum_{i=1}^{k}f(x_{i},y_{\sigma(i)}) & 
-\text{ if }\alpha=[x_{1},\dots, x_{k}], \beta=[y_{1},\dots, y_{k}]\\
-\infty & \text{ otherwise}
-\end{cases}
-\end{align*}
-
-
-\item $m_{r}(\star, \{\star\})=0$ and $m_{r}(\star, \emptyset)=\infty$;
-
-\item $m_{r,A,B}: D(r)(A)\times D(r)(B)\times D(r)(A\times B)\to Q$ is defined by 
-\begin{align*}
-m_{r,A,B}((\alpha,\beta), \gamma)=
-\begin{cases}
-0 & \text{ if } \alpha=[x_{1},\dots, x_{k}], \beta=[y_{1},\dots, y_{k}], \gamma= [(x_{1},y_{1}),\dots, (x_{k},y_{k})]\\
-\infty & \text{ otherwise}
-\end{cases}
-\end{align*}
-
-\item $w_{A}:D(0)(A)\times \B 1\to Q$ is given by $w_{A}(\emptyset, \star)=0$ and is $\infty$ otherwise (observe that $D(0)(A)\simeq \B 1$);
-
-\item $c_{r,s,A}: D(r+s)(A)\times D(r)(A)\times D(s)(A)\to Q$ is given by $c_{r,r',A}(\langle\alpha, \beta,\gamma\rangle)=0$ if $\alpha=\beta+\gamma$, and is $\infty$ otherwise;
-
-\item $\epsilon_{A}(\emptyset, a)=\infty$, $\epsilon_{A}([a],a)=0$, $\epsilon_{A}([b],a)=\infty$ $(b\neq a)$,
-
-\item $\delta_{r,r',A}(\alpha, B)=0$ if $\alpha= \sum B$ (where $\sum B$ indicates the multiset obtained by the sum of all multisets contained in $B$) and is $\infty$ otherwise.
-
-
-
-
-\end{itemize}
-
-\end{definition}
-
-
-
-Let us check that this defines a $\BB N$-graded linear exponential comonad.
-
-\begin{itemize}
-
-\item $D(r)$ is a lax monoidal functor:
- $$ m_{r,A\times B,C}\circ (m_{r,A,B}\times D(r)(C))(\langle \alpha,\beta,\gamma,\delta\rangle)
- :
- D(r)(A)\times D(r)(B)\times D(r)(C) \times D(r)(A\times B\times C)\to Q
- $$
- is equal to $0$ 
-precisely when $\alpha=[x_{1},\dots, x_{k}]$, $\beta=[y_{1},\dots, y_{k}]$, $\gamma=[z_{1},\dots, z_{k}]$ and 
-$\delta= [(x_{1},y_{1},z_{1}),\dots, (x_{k},y_{k},z_{k})]$, and is $\infty $ in all other cases.
-
-Observe that
-$m_{r,A,B\times C}\circ (D(r)(A)\times m_{r,B,C})(\langle\alpha,\beta,\gamma, \delta\rangle)
-  $ is equal to $0$ in the same situation, and is $\infty$ otherwise.
- 
- We conclude that the two matrices coincide.
- 
- Furthermore, we have that 
- $m_{r,A,\B 1}\circ (D(r)(A)\times m_{r})(\langle \alpha,\beta\rangle): D(r)(A)\times \B 1 \times D(r)(A)$ is equal to $0$ 
- precisely when $\alpha=\beta$ and is $\infty$ otherwise, that is, it coincides with $\mathrm{id}_{D(r)(A)}$. 
- 
-
-
-\item $(D,w,c)$ is a symmetric colax monoidal functor.
-
-
-$((c_{r,s,A}\times D(t)(A))\circ c_{r+s,t,A}) (\langle \alpha,\beta,\gamma,\delta\rangle)
-: D(r+s+t)(A)\times D(r)(A)\times D(s)(A)\times D(t)(A)$
-is equal to $0$ when $\alpha=\beta+\gamma+\delta$, and is $\infty$ otherwise, and the same holds for
-$((D(r)(A)\times c_{s,t,A})\circ c_{r,s+t,A}) (\langle \alpha,\beta,\gamma,\delta\rangle)
-$.
-
-Furthermore, 
-$((D(r)(A)\times w_{A})\circ c_{r,0,A})(\alpha,\beta)
-: D(r)(A)\times D(r)(A)\to Q$ is equal to $0$ when 
-$\alpha=\beta$, and is $\infty$ otherwise, so it coincides with 
-$\mathrm{id}_{D(r)(A)}$.
-
-\item $(D,\epsilon,\delta)$ is a colax monoidal functor:
-
-$(\delta_{r,s,D(t)(A)}\circ \delta_{rs,t,A})
-(\alpha, \Phi)
-: D(rst)(A) \times D(r)(D(s)(D(t)(A))) \to Q
-$
-is $0$ precisely when $\alpha = \sum \sum \Phi$, and is $\infty$ otherwise, and similarly for 
-$(D(r)(\delta_{s,t,A})\circ \delta_{r,st,A})(\alpha,\Phi)$.
-
-
-Furthermore, 
-$(D(r)(\epsilon_{A})\circ \delta_{r,1})( \alpha,\beta ):
-D(r)(A) \times D(r)(A)\to Q
-$ is equal to $0$ when $\alpha=\beta$ and is $\infty$ otherwise, so it coincides with $\mathrm{id}_{D(r)(A)}$.
-
-
-\end{itemize}
-
-
-Let us check the further equations:
-\begin{itemize}
-
-\item $(w_{D(s)(A)}\circ \delta_{0,s,A})(\langle \emptyset,\star\rangle: D(0)(A)\times \B 1\to Q$ is 0, precisely like $w_{A}$.
-
-\item A similar argument holds for the second equation.
-
-\item $((\delta_{r,s,A}\times \delta_{r',s,a})\circ c_{rs,r's,A})
-(\langle \alpha, \Phi,\Psi  \rangle)
-:
-D(rs+r's)(A)\times  D(r)(s)(A)\times D(r')(s)(A)\to Q
-$
-is equal to $0$ when $\alpha=\sum \Phi + \sum \Psi$, and is $\infty$ otherwise.
-
-
-
-Now, 
-using the fact that $D(rs+r's)(A)=D((r+r')s)(A)$, we can check that the same holds for 
-$c_{r,r',D(s)(A)}\circ \delta_{r+r',s,A})(\langle \alpha, \Phi,\Psi  \rangle)$: it is $0$ when 
-$\alpha= \sum\Phi+\Psi= \sum \Phi+\sum \Psi$.
-
-
-\item A similar argument holds for the fourth equation.
-
-\end{itemize}
 
 
