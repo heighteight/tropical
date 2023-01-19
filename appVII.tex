@@ -804,7 +804,7 @@ and the action is defined via $[A]\star \epsilon= \bigvee\{[ \{(x\star\epsilon,y
 
 Let a \emph{$\Lawv$-bimorphism} be a map $f:M\times N\to L$ such that $f$ preserves joins in each variable separately, and moreover $f(x,y\star \epsilon)=f(x\star\epsilon,y)$. A $\Lawv$-bimorphism $f:M\times N\to L$ is \emph{universal} if for all $L'$ and bimorphism $g:M\times N\to L'$ there is a unique sup-lattice homomorphism $h:L\to L'$ such that $g=h\circ f$.
 
-\begin{proposition}[universal property of the tensor product, cf.~\ref{Russo2007}]
+\begin{proposition}[universal property of the tensor product, cf.~\cite{Russo2007}]
 The tensor product $M\otimes N$ is the codomain of the universal $\Lawv$-bimorphism $M\times N \to M\otimes N$.
 \end{proposition}
 
@@ -826,7 +826,7 @@ $[A]= \bigvee\{x\otimes y\mid (x,y)\in A\}$.
 
 
 
-\begin{lemma}[cf.~\ref{Russo2007}]
+\begin{lemma}[cf.~\cite{Russo2007}]
 \begin{itemize}
 \item $M\otimes N\simeq N\otimes M$;
 
@@ -1372,6 +1372,7 @@ The functorial action of $!$ is defined, for a morphism $f: X\to Y$, as follows:
 The bialgebra modality $(!, \delta, \epsilon, \Delta, e, \nabla,u)$ is defined as follows:
 \begin{itemize}
 \item the comonad $(!,\delta,\epsilon)$ is given by:
+{\small
 \begin{align*}
 \epsilon(f)& =  f(1) \\
 %\OV{\mathrm{der}}& = \iota_{1}\\
@@ -1381,9 +1382,11 @@ a_{j}\in !_{i_{j}}X,
 a_{1}\cup \dots \cup a_{n}\leq f(i_{1}+\dots+ i_{n})
 \right\}
 \end{align*}
+}
 
 We have $\epsilon(\delta(\alpha))=\delta(\alpha)(1)=
 \bigvee\{\iota_{n}(\alpha(n))\mid n\in \BB N\}=\alpha$, and 
+{\small
 \begin{align*}
 !\epsilon(\delta(\alpha))(n)&=
 \bigvee\{ [\epsilon(\alpha_{1}),\dots, \epsilon(\alpha_{n})]
@@ -1410,6 +1413,7 @@ x_{1},\dots, x_{n}] \ \Bigg \vert  \
 [x_{1},\dots, x_{n}]\leq \alpha(n)
 \right \} = \alpha(n)
  \end{align*}
+ }
 %But since $\epsilon(\beta)=\beta(1)$, this means that we are reduced to consider multisets $\alpha_{j}^{i} $ of cardinality 1, i.e.~of the form $[a_{j}^{i}]$, so we have  
 % $!\epsilon(\delta(\alpha))(n)=
 %\bigvee\{ [a_{1}^{i},\dots, a_{n}^{i}]\mid \bigvee_{i}[a_{1}^{i},\dots, a_{n}^{i}]= \alpha(n)\}= \alpha(n)$.
@@ -1452,6 +1456,7 @@ A_{j}= [\iota_{r_{1}^{j}}(b_{1}^{j}),\dots, \iota_{r_{s_{j}}^{j}}(b_{i_{j}}^{j})
 From the two computations it is clear that $!\delta(\delta(\alpha)=\delta(\delta(\alpha))$. 
 
 \item the cocommutative comonoid structure $(!X, \Delta, e)$ is  defined as follows:
+{\small
 \begin{align*}
 \Delta(f)& = \bigvee
 \left\{ \iota_{n}(a)\otimes \iota_{m}(b) \ \Big \vert \  
@@ -1459,10 +1464,11 @@ n,m\in \BB N, a\cup b\leq f(n+m)
 \right\}\\
 e(f)&= f(0)
 \end{align*}
-
+}
 
 Let us check the relevant equations:
 
+{\small
 \begin{align*}
 (\Delta\otimes 1)\Big(\Delta(\alpha)\Big)&=
 (\Delta\otimes 1)\left (\bigvee\left \{\iota_{n}(a)\otimes \iota_{m}(b)\ \Big \vert \ a\cup b \leq \alpha(n+m)\right\}\right)\\
@@ -1473,7 +1479,9 @@ Let us check the relevant equations:
 \\
 &= (1\otimes \Delta)\Big(\Delta(\alpha)\Big)
 \end{align*}
+}
 
+{\small
 \begin{align*}
 (e\otimes 1)\Big(\Delta(\alpha)\Big) & = 
 ( e\otimes 1)\left (\bigvee\left \{\iota_{n}(a)\otimes \iota_{m}(b)\ \Big \vert \ a\cup b \leq \alpha(n+m)\right\}\right)\\
@@ -1481,8 +1489,10 @@ Let us check the relevant equations:
 \bigvee\left \{\iota_{m}(b)\ \Big \vert \ b \leq \alpha(m)\right\} =
 \alpha
 \end{align*}
+}
 and one can argue similarly for $(1\otimes e)(\Delta(\alpha))$.
 
+{\small
 \begin{align*}
 \sigma(\Delta(\alpha)) & = 
 \bigvee\left \{\iota_{m}(b)\otimes \iota_{n}(a)\ \Big \vert \ a\cup b \leq \alpha(n+m)\right\}
@@ -1491,9 +1501,10 @@ and one can argue similarly for $(1\otimes e)(\Delta(\alpha))$.
 \bigvee\left \{\iota_{n}(a)\otimes \iota_{m}(b)\ \Big \vert \ a\cup b \leq \alpha(n+m)\right\}
 \\&= \Delta(\alpha)
 \end{align*}
+}
 
 Finally, the commutation of $\Delta$ and $\delta$:
-{\tiny
+{\small
 \begin{align*}
 (\delta\otimes \delta)\Big(\Delta(\alpha)\Big) & =
 (\delta\otimes\delta)\left(\bigvee
@@ -1530,7 +1541,7 @@ Observe that $\nabla(f\otimes g)=\bigvee_{n,k+h=n}\iota_{n}(f(k)\cup g(h))$.
 
 Let us check the relevant equations:
 
-
+{\small
 \begin{align*}
 \nabla\left((\nabla\otimes 1)\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\otimes \gamma_{k}\right)\right) & =
 \nabla \left(
@@ -1550,8 +1561,9 @@ Let us check the relevant equations:
 &= 
 \nabla\left((1\otimes\nabla)\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\otimes \gamma_{k}\right)\right) 
 \end{align*}
+}
 
-
+{\small
 \begin{align*}
 \nabla\left(
 (1\otimes u)\left(\bigvee_{k}\alpha_{k}\otimes 0\right)\right) & =
@@ -1560,8 +1572,10 @@ Let us check the relevant equations:
 \bigvee_{n,k}\iota_{n}( \alpha_{k}(n) )
  =  \bigvee_{k}\alpha_{k} \otimes 0
 \end{align*}
+}
 and one can argue similarly for $\nabla(u\otimes 1)(\alpha)=\alpha$.
 
+{\small
 \begin{align*}
 \nabla\left (\sigma\left (\bigvee_{k}\alpha_{k}\otimes \beta_{k}
 \right) \right) & = 
@@ -1576,11 +1590,11 @@ and one can argue similarly for $\nabla(u\otimes 1)(\alpha)=\alpha$.
 \\
 &= \nabla\left (\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)
 \end{align*}
-
+}
 
 Let us check the bialgebra equations:
 
-
+{\small
 \begin{align*}
 e\left (\nabla\left (\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)\right)  & =
 e\left(
@@ -1589,11 +1603,12 @@ e\left(
 \\
 &= \bigvee_{k}\alpha_{k}(0)\cup\beta_{k}(0) \\
 &= \bigvee_{k} 0\cup 0\\
-&= h_{Q}\left(\bigvee_{k}\alpha_{k}(0)\otimes\beta_{k}(0))\right) = h\left( (e\otimes e)\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)\right)
+&= h\left(\bigvee_{k}\alpha_{k}(0)\otimes\beta_{k}(0))\right) = h\left( (e\otimes e)\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)\right)
 \end{align*}
-where $h_{Q}:Q\otimes Q \to Q$ indicates the isomorphism $h(\epsilon\otimes \delta)=\epsilon+\delta$.
+}
+where $h:\Lawv\otimes\Lawv\to \Lawv$ indicates the isomorphism $h(\epsilon\otimes \delta)=\epsilon+\delta$.
 
-
+{\small
 \begin{align*}
 \Delta(u(\epsilon))) = \Delta(\iota_{0}(\epsilon)) &=
  \left(
@@ -1603,9 +1618,10 @@ a\cup b \leq \iota_{0}(\epsilon)(n+m)\right\}\right)\\
 \epsilon_{1}+\epsilon_{2} \leq \epsilon\right\}\\
 &= (u\otimes u)(\epsilon)
 \end{align*}
+}
 where we are identifying $\epsilon \in q$ with the equivalence class
 $\epsilon \otimes 0 = \{ \langle \epsilon_{1},\epsilon_{2}\rangle\mid \epsilon_{1}+\epsilon_{2}=\epsilon\}\in 
-Q\otimes Q$ via the isomorphism $h_{Q}$ described above.
+\Lawv\otimes\Lawv$ via the isomorphism $h$ described above.
 
 \begin{align*}
 e(u(\epsilon))&= \iota_{0}(\epsilon)(0)= \epsilon
@@ -1614,7 +1630,7 @@ e(u(\epsilon))&= \iota_{0}(\epsilon)(0)= \epsilon
 
 
 
-{\tiny
+{\small
 \begin{align*}
 &(\nabla\otimes \nabla)  (1\otimes \sigma\otimes 1)(\Delta\otimes \Delta)\left (\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right) \\
 &=
@@ -1679,7 +1695,7 @@ b_{1}\cup b_{2}\leq \beta_{k}(q+q')
 
 Finally, let us check the compatibility of $\epsilon$ and $\nabla$, which in $\Mod$ reads as
 $ \epsilon\circ \nabla=(\epsilon \otimes e)\vee (e\otimes \epsilon)$:
-\begin{align*}
+{\small\begin{align*}
 \epsilon \left(\nabla\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)\right) & =
 \epsilon\left (  \bigvee_{k,n,p+q=n}\iota_{n}(\alpha_{k}(p)\cup \beta_{k}(q))\right) \\
 &=\left(\bigvee_{k}\alpha_{k}(1) \right) \vee \left(
@@ -1695,7 +1711,7 @@ $ \epsilon\circ \nabla=(\epsilon \otimes e)\vee (e\otimes \epsilon)$:
 &=
 \Big((\epsilon\otimes e)\vee (e\otimes \epsilon)\Big)\left(\bigvee_{k}\alpha_{k}\otimes \beta_{k}\right)
  \end{align*}
-
+}
 
 
 \item the codereliction $\eta: X\to !X$ is defined by 
@@ -1726,6 +1742,7 @@ e(\eta(x)) & = \iota_{1}(x)(0)=0
 \end{align*}
 
 For the last equation, we only check it on basic tensors:
+{\small
 \begin{align*}
 & \nabla((\delta\otimes \eta)((1\otimes \nabla))(\Delta\otimes \eta)(\alpha\otimes x)) \\
 &=\nabla((\delta\otimes \eta)((1\otimes \nabla))\left(
@@ -1759,7 +1776,7 @@ For the last equation, we only check it on basic tensors:
 &=
 \delta(\nabla((1\otimes \eta)(\alpha\otimes x))) 
 \end{align*}
-
+}
 
 
 \end{itemize}
@@ -1768,7 +1785,7 @@ For the last equation, we only check it on basic tensors:
 It remains to check the Seely isomorphisms.
 Using Theorem \ref{theorem:lemay} it suffices to check that the bialgebra modality defined above is additive (with respect to the ``tropical'' additive structure given by $\bot$ and $\vee$).
 
-{\tiny
+{\small
 \begin{align*}
 \nabla((!f\otimes !g)(\Delta(\alpha))) & =
 \nabla\left((!f\otimes !g)\left(
