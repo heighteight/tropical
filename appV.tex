@@ -1,11 +1,97 @@
+\subsubsection{Concavity}
+
+
+A function $f:Q^{X}\to Q^{Y}$ is \emph{concave} if for all $\alpha\in [0,1]$, $\B x, \B y\in Q^{X}$ and $b\in Y$ 
+$$
+f(\alpha\cdot \B x+(1-\alpha)\cdot \B y)_{b} \geq \alpha f(\B x)_{b} + (1-\alpha)f(\B y)_{b}
+$$
+
+
+
+\begin{proposition}
+All tropical functions $f: Q^{X}\to Q^{Y}$ are concave.
+\end{proposition}
+\begin{proof}
+Let us first show that all functions of the form $f(\B x)_{b}= \mu \B x+ c$ are concave:
+we have $f(\alpha\B x+ (1-\alpha)\B y)_{b}= \mu(\alpha\B x)+(1-\alpha)\B y)+c=
+ \mu(\alpha\B x)+(1-\alpha)\B y)+\alpha c+(1-\alpha)c=
+ \alpha(\mu \B x + c)+(1-\alpha)(\mu \B y+c)=\alpha f(\B x)_{b}+(1-\alpha) f(\B x)_{b}$.
+
+
+To conclude, let us show that if $(f_{i})_{i\in I}$ is a family of concave functions from $Q^{X}$ to $Q^{Y}$, the function $f=\inf_{i\in I}f_{i}$ is also concave: we have
+$f(\alpha\B x +(1-\alpha)\B y)_{b}=
+\inf_{i\in I}f_{i}(\alpha\B x+(1-\alpha)\B y)_{b} \geq 
+\inf_{i\in I}\alpha f_{i}(\B x)_{b}+(1-\alpha)f_{i}(\B y)_{b}
+\geq 
+\inf_{i\in I}\alpha f_{i}(\B x)_{b} + \inf_{j\in I}(1-\alpha)f_{j}(\B y)_{b}
+=
+\alpha \cdot (\inf_{i\in I}f_{i}(\B x)_{b})+ (1-\alpha)\cdot( \inf_{j\in I}f_{j}(\B y)_{b})=
+\alpha  f(\B x)_{b}+(1-\alpha)f(\B y)_{b}$, where we used the fact that given families $a_{i},b_{i}$ of reals,
+$\inf_{i}a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{j}b_{j}$.
+This follows from the fact that for all $i\in I$, $a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{i}b_{i}$.
+\end{proof}
+
+
+
+Concavity is a useful property, as it leads to establish the following:
+\begin{proposition}
+For any tropical function $f: Q^{X}\to Q^{Y}$, 
+\begin{enumerate}
+\item $ \alpha f(\B x)_{b}\leq  f(\alpha\B x)_{b}$;
+\item $f(\B x+\B y)_{b}\leq f(\B x)_{b}+f(\B y)_{b}$;
+\item $f(\B x+\B y)_{b} \leq f(\B x)_{b} + \phi_{\mu,b}(\B y)$ 
+for all $\mu\in \C M_{\mathrm{fin}}(X)$.
+
+\item if $\B x < \B y < \B z$, then 
+$$
+\frac{f(\B y)-f(\B x)}{|\B y-\B x|} \leq \frac{f(\B z)-f(\B x)}{|\B z-\B x|}
+\leq \frac{f(\B z)-f(\B y)}{|\B z-\B y|}
+$$
+
+\item the function $R_{b}(\B x, \B y)= \frac{f(\B x)_{b}-f(\B y)_{b}}{| \B x- \B y|}$ is monotonically non-decreasing in $\B x$ (for fixed $\B y$) and in $\B y$ (for fixed $\B x$).
+
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Since $f$ is concave, we have that for all $\B z$, 
+$f(\alpha\cdot\B z)=f(\alpha\cdot\B z+(1-\alpha)\cdot 0)\geq 
+\alpha f(\B z)+(1-\alpha)f(0)\geq \alpha f(\B z)$. 
+
+For the second one, 
+if $f(\B x)=\mu \B x+c$, then $f(\B x+\B y)= \mu \B x+ \mu \B y + c  \leq
+\mu \B x + \mu \B y + 2c = f(\B x)+f(\B y)$.
+Moreover, if $(f_{i})_{i\in I}$ is a family of functions such that $f_{i}(\B x+\B y)\leq f_{i}(\B x)+f_{i}(\B y)$, then 
+$f=\inf _{i\in I}f_{i}$ also satisfies this property: 
+one has $f(\B x+\B y)=\inf_{i\in I}f_{i}(\B x+\B y) \geq \inf_{i} f_{i}(\B x)+f_{i}(\B y) \geq \inf_{i}f_{i}(\B x) + \inf_{i}f_{i}(\B y)=f(\B x)+f(\B y)$.
+%Now we can compute
+%\begin{align*}
+%f(\B x+\B y)_{b}& =
+%
+%\end{align*}
+
+The third one follows immediately from the second one, since $f(\B y)_{b}\leq \phi_{\mu,b}(\B y)$ for all $\mu\in \C M_{\mathrm{fin}}(X)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{proof}
+
 
 \subsubsection{Proof of Theorem \ref{theorem:fepsilon}}
 
 
-Also proof of 
-\begin{proposition}\label{prop:nondecr+conc}
- Any tLs $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
-\end{proposition}
+
+
+DAVIDE's NOTES!
 
 
 \subsubsection{Continuity of tLs}
@@ -13,7 +99,11 @@ Also proof of
 
 
 
-Continuity of cones and metric
+Continuity of cones and metric. DAVIDE'S NOTES
+!
+
+
+
 
 
 
@@ -21,10 +111,20 @@ Continuity of cones and metric
 
 
 
+
+
+
+
 \begin{proposition}\label{prop:troplinear}
 All tropical linear functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
 \end{proposition}
+\begin{proof}[proof TO BE FIXED]
+All functions of the form $f(\B x)(b)= \mu_{b} \B x + c_{b}$ are Lipschitz with Lipschitz constant
+$\sum_{a\in X}\mu_{b}(a)$: 
+one has $| f(\B x)(b)- f(\B y)(b) |= |\mu_{b}\B x+c_{b} -\mu_{b}\B y+c_{b}|=
+|\mu_{b}\B x -\mu_{b} \B y  |\leq \left(\sum_{a\in X}\mu_{b}(a)\right)\cdot \sup_{a\in X}|\B x_{a}-\B y_{a}|$.
 
+\end{proof}
 
 
 
@@ -92,3 +192,104 @@ Then $f$ is locally Lipschitz-continuous.
 \begin{proof}
 For all $\B x\in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open set $B(\B x, 1)$.
 \end{proof}
+
+
+
+\subsubsection{Characterizations of the functional metric }
+
+
+
+  \begin{proposition}\label{prop:functionalmetric}
+For all maps $f,g: Q\langle X\rangle\to Q\langle Y\rangle$,  
+$$
+  \|\widehat f- \widehat g\|_{\infty}=
+  \sup\{\|f(\B x)- g(\B x)\|_{\infty} \mid \B x\in Q\langle X\rangle\}
+$$
+
+\end{proposition}
+  
+Before proving the proposition we need one preliminary lemma:
+  
+\begin{lemma}
+Let $u,v: I\to Q$ and suppose $|u(i)-v(i)|\leq \delta$, for all $i\in I$.
+Then $|\inf_{i\in I}u(i)- \inf_{i\in I}v(i)|\leq \delta$. 
+\end{lemma}
+\begin{proof}
+Let $A=\inf_{i\in I}u(i)$ and $B=\inf_{i\in I}v(i)$ and suppose $A\geq B$. 
+Suppose by way of contradiction $|A-B|> \delta$; then there exists $i\in I$ such that 
+$v(i)<A$ and $|A-v(i)|> \delta$. Indeed, otherwise we would have $|A-B|= \sup\{ |A-v(i)|\mid v(i)\leq A\}\leq \delta$. 
+Now, from $|A-v(i)|> \delta$ and $v(i)< A$ we deduce that $|u(j)-v(i)|> \delta$ for all $j\in I$, and thus in particular that $|u(i)-v(i)|>\delta$, against the assumption. We conclude then $|A-B| \leq \delta$.
+In case $B\geq A$, we can argue in a similar way. 
+\end{proof}
+
+%
+%\begin{lemma}
+%Let $f,g\in\mathsf{Trop}(1,1)$ (i.e.~$f,g:Q\to Q$), and suppose for all $n\in \BB N$, 
+%$|\widehat f_{n}-\widehat g_{n}|\leq \delta$. Then for all $x\in Q$, $|f(x)-g(x)|\leq \delta$.
+%
+%\end{lemma}
+%\begin{proof}
+%$|f(x)-g(x)|= |( \inf_{n}nx+\widehat f_{n})- (\inf_{n}nx+\widehat g_{n})|$. 
+%Since $|nx+\widehat f_{n} - nx -\widehat g_{n}|= |\widehat f_{n}-\widehat g_{n}|\leq \delta$, by the Lemma above we conclude $|f(x)-g(x)|\leq \delta$. 
+%\end{proof}
+
+
+
+  
+  \begin{proof}[Proof of Proposition \ref{prop:functionalmetric}]
+For one side, suppose for all $\mu\in \C  M_{\mathrm{fin}}(X),b\in Y$, 
+$|\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$. Then for all $\B x\in Q\langle X\rangle$ and $b\in Y$, $|f(\B x)(b)-g(\B x)(b)|\leq \delta$.
+Indeed, $|f(\B x)(b)-g(\B x)(b)|= |( \inf_{\mu}\mu \B x+\widehat f_{\mu,b})- (\inf_{\mu}\mu \B x+\widehat g_{\mu,b})|$. 
+Since $|\mu \B x+\widehat f_{\mu,b} - \mu \B x -\widehat g_{\mu,b}|= |\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$, by the Lemma above we conclude $|f(\B x)(b)-g(\B x)(b)|\leq \delta$. 
+
+
+For the other side, suppose for some $\mu\in \C M_{\mathrm f}(X)$ and $b\in Y$, $|\widehat f_{\mu,b}-\widehat g_{\mu,b}|> \epsilon$; 
+then, by letting $e_{\mu}\in Q\langle !X\rangle$ be the (tropical) characteristic function of $\mu$, we have
+ $|f(e_{\mu})({b})-g(e_{\mu})({b})| =
+|( \inf_{\mu'}\widehat f_{\mu',b}+ \mu'(e_{\mu}))-
+( \inf_{\mu'}\widehat g_{\mu',b}+\mu'(e_{\mu}))|=
+|\widehat f_{\mu,b}- \widehat g_{\mu,b}|> \epsilon$, so we deduce that 
+$\sup\{\| f(\B x)- g(\B x) \|_{\infty}\mid \B x\in Q\langle X\rangle\}> \epsilon$.
+\end{proof}
+
+
+The second characterization relates distances with the Taylor expansion. Let us briefly discuss the latter, first.
+For all $f: Q\langle X\rangle \to Q\langle Y\rangle$, let $\delta^{(n)}f:Q\langle X^{n}\rangle \to Q\langle Y\rangle$ indicate the $n$-linear function given by 
+$$
+\delta^{(n)}f(\B x^{n})=\mathsf D^{(n)}f(\B x^{n}, \infty)
+$$
+
+Notice that $\widehat{\delta^{(n)}f}\in Q^{X^{n}\times Y}$ satisfies 
+$\widehat{\delta^{(n)}f}_{a_{1},\dots, a_{n},b}= \widehat f_{[a_{1},\dots, a_{n}],b}$.
+In other words, $\delta^{(n)}f$ precisely captures the behavior of $f$ when applied to multisets of length $n$. Moreover, the full behavior of $f$ can be recovered from the functions $\delta^{(n)}f$ using the Taylor expansion which, in its tropical form, reads as:
+\begin{equation}
+f(\B x)= \inf_{n}\left \{\mathsf D^{(n)}f(\B x^{n},\infty)\right\}= \inf_{n}\left \{\delta^{(n)}f(\B x^{n})\right\}
+\tag{Tropical Taylor}
+\end{equation}
+
+
+
+
+
+\begin{proposition}\label{prop:taylormetric}
+For all $f,g:Q\langle X\rangle \to Q\langle Y\rangle$, 
+$$
+\| \widehat f-\widehat g\|_{\infty}= \sup_{n}\| \widehat{\delta^{(n)}f} -\widehat{\delta^{(n)}g}\|_{\infty}
+$$
+\end{proposition}
+\begin{proof}
+Let us first show that $\| \widehat f-\widehat g\|_{\infty}\leq \epsilon$ implies 
+$\| \delta^{(n)}f-\delta^{(n)}g\|_{\infty}\leq\epsilon$, for all $n\in \BB N$. 
+Notice that $\widehat{\delta^{(n)}f}\in Q^{X^{n}\times Y}$ satisfies 
+$\widehat{\delta^{(n)}f}_{a_{1},\dots, a_{n},b}= \widehat f_{[a_{1},\dots, a_{n}],b}$. Hence 
+from $\| \widehat f-\widehat g\|\leq\epsilon$ it follows that for all $\mu=[a_{1},\dots, a_{n}]$ and $b\in Y$, 
+$|\widehat f_{\mu,b}- \widehat g_{\mu,b}|\leq \epsilon$, so 
+we deduce that $\| \widehat{\delta^{(n)}f}- \widehat{\delta^{(n)}g}\|\leq \epsilon$.
+
+For the converse direction suppose that, for all $n\in \BB N$, $\| \widehat{\delta^{(n)}f}- \widehat{\delta^{(n)}g}\|\leq \epsilon_{n}$. Then, since the family of coefficients $
+F_{n,\mu,b}=
+( \widehat{\delta^{(n)}f})_{a_{1},\dots, a_{n},b}$ (where $\mu=[a_{1},\dots, a_{n}]$) is in bijection with the coefficients $\widehat f_{\mu,b}$, we deduce that $|\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq 
+\epsilon_{\sharp \mu  }$, and thus that 
+$\| \widehat f-\widehat g\|_{\infty}\leq \sup_{n}\epsilon_{n}$. 
+\end{proof}
+
