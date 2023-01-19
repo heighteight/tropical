@@ -41,7 +41,7 @@ We add reduction rules:
 \[
  M\oplus_p N \to pM \quad \textit{ and } \quad M\oplus_p N \to (1-p)N
 \]
-so that $M\oplus_p N$ plays the role of a probabilistic sample with parameter $p$.
+so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
 We use this calculus as a toy example for our purposes, and it can be seen as a fragment of the PCF considered in \cite{Manzo2013}.
 
 Consider now the following term $M$ of type $\bool$:
@@ -50,7 +50,7 @@ Consider now the following term $M$ of type $\bool$:
 \]
 Let us give addresses $\omega\in\set{00,01,100,101,110,111}$ to the occurrences of $\true,\false$ in $M$, by following the tree structure of $M$, reading $0$ as ``left'' and $1$ as ``right''.
 The same addresses also represent all the different possible reduction paths from $M$ to a normal form.
-For instance, $100$ represents the reduction which keeps the right part of the outermost $\oplus_p$ and erases the left part, then continues by choosing the left part twice, reaching at the end the occurrence $\true_{100}$ in $M$, i.e.\ the second occurrence of $\true$ in $M$, starting from the left.
+For instance, $100$ represents the reduction which keeps the right part of the outermost $\oplus_p$ and erases the left part, then continues by choosing the left part twice, reaching at the end the occurrence $\true_{100}$ in $M$, i.e.\ the second occurrence of $\true$ in $M$ starting from the left.
 Calling $q:=1-p$, there are the following six normal terms reachable from $M$:
 $P_{00}(p,q)\true$, 
 $P_{100}(p,q)\true$, 
@@ -65,9 +65,9 @@ $P_{111}(p,q):=q^3$,
 $P_{01}(p,q):=pq$,
 $P_{110}(p,q)=P_{101}(p,q):=q^2p$.
 They correspond to the respective reduction path from $M$ to the normal term of the same address.
-$P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$ in $M$ after reducing it to normal form.
+$P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$ after all the coin tossings in $M$ are performed.
 Thinking of $p,q$ as parameters, $P_{\omega}$ can thus be read as the \emph{likelihood function} of the event $\omega$.
-The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead the whole probability of obtaining $\true$ after such samplings, and $Q_{0}(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ the one for $\false$.
+The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead the whole probability of obtaining $\true$ after all the tossings, and $Q_{0}(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ the one for $\false$.
 
 
 %Let us consider in this subsection a probabilistic extension of $\lam$-calculus, call it $\STLC_\oplus$, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.These terms are typed via the rule:
@@ -88,19 +88,20 @@ The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead
 %\]
 %The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicates the path of the reduction that led from $M$ to the respective occurrence $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').For instance, in order to reach $I_{100}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.$P_{\omega}(p,q)$ gives then the probability (as a function of $p,q$) of obtaining the respective occurrence $I_{\omega}$ or $\Omega_\omega$ in the normal form, if we were to sample at each time we reduce a $\oplus_p$.It can thus also be read as the likelihood function of such event.The polynomials $Q_{1,2}(p,q)$ give instead the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
 
-This way the probabilistic evaluation of $M$ is presented in the form of a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}. Indeed, typical questions in this case would be:
+This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}.
+Typical questions in this case would be:
 %
 %The tropical point of view allows now to express two natural questions about this situation:
 \begin{enumerate}
  \item What is the \emph{maximum likelihood estimator} for the event ``$M$ produces $\true_\omega$'' (similarly for $\false_\omega$)?
- This means asking which is the choice of the parameters $p,q$ that maximizes the probability of getting $\true_\omega$ by repeatedly sampling $M$.
+ I.e., which is the choice of the parameters $p,q$ that maximizes the probability of getting $\true_\omega$ after all tossings in $M$?
  \item Knowing that $M$ produced $\true$ (similarly for $\false$), which is the choice of the parameters $p,q$ that maximizes the probability that the produced occurrence of $\true$ was a fixed $\true_{\omega_0}$ (i.e. that among the paths leading to $\true$, the one taken was $\omega_0$)?
 \end{enumerate}
 A similar argument could be done by replacing $\true$ and $\false$ by, respectively, a converging and a diverging term (e.g.~in a $\B{PCF}$-style language), so 1) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
 
 %These are questions much in the style of those asked in {\color{red}Ref?} in the framework of {\color{red}??}.
-Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega}$, which is more easily solved by 
-passing to the tropical polynomial $\trop P_{\omega}$. 
+Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega}, Q_\omega$, which is more easily solved by 
+passing to the tropical monomials/polynomial $\trop P_{\omega},\trop Q_{\omega}$. 
 For 1), we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)$ belong to:
 \begin{equation}
   \begin{array}{r@{}c@{}l@{}}
@@ -126,7 +127,8 @@ This last condition is equivalent to ask that:
    (\trop Q_1)( -\log_c x, -\log_c y) = (\trop P_{\omega_0})( -\log_c x, -\log_c y). &  \label{eq:max}
   \end{array}
 \end{equation}
-In both cases, passing to $\trop P_{\omega}$ makes the problem easier, as this may be reduced to computing the tropical roots of the polynomial (which can be done in linear time \cite{Noferini2015}). %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
+In both cases, passing through $\trop$ %P_\omega, \trop Q_\omega$ 
+makes the problem easier, as this amounts to study tropical polynomials (for instance computing tropical roots can be done in linear time \cite{Noferini2015}). %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
 
 \begin{remark}
  By adapting [Section IV, \cite{Manzo2013}], it can be seen that $\LREL_!$ is a model of $\STLC_\oplus$.
@@ -154,6 +156,6 @@ We have thus answered question 2) above.
 %\end{example}
 
 \begin{remark}\label{rem:troproots}
- Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_0$ provide, by definition, the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable paths of samples from $M$ to its normal form.
- Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the probabilistic parameter in $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are sampled by $M$ during its reduction to normal form, knowing that some $\true$ was sampled.
+ Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_0$ provide, by definition, the values of the bias of $\oplus_p$ for which there are at least two different equiprobable paths of tossings from $M$ to its normal form.
+ Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the bias of $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are smapled by $M$ during its tossings to normal form, knowing that some $\true$ was sampled.
 \end{remark}

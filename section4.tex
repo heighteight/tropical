@@ -158,37 +158,41 @@ So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and o
 $f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
 % \end{enumerate}
 \end{theorem}
-%\begin{proof}
-%Call $\leq$ the well-founded pointwise order on $\N^k$.
-%Now we can let $\C F_\epsilon:=\set{n\in\N \mid
-%\widehat f(n)<\infty \textit{ and } \widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$.
-%\end{proof}
+\begin{proof}
+Call $\leq$ the (well-founded) pointwise order on $\N^k$.
+Now \mbox{$\C F_\epsilon:=\set{n\in\N \mid
+\widehat f(n)<\infty \textit{ and } 
+\widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$}
+does the job.
+\end{proof}
 
 
 
 
-\subsection{Continuity of tLs}%$\Lawv^{X}$ as a normed cone}
+\subsection{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
-$\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
-Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete normed cone.
-The normed cone structure induces an order on it, called its \emph{cone order}, by setting:
-$x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
-This order makes it a Scott-continuous dcpo.
-Furthermore we have:
-
-\begin{proposition}
-  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
-  % on the domain and codomain.
-\end{proposition}
-The tLs $\varphi$ is continuous on $\BB R_{\geq0}=\Lawv-\set{\infty}$ (w.r.t.\ the usual norm of real numbers).
-By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we could generalise this property by dropping the case of $x$ having some $0$ coordinate:
+The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of real numbers).
+By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we can generalise this property by dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
  Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
 \end{theorem}
 \begin{proof}
- The result follows after proving that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
+ It follows after adaptating [Theorem , \cite{}] in order to prove that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
 \end{proof}
+
+We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
+Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete \emph{normed cone} %(see~\cite{Selinger2004}, or the appendix, for such notions}.
+Its cone structure induces an order on it, called its \emph{cone order}:
+$x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
+This makes it a Scott-continuous dcpo.
+Suitable categories of cones have been recently investigated as models of probabilistic computation %(\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
+We will just show that:
+
+\begin{theorem}\label{thm:ScottCont}
+  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
+  % on the domain and codomain.
+\end{theorem}
 
 
 \subsection{Lipschitz-continuity of tLs}%$\Lawv^{X}$ as a metric space.}
@@ -247,7 +251,7 @@ The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used
 
 
 \begin{theorem}\label{thmTLSlocLip}
- All tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}$.
+ All tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}^X$.
 \end{theorem}
 \begin{proof}[Proof sketch]
 The core of the proof is a convex analysis argument (see the Appendix) showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
