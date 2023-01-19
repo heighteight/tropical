@@ -1,0 +1,539 @@
+
+
+We here focus on the category $Q^{\Pi}_{!}$, that is, the matricial category associated with $\mathsf{Trop}_{!}$. 
+Let us recall that a morphism of $Q^{\Pi}_{!}(X,Y)$ is a matrix $f\in Q^{\C M_{\mathsf f}(X)\times Y}$, and that composition of $f\in Q^{\Pi}_{!}(X,Y)$ and $g\in Q^{\Pi}_{!}(Y,Z)$ is given by 
+$$
+(g\circ f)_{\mu,z}= \inf\Big\{
+\sum_{i=1}^{n}f_{\mu_{i},y_{i}}+
+g_{[y_{1},\dots, y_{n}],z}
+\mid 
+n\in \BB N, 
+y_{1},\dots, y_{n}\in Y,
+\mu= \mu_{1}+\dots + \mu_{n}
+\Big\}
+$$
+
+
+
+Notice that $\infty \circ f= f\circ \infty=\infty$. However, while $\min\{g,h\}\circ f= \min\{g\circ f, h\circ f \}$ holds, as it can be computed using the continuity of $\mu, \inf$ and $+$, it is not true in general that 
+$h\circ \min\{f,g\}= \min\{h\circ f, h\circ g\}$ (as a consequence of the fact that 
+$\sum_{i=1}^{n}\min\{ f_{\mu_{i},y_{i}}, g_{\mu_{i},y_{i}}\} \neq 
+\min\{ \sum_{i=1}^{n} f_{\mu_{i},y_{i}}, \sum_{i=1}^{n} g_{\mu_{i},y_{i}}\}$).
+In other words, morphisms in $Q^{\Pi}_{!}$ are only \emph{left-$Q$-additive}.
+A morphism $h\in Q^{\Pi}_{!}(X,Y)$ that satisfies $h\circ \min\{f,g\}=\min\{h\circ f, h\circ g\}$ for all object $X'$ and $f,g\in Q^{\Pi}_{!}(X',X)$, is called \emph{additive}.
+%We already know from Giulio's paper that $Q^{\Pi}_{!}$ is a post-linear continuous $Q$-ccc.
+
+\begin{proposition}
+$Q^{\Pi}_{!}$ is a cartesian closed left-$Q$-additive category.
+\end{proposition}
+\begin{proof} While left-$Q$-additivity was already proved, to show that $Q^{\Pi}_{!}$ is cartesian closed left-$Q$-additive we must also check that (1) products and projections of additive morphisms are additive, and that (2) $\Lambda(\min\{f,g\})=\min\{\Lambda(f),\Lambda(g)\}$, $\Lambda(\infty)=\infty$, where $\Lambda:Q^{\C M_{\mathsf f}(Z+X)\times Y}\to Q^{\C M_{\mathsf f}(Z)\times( \C M_{\mathsf f}(X)\times Y)}$ is the isomorphism given by
+$(\Lambda(f))_{\mu,\nu,y}= f_{\mu\oplus\nu,y}$, where 
+ $\mu\oplus\nu$ is defined by $(\mu\oplus\nu)(\langle 0,x\rangle)=\mu(x)$ and $(\mu\oplus \nu)(\langle 1,x\rangle)=\nu(x)$.
+	\begin{enumerate}
+	\item  Let $f\in Q^{\C M_{\mathsf f}(X)\times Y}$ and $g\in Q^{\C M_{\mathsf g}(X)\times Z}$ be additive; then $\langle f,g\rangle \in Q^{\C M_{\mathsf f}(X)\times (Y+Z)}$, which is defined by 
+	$$
+	\langle f,g\rangle_{\mu,\langle i,a\rangle}= \begin{cases}
+	f_{\mu,a} & \text{ if }i=0\\
+	g_{\mu,a} & \text{ if }i=1
+	\end{cases}
+	$$
+	is also additive. Indeed, for all $h\in Q^{\Pi}_{!}(X',X)$, 
+	in any cartesian category it holds that $\langle f,g\rangle \circ h=\langle f\circ h, g\circ h\rangle$. Now, 
+		if $i=0$, then for all $h_{1},h_{2}\in Q^{\C M_{\mathsf f}(X')\times X}$, 
+	\begin{align*}
+	(\langle f,g\rangle\circ \min\{h_{1},h_{2}\})_{\rho,\langle i,z\rangle}&=
+	(\langle f\circ  \min\{h_{1},h_{2}\},g\circ  \min\{h_{1},h_{2}\}\rangle)_{\rho,\langle i,z\rangle} 
+	\\
+&=	(f\circ \min\{h_{1},h_{2}\})_{\rho, z}\\ &
+	= \min\{(f\circ h_{1})_{\rho,z},(f\circ h_{2})_{\rho,z}\} \\
+	&=
+	\min\{ \langle f\circ h_{1},g\circ h_{1}\rangle_{\rho,\langle i,z\rangle}, 
+	\langle f\circ h_{2},g\circ h_{2}\rangle_{\rho,\langle i,z\rangle}
+\}
+	\\
+	& = \min\{ (\langle f,g\rangle\circ h_{1})_{\rho,\langle i,z\rangle},(\langle f,g\rangle\circ h_{2})_{\rho,\langle i,z\rangle}\}	\end{align*}
+	and similarly if $i=1$.
+	
+	Moreover, suppose $f\in Q^{\Pi}_{!}(X, Y+Z)$ is additive, and let us show that $\pi_{1}( f)\in Q^{\Pi}_{!}(X,Y)$, defined by 
+	$
+	(\pi_{1}( f))_{\mu,y}= f_{\mu, \langle 0,y\rangle}
+	$, is also additive: first observe that $\pi_{1}(f)=\pi_{1}\circ f$, where $\pi_{1}\in Q^{\Pi}_{!}(Y+Z,Y)$ is given by $(\pi_{1})_{\mu,y}=0$ if $\mu=[y]\oplus \emptyset$ and is $\infty$ otherwise; moreover, 
+	$\pi_{1}(\min\{g,h\})=\min\{\pi_{1}(g),\pi_{1}(h)\}$, since 
+	$(\pi_{1}(\min\{g,h\}))_{\mu, y}=(\min\{g,h\})_{\mu, \langle 0,y\rangle}= \min\{g_{\mu, \langle 0,y\rangle},h_{\mu, \langle 0,y\rangle}\}=( \min\{\pi_{1}(g),\pi_{1}(h)\})_{\mu, y}$. Now,
+		given $h_{1},h_{2}\in Q^{\Pi}_{!}(X',X)$, we have that 
+	$\pi_{1}(f)\circ \min\{h_{1},h_{2}\}= (\pi_{1}\circ f)\circ \min\{h_{1},h_{2}\}= \pi_{1}\circ (f\circ \min\{h_{1},h_{2}\})= \pi_{1}\circ \min\{f\circ h_{1},f\circ h_{2}\}= \pi_{1}(\min\{f\circ h_{1},f\circ h_{2}\})= \min\{\pi_{1}(f\circ h_{1}), \pi_{1}(f\circ h_{2})\}= \min\{\pi_{1}(f)\circ h_{1},\pi_{1}(f)\circ h_{2})$.
+	
+	\item  It is clear then that $\Lambda(\infty)=\infty$, and moreover
+	$$
+	\Lambda (\min\{f,g\})_{\mu,\nu,y}= \min\{ f,g\}_{\mu\oplus \nu,y}= \min\{f_{\mu\oplus\nu,y},g_{\mu\oplus\nu,y}\}= \min(\Lambda(f),\Lambda(g))_{\mu,\nu,y}
+	$$
+	
+	\end{enumerate}
+
+
+\end{proof}
+
+
+
+For any morphism $f\in Q^{\Pi}_{!}(X,Y)$, let us define a morphism $\mathsf D(f)\in Q^{\Pi}_{!}(X+X,Y)$, i.e.~$\mathsf D(f)\in Q^{\C M_{\mathsf f}(X+X),Y}$, by
+$$
+\mathsf D(f)_{\mu,y}=
+\begin{cases}
+f_{\mu'+x,y}
+& \text{ if }\mu=[x]\oplus \mu'
+\\
+\infty & \text{ otherwise}
+\end{cases}
+$$
+
+
+
+\begin{proposition}
+The category $Q^{\Pi}_{!}$, endowed with the operator $\mathsf D$, is a cartesian closed differential category.
+\end{proposition}
+\begin{proof}
+We must check axioms (1)-(7) of cartesian differential categories plus axiom (D-curry).
+\begin{description}
+\item[(1)] $\mathsf D(\min\{f,g\})=\min \{\mathsf D(f),\mathsf D(g)\}$ and $\mathsf D(\infty)=\infty$: 
+while the latter is obvious, for the former we have 
+$\mathsf D(\min\{f,g\})_{[x]\oplus\nu,y}= \min\{f,g\}_{\nu+x,y}= \min\{f_{\nu+x,y},g_{\nu+x,y}\}=\min\{\mathsf D(f),\mathsf D(g)\}_{[x]\oplus \nu,y}$, and if $\mu\neq [x]\oplus \nu$, 
+$\mathsf D(\min\{f,g\})_{\mu,y}= \infty= \min\{\infty, \infty\}=\min\{ \mathsf D(f),\mathsf D(g)\}_{\mu,y}$. 
+\item[(2)]
+$\mathsf D(f)\circ \langle \min\{h,k\},v\rangle= \min\{ \mathsf D(f)\circ \langle h,v\rangle, \mathsf D(f)\circ \langle k,v\rangle\}$, and $\mathsf D(f)\circ \langle \infty,v\rangle=\infty$: we can compute
+	\begin{align*}
+	(\mathsf D(f)\circ \langle \min\{h,k\},v\rangle)_{\mu,y}&=
+	\inf\Big\{ 
+	\sum_{i=1}^{n}\min\{h,k\}_{\rho_{i},w_{i}}+
+	\sum_{j=1}^{m}v_{\nu_{j},z_{j}}
+	+
+	f_{[z_{1},\dots, z_{m}]+w,y}\\
+&	\qquad\qquad\mid
+	\mu=\sum_{i=1}^{n}\rho_{i}+\sum_{j=1}^{m}\nu_{j},	[w]=[w_{1},\dots, w_{n}]
+	\Big\}\\
+	& 
+=	\inf\Big\{ 
+	\min\{h,k\}_{\rho,w}+
+	\sum_{j=1}^{m}v_{\nu_{j},z_{j}}
+	+
+	f_{[z_{1},\dots, z_{m}]+w,y}\\
+&	\qquad\qquad\mid
+	\mu=\rho+\sum_{j=1}^{m}\nu_{j}
+	\Big\}\\
+	&=	\min\Big\{\inf\big\{ 
+	h_{\rho,w}+
+	\sum_{j=1}^{m}v_{\nu_{j},z_{j}}
+	+
+	f_{[z_{1},\dots, z_{m}]+w,y}	\mid
+	\mu=\rho+\sum_{j=1}^{m}\nu_{j}\big\}, \\
+	& \qquad\qquad \inf\big\{ 
+	k_{\rho,w}+
+	\sum_{j=1}^{m}v_{\nu_{j},z_{j}}
+	+
+	f_{[z_{1},\dots, z_{m}]+w,y}	\mid
+	\mu=\rho+\sum_{j=1}^{m}\nu_{j}\big\}\Big\}\\
+	& = \min\Big\{(\mathsf D(f)\circ \langle h,v\rangle)_{\mu,y}, (\mathsf D(f)\circ \langle k,v\rangle)_{\mu,y}\Big\}\\
+		& = \Big(\min\big\{\mathsf D(f)\circ \langle h,v\rangle, \mathsf D(f)\circ \langle k,v\rangle\big\}\Big )_{\mu,y}
+	\end{align*}
+	where, in the first equation, the condition $[w_{1},\dots, w_{n}]=[w]$ (i.e.~$n=1$) is forced by the fact that, otherwise, the application of $\mathsf D(f)$ would give $\infty$. Moreover, we have
+\begin{align*}
+(\mathsf D(f) \circ \langle \infty, v\rangle)_{\mu,y}&=\inf\Big\{ 
+	\infty+
+	\sum_{j=1}^{m}v_{\nu_{j},z_{j}}
+	+
+	f_{[z_{1},\dots, z_{m}]+w,y}\mid
+	\mu=\rho+\sum_{j=1}^{m}\nu_{j}
+	\Big\} = \infty
+\end{align*}
+
+\item[(3)] $\mathsf D(\mathrm{id})=\pi_{1}$, $\mathsf D(\pi_{i})=\pi_{i}\circ \pi_{1}$: 
+recall that $\mathrm{id}_{[x],x}=0$ and $\mathrm{id}_{\mu,x}=\infty$, if $\mu\neq [x]$. 
+Moreover $(\pi_{1})_{\mu,x}=0$ if $\mu=[x]\oplus \emptyset$, and is $\infty$ otherwise, and $\pi_{2}$ is defined similarly.
+Hence 
+$\mathsf D(\mathrm{id})_{[x]\oplus\nu,y}=\mathrm{id}_{\nu+x,y}$ is $0$ precisely when $x=y$ and $\nu=\emptyset$, and in all other cases is $\infty$. This shows that $\mathsf D(\mathrm{id})=\pi_{1}$. 
+
+$\mathsf D(\pi_{1})\in Q^{\C M_{\mathsf f}((X+Y)+(X+Y))\times Y}$ is given by
+$\mathsf D(\pi_{1})
+_{
+[x\oplus \emptyset] \oplus (\mu\oplus\nu),y
+}= (\pi_{1})_{(\mu\oplus\nu)+\langle 0,x\rangle ,y }
+$, 
+which is 0 precisely when $(\mu\oplus\nu)+\langle 0,x\rangle= y\oplus\emptyset$, i.e.~when 
+$x=y$ and $\mu=\nu=\emptyset$; in all other cases one can check that $\mathsf D(\pi_{1})_{\rho,y}=\infty$, so we conclude $\mathsf D(\pi_{1})=\pi_{1}\circ \pi_{1}$.
+One can argue similarly for $\pi_{2}$.
+
+\item[(4)] $\mathsf D(\langle f,g\rangle)=\langle \mathsf D(f),\mathsf D(g)\rangle$: 
+we have
+\begin{align*}
+\mathsf D(\langle f,g\rangle)_{[x]\oplus\mu, \langle 0,y\rangle}& = 
+(\langle f,g\rangle)_{\mu+x,\langle 0,y\rangle}= f_{\mu+x,y}= \mathsf D(f)_{[x]\oplus \mu,y}\\
+\mathsf D(\langle f,g\rangle)_{[x]\oplus\mu, \langle 1,y\rangle}& = 
+(\langle f,g\rangle)_{\mu+x,\langle 1,y\rangle}= g_{\mu+x,y}= \mathsf D(g)_{[x]\oplus \mu,y}
+\end{align*}
+from which we deduce
+$\mathsf D(\langle f,g\rangle)_{[x]\oplus\mu, \langle i,y\rangle}=\langle \mathsf D(f),\mathsf D(g)\rangle_{[x]\oplus\mu, \langle i,y\rangle}$ 
+ by the definition of $\langle \_,\_\rangle$.
+ If $\rho\neq [x]\oplus\mu$, then
+ $\mathsf D(\langle f,g\rangle)_{\rho, \langle i,y\rangle}=\infty=\langle \infty,\infty\rangle=\langle \mathsf D(f),\mathsf D(g)\rangle_{\rho, \langle i,y\rangle}$
+ (where the equation $\infty=\langle \infty,\infty\rangle$ is to be read as an equality between the functions $ X+Y\longrightarrow Q$
+ defined by $\langle i,y\rangle \mapsto \infty$ and by
+ $\begin{matrix}
+ \langle 0,x\rangle\mapsto\infty\\
+  \langle 1,y\rangle\mapsto\infty
+ \end{matrix}$, respectively).
+ 
+\item[(5)] $\mathsf D(f\circ g)=\mathsf D(f)\circ \langle \mathsf D(g), g\circ \pi_{2}\rangle$: we can compute
+\begin{align*}
+\Big( \mathsf D(f)\circ \langle \mathsf D(g), g\circ \pi_{2}\rangle\Big)_{[x]\oplus\mu,z}
+&=
+\inf \Big\{
+\mathsf D(g)_{[x]\oplus\mu',w}+
+\sum_{i}g_{\mu_{i},w_{i}}+
+\mathsf D(f)_{[w]\oplus [w_{1},\dots, w_{n}],z}\\
+&\qquad\qquad \mid
+w,w_{i}\in Y, 
+ \mu=\mu'+ \sum_{i}\mu_{i},
+\Big\}\\
+&=
+\inf \Big\{
+g_{\mu'+x,w}+
+\sum_{i}g_{\mu_{i},w_{i}}+
+f_{ [w_{1},\dots, w_{n}]+w,z}\\
+&\qquad\qquad \mid
+w,w_{i}\in Y, 
+ \mu= \mu'+\sum_{i}\mu_{i}
+\Big\}
+\\
+&=\inf\Big\{
+\sum_{i} g_{\mu_{i},w_{i}} + f_{[w_{1},\dots, w_{n}],z}
+\mid
+w_{1},\dots, w_{n}\in Y, 
+\mu+x=\sum_{i}\mu_{i}
+\Big\}
+\\
+&= (f\circ g)_{\mu+x,y} =\mathsf D(f\circ g)_{[x]\oplus\mu,z}
+\end{align*}
+if $\rho\neq [x]\oplus \mu$, then $\mathsf D(f\circ g)_{\rho,z}=\infty$ and 
+from the first equation above it follows that 
+also $( \mathsf D(f)\circ \langle \mathsf D(g), g\circ \pi_{2}\rangle)_{\rho,z}=\infty$.
+
+
+
+\item[(6)] $\mathsf D(\mathsf D(f))\circ \langle \langle g,\infty\rangle,\langle h,k\rangle\rangle=\mathsf D(f)\circ  \langle g,k\rangle$:
+observe that 
+\begin{align*}
+\Big(\mathsf D(\mathsf D(f))\Big)_{[\langle 1,x'\rangle]\oplus([x]\oplus \mu),z}&=
+\big(\mathsf D(f) \big)_{[x]\oplus (\mu+x'),z }= f_{\mu+x'+x,z}\\
+\Big(\mathsf D(\mathsf D(f))\Big)_{[\langle 0,x\rangle]\oplus (\emptyset \oplus \mu),z}&=
+\big(\mathsf D(f) \big)_{[x]\oplus \mu,z }= f_{\mu+x,z}
+\end{align*}
+and in all other cases $(\mathsf D(\mathsf D(f)))_{\mu,z}=\infty$.
+Using this fact we can compute:
+
+
+{
+\small
+\begin{align*}
+\Big(\mathsf D(\mathsf D(f))\circ \langle \langle g,\infty\rangle,\langle h,k\rangle\rangle\Big)_{\mu,z}&=
+\min\left\{
+\begin{matrix}
+\inf\left\{
+\begin{matrix}
+\infty_{\rho_{1},x'} + h_{\rho_{2},x}+ \sum_{i}k_{\mu_{i},w_{i}}
++
+f_{[w_{1},\dots, w_{n}]+x'+x,z}\\
+\qquad \mid 
+x,x',w_{i}\in Y, 
+\mu=\rho_{1}+\rho_{2}+\sum_{i}\mu_{i}
+\end{matrix}
+\right\},\\
+\inf\left\{
+\begin{matrix}
+g_{\rho,x}+ \sum_{i}k_{\mu_{i},w_{i}}
++f_{[w_{1},\dots, w_{n}]+x,z}\\
+\qquad \mid 
+x,w_{i}\in Y, 
+\mu=\rho+\sum_{i}\mu_{i}
+\end{matrix}
+\right\}
+\end{matrix}
+\right\}\\
+&=
+\inf\left\{
+g_{\rho,x}+ \sum_{i}k_{\mu_{i},w_{i}}
++f_{[w_{1},\dots, w_{n}]+x,z}
+\mid 
+x,w_{i}\in Y, 
+\mu=\rho+\sum_{i}\mu_{i}
+\right\}\\
+&= \Big(\mathsf D(f)\circ \langle g,k\rangle\Big)_{\mu,z}
+\end{align*}
+}
+
+\item[(7)] $\mathsf D(\mathsf D(f))\circ \langle\langle \infty,h\rangle, \langle g,k\rangle\rangle= \mathsf D(\mathsf D(f))\circ \langle \langle \infty,g\rangle, \langle h,k\rangle\rangle$:
+by computations similar to the case above we obtain
+
+{
+\small
+\begin{align*}
+\Big(\mathsf D(\mathsf D(f))\circ \langle \langle & \infty,h\rangle,\langle g,k\rangle\rangle\Big)_{\mu,z}\\
+%&=
+%\inf\left\{
+%\begin{matrix}
+%h_{\mu',w} + g_{\mu'',x}+ \sum_{i}k_{\mu_{i},w_{i}}
+%+
+%f_{[w,w_{1},\dots, w_{n}]+x,z}\\
+%\infty+ \sum_{i}k_{\mu_{i},w_{i}}
+%+f_{[w,w_{1},\dots, w_{n}],z}
+%\end{matrix}
+%\mid 
+%w,w_{i}\in Y, 
+%\mu=\mu'+\mu''+\sum_{i}\mu_{i}
+%\right\}\\
+&=
+\inf\left\{
+h_{\rho',x'} + g_{\rho,x}+ \sum_{i}k_{\mu_{i},w_{i}}
++
+f_{[w_{1},\dots, w_{n}]+x'+x,z}
+\mid 
+x,x',w_{i}\in Y, 
+\mu=\rho'+\rho+\sum_{i}\mu_{i}
+\right\}\\
+&=
+\inf\left\{
+g_{\rho,x} + h_{\rho',x'}+ \sum_{i}k_{\mu_{i},w_{i}}
++
+f_{[w_{1},\dots, w_{n}]+x+x',z}
+\mid 
+x,x',w_{i}\in Y, 
+\mu=\rho+\rho'+\sum_{i}\mu_{i}
+\right\}\\
+&=
+\Big(\mathsf D(\mathsf D(f))\circ \langle \langle\infty,g\rangle,\langle h,k\rangle\rangle\Big)_{\mu,z}
+\end{align*}
+}
+
+\item[(D-curry)] $\mathsf D(\Lambda(f))=
+\Lambda(\mathsf D(f)\circ \langle \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle)$:
+by observing that both morphisms are 
+in $Q^{\Pi}_{!}(X+X, Z^{Y})= Q^{\C M_{\mathsf f}(X+X)\times \C M_{\mathsf f}(Y)\times Z}$, 
+and that $ \langle \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle
+\in Q^{\Pi}_{!}( (X+X)+Y  , (X+Y)+(X+Y) )$,
+we can compute:
+
+{\small
+\begin{align*}
+\big(\Lambda(\mathsf D(f)\circ \langle&  \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle)\big)_{[x]\oplus\mu,\nu,z}\\
+&=
+\big(\mathsf D(f)\circ \langle \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle\big)_{([x]\oplus\mu)\oplus\nu, z}\\
+&=
+\inf\left\{
+( \pi_{1})_{[x]\oplus \emptyset,x}+
+\sum_{i}(\pi_{2})_{\emptyset\oplus [w_{i}],w_{i}}
++
+\sum_{j}(\mathrm{id})_{[z_{j}],z_{j}}
+ + \mathsf D(f)_{([x]\oplus \emptyset)\oplus(\mu\oplus \nu)}
+\mid
+\begin{matrix}
+\mu=[w_{1},\dots, w_{n}],\\
+\nu=[z_{1},\dots, z_{m}]
+\end{matrix}
+\right\}\\
+&=
+\inf\left\{
+0+0
++
+0 + \mathsf D(f)_{([x]\oplus \emptyset)\oplus(\mu\oplus \nu)}
+\mid
+\begin{matrix}
+\mu=[w_{1},\dots, w_{n}],\\
+\nu=[z_{1},\dots, z_{m}]
+\end{matrix}
+\right\}\\
+&=
+\big(\mathsf D(f)\big)_{ ([x]\oplus\emptyset)\oplus(\mu\oplus\nu),z}\\
+&=
+f_{(\mu+x)\oplus\nu, z}\\
+& =
+\big(\Lambda(f)\big)_{\mu+x,\nu,z}=\big(\mathsf D(\Lambda(f))\big)_{[x]\oplus\mu, \nu,z}
+\end{align*}
+}
+
+If $\rho\neq [x]\oplus\mu$, then $(\mathsf D(\Lambda(f)))_{\rho,\nu,z}=\infty$ and $
+(\Lambda(\mathsf D(f)\circ \langle  \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle))_{\rho,\nu,z}=
+(\mathsf D(f)\circ \langle \pi_{1}\times \infty, \pi_{2}\times \mathrm{id}\rangle)_{\rho\oplus\nu, z}
+$, and one can check that also this is $\infty$, using the second equation above and the fact that $(\pi_{1})_{\rho\oplus\emptyset,x}=\infty$.\end{description}
+
+
+\end{proof}
+
+
+
+\paragraph{Taylor Expansion }
+
+
+To check the validity of Taylor expansion we must further check the following equation, given $f\in Q^{\Pi}_{!}(C, B^{A})$ and $g\in Q^{\Pi}_{!}(C,A)$:
+$$
+\mathsf{ev}\circ \langle f,g\rangle= \inf_{n\in \BB N}
+(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{n\text{ times}})\circ \langle \mathrm{id}, \infty\rangle
+$$
+where:
+\begin{enumerate}
+\item $\mathsf{ev}\in Q^{\Pi}_{!}(B^{A}+A, B)$ is the canonical \emph{evaluation} morphism;
+
+\item $\Lambda^{-}(\_):= \mathsf{ev}\circ (\_\times \mathrm{id})$ is the \emph{uncurry} operator;
+
+\item given $f\in Q^{\Pi}_{!}(C+A,B)$ and $g\in Q^{\Pi}_{!}(C,A)$, 
+$f\star g\in Q^{\Pi}_{!}(C+A,B)$ is the morphism obtained by differentiating $f$ in its second component and applying $g$ in that component, i.e.~
+$$
+f\star g =  \mathsf{D}(f)\circ \langle \langle \infty, g\circ \pi_{1}\rangle, \mathrm{id}_{C+A}\rangle.
+$$ 
+
+\end{enumerate}
+
+
+
+Let us first compute the three morphisms $\mathsf{ev}, \Lambda^{-}$ and $\star$ explicitly:
+\begin{enumerate}
+
+\item $\mathsf{ev}\in Q^{ \C M_{\mathsf f}(  ( \C M_{\mathsf f}(A)\times B)       +  A    ) \times B  }$ is given by
+$$\mathsf{ev}_{\mu,y}=
+ \begin{cases}
+ 0 & \text{ if } \mu=[ \langle\rho, y\rangle]  \oplus \rho \\
+ \infty & \text{ otherwise}
+ \end{cases}
+ $$
+and observe that, given $f\in Q^{\Pi}_{!}(C, B^{A})$ and $g\in Q^{\Pi}_{!}(C,A)$, 
+$$
+\big(\mathsf{ev}\circ \langle f,g\rangle \big)_{\chi, y}= 
+\inf\Big \{ 
+\sum_{i=1}^{m}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle [x_{1},\dots, x_{m}],y\rangle}
+\mid 
+x_{1},\dots, x_{m}\in A,
+\chi= \chi'+\sum_{i=1}^{m}\chi_{i}, 
+\Big \}
+$$
+
+
+
+\item given $g\in Q^{\Pi}_{!}(C, B^{A})$, 
+$\Lambda^{-}(g)\in Q^{\Pi}_{!}(C+A, B)$ is given by 
+$$
+\big(\Lambda^{-}(g)\big)_{\rho\oplus\mu,y}=g_{\rho, \langle \mu,y\rangle}
+$$
+
+
+\item $f\star g$ is given by 
+$$
+(f\star g)_{\rho\oplus\mu,y}=
+\inf\Big\{
+g_{\rho',x}+
+f_{\rho''\oplus(\mu+x)}
+\mid
+x\in A,
+\rho= \rho'+\rho''
+\Big\}
+$$
+
+\end{enumerate}
+
+
+Given the definition of $\mathsf{ev}\circ \langle f,g\rangle$, to check the Taylor equation it is enough to check that, for all $N\in \BB N$, 
+$$
+\left((( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N\text{ times}})\circ \langle \mathrm{id}, \infty\rangle\right)_{\chi,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+
+Let us show, by induction on $N$, the following equality, from which the desired equality easily descends:
+$$
+\big(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N\text{ times}}\big)_{\chi\oplus\mu,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+\begin{itemize}
+
+\item if $N=0$, the right-hand term reduces to 
+$f_{\chi, \langle \mu, y\rangle}=(\Lambda^{-}(f))_{\chi\oplus\mu,y}$;
+
+\item otherwise, let $F=(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N-1\text{ times}})$, so that by I.H.~we have
+$$
+F_{\chi\oplus\mu,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N-1}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N-1}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+Then we have
+{\small
+\begin{align*}
+\big( F\star g\big)_{\chi\oplus\mu,y}
+&=
+\inf \left \{
+g_{\chi',x}+F_{\chi''\oplus(\mu+x)}
+\mid
+x\in A, \chi=\chi'+\chi''
+\right\}\\
+&=
+\inf\left \{ 
+g_{\chi',x}+
+\inf\left\{
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi'', \langle\mu+ [x_{1},\dots, x_{N-1}]+x,y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N-1}\in A,\\
+\chi^{*}= \chi''+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\right\}
+\ 
+\Big\vert \ 
+\begin{matrix}
+x\in A,\\
+\chi=\chi'+\chi^{*}
+\end{matrix}
+\right \}\\
+&=
+\inf\Big \{ 
+g_{\chi',x}+
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi'', \langle\mu+ [x_{1},\dots, x_{N-1}]+x,y\rangle}
+\mid 
+\begin{matrix}
+x,x_{1},\dots, x_{N-1}\in A,\\
+\chi= \chi'+\chi''+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\Big \}\\
+&=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}.
+\end{align*}
+}
+\end{itemize}
+
