@@ -158,12 +158,11 @@ So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and o
 $f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
 % \end{enumerate}
 \end{theorem}
-\begin{proof}
-Call $\leq$ the (well-founded) pointwise order on $\N^k$.
-Now \mbox{$\C F_\epsilon:=\set{n\in\N \mid
+\begin{proof}[Proof sketch]
+\mbox{$\C F_\epsilon:=\set{n\in\N \mid
 \widehat f(n)<\infty \textit{ and } 
-\widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$}
-does the job.
+\widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$}, where $\leq$ is the pointwise order on $\N^k$.
+The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 \end{proof}
 
 
@@ -229,7 +228,7 @@ This result shows that, in analogy with that happens in usual metric semantics, 
 % \| \B x-\B y\|_{\infty}$.
 %\end{proof}
 
-Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
+%Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
 The following proposition provides a useful characterization of the functional metrics in $\LREL$, relying on 
 the bijection between $\HOM{\LREL}{X}{Y}$ and set of tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$.
 \begin{proposition}
