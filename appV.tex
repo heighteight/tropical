@@ -1,9 +1,9 @@
 \subsubsection{Concavity}
 
 
-A function $f:Q^{X}\to Q^{Y}$ is \emph{concave} if for all $\alpha\in [0,1]$, $\B x, \B y\in Q^{X}$ and $b\in Y$ 
+A function $f:Q^{X}\to Q^{Y}$ is \emph{concave} if for all $\alpha\in [0,1]$, $ x ,  y  \in Q^{X}$ and $b\in Y$ 
 $$
-f(\alpha\cdot \B x+(1-\alpha)\cdot \B y)_{b} \geq \alpha f(\B x)_{b} + (1-\alpha)f(\B y)_{b}
+f(\alpha\cdot  x +(1-\alpha)\cdot  y  )_{b} \geq \alpha f( x )_{b} + (1-\alpha)f( y  )_{b}
 $$
 
 
@@ -12,64 +12,66 @@ $$
 All tropical functions $f: Q^{X}\to Q^{Y}$ are concave.
 \end{proposition}
 \begin{proof}
-Let us first show that all functions of the form $f(\B x)_{b}= \mu \B x+ c$ are concave:
-we have $f(\alpha\B x+ (1-\alpha)\B y)_{b}= \mu(\alpha\B x)+(1-\alpha)\B y)+c=
- \mu(\alpha\B x)+(1-\alpha)\B y)+\alpha c+(1-\alpha)c=
- \alpha(\mu \B x + c)+(1-\alpha)(\mu \B y+c)=\alpha f(\B x)_{b}+(1-\alpha) f(\B x)_{b}$.
+Let us first show that all functions of the form $f( x )_{b}= \mu  x + c$ are concave:
+we have $f(\alpha x + (1-\alpha) y  )_{b}= \mu(\alpha x )+(1-\alpha) y  )+c=
+ \mu(\alpha x )+(1-\alpha) y  )+\alpha c+(1-\alpha)c=
+ \alpha(\mu  x  + c)+(1-\alpha)(\mu  y  +c)=\alpha f( x )_{b}+(1-\alpha) f( x )_{b}$.
 
 
 To conclude, let us show that if $(f_{i})_{i\in I}$ is a family of concave functions from $Q^{X}$ to $Q^{Y}$, the function $f=\inf_{i\in I}f_{i}$ is also concave: we have
-$f(\alpha\B x +(1-\alpha)\B y)_{b}=
-\inf_{i\in I}f_{i}(\alpha\B x+(1-\alpha)\B y)_{b} \geq 
-\inf_{i\in I}\alpha f_{i}(\B x)_{b}+(1-\alpha)f_{i}(\B y)_{b}
+$f(\alpha x  +(1-\alpha) y  )_{b}=
+\inf_{i\in I}f_{i}(\alpha x +(1-\alpha) y  )_{b} \geq 
+\inf_{i\in I}\alpha f_{i}( x )_{b}+(1-\alpha)f_{i}( y  )_{b}
 \geq 
-\inf_{i\in I}\alpha f_{i}(\B x)_{b} + \inf_{j\in I}(1-\alpha)f_{j}(\B y)_{b}
+\inf_{i\in I}\alpha f_{i}( x )_{b} + \inf_{j\in I}(1-\alpha)f_{j}( y  )_{b}
 =
-\alpha \cdot (\inf_{i\in I}f_{i}(\B x)_{b})+ (1-\alpha)\cdot( \inf_{j\in I}f_{j}(\B y)_{b})=
-\alpha  f(\B x)_{b}+(1-\alpha)f(\B y)_{b}$, where we used the fact that given families $a_{i},b_{i}$ of reals,
+\alpha \cdot (\inf_{i\in I}f_{i}( x )_{b})+ (1-\alpha)\cdot( \inf_{j\in I}f_{j}( y  )_{b})=
+\alpha  f( x )_{b}+(1-\alpha)f( y  )_{b}$, where we used the fact that given families $a_{i},b_{i}$ of reals,
 $\inf_{i}a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{j}b_{j}$.
 This follows from the fact that for all $i\in I$, $a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{i}b_{i}$.
 \end{proof}
 
-
-
-Concavity is a useful property, as it leads to establish the following:
-\begin{proposition}
-For any tropical function $f: Q^{X}\to Q^{Y}$, 
-\begin{enumerate}
-\item $ \alpha f(\B x)_{b}\leq  f(\alpha\B x)_{b}$;
-\item $f(\B x+\B y)_{b}\leq f(\B x)_{b}+f(\B y)_{b}$;
-\item $f(\B x+\B y)_{b} \leq f(\B x)_{b} + \phi_{\mu,b}(\B y)$ 
-for all $\mu\in \C M_{\mathrm{fin}}(X)$.
-
-\item if $\B x < \B y < \B z$, then 
-$$
-\frac{f(\B y)-f(\B x)}{|\B y-\B x|} \leq \frac{f(\B z)-f(\B x)}{|\B z-\B x|}
-\leq \frac{f(\B z)-f(\B y)}{|\B z-\B y|}
-$$
-
-\item the function $R_{b}(\B x, \B y)= \frac{f(\B x)_{b}-f(\B y)_{b}}{| \B x- \B y|}$ is monotonically non-decreasing in $\B x$ (for fixed $\B y$) and in $\B y$ (for fixed $\B x$).
-
-\end{enumerate}
-\end{proposition}
-\begin{proof}
-Since $f$ is concave, we have that for all $\B z$, 
-$f(\alpha\cdot\B z)=f(\alpha\cdot\B z+(1-\alpha)\cdot 0)\geq 
-\alpha f(\B z)+(1-\alpha)f(0)\geq \alpha f(\B z)$. 
-
-For the second one, 
-if $f(\B x)=\mu \B x+c$, then $f(\B x+\B y)= \mu \B x+ \mu \B y + c  \leq
-\mu \B x + \mu \B y + 2c = f(\B x)+f(\B y)$.
-Moreover, if $(f_{i})_{i\in I}$ is a family of functions such that $f_{i}(\B x+\B y)\leq f_{i}(\B x)+f_{i}(\B y)$, then 
-$f=\inf _{i\in I}f_{i}$ also satisfies this property: 
-one has $f(\B x+\B y)=\inf_{i\in I}f_{i}(\B x+\B y) \geq \inf_{i} f_{i}(\B x)+f_{i}(\B y) \geq \inf_{i}f_{i}(\B x) + \inf_{i}f_{i}(\B y)=f(\B x)+f(\B y)$.
-%Now we can compute
-%\begin{align*}
-%f(\B x+\B y)_{b}& =
 %
-%\end{align*}
+%
+%Concavity is a useful property, as it leads to establish the following:
+%\begin{proposition}
+%For any tropical function $f: Q^{X}\to Q^{Y}$, 
+%\begin{enumerate}
+%\item $ \alpha f( x )_{b}\leq  f(\alpha x )_{b}$;
+%\item $f( x + y  )_{b}\leq f( x )_{b}+f( y  )_{b}$;
+%\item $f( x + y  )_{b} \leq f( x )_{b} + \phi_{\mu,b}( y  )$ 
+%for all $\mu\in \C M_{\mathrm{fin}}(X)$.
+%
+%\item if $ x  <  y   <  z  $, then 
+%$$
+%\frac{f( y  )-f( x )}{| y  - x |} \leq \frac{f( z  )-f( x )}{| z  - x |}
+%\leq \frac{f( z  )-f( y  )}{| z  - y  |}
+%$$
+%
+%\item the function $R_{b}( x ,  y  )= \frac{f( x )_{b}-f( y  )_{b}}{|  x -  y  |}$ is monotonically non-decreasing in $ x $ (for fixed $ y  $) and in $ y  $ (for fixed $ x $).
+%
+%\end{enumerate}
+%\end{proposition}
+%\begin{proof}
+%Since $f$ is concave, we have that for all $ z  $, 
+%$f(\alpha\cdot z  )=f(\alpha\cdot z  +(1-\alpha)\cdot 0)\geq 
+%\alpha f( z  )+(1-\alpha)f(0)\geq \alpha f( z  )$. 
+%
+%For the second one, 
+%if $f( x )=\mu  x +c$, then $f( x + y  )= \mu  x + \mu  y   + c  \leq
+%\mu  x  + \mu  y   + 2c = f( x )+f( y  )$.
+%Moreover, if $(f_{i})_{i\in I}$ is a family of functions such that $f_{i}( x + y  )\leq f_{i}( x )+f_{i}( y  )$, then 
+%$f=\inf _{i\in I}f_{i}$ also satisfies this property: 
+%one has $f( x + y  )=\inf_{i\in I}f_{i}( x + y  ) \geq \inf_{i} f_{i}( x )+f_{i}( y  ) \geq \inf_{i}f_{i}( x ) + \inf_{i}f_{i}( y  )=f( x )+f( y  )$.
+%%Now we can compute
+%%\begin{align*}
+%%f( x + y  )_{b}& =
+%%
+%%\end{align*}
+%
+%The third one follows immediately from the second one, since $f( y  )_{b}\leq \phi_{\mu,b}( y  )$ for all $\mu\in \C M_{\mathrm{fin}}(X)$.
+%
 
-The third one follows immediately from the second one, since $f(\B y)_{b}\leq \phi_{\mu,b}(\B y)$ for all $\mu\in \C M_{\mathrm{fin}}(X)$.
 
 
 
@@ -81,11 +83,9 @@ The third one follows immediately from the second one, since $f(\B y)_{b}\leq \p
 
 
 
+%\end{proof}
 
-
-\end{proof}
-
-\newpage
+%\newpage
 
 \subsubsection{Proof of Theorem~\ref{theorem:fepsilon}}
 
@@ -93,18 +93,18 @@ We give below the complete statement of Theorem \ref{theorem:fepsilon} together 
 
 First, let us set the following:
 \begin{definition}
- Let $\preceq$ be the pointwise order on $\N^k$ (i.e.\ for all $\mathbf m,\mathbf n\in \N^{K}$, $\mathbf m\preceq \mathbf n$ iff $m_{i}\leq n_{i}$ for all $1\leq i\leq K$).
- Of course $\mathbf m\prec \mathbf n$ holds exactly when $\mathbf m\preceq \mathbf n$ and $m_{i}<n_{i}$ for at least one $1\leq i\leq K$.
- Finally, we set $\mathbf m\prec_{1}\mathbf n$  iff
-$\mathbf m\prec \mathbf n$ and $\sum_{i=1}^{K}n_{i}-m_{i}=1$ (i.e.\ they differ on exactly one coordinate).
+ Let $\preceq$ be the pointwise order on $\N^k$ (i.e.\ for all $ m  , n  \in \N^{K}$, $ m  \preceq  n  $ iff $m_{i}\leq n_{i}$ for all $1\leq i\leq K$).
+ Of course $ m  \prec  n  $ holds exactly when $ m  \preceq  n  $ and $m_{i}<n_{i}$ for at least one $1\leq i\leq K$.
+ Finally, we set $ m  \prec_{1} n  $  iff
+$ m  \prec  n  $ and $\sum_{i=1}^{K}n_{i}-m_{i}=1$ (i.e.\ they differ on exactly one coordinate).
 \end{definition}
 
 We will exploit the following:
 
 \begin{remark}\label{rmk:AC}
-\text{If $U\subseteq \N^{K}$ is infinite, then $U$ contains an infinite ascending chain $\mathbf m_{0}\prec \mathbf m_{1} \prec \mathbf m_{2} \prec \dots$.}.
+\text{If $U\subseteq \N^{K}$ is infinite, then $U$ contains an infinite ascending chain $ m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$.}.
 
-This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph $(U,\prec_{1})$, indeed a $K$-branching tree; if there is no infinite ascending chain $ \mathbf m_{0}\prec \mathbf m_{1} \prec \mathbf m_{2} \prec \dots$, then in particular there is no infinite ascending chain $ \mathbf m_{0}\prec_{1} \mathbf m_{1} \prec_{1} \mathbf m_{2} \prec_{1} \dots$ so the tree $U$ has no infinite ascending chain; then by KL it is finite, contradicting the assumption. 
+This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph $(U,\prec_{1})$, indeed a $K$-branching tree; if there is no infinite ascending chain $  m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$, then in particular there is no infinite ascending chain $  m  _{0}\prec_{1}  m  _{1} \prec_{1}  m  _{2} \prec_{1} \dots$ so the tree $U$ has no infinite ascending chain; then by KL it is finite, contradicting the assumption. 
 \end{remark}
 
 \begin{theorem}[Theorem \ref{theorem:fepsilon}]
@@ -112,69 +112,69 @@ Let $f:\overline{\R}_{\geq 0}^{\{1,\dots, K\}} \to \overline{\R}_{\geq 0}$ tropi
 Then, for all $0<\epsilon<+\infty$, there is $\mathcal{F}_\epsilon\subseteq\N^{K}$ s.t.\
 \begin{enumerate}
  \item $\mathcal{F}_\epsilon$ is finite
- \item If $\mathcal{F}_\epsilon= \emptyset$ then $f(\mathbf x) = +\infty$ for all $\mathbf x\in \overline{\R}_{\geq 0}^{\{1,\dots, K\}}$
- \item If $f(\mathbf x_0) = +\infty$ for some $\mathbf x_0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$
+ \item If $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \overline{\R}_{\geq 0}^{\{1,\dots, K\}}$
+ \item If $f( x _0) = +\infty$ for some $ x _0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$
  \item The restriction of $f$ to $[\epsilon,+\infty]^{K}$ coincides with the  \emph{tropical polynomial}:
       \[
-        P_\epsilon(\mathbf x)= \min\limits_{\mathbf n\in\mathcal{F}_\epsilon} \set{\hat f (\mathbf n) + \mathbf n\mathbf x}.
+        P_\epsilon( x )= \min\limits_{ n  \in\mathcal{F}_\epsilon} \set{\hat f ( n  ) +  n   x }.
       \]
-      where $\mathbf n\mathbf x= \sum_{i=1}^{K}n_{i}x_{i}$.
+      where $ n   x = \sum_{i=1}^{K}n_{i}x_{i}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 We let $\mathcal F_\epsilon$ to be the complementary in $\N$ of the set:
 \[
- \set{\mathbf n\in\N^{K} \mid \textit{either } \hat f (\mathbf n)=+\infty \textit{ or there is } \mathbf m\prec \mathbf n\textit{ s.t.\ } \hat f(\mathbf m)\leq\hat f(\mathbf n)+\epsilon}.
+ \set{ n  \in\N^{K} \mid \textit{either } \hat f ( n  )=+\infty \textit{ or there is }  m  \prec  n  \textit{ s.t.\ } \hat f( m  )\leq\hat f( n  )+\epsilon}.
 \]
-In other words, $\mathbf n\in\mathcal F_\epsilon$ iff $\hat f(\mathbf n)<+\infty$ and for all $\mathbf m\prec \mathbf n$, one has $\hat f(\mathbf m)>\hat f(\mathbf n)+\epsilon$.
+In other words, $ n  \in\mathcal F_\epsilon$ iff $\hat f( n  )<+\infty$ and for all $ m  \prec  n  $, one has $\hat f( m  )>\hat f( n  )+\epsilon$.
 
 1).
 Suppose that $\mathcal F_\epsilon$ is infinite; then, using Remark~\ref{rmk:AC}, it contains an infinite ascending chain
-\[\set{\mathbf m_0\prec \mathbf m_1\prec\cdots}.\]
+\[\set{ m  _0\prec  m  _1\prec\cdots}.\]
 By definition of $\mathcal F_\epsilon$ we have then:
-\[+\infty>\hat f(\mathbf m_0)>\hat f(\mathbf m_1)+\epsilon>\hat f(\mathbf m_2)+2\epsilon>\cdots\]
-so that $+\infty>\hat f(\mathbf m_0)>\hat f(\mathbf m_{i})+i\epsilon\geq i\epsilon$ for all $i\in\N$.
+\[+\infty>\hat f( m  _0)>\hat f( m  _1)+\epsilon>\hat f( m  _2)+2\epsilon>\cdots\]
+so that $+\infty>\hat f( m  _0)>\hat f( m  _{i})+i\epsilon\geq i\epsilon$ for all $i\in\N$.
 This contradicts the Archimedean property of $\R$.
 
 2).
-We show that if $\mathcal F_\epsilon=\emptyset$, then $\hat f(\mathbf n)=+\infty$ for all $\mathbf n\in\N^{K}$.
+We show that if $\mathcal F_\epsilon=\emptyset$, then $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
 This immediately entails the desired result.
-We go by induction on the well-founded order $\prec$ over $\mathbf n\in\N^{K}$:
+We go by induction on the well-founded order $\prec$ over $ n  \in\N^{K}$:
 
-- if $\mathbf n=0^{K}\notin\mathcal F_\epsilon$, then $\hat f(\mathbf n)=+\infty$, because there is no $\mathbf m\prec\mathbf n$.
+- if $ n  =0^{K}\notin\mathcal F_\epsilon$, then $\hat f( n  )=+\infty$, because there is no $ m  \prec n  $.
 
-- if $\mathbf n\notin\mathcal F_\epsilon$, with $\mathbf n\neq 0^{K}$ then either $\hat f(\mathbf n)=+\infty$ and we are done, or there is $\mathbf m\prec \mathbf n$ s.t.\ $\hat f(\mathbf m)\leq \hat f(\mathbf n)+\epsilon$.
-By induction $\hat f(\mathbf m)=+\infty$ and, since $\epsilon<+\infty$, this entails $\hat f(\mathbf n)=+\infty$.
+- if $ n  \notin\mathcal F_\epsilon$, with $ n  \neq 0^{K}$ then either $\hat f( n  )=+\infty$ and we are done, or there is $ m  \prec  n  $ s.t.\ $\hat f( m  )\leq \hat f( n  )+\epsilon$.
+By induction $\hat f( m  )=+\infty$ and, since $\epsilon<+\infty$, this entails $\hat f( n  )=+\infty$.
 
 3).
-If $f(\mathbf x_0)=+\infty$ with $\mathbf x_0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f(\mathbf n)=+\infty$ for all $\mathbf n\in\N^{K}$.
-Therefore, no $\mathbf n\in\N^{K}$ belongs to $\mathcal F_\epsilon$.
+If $f( x _0)=+\infty$ with $ x _0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+Therefore, no $ n  \in\N^{K}$ belongs to $\mathcal F_\epsilon$.
 
 4).
-We have to show that $f(\mathbf x)=P_\epsilon(\mathbf x)$ for all $\mathbf x\in [\epsilon,+\infty]^{K}$.
-By 1), it suffices to show that we can compute $f(\mathbf x)$ by taking the $\inf$, that is therefore a $\min$, only in $\mathcal F_\epsilon$ (instead of all $\N^{K}$).
+We have to show that $f( x )=P_\epsilon( x )$ for all $ x \in [\epsilon,+\infty]^{K}$.
+By 1), it suffices to show that we can compute $f( x )$ by taking the $\inf$, that is therefore a $\min$, only in $\mathcal F_\epsilon$ (instead of all $\N^{K}$).
 If $\mathcal F_\epsilon=\emptyset$ then by 2) we are done (remember that $\min\emptyset := +\infty$).
-If $\mathcal F_\epsilon\neq\emptyset$, we show that for all $\mathbf n\in\N^{K}$, if $\mathbf n \notin\mathcal F_\epsilon$, then there is $\mathbf m\in\mathcal F_\epsilon$ s.t.\ $\hat f(\mathbf m)+\mathbf m\mathbf x \leq \hat f(\mathbf n)+\mathbf n\mathbf x$.
+If $\mathcal F_\epsilon\neq\emptyset$, we show that for all $ n  \in\N^{K}$, if $ n   \notin\mathcal F_\epsilon$, then there is $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  )+ n   x $.
 We do it again by induction on $\prec_{1}$:
 
-- if $\mathbf n=0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f(\mathbf n)=+\infty$ (because there is no $\mathbf n'\prec\mathbf n$).
+- if $ n  =0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f( n  )=+\infty$ (because there is no $ n  '\prec n  $).
 So any element of $\mathcal F_\epsilon\neq\emptyset$ works.
 
-- if $\mathbf n\neq 0^{K}$, then we have two cases:
-either $\hat f(\mathbf n)=+\infty$, in which case we are done as before by taking any element of $\mathcal F_\epsilon\neq\emptyset$.
-Or $\hat f(\mathbf n)<+\infty$, in which case (again by definition of $\mathcal F_\epsilon$) there is $\mathbf n'\prec\mathbf n$ s.t.\ \begin{equation}\label{eq:n'neps} \hat f(\mathbf n')\leq \hat f(\mathbf n)+\epsilon.\end{equation}
+- if $ n  \neq 0^{K}$, then we have two cases:
+either $\hat f( n  )=+\infty$, in which case we are done as before by taking any element of $\mathcal F_\epsilon\neq\emptyset$.
+Or $\hat f( n  )<+\infty$, in which case (again by definition of $\mathcal F_\epsilon$) there is $ n  '\prec n  $ s.t.\ \begin{equation}\label{eq:n'neps} \hat f( n  ')\leq \hat f( n  )+\epsilon.\end{equation}
 Therefore we have (remark that the following inequalities hold also for the case $x=+\infty$):
 \[\begin{array}{rclr}
- \hat f(\mathbf n')+\mathbf n'\mathbf x & \leq & \hat f(\mathbf n) + \epsilon +\mathbf  n'\mathbf x & \textit{by \eqref{eq:n'neps}} \\
- & \leq & \hat f(\mathbf n) + (\mathbf n-\mathbf n')\mathbf x + \mathbf n'\mathbf x & \textit{because $\epsilon\leq\min\mathbf x$ and $\min \mathbf x\leq(\mathbf n-\mathbf  n')\mathbf x$} \\
- & = & \hat f(\mathbf n)+ \mathbf n\mathbf x. &
+ \hat f( n  ')+ n  ' x  & \leq & \hat f( n  ) + \epsilon +\mathbf  n' x  & \textit{by \eqref{eq:n'neps}} \\
+ & \leq & \hat f( n  ) + ( n  - n  ') x  +  n  ' x  & \textit{because $\epsilon\leq\min x $ and $\min  x \leq( n  -\mathbf  n') x $} \\
+ & = & \hat f( n  )+  n   x . &
 \end{array}\]
-Now, if $\mathbf n'\in\mathcal F_\epsilon$ we are done.
-Otherwise $\mathbf n'\notin\mathcal F_\epsilon$ and we can apply the induction hypothesis on it, obtaining an $\mathbf m\in\mathcal F_\epsilon$ s.t.\ $\hat f(\mathbf m)+\mathbf m\mathbf x \leq \hat f(\mathbf n')+\mathbf n'\mathbf x$.
-Therefore this $\mathbf m$ works.
+Now, if $ n  '\in\mathcal F_\epsilon$ we are done.
+Otherwise $ n  '\notin\mathcal F_\epsilon$ and we can apply the induction hypothesis on it, obtaining an $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  ')+ n  ' x $.
+Therefore this $ m  $ works.
 \end{proof}
 
-\newpage
+%\newpage
 
 \subsubsection{Continuity of tLs}
 
@@ -297,7 +297,7 @@ We did so just to show that it is actually a general argument, but we could have
 For instance, Theorem~\ref{thmTLSlocLip} will be proved by refining this kind of argument (Lemma~\ref{lm:mainLip}), but not in the setting of LCTVS.
 \end{remark} 
 
-\newpage
+%\newpage
 
 \begin{definition}
  An \emph{$\overline{\R}_{\geq 0}$-cone} is a commutative $\overline{\R}_{\geq 0}$-semimodule with cancellative addition\footnote{I.e.: $x+y=x+y' \Rightarrow y=y'$.}.
@@ -532,17 +532,33 @@ $\bigvee\limits_{y<<x_a} y = \bigvee\limits_{y<<x} y_a$.
 
 
 
+  We need a first, preliminary, lemma:
+\begin{lemma}\label{lemma:inf}
+Let $u,v: I\to Q$ and suppose $|u(i)-v(i)|\leq \delta$, for all $i\in I$.
+Then $|\inf_{i\in I}u(i)- \inf_{i\in I}v(i)|\leq \delta$. 
+\end{lemma}
+\begin{proof}
+Let $A=\inf_{i\in I}u(i)$ and $B=\inf_{i\in I}v(i)$ and suppose $A\geq B$. 
+Suppose by way of contradiction $|A-B|> \delta$; then there exists $i\in I$ such that 
+$v(i)<A$ and $|A-v(i)|> \delta$. Indeed, otherwise we would have $|A-B|= \sup\{ |A-v(i)|\mid v(i)\leq A\}\leq \delta$. 
+Now, from $|A-v(i)|> \delta$ and $v(i)< A$ we deduce that $|u(j)-v(i)|> \delta$ for all $j\in I$, and thus in particular that $|u(i)-v(i)|>\delta$, against the assumption. We conclude then $|A-B| \leq \delta$.
+In case $B\geq A$, we can argue in a similar way. 
+\end{proof}
+
 
 
 \begin{proposition}\label{prop:troplinear}
 All tropical linear functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
 \end{proposition}
-\begin{proof}[proof TO BE FIXED]
-All functions of the form $f(\B x)(b)= \mu_{b} \B x + c_{b}$ are Lipschitz with Lipschitz constant
-$\sum_{a\in X}\mu_{b}(a)$: 
-one has $| f(\B x)(b)- f(\B y)(b) |= |\mu_{b}\B x+c_{b} -\mu_{b}\B y+c_{b}|=
-|\mu_{b}\B x -\mu_{b} \B y  |\leq \left(\sum_{a\in X}\mu_{b}(a)\right)\cdot \sup_{a\in X}|\B x_{a}-\B y_{a}|$.
-
+\begin{proof}
+%All functions of the form $f_{\theta,\eta}(x)_{b}= \theta(b)+x_{\eta(b)}$, where $\theta:Y \to \Lawv$ and $\eta:Y\to X$, are non-expansive: indeed $|f_{\theta,\eta}(x)_{b}-f_{\theta,\eta}(y)_{b}|= |\theta(b)+x_{\eta(b)}-\theta(b)-y_{\eta(b)}|=
+%|x_{\eta(b)}-y_{\eta(b)}|\leq \norm{x-y}_{\infty}$.
+Let $f(x)_{b}=\inf_{a}\{\widehat f_{a,b}+x_{a}\}$.
+For all $a\in X$ we have that 
+$|(\widehat f_{a,b}+x_{a})- (\widehat f_{a,b}+y_{a})|=
+|x_{a}-y_{a}|\leq \norm{x-y}_{\infty}$. Using Lemma \ref{lemma:inf}, we deduce then 
+$|f(x)_{b}-f(y)_{b}|=|\inf_{a}\{\widehat f_{a,b}+x_{a}\}-
+\inf_{a}\{\widehat f_{a,b}+y_{a}\}|\leq \norm{x-y}_{\infty}$.
 \end{proof}
 
 
@@ -552,56 +568,56 @@ one has $| f(\B x)(b)- f(\B y)(b) |= |\mu_{b}\B x+c_{b} -\mu_{b}\B y+c_{b}|=
 
 \begin{lemma}\label{lm:mainLip}
 Let $f: [0,\infty)^{X}\to Q$ be concave, monotone increasing, and continuous.  
-Let $\B x\neq \B y\in [0,\infty)^{X}$, with $\|\B x-\B y\|_{\infty}<\infty$, and let $S(\B x, \B y)=\{ \alpha\B x + (1-\alpha)\B y\mid \alpha \in [0,1]\}$ be the segment generated by $\B x$ and $\B y$. 
-Then $f$ is Lipschitz-continuous over $S(\B x, \B y)$.
+Let $ x \neq  y  \in [0,\infty)^{X}$, with $\| x - y  \|_{\infty}<\infty$, and let $S( x ,  y  )=\{ \alpha x  + (1-\alpha) y  \mid \alpha \in [0,1]\}$ be the segment generated by $ x $ and $ y  $. 
+Then $f$ is Lipschitz-continuous over $S( x ,  y  )$.
 
 \end{lemma}
 \begin{proof}
-Let us prove the lemma under the assumption that for all $a\in X$, $\B y_{a}-\B x_{a}\geq 1$. From the fact that the claim holds under the assumption, we can deduce the claim of the lemma:
-indeed for $\alpha\in (0,1)$ large enough we have that $\B y':= \frac{\B y-\alpha\B x}{1-\alpha}$ is such that $\B y\in S(\B x, \B y')$ (and thus $S(\B x, \B y)\subseteq S(\B x, \B y')$) and 
-$\B y'_{a}-\B x_{a}\geq 1$. Hence from our proof we deduce that $f$ is Lipschitz-continuous over $S(\B x, \B y')$, and thus a fortiori over $S(\B x, \B y)$ too.
+Let us prove the lemma under the assumption that for all $a\in X$, $ y  _{a}- x _{a}\geq 1$. From the fact that the claim holds under the assumption, we can deduce the claim of the lemma:
+indeed for $\alpha\in (0,1)$ large enough we have that $ y  ':= \frac{ y  -\alpha x }{1-\alpha}$ is such that $ y  \in S( x ,  y  ')$ (and thus $S( x ,  y  )\subseteq S( x ,  y  ')$) and 
+$ y  '_{a}- x _{a}\geq 1$. Hence from our proof we deduce that $f$ is Lipschitz-continuous over $S( x ,  y  ')$, and thus a fortiori over $S( x ,  y  )$ too.
 
 
-Since $f$ is continuous over $[0,\infty)^{X}$ and $S(\B x, \B y)$ is compact, $f$ admits a maximum $\mathrm{MAX}$ over $S(\B x, \B y)$.
-For all $\B z< \B z'\in S(\B x, \B y)$, let $M(\B z, \B z')\in Q^{X}$ be defined by
+Since $f$ is continuous over $[0,\infty)^{X}$ and $S( x ,  y  )$ is compact, $f$ admits a maximum $\mathrm{MAX}$ over $S( x ,  y  )$.
+For all $ z  <  z  '\in S( x ,  y  )$, let $M( z  ,  z  ')\in Q^{X}$ be defined by
 $$
-M(\B z, \B z')_{a}= \frac{f(\B z')-f(\B z)}{\B z'_{a}-\B z_{a}}
+M( z  ,  z  ')_{a}= \frac{f( z  ')-f( z  )}{ z  '_{a}- z  _{a}}
 $$
 Observe that
 \begin{align*}
-M(\B x, \B y)_{a} & = \frac{f(\B y)-f(\B x)}{\B y_{a}-\B x_{a}} \leq 
-f(\B y)-f(\B x) \leq \mathrm{MAX}
+M( x ,  y  )_{a} & = \frac{f( y  )-f( x )}{ y  _{a}- x _{a}} \leq 
+f( y  )-f( x ) \leq \mathrm{MAX}
 \end{align*}
-using the fact that $\B y_{a}-\B x_{a}\geq 1$. 
+using the fact that $ y  _{a}- x _{a}\geq 1$. 
 
-We now claim that $M(\B z, \B z')$ is contravariant in both $\B z$ and $\B z'$. 
-Indeed suppose $\B z\leq \B z'' < \B z'$, so that $\B z= \lambda \B z' +(1-\lambda)\B z''$ for some $\lambda \in (0,1)$. Then, using the fact that $f$ is concave, we have 
+We now claim that $M( z  ,  z  ')$ is contravariant in both $ z  $ and $ z  '$. 
+Indeed suppose $ z  \leq  z  '' <  z  '$, so that $ z  = \lambda  z  ' +(1-\lambda) z  ''$ for some $\lambda \in (0,1)$. Then, using the fact that $f$ is concave, we have 
 \begin{align*}
-M(\B z, \B z')_{a}&=\frac{f(\B z')-f(\lambda \B x +(1-\lambda)\B z'')}{\B z'_{a}-\lambda \B x_{a} -(1-\lambda)\B z''_{a}} \\
+M( z  ,  z  ')_{a}&=\frac{f( z  ')-f(\lambda  x  +(1-\lambda) z  '')}{ z  '_{a}-\lambda  x _{a} -(1-\lambda) z  ''_{a}} \\
 &
 \geq 
-\frac{f(\B z')-\lambda f(\B z') -(1-\lambda)f(\B z'')}{\B z'_{a}-\lambda \B z'_{a} -(1-\lambda)\B z''_{a}} \\
+\frac{f( z  ')-\lambda f( z  ') -(1-\lambda)f( z  '')}{ z  '_{a}-\lambda  z  '_{a} -(1-\lambda) z  ''_{a}} \\
 &
 = 
-\frac{(1-\lambda)(f(\B z')-f(\B z''))}{(1-\lambda )\B z'_{a}-\B z''_{a}} =M(\B z'', \B z')
+\frac{(1-\lambda)(f( z  ')-f( z  ''))}{(1-\lambda ) z  '_{a}- z  ''_{a}} =M( z  '',  z  ')
 \end{align*}
-In a similar way it is shown that for $\B z < \B z''\leq \B z'$, $M(\B z,\B z')\leq M(\B z, \B z'')$. 
+In a similar way it is shown that for $ z   <  z  ''\leq  z  '$, $M( z  , z  ')\leq M( z  ,  z  '')$. 
 
-Therefore, for all $\B z < \B z'\in S(\B x, \B y)$, we have that $M(\B z, \B z')_{a} \leq M(\B x, \B z')_{a} \leq M(\B x, \B y)_{a} \leq \mathrm{MAX}$. 
+Therefore, for all $ z   <  z  '\in S( x ,  y  )$, we have that $M( z  ,  z  ')_{a} \leq M( x ,  z  ')_{a} \leq M( x ,  y  )_{a} \leq \mathrm{MAX}$. 
 From this, using the fact that $f$ is monotone increasing, we deduce that 
-$|f(\B z')-f(\B z)|=f(\B z')-f(\B z) \leq \mathrm{MAX}\cdot |\B z'_{a}-\B z_{a}|
+$|f( z  ')-f( z  )|=f( z  ')-f( z  ) \leq \mathrm{MAX}\cdot | z  '_{a}- z  _{a}|
 $ and thus that 
-$$|f(\B z')-f(\B z)|\leq \mathrm{MAX}\cdot \|\B z'-\B z\|_{\infty}$$
-that is, that $f$ is $\mathrm{MAX}$-Lipschitz over $S(\B x, \B y)$. 
+$$|f( z  ')-f( z  )|\leq \mathrm{MAX}\cdot \| z  '- z  \|_{\infty}$$
+that is, that $f$ is $\mathrm{MAX}$-Lipschitz over $S( x ,  y  )$. 
 \end{proof}
 
 \begin{proposition}
 Let $f: [0,\infty)^{X}\to Q$ be concave, monotone increasing, and continuous.  
-For all $\epsilon \in (0,\infty)$ and $\B x\in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open ball $B(\B x, \epsilon)$.
+For all $\epsilon \in (0,\infty)$ and $ x \in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open ball $B( x , \epsilon)$.
 \end{proposition}
 \begin{proof}
-Let $\mathrm{MAX}$ indicate the maximum of $f$ over $B(\B x, \epsilon)$. 
-Let $\B y, \B z\in B(\B x, \epsilon)$; then $\|\B y-\B z\|_{\infty}\leq 2\epsilon < \infty$, so by the lemma above $f$ is $K$-Lipschitz over the segment $S(\B y, \B z)$ for some $K\leq \mathrm{MAX}$, so we deduce $|f(\B y)-f(\B z)|\leq \mathrm{MAX}\cdot \|\B y-\B z\|_{\infty}$.
+Let $\mathrm{MAX}$ indicate the maximum of $f$ over $B( x , \epsilon)$. 
+Let $ y  ,  z  \in B( x , \epsilon)$; then $\| y  - z  \|_{\infty}\leq 2\epsilon < \infty$, so by the lemma above $f$ is $K$-Lipschitz over the segment $S( y  ,  z  )$ for some $K\leq \mathrm{MAX}$, so we deduce $|f( y  )-f( z  )|\leq \mathrm{MAX}\cdot \| y  - z  \|_{\infty}$.
 \end{proof}
 
 \begin{theorem}[local Lipschitz-continuity]
@@ -609,7 +625,7 @@ Let $f: [0,\infty)^{X}\to Q$ be concave, monotone increasing, and continuous.
 Then $f$ is locally Lipschitz-continuous.
 \end{theorem}
 \begin{proof}
-For all $\B x\in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open set $B(\B x, 1)$.
+For all $ x \in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open set $B( x , 1)$.
 \end{proof}
 
 
@@ -622,25 +638,11 @@ For all $\B x\in [0,\infty)^{X}$, $f$ is Lipschitz-continuous over the open set 
 For all maps $f,g: Q\langle X\rangle\to Q\langle Y\rangle$,  
 $$
   \|\widehat f- \widehat g\|_{\infty}=
-  \sup\{\|f(\B x)- g(\B x)\|_{\infty} \mid \B x\in Q\langle X\rangle\}
+  \sup\{\|f( x )- g( x )\|_{\infty} \mid  x \in Q\langle X\rangle\}
 $$
 
 \end{proposition}
   
-Before proving the proposition we need one preliminary lemma:
-  
-\begin{lemma}
-Let $u,v: I\to Q$ and suppose $|u(i)-v(i)|\leq \delta$, for all $i\in I$.
-Then $|\inf_{i\in I}u(i)- \inf_{i\in I}v(i)|\leq \delta$. 
-\end{lemma}
-\begin{proof}
-Let $A=\inf_{i\in I}u(i)$ and $B=\inf_{i\in I}v(i)$ and suppose $A\geq B$. 
-Suppose by way of contradiction $|A-B|> \delta$; then there exists $i\in I$ such that 
-$v(i)<A$ and $|A-v(i)|> \delta$. Indeed, otherwise we would have $|A-B|= \sup\{ |A-v(i)|\mid v(i)\leq A\}\leq \delta$. 
-Now, from $|A-v(i)|> \delta$ and $v(i)< A$ we deduce that $|u(j)-v(i)|> \delta$ for all $j\in I$, and thus in particular that $|u(i)-v(i)|>\delta$, against the assumption. We conclude then $|A-B| \leq \delta$.
-In case $B\geq A$, we can argue in a similar way. 
-\end{proof}
-
 %
 %\begin{lemma}
 %Let $f,g\in\mathsf{Trop}(1,1)$ (i.e.~$f,g:Q\to Q$), and suppose for all $n\in \BB N$, 
@@ -657,9 +659,9 @@ In case $B\geq A$, we can argue in a similar way.
   
   \begin{proof}[Proof of Proposition \ref{prop:functionalmetric}]
 For one side, suppose for all $\mu\in \C  M_{\mathrm{fin}}(X),b\in Y$, 
-$|\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$. Then for all $\B x\in Q\langle X\rangle$ and $b\in Y$, $|f(\B x)(b)-g(\B x)(b)|\leq \delta$.
-Indeed, $|f(\B x)(b)-g(\B x)(b)|= |( \inf_{\mu}\mu \B x+\widehat f_{\mu,b})- (\inf_{\mu}\mu \B x+\widehat g_{\mu,b})|$. 
-Since $|\mu \B x+\widehat f_{\mu,b} - \mu \B x -\widehat g_{\mu,b}|= |\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$, by the Lemma above we conclude $|f(\B x)(b)-g(\B x)(b)|\leq \delta$. 
+$|\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$. Then for all $ x \in Q\langle X\rangle$ and $b\in Y$, $|f( x )(b)-g( x )(b)|\leq \delta$.
+Indeed, $|f( x )(b)-g( x )(b)|= |( \inf_{\mu}\mu  x +\widehat f_{\mu,b})- (\inf_{\mu}\mu  x +\widehat g_{\mu,b})|$. 
+Since $|\mu  x +\widehat f_{\mu,b} - \mu  x  -\widehat g_{\mu,b}|= |\widehat f_{\mu,b}-\widehat g_{\mu,b}|\leq \delta$, by Lemma \ref{lemma:inf} we conclude $|f( x )(b)-g( x )(b)|\leq \delta$. 
 
 
 For the other side, suppose for some $\mu\in \C M_{\mathrm f}(X)$ and $b\in Y$, $|\widehat f_{\mu,b}-\widehat g_{\mu,b}|> \epsilon$; 
@@ -668,23 +670,23 @@ then, by letting $e_{\mu}\in Q\langle !X\rangle$ be the (tropical) characteristi
 |( \inf_{\mu'}\widehat f_{\mu',b}+ \mu'(e_{\mu}))-
 ( \inf_{\mu'}\widehat g_{\mu',b}+\mu'(e_{\mu}))|=
 |\widehat f_{\mu,b}- \widehat g_{\mu,b}|> \epsilon$, so we deduce that 
-$\sup\{\| f(\B x)- g(\B x) \|_{\infty}\mid \B x\in Q\langle X\rangle\}> \epsilon$.
+$\sup\{\| f( x )- g( x ) \|_{\infty}\mid  x \in Q\langle X\rangle\}> \epsilon$.
 \end{proof}
 
 
 The second characterization relates distances with the Taylor expansion. Let us briefly discuss the latter, first.
 For all $f: Q\langle X\rangle \to Q\langle Y\rangle$, let $\delta^{(n)}f:Q\langle X^{n}\rangle \to Q\langle Y\rangle$ indicate the $n$-linear function given by 
 $$
-\delta^{(n)}f(\B x^{n})=\mathsf D^{(n)}f(\B x^{n}, \infty)
+\delta^{(n)}f( x ^{n})=\mathsf D^{(n)}f( x ^{n}, \infty)
 $$
 
 Notice that $\widehat{\delta^{(n)}f}\in Q^{X^{n}\times Y}$ satisfies 
 $\widehat{\delta^{(n)}f}_{a_{1},\dots, a_{n},b}= \widehat f_{[a_{1},\dots, a_{n}],b}$.
 In other words, $\delta^{(n)}f$ precisely captures the behavior of $f$ when applied to multisets of length $n$. Moreover, the full behavior of $f$ can be recovered from the functions $\delta^{(n)}f$ using the Taylor expansion which, in its tropical form, reads as:
-\begin{equation}
-f(\B x)= \inf_{n}\left \{\mathsf D^{(n)}f(\B x^{n},\infty)\right\}= \inf_{n}\left \{\delta^{(n)}f(\B x^{n})\right\}
-\tag{Tropical Taylor}
-\end{equation}
+\begin{equation*}
+f( x )= \inf_{n}\left \{\mathsf D^{(n)}f( x ^{n},\infty)\right\}= \inf_{n}\left \{\delta^{(n)}f( x ^{n})\right\}
+%\tag{Tropical Taylor}
+\end{equation*}
 
 
 
