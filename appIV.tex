@@ -520,3 +520,24 @@ x_{1},\dots, x_{N}\in A,\\
 }
 \end{itemize}
 
+Let us end this section by recalling the sound interpretation of $\STDLC$-terms in a $C\partial C$ category (which is taken from [Section 4.3, \cite{Manzo2010}]).
+
+\begin{definition}
+Let $\C C$ be a $C\partial C$ and $\model A$ fixed objects of $\C C$, for each ground type $A$ of the $\STDLC$.
+
+One lifts as usual the interpretation to types and contexts as $\model{A\to B}:=\model A\to \model B$ and $\model{x_1:A_1,\dots,x_n:A_n}:=\Pi_{i=1}^n\model{x_i:A_i}$.
+
+Then, one inductively defines an interpretation $\model{\Gamma \vdash M:A}\in\C C(\model \Gamma,\model A)$ of a $\STDLC$-term $\Gamma \vdash M:A$ (that can can be proved to be sound) by induction as:
+\begin{itemize}
+ \item $\model{\Gamma, x:A \vdash x:A}:=\pi_2$
+ \item $\model{\Gamma, x:A \vdash y:B}:=\model{\Gamma \vdash y:B}\circ \pi_1\quad\textit{ if } y\neq x$
+ \item $\model{\Gamma\vdash \lambda x.M:A\to B}:=\Lambda(\model{\Gamma,x:A\vdash M:B})$
+ \item $\model{\Gamma \vdash M\BB T:B}:=\mathsf{ev} \circ \langle \, \model{\Gamma \vdash M:A\to B}, \model{\Gamma \vdash \BB T:A} \, \rangle$
+ \item $\model{\Gamma \vdash \Der [M] \cdot N:A\to B}:=\Lambda\left(\Lambda^-(\model{\Gamma \vdash M:A\to B})\star \model{\Gamma \vdash N:A}\right)$
+ \item $\model{\Gamma \vdash 0:A}:=\infty$
+ \item $\model{\Gamma \vdash M+\BB T:A}:=\model{\Gamma \vdash M:A}+\model{\Gamma \vdash \BB T:A}$
+\end{itemize}
+\end{definition}
+
+In the main paper we write $\model M$, but of course we mean $\model{\Gamma \vdash M:A}$.
+
