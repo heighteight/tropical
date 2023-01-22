@@ -32,12 +32,12 @@ Let us first recall how standard polynomials and power series over $[0,1]$ can b
 %More generally, 
 Let us fix a positive real $t>0$. For any function $f:[0,1]\to [0,1]$ which can be written as a parameterized {power series} of the form $f_{t}(x)= \sum_{n}t^{c_{n}}x^{n}$, 
 % (as we'll see in Section \ref{section5}, such functions arise naturally from the interpretation of probabilistic programs),
-  we let its \emph{tropicalization} be the tLs $\trop f: \Lawv \to \Lawv$ defined as follows:
+  we let its \emph{tropicalization} $\trop f: \Lawv \to \Lawv$ be the tLs defined as follows:
 \begin{align}\label{eq:defTLS}
 \trop f(\alpha) =\inf_{n}\left\{ n\alpha+c_{n}\right\}
 \end{align}
 %Such functions, called \emph{tropical Laurent series} \cite{Porzio2021}, will be discussed in more detail in Section \ref{section5}.
-Clearly, for any $t>0$, there is a one-to-one correspondence between the representation of power series in parameterized form and the associated tLs. Moreover, 
+Clearly, for any $t>0$, there is a one-to-one correspondence between the representations of power series in parameterized form and the associated tLs. Moreover, 
 $f$ and $\trop f$ can be related by a limit passage as follows: the functions $\phi_{t}(x)= -\log_{t}x$ and $\varphi_{t}(\alpha)= t^{-\alpha}$ define continuous bijections between $[0,1]$ and $[0,\infty]$ and, by letting
 $\trop_{t}f: [0,\infty]\to [0,\infty]$ be defined by 
 $\trop_{t}f(\alpha)= \phi_{t}\circ f \circ \psi_{t}$, one has that 

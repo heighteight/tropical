@@ -2,7 +2,7 @@
 
 \subsection{Resource analysis for differential privacy}
 
-The typical situation in differential privacy is where one considers a probabilistic query $f: \mathsf{db}\to [0,1]^{X}$ over some database, and one requires that $f$ should not be \emph{too sensitive} to small changes in the output, in other to prevent potential leaks of private information about individual items in $\mathsf{db}$ (for instance, an element $x\in\mathsf{db}$ could be the list of students of some university and $f(x)$ could indicate the percentage of female students$\mathsf{db}$).
+The typical situation in differential privacy is where one considers a probabilistic query $f: \mathsf{db}\to [0,1]^{X}$ over some database, and one requires that $f$ should not be \emph{too sensitive} to small changes in the output, in other to prevent potential leaks of private information about individual items in $\mathsf{db}$ (for instance, an element $x\in\mathsf{db}$ could be the list of students of some university and $f(x)$ could indicate the percentage of female students in $x:\mathsf{db}$).
 
 More formally, differential privacy is defined as follows:
 \begin{definition}
@@ -13,7 +13,7 @@ f(x)(s) \ = \ e^{\epsilon L} f(x')(s)
 $.
 \end{definition}
 
-A well-studied approach to ensure differential privacy for higher-order programs is to use bounded type systems like $\mathsf{Fuzz}$ \cite{Reed2010}. Indeed, such systems come with an \emph{a priori} warrant that well-typed programs are Lipschitz.
+A well-studied approach to ensure differential privacy for higher-order programs is via linear type systems with graded exponentials like $\mathsf{Fuzz}$ \cite{Reed2010}: these systems provide an \emph{a priori} warrant that well-typed programs are Lipschitz.
 
 Tropical semantics suggests that resource analysis could also be used to provide bounds for differential privacy. 
 Suppose our probabilistic query $f$ can be expressed as a power series (this is what happens e.g.~in \emph{probabilistic coherent spaces} \cite{Ehrhard2011}). Then, if we discover, either by studying differential properties of $f$, or by using methods from convex analysis as suggested in the previous section (e.g.~Theorem \ref{theorem:fepsilon}), 
@@ -40,9 +40,9 @@ Let $f: [0,1]^{X}\to [0,1]^{Y}$ be a function expressed by a power series. If $\
 %$\min_{i\leq m}\alpha_{i}\leq \stackrel{t}{\sum}_{i\leq m}\alpha_{i}\leq 
 %(\min_{i\leq m}\alpha_{i})+t\log m$).
 We consider $X=Y=\{\star\}$ for simplicity.
-With the notations from \S \ref{section3}.A, using the fact that $\lim_{t\to 0}\trop_{t}f= \trop f$, as well as the commutation $f(\phi_{t}(\alpha)) = \phi_{t}(\trop_{t}f(\alpha))$ (which follows from the definition of $\trop_{t}$), one can see that the Lipschitz condition  
+Using the fact that $\lim_{t\to 0}\trop_{t}f= \trop f$, as well as the commutation $f(\phi_{t}(\alpha)) = \phi_{t}(\trop_{t}f(\alpha))$ (which follows from the definition of $\trop_{t}$), one can see that the Lipschitz condition  
 $|\trop f(\phi_{t}(x))-\trop f(\phi_{t}(y))|\leq \epsilon |\phi_{t}(x)-\phi_{t}(y)|$ translates into the condition 
-$f(x) \leq e^{\epsilon |\log x-\log y|} f(y)$ (supposing $y\geq x$ and $f(y)\neq 0$).
+$f(x) \leq e^{\epsilon d(x,y)} f(y)$ (supposing $y\geq x$ and $f(y)\neq 0$).
 \end{proof}
 
 %General discussion: optimization properties behave in a Lipschitz way.

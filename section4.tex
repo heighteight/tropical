@@ -1,16 +1,17 @@
 
 As morphisms in $\LREL$ correspond to tropical linear functions, morphisms in the coKleisli category $\LREL_{!}$ 
 correspond to a generalization of tropical Laurent series, i.e.~the tropicalization of power series. 
-The study of power series in tropical mathematics is very recent (see e.g.~\cite{Porzio2021}) and many properties of these functions still have to be well-understood. 
 
-In this section we recall some known facts about tropical Laurent series, and we establish some new properties, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+%many properties of these functions still have to be well-understood. 
+In this section we establish some tropological and metric properties of tropical Laurent series, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+The literature on power series in tropical mathematics is very recent (see e.g.~\cite{Porzio2021}) and several results we prove in this section are, to our knowledge, new.
 
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
 \subsection{From tropical polynomials to tLs}
 
-A tropical polynomial iss a piece-wise linear function of the form \begin{equation}
+A tropical polynomial is a piece-wise linear function of the form \begin{equation}
 f(x)=\min_{i_{1},\dots, i_{k}}\{i_{j}x+c_{i_{j}}\}
 \end{equation}
 For example, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{in+2^{-i}\}$
@@ -115,7 +116,7 @@ Notice that, by identifying $!\set{*}\simeq \N$ and $\Lawv^{\set{*}}\simeq\Lawv$
 
  In a similar way, the tropical polynomials can be identified with the tLs
 $f:\Lawv^X\to\Lawv^Y$ 
- for which the support $\C F=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$ is \emph{finite}, which have thus shape $f(x)_b:=\min\limits_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$.
+ for which the support $\C F=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$ is \emph{finite}, and which have thus shape $f(x)_b:=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$.
  This is again the generalisation of usual tropical polynomials to the case of infinitely many variables.
 
 % 
@@ -133,8 +134,8 @@ It can be shown that this is indeed always the case:
 \end{proposition}
 
 %In Example~\ref{ex:famous_ex}, 
-Again, by looking at Fig~\ref{fig:plot1}, it appears that $\varphi$ behaves \emph{locally} like the polynomials $\varphi_{n}$. In particular, for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. Indeed, we can compute  by hand that $\varphi$ coincides with $\varphi_{n}$ 
-for $\epsilon \geq \log2/2^{n+1}$.
+Again, by looking at Fig~\ref{fig:plot1}, it appears that $\varphi$ behaves \emph{locally} like the polynomials $\varphi_{n}$. In particular, for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, $\varphi$ coincides with $\varphi_{n}$ 
+for $\epsilon \geq 2^{-(n+1)}$, the smallest tropical root of $\varphi_{n}$.
 However, at
 %
 %$x\in [\epsilon,\infty]$, with $\epsilon>0$
@@ -162,9 +163,8 @@ $f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\ep
 % \end{enumerate}
 \end{theorem}
 \begin{proof}[Proof sketch]
-\mbox{$\C F_\epsilon:=\set{n\in\N \mid
-\widehat f(n)<\infty \textit{ and } 
-\widehat f(m)> \widehat f(n)+\epsilon \textit{ for all } m<n}$}, where $\leq$ is the pointwise order on $\N^k$.
+Let $\C F_\epsilon$ be the set of $n\in\N^{k}$ such that 
+$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
 The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 \end{proof}
 
@@ -174,7 +174,7 @@ The core of the proof is showing that this set is indeed finite and enough for c
 \subsection{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
 The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of real numbers).
-By considering the usual norm $\norm{x}_\infty:=\sup\limits_{a\in X} \absv{x_a}$ on $\Lawv^X$, we can generalise this property by dropping the case of $x$ having some $0$ coordinate:
+By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} \absv{x_a}$ on $\Lawv^X$, we can generalise this property by dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
  Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
@@ -189,7 +189,7 @@ Its cone structure induces an order on it, called its \emph{cone order}:
 $x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
 This makes it a Scott-continuous dcpo.
 Suitable categories of cones have been recently investigated as models of probabilistic computation (\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
-We will just show that:
+Here we will just show that:
 
 \begin{theorem}\label{thm:ScottCont}
   Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
@@ -201,17 +201,7 @@ We will just show that:
 
 
 The norm $\norm{\cdot}_\infty$ naturally induces a metric $\norm{x-y}_{\infty}$ over the spaces $\Lawv^{X}$.
-
-As a first remark, let us mention that an immediate consequence of the lines after Theorem~\ref{thm:modelsTaylor} is:
-
-\begin{corollary}\label{thm:M=infLip}
- If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is the $\inf$ of \emph{Lipschitz} functions.
-\end{corollary}
- 
-Another remark is that, as consequence of Theorem~\ref{theorem:fepsilon}, the tLs with finitely many variables are locally Lipschitz on all $\BB R_{>0}$.
-In this subsection we refine and generalise this kind of results.
-%
-%We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics. 
+We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics. 
 
 Let us first look at tropical linear functions:
 
@@ -240,7 +230,7 @@ For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $\norm{ \matr f-
 
 Let us now consider the case of bounded exponentials:
 \begin{proposition}\label{prop:boundedlip}
-If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
 \end{proposition}
 \begin{proof}[Proof sketch]
 This follows from Proposition \ref{prop:troplinear} and the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to $\C M_{\leq n}(X)$.%
@@ -250,13 +240,29 @@ This follows from Proposition \ref{prop:troplinear} and the remark that, for all
 \end{proof}
 This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 
+
+
+
 We can now look at what happens with tLs, i.e.~when considering the full exponential $!$.
 First, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(X)}}$ to $\Lawv$, from Proposition \ref{prop:boundedlip} we deduce:
-\begin{proposition}\label{prop:polylip}
+\begin{corollary}\label{prop:polylip}
 Any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
-\end{proposition}
+\end{corollary}
 
-The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz over $(0,\infty)^{X}$. Yet, we can prove a more general statement, covering also the infinitary case.
+
+Using Corollary \ref{prop:polylip}, an immediate consequence of the lines after Theorem~\ref{thm:modelsTaylor} is:
+
+\begin{corollary}\label{thm:M=infLip}
+ If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions.
+\end{corollary}
+ 
+% 
+%
+%The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz over $(0,\infty)^{X}$. 
+
+ 
+Moreover, as consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
+Actually, we can prove a more general statement, also covering the infinitary case.
 
 
 \begin{theorem}\label{thmTLSlocLip}
@@ -276,19 +282,20 @@ For any $\lambda$-term $M$:
 \end{enumerate}
 \end{corollary} 
 \begin{proof}
-As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite matrix  and  its corresponding linear map $\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Prop.~\ref{prop:polylip}.
+As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite matrix  and  its corresponding linear map $\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Corollary~\ref{prop:polylip}.
 Claim 2) follows directly from Theorem~\ref{thmTLSlocLip}.
 \end{proof}
 
 
-Finally, let us discuss the differential structure. The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}(f):(\Lawv^{X})^{2}\to \Lawv^{Y}$, linear in its first variable, and given by 
+Finally, let us discuss the differential structure. The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by 
 \begin{equation}
 D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu*a}+x_{a}+\mu y\right\}
 \end{equation}
 One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
-Moreover, the Taylor formula \eqref{eq:taylorcat} yields 
-a Taylor formula for tLs of the form 
-$f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
+Moreover, the Taylor formula \eqref{eq:taylorcat} yields a ``tropical'' Taylor formula for tLs of the form 
+\begin{equation}
+f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}
+\end{equation}
 The following result shows that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
 \begin{proposition}
 For all tLs $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 

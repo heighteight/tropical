@@ -14,7 +14,7 @@ will be further generalised in Section \ref{section6}.
 Let us show the differential structure of $\LREL_!$ (remember that the Cartesian product of $\LREL_!$ is the disjoint union $+$).
 
 \begin{definition}
- The \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho*\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise.
+ The \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho*\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
 \end{definition}
 
 \begin{remark}
@@ -37,7 +37,7 @@ There is more: this model is also well-behaved w.r.t.\ to the Taylor expansion, 
 
 \begin{theorem}\label{thm:modelsTaylor}
  In $\LREL_!$ equipped with $D$, all morphisms can be Taylor expanded, i.e.\ in $\LREL_!$ we have that, for all
-$t\in\HOM{\LREL_!}{Z}{X\multimap Y}$ and $s\in\HOM{\LREL_!}{Z}{X}$ we have:%, the evaluation of $t$ over $s$ yields 
+$t\in\HOM{\LREL_!}{Z}{X\multimap Y}$ and $s\in\HOM{\LREL_!}{Z}{X}$:%, the evaluation of $t$ over $s$ yields 
  \begin{align}\label{eq:taylorcat}
   \RM{ev}\circ_!\langle t,s\rangle =
   \inf\limits_{n\in\N}
@@ -51,7 +51,7 @@ Here,
 $u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to linear application of $s$ to $u$, and $\Lambda^-$ is the uncurry operator.
 Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical %interpretation of the
 version of the usual Taylor expansion.
-Since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+Indeed, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
 %
 % corresponding to the syntactical \emph{differential substitution} of $\STDLC$.
 %%\begin{proof}

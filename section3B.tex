@@ -1,14 +1,14 @@
 %\subsubsection{Unbounded duplications}
 
-In order to interpret the $\STLC$, we need a Cartesian closed category (CCC).
-It is well known (\cite{MacLane}) that it is always possible to construct a CCC by taking the \emph{co-Kleisli} $\C C_!$ of a so-called \emph{Lafont category} $\C C$.
+In order to interpret the full $\STLC$, we need a Cartesian closed category (CCC).
+It is well-known \cite{Mellies2009} that it is always possible to construct a CCC by taking the \emph{co-Kleisli} $\C C_!$ of a so-called \emph{Lafont category} $\C C$.
 %, a construction we now quickly recall.
 %defined via a \emph{Lafont exponential} comonad $!$.
 %Let us quickly recall the ideas behind these notions.
 A SMCC is Lafont when it has finite products and it is equipped with a comonad $!$ (its \emph{Lafont exponential}) which, at level of objects, sends $X$ to an object $!X$ being the free commutative comonoid on $X$.
-Such object $!X$ represents the \emph{bang} connective of linear logic, granting infinite duplications via the infinite product $X^0\otimes X\otimes X^2\otimes X^3\otimes\cdots$, each factor representing a possible number of duplications.
-It is well known that, under mild conditions satisfied by $\QREL$, one can explicit this idea via the fact that the map $X\mapsto \finMS{X}$ (where $\finMS{X}$ is the set of finite multi-sets on $X$) lifts to a functor $!:\QREL\to\QREL$ which is a Lafont-exponential comonad.
-Specialising [Corollary III.6, \cite{Manzo2013}] to our case, we have:
+Such objects $!X$ represent the \emph{bang} connective of linear logic, granting infinite duplications via the infinite product $X^0\otimes X\otimes X^2\otimes X^3\otimes\cdots$, each factor representing a possible number of duplications.
+It is well-known that, under mild conditions satisfied by $\QREL$, one can explicit this idea via the fact that the map $X\mapsto \finMS{X}$ (where $\finMS{X}$ is the set of finite multi-sets on $X$) lifts to a functor $!:\QREL\to\QREL$ which is a Lafont-exponential comonad.
+Specializing [Corollary III.6, \cite{Manzo2013}] to our case, we have:
 
 \begin{fact}
  $\LREL$ is Lafont.
@@ -34,8 +34,8 @@ the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y
 
 %Remember that in $\Lawv$ the neutral element for addition is $\infty$ and the neutral for multiplication is $0$, so for instance the evaluation map is the matrix $\RM{eval}^{X,Y}\in\Lawv^{!((X\multimap Y) \times X)\times Y}\simeq\Lawv^{(!!X\times !Y\times !X)\times Y}$ given by $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=0$ if $\rho_1=[\mu]$ and $\rho_2=[b]$, and $\RM{eval}^{X,Y}_{\rho_1\oplus\rho_2\oplus\mu,b}:=\infty$ otherwise.
 
-As it is well known, the Cartesian closed structure %of a category $\C C$ 
-allows to define a sound interpretation $\model{\Gamma\vdash M:A}\in\HOM{}{\model \Gamma}{\model A}$ of terms as morphisms.
+As it is well-known, the Cartesian closed structure %of a category $\C C$ 
+allows to define a sound interpretation $\model{\Gamma\vdash M:A}\in\HOM{\LREL_{!}}{\model \Gamma}{\model A}$ of terms as morphisms.
 In our case, we have:
 
 \begin{proposition}\label{prop:descrete}
@@ -58,7 +58,8 @@ The sequence $(!_n)_{n\in\N}$ can be then turned into a $\N$-graded linear expon
 $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
 Therefore, $\LREL$, together with $(!_n)_{n\in\N}$, is a model for $\BSTLC$. 
 In particular, bounded arrow types are interpreted via
-%Concretely, the types of this calculus (Equation~\ref{eq:Btyped}) are interpreted as: $\model o=\B 1$ and 
+%Concretely, the types of this calculus (Equation~\ref{eq:Btyped}) are interpreted as: 
+$\model o=\{\star\}$ and 
 $\model{!_{n}A\multimap B}:= \C M_{\leq n}(\model A) \times \model B$.
 Notice that, for any type $A$ of $\BSTLC$, its interpretation $\model{A}$ is a finite set.
 \end{remark}
