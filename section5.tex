@@ -1,13 +1,27 @@
 
 
 In this section we illustrate a few directions in which the tropical semantics just introduced could be used to analyze quantitative properties of higher-order programs. 
-The general pattern is to consider a program $M$, which can be expressed in the form of a polynomial or a power series, and 
-investigate what quantitative properties of $M$ can be deduced from properties of its tropicalization $\trop M$ (which are often easier to study).
-By the way, this is the approach taken in several well-studied applications of tropical geometry (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}).
+
+Since algebraic and geometric properties in tropical mathematics are usually more tractable from a computational point of view, in several well-known applications (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}) one starts from a given model, typically expressed by some polynomial function $f$, and studies 
+what properties of the model can be deduced from the \emph{tropicalization} of $f$, noted $\trop f$, i.e.~the transformation of $f$ into a tropical polynomial.
+
+
+%
+%
+%several well-known applications of tropical mathematics is to study how much can be deduced of some function starting from the properties of its tropicalization.
+%In Section \ref{section5} we will follow a similar direction, investigating what quantitative properties of a higher-order programs are revealed by the study of its tropical interpretation.
+%
+
+
+Here we follow a similar patter: we consider a program $M$, which can be expressed in the form of a polynomial or a power series $f$, and we 
+investigate what quantitative properties of $M$ can be deduced from the properties of $\trop f$, that will indeed coincide with the interpretation of $M$ in $\LREL_{!}$.
+
+
+\input{tropicalization}
 
 
 
-\subsection{Best Case Analysis and Metric Reasoning}
+\subsection{Best case analysis and metric reasoning}
 
 The possibility of using the relational model over the tropical semi-ring for ``best case'' resource analysis has already been explored in \cite{Manzo2013}. Notably, they considered an interpretation of a language for $\B{PCF}$ with non-deterministic choice in which each $\lambda$-abstraction and each occurrence of the fixpoint operator $Y$ is assigned a ``weight'' 1, and showed that for any program $M$ of type $\B{nat}$, 
 the value of the interpretation $\model{M}\in \Lawv^{\BB N}$ on a particular natural number $k$, i.e.~$\model{M}(k)\in \Lawv$, corresponds to the \emph{minimum} number of $\beta$- or $\TT{fix}$-redexes reduced in a reductions sequence from $M$ to $\underline n$. 
@@ -27,7 +41,7 @@ a variant of the relational semantics modeling strongly normalizing programs via
 We mention this point in Section~\ref{section8}
 
 
-\subsection{Tropical Polynomials and Log-Probabilities}
+\subsection{Convergence log-probabilities}
 
 
 Let us consider in this subsection a probabilistic extension of $\STLC$, call it $\STLC_\oplus$:

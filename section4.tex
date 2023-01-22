@@ -10,7 +10,10 @@ In this section we recall some known facts about tropical Laurent series, and we
 
 \subsection{From tropical polynomials to tLs}
 
-A tropical polynomial, as we saw, is a piece-wise linear function of the form $f(x)=\min_{i_{1},\dots, i_{k}}\{i_{j}x+c_{i_{j}}\}$. For instance, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{in+2^{-i}\}$
+A tropical polynomial iss a piece-wise linear function of the form \begin{equation}
+f(x)=\min_{i_{1},\dots, i_{k}}\{i_{j}x+c_{i_{j}}\}
+\end{equation}
+For example, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{in+2^{-i}\}$
 are plotted in Fig.~\ref{fig:plot1} for $n=2,3,4$.
 A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes. For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $i \leq n$.
 With this definition, tropical roots mimic the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
@@ -21,7 +24,7 @@ $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots ca
 
 
 
-As anticipated in Section \ref{sectionnew}, a tropical Laurent series (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function that can be expressed as $f(x)=\inf_{n}\{nx+\matr f_{n}\}$, with $\matr  f_{n}$ a sequence in $\Lawv$. In other words, a tLs is a ``limit'' of tropical polynomials of higher and higher degree. For instance, the function $\varphi(x):=\inf_{n\in\N}\set{nx+\frac{1}{2^n}}$ (illustrated in Fig.~\ref{fig:plot1}), that we will take as our running example, 
+A \emph{tropical Laurent series} (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function that can be expressed as $f(x)=\inf_{n}\{nx+\matr f_{n}\}$, with $\matr  f_{n}$ a sequence in $\Lawv$. In other words, a tLs is a ``limit'' of tropical polynomials of higher and higher degree. For instance, the function $\varphi(x):=\inf_{n\in\N}\set{nx+\frac{1}{2^n}}$ (illustrated in Fig.~\ref{fig:plot1}), that we will take as our running example, 
 is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials. For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
 
 \begin{figure}
