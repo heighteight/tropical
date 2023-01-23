@@ -16,7 +16,7 @@ f(x)=\min_{i_{1},\dots, i_{k}}\{i_{j}x+c_{i_{j}}\}
 \end{equation}
 where the $i_{j}$ are natural numbers and the $c_{i_{j}}$ are in $\Lawv$.
 For example, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{ix+2^{-i}\}$
-are illustrated in Fig.~\ref{fig:plot1} for $n=2,3,4$.
+are illustrated in Fig.~\ref{fig:plot1} for $n\leq 4$.
 A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes). For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $i \leq n$.
 With this definition, tropical roots mimic the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
 $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
@@ -33,7 +33,12 @@ is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in gene
 \begin{subfigure}{0.24\textwidth}
 \begin{tikzpicture}[scale=0.55]
 \begin{axis}[samples=250]
-\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1)};
+\addplot[yellow,domain=0:0.8] {1+0.02};
+
+\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
+
+
+\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
 \addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
 \addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
 
@@ -67,7 +72,7 @@ is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in gene
 \label{fig:plot12}
 \caption{
 %\ref{fig:plot1}
- (a) Plot of the tropical polynomials $\varphi_{2}$ (in red), $\varphi_{3}$ (in blue), $\varphi_{4}$ (in orange) and of their limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.
+ (a) Plot of the tropical polynomials $\varphi_{n}$, for $n\leq 4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.
 %\ref{fig:plot2}
 (b) Plot of
 $\varphi(x,y)=\min\{2x, 2x+y,3y\}$.}
