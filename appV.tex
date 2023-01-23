@@ -1,5 +1,6 @@
-\subsubsection{Concavity}
+\subsection{Section~\ref{sec:4A}: Proof of Proposition~\ref{prop:nondecr+conc}}
 
+We just show the concavity, the rest being easy.
 
 A function $f:Q^{X}\to Q^{Y}$ is \emph{concave} if for all $\alpha\in [0,1]$, $ x ,  y  \in Q^{X}$ and $b\in Y$ 
 $$
@@ -87,7 +88,7 @@ This follows from the fact that for all $i\in I$, $a_{i}+b_{i}\geq \inf_{i}a_{i}
 
 %\newpage
 
-\subsubsection{Proof of Theorem~\ref{theorem:fepsilon}}
+\subsection{Section~\ref{sec:4A}: Proof of Theorem~\ref{theorem:fepsilon}}
 
 We give below the complete statement of Theorem \ref{theorem:fepsilon} together with its proof.
 
@@ -176,11 +177,9 @@ Therefore this $ m  $ works.
 
 %\newpage
 
-\subsubsection{Continuity of tLs}
+\subsection{Section~\ref{subsec:cont}: proof of Theorem~\ref{thm:cont}}
 
-We prove here the two results Theorem~\ref{thm:ScottCont} and Theorem~\ref{thm:cont} from Section~\ref{subsec:cont}.
-
-In order to prove Theorem~\ref{thm:cont}, we place ourselves in the general setting of locally convex topological vector spaces (LCTVS), and prove a general result about convex functions in this setting, adapting the argument from [Theorem , \cite{}].
+In order to prove Theorem~\ref{thm:cont}, we place ourselves in the general setting of locally convex topological vector spaces (LCTVS), and prove a general result about convex functions in this setting, adapting, in the main Proposition~\ref{prop:mainLCTVS}, an argument taken from [Proposition 4.4, \cite{Cobzas2017}].
 
 \begin{definition}
  A \emph{normed semiring} is the data of a semiring $R$ together with a \emph{norm} on it, that is, a function $\absv{.}\,:R\to\R$ satisfying the usual axioms of the absolute value function\footnote{I.e.: $\absv{x}\geq 0$, $\absv x =0 \textit{ iff } x=0$, $\absv{xy}=\absv x\absv y$ and $\absv{x+y}\leq \absv x+\absv y$.}.
@@ -297,13 +296,22 @@ We did so just to show that it is actually a general argument, but we could have
 For instance, Theorem~\ref{thmTLSlocLip} will be proved by refining this kind of argument (Lemma~\ref{lm:mainLip}), but not in the setting of LCTVS.
 \end{remark} 
 
+
+
 %\newpage
+\subsection{Section~\ref{subsec:cont}: proof of Theorem~\ref{thm:ScottCont}}
+
+In order to prove such result we must quickly recall the theory of normed cones, which we do below.
+
+Here we denote with $\overline{\R}_{\geq 0}$ the set $\R_{\geq 0}\cup\set{\infty}$ (the same as $\Lawv$, but we prefer to explicit it here).
+
+\subsubsection{Normed cones}
 
 \begin{definition}
  An \emph{$\overline{\R}_{\geq 0}$-cone} is a commutative $\overline{\R}_{\geq 0}$-semimodule with cancellative addition\footnote{I.e.: $x+y=x+y' \Rightarrow y=y'$.}.
 \end{definition}
 
-In [Selinger] cones are required to also have ``strict addition'', meaning that $x+y=0 \Rightarrow x=y=0$.
+In \cite{Selinger2004} cones are required to also have ``strict addition'', meaning that $x+y=0 \Rightarrow x=y=0$.
 We do not add this requirement since it will automatic hold when considering normed cones.
 
 \begin{remark}
@@ -320,7 +328,7 @@ We do not add this requirement since it will automatic hold when considering nor
  $\norm x \geq 0$, $\norm x = 0 \Rightarrow x=0$, $\norm{rx}=r\norm x$ and $\norm{x+y}\leq \norm x + \norm y$.} on it.
 \end{definition}
 
-In [Ehrhard-Pagani-Tasson, Crubillie] a normed $\overline{\R}_{\geq 0}$-cone is simply called a cone.
+In, e.g.~\cite{EhrPagTas2018}, a normed $\overline{\R}_{\geq 0}$-cone is simply called a cone.
 
 Remark that in a normed $\overline{\R}_{\geq 0}$-cone, by monotonicity of the norm, we have: $\norm{x+y}=0 \Rightarrow x=y=0$.
 Therefore, as already mentioned, in a normed cone we have: 
@@ -367,7 +375,7 @@ Remember the definition of Scott-continuity:
  A function $f:P\to P'$ between posets is \emph{Scott-continuous} iff for all directed net $(s_i)_i$ in $P$ admitting a sup, we have $\exists \bigvee\limits_i f(s_i) = f(\bigvee\limits_i s_i)$ in $P'$. 
 \end{definition}
 
-The fundamental result in order to prove Theorem~\ref{thm:ScottCont} is the following, taken from [Selinger].
+The fundamental result in order to prove Theorem~\ref{thm:ScottCont} is the following, taken from \cite{Selinger2004}.
 
 \begin{proposition}\label{prop:infsup}
  Let $P$ be a normed $\overline{\R}_{\geq 0}$-cone s.t.\ every bounded directed net in $P$ admits a sup.
@@ -410,13 +418,15 @@ The fundamental result in order to prove Theorem~\ref{thm:ScottCont} is the foll
 %This contradicts Corollary \ref{cor:tropCont}.
 %\end{remark}
 
-\begin{proposition}
+We finally obtain the desired:
+
+\begin{theorem}[Theorem~\ref{thm:ScottCont}]
  All tropical functions $f:\overline{\R}^X_{\geq 0}\to\overline{\R}^Y_{\geq 0}$ are Scott-continuous on $\R^X_{> 0}$ w.r.t.\ the cone-orders on its domain and codomain.
-\end{proposition}
+\end{theorem}
 \begin{proof}
  Let $(x_i)_i$ a directed net in $\R^X_{> 0}$ s.t.\ $\bigvee\limits_i x^i$ exists in $\R^X_{> 0}$.
  Then $\inf\limits_i \supnorm{\bigvee\limits_i x^i - x^i} =0$, where $\bigvee\limits_i x^i - x^i$ exists because $\bigvee\limits_i x^i \geq x^i$ for all $i$.
- Since $f$ is $\supnorm{.}$-continuous on $\R^X_{> 0}$ (Corollary \ref{cor:tropCont}), then $\inf\limits_i \supnorm{f(\bigvee\limits_i x^i) - f(x^i)} =0$, where $f(\bigvee\limits_i x^i) - f(x^i)$ exists because $f(\bigvee\limits_i x^i) \geq f(x^i)$ for all $i$ being $f$ monotone (Remark \ref{rmk:tropMonot}).
+ Since $f$ is $\supnorm{.}$-continuous on $\R^X_{> 0}$, then $\inf\limits_i \supnorm{f(\bigvee\limits_i x^i) - f(x^i)} =0$, where $f(\bigvee\limits_i x^i) - f(x^i)$ exists because $f(\bigvee\limits_i x^i) \geq f(x^i)$ for all $i$ being $f$ monotone (Remark \ref{rmk:tropMonot}).
  We can therefore apply Proposition \ref{prop:infsup} to the directed net $(f(x^i))_i$ in $\overline{\R}^Y_{\geq 0}$, obtaining that $\bigvee\limits_i f(x^i)$ exists in $\overline{\R}^Y_{\geq 0}$ and it coincides with $f(\bigvee\limits_i x^i)$.
 \end{proof}
 
@@ -522,14 +532,14 @@ $\bigvee\limits_{y<<x_a} y = \bigvee\limits_{y<<x} y_a$.
  The first equality follows from Remark \ref{rmk:<<R}, the second one from Lemma \ref{rmk:sup_a=sup_a}, the third one from Lemma \ref{lm:sup=sup}.
 \end{proof}
 
-\newpage
+%\newpage
 
+
+
+\subsection{Proofs from Section~\ref{sec:4C}}
 
 
 \subsubsection{Lipschitz continuity}
-
-
-
 
 
   We need a first, preliminary, lemma:
