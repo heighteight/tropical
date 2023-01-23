@@ -48,14 +48,14 @@ $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$ and $s\in\HOM{\LREL_!}{Z}{X}$:%, the evalua
 Here,
 %:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
 %$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
-$u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to linear application of $s$ to $u$, and $\Lambda^-$ is the uncurry operator.
+$u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
 Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical %interpretation of the
 version of the usual Taylor expansion.
-Indeed, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
-%
-% corresponding to the syntactical \emph{differential substitution} of $\STDLC$.
-%%\begin{proof}
-% {\color{red}(Che ci scriviamo ??}
-%\end{proof}
+%Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+Now, since $\LREL_!$ has countable sums (i.e.~all $\inf$'s converge), an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] shows:
+
+\begin{corollary}\label{cor:T(M)=M}
+ The interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+\end{corollary}
 
 

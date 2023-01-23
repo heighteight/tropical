@@ -47,13 +47,13 @@ which are defined as $C\partial C$ which are also cartesian closed, and in which
 
 
 Another intriguing similarity between program derivatives and 
-actual derivatives is provided by the \emph{Taylor expansion}:
-in $\STDLC$ one can prove that any application $MN$ can be expanded as an infinite formal sum of \emph{linear} applications
+actual derivatives is provided by the \emph{Taylor expansion} $\C T$:
+in $\STDLC$ one can expand any application $MN$ as an infinite formal sum of \emph{linear} applications
 $\Der^{(k)}[M]\cdot N^{k}$, i.e.~where $N$ is passed exactly $k$ times to $M$:
 \begin{align}\label{eq:taylor}
-MN  =  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot (\Der^{(k)}[M] \cdot N^{k})0
+\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot (\Der^{(k)}[M] \cdot N^{k})0
 \end{align}
-In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
+In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
 
 %More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
 %Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
