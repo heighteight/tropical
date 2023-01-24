@@ -10,7 +10,7 @@ $$
 
 
 \begin{proposition}
-All tropical functions $f: Q^{X}\to Q^{Y}$ are concave.
+All tLs $f: Q^{X}\to Q^{Y}$ are concave.
 \end{proposition}
 \begin{proof}
 Let us first show that all functions of the form $f( x )_{b}= \mu  x + c$ are concave:
@@ -109,17 +109,14 @@ This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph
 \end{remark}
 
 \begin{theorem}[Theorem \ref{theorem:fepsilon}]
-Let $f:\overline{\R}_{\geq 0}^{\{1,\dots, K\}} \to \overline{\R}_{\geq 0}$ tropical analytical, with matrix $\hat f : \N^{K} \to \overline{\R}_{\geq 0}$.
-Then, for all $0<\epsilon<+\infty$, there is $\mathcal{F}_\epsilon\subseteq\N^{K}$ s.t.\
+Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tLs with matrix $\matr f:\N^k\to\Lawv$.
+ For all $0<\epsilon<\infty$, there is $\C F_\epsilon \subseteq \N^k$ such that:
 \begin{enumerate}
- \item $\mathcal{F}_\epsilon$ is finite
- \item If $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \overline{\R}_{\geq 0}^{\{1,\dots, K\}}$
+ \item $\C F_\epsilon$ is finite
+ \item If $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \Lawv^k$
  \item If $f( x _0) = +\infty$ for some $ x _0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$
- \item The restriction of $f$ to $[\epsilon,+\infty]^{K}$ coincides with the  \emph{tropical polynomial}:
-      \[
-        P_\epsilon( x )= \min\limits_{ n  \in\mathcal{F}_\epsilon} \set{\hat f ( n  ) +  n   x }.
-      \]
-      where $ n   x = \sum_{i=1}^{K}n_{i}x_{i}$.
+ \item The restriction of $f$ on $[\epsilon,\infty]^k$ coincides  with the tropical {polynomial} \[P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\matr f(n)}\]
+where $nx:=\sum_{i=1}^k n_ix_i$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -286,7 +283,7 @@ Finally we have the desired result Theorem~\ref{thm:cont}:
  Therefore the result immediate follows by Corollary \ref{cor:cont}, since the topology induced by $\supnorm{.}$ on ${\R}_{> 0}^X$ coincides with the subspace topology induced by $({\R}_{\geq 0}^X,\supnorm .)$ on it.
 \end{proof}
 
-Due to the previous discussion about the impossibility of stating Corollary \ref{cor:cont} in the case where one of the coordinates of $x$ is $0$, the continuity of tropical functions on the hyperplanes $\mathcal H_a:=\set{x\in {\R}_{\geq 0}^X \mid x_a=0}$, for $a\in X$, must be treated separately.
+Due to the previous discussion about the impossibility of stating Corollary \ref{cor:cont} in the case where one of the coordinates of $x$ is $0$, the continuity of tLs on the hyperplanes $\mathcal H_a:=\set{x\in {\R}_{\geq 0}^X \mid x_a=0}$, for $a\in X$, must be treated separately.
 Similarly, the continuity at points with infinite coordinates must be treated separately as well.
 We left it for future investigations.
 
@@ -341,12 +338,12 @@ $x+y=0 \Rightarrow \norm{x+y}=0 \Rightarrow x=y=0$, that is, addition is strict.
 \begin{remark}
  The cone-order on $\overline{\R}_{\geq 0}^X$ is the pointwise usual order on $\overline{\R}_{\geq 0}$.
  
- Remark also that tropical functions have no reason to be linear nor sublinear.
+ Remark also that tLs have no reason to be linear nor sublinear.
 \end{remark}
 
 \begin{remark}\label{rmk:tropMonot}
- Tropical functions are monotone w.r.t.\ to the cone order on its domain and codomain.
- This is clear, using the definition of tropical functions, because $\mu x\leq \mu y$ if $x\leq y$.
+ tLs are monotone w.r.t.\ to the cone order on its domain and codomain.
+ This is clear, using the definition of tLs, because $\mu x\leq \mu y$ if $x\leq y$.
 \end{remark}
 
 \begin{remark}
@@ -421,7 +418,7 @@ The fundamental result in order to prove Theorem~\ref{thm:ScottCont} is the foll
 We finally obtain the desired:
 
 \begin{theorem}[Theorem~\ref{thm:ScottCont}]
- All tropical functions $f:\overline{\R}^X_{\geq 0}\to\overline{\R}^Y_{\geq 0}$ are Scott-continuous on $\R^X_{> 0}$ w.r.t.\ the cone-orders on its domain and codomain.
+ All tLs $f:\overline{\R}^X_{\geq 0}\to\overline{\R}^Y_{\geq 0}$ are Scott-continuous on $\R^X_{> 0}$ w.r.t.\ the cone-orders on its domain and codomain.
 \end{theorem}
 \begin{proof}
  Let $(x_i)_i$ a directed net in $\R^X_{> 0}$ s.t.\ $\bigvee\limits_i x^i$ exists in $\R^X_{> 0}$.
