@@ -18,7 +18,7 @@ For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which du
 By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $r\cdot X$ (i.e.~with distance $d_{r}(x,y)=r\cdot d(x,y)$) and $Y$, the program $M$ above 
 can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
 
-These observations have led to the study of linear $\lambda$-calculi with \emph{graded} exponentials, like the system $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied to the study of differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
+These observations have led to the study of linear $\lambda$-calculi with \emph{graded} exponentials, like $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied to the study of differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded linear exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
 In the following sections we will sometimes make reference to a basic graded type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined via $A::= o  \mid   !_{n}A\multimap A  $, 
 where $n\in \BB N$. Intuitively, $!_{ n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input \emph{at most} $n$ times. More details about $\BSTLC$ are provided in the Appendix.
 
