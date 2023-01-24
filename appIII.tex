@@ -242,7 +242,7 @@ $\model{\{x_{1}:_{n_{1}}A_{1},\dots, x_{k}:_{n_{k}}A_{k}\}}=
 Then, one inductively defines an interpretation $\model{\Gamma \vdash M:A}\in \C C(\model\Gamma, \model A)$ of $\Gamma \vdash M:A$ by induction as follows:
  \begin{itemize}
 \item $\model{x\in_{1}A\vdash x\in A}=\epsilon_{A}$;
-\item $\model{\Gamma+x:_{0}B\vdash M:A} =
+\item $\model{\Gamma,x:_{0}B\vdash M:A} =
 \model{\Gamma \vdash M:A}
 \circ (\model{\Gamma}\otimes  w_{\model B})
 $;

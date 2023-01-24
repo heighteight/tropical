@@ -183,7 +183,7 @@ The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of re
 By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} \absv{x_a}$ on $\Lawv^X$, we can generalise this property by dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
- Any tropical Laurent series $f:\Lawv^X\to\Lawv$ is continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
+ All tLs $f:\Lawv^X\to\Lawv$ are continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
 \end{theorem}
 \begin{proof}
  It follows after adapting [Proposition 4.4, \cite{Cobzas2017}] in order to prove that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
@@ -198,7 +198,7 @@ Suitable categories of cones have been recently investigated as models of probab
 Here we will just mention that:
 
 \begin{theorem}\label{thm:ScottCont}
-  Tropical Laurent series $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
+ All tLs $\Lawv^X\to\Lawv^Y$ are Scott-continuous on $\BB R_{>0}^X$, w.r.t.\ the cone orders.
   % on the domain and codomain.
 \end{theorem}
 
@@ -213,7 +213,7 @@ Let us first look at tropical linear functions:
 
 
 \begin{proposition}\label{prop:troplinear}
-All tropical linear functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
+All tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
 \end{proposition}
 %\begin{proof}[Proof sketch]
 %Using the fact that $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
@@ -252,7 +252,7 @@ This result is perfectly analogous to what happens in the metric models discusse
 We can now look at what happens with tLs, i.e.~when considering the full exponential $!$.
 First, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(X)}}$ to $\Lawv$, from Proposition \ref{prop:boundedlip} we deduce:
 \begin{corollary}\label{prop:polylip}
-Any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+Any tropical polynomials $\varphi:\Lawv^{X}\to\Lawv$ are $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
 
 
@@ -273,7 +273,7 @@ Actually, we can prove a more general statement, also covering the infinitary ca
 
 
 \begin{theorem}\label{thmTLSlocLip}
- All tropical Laurent series $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}^X$.
+ All tLs $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}^X$.
 \end{theorem}
 \begin{proof}[Proof sketch]
 The core of the proof is a convex analysis argument (see the Appendix) showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 

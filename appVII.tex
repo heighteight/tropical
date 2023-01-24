@@ -2,45 +2,45 @@
 \subsection{Proofs from Section \ref{section7}}
 
 \begin{remark}\label{rem:functor}
-Given $f:X\to Q$, $f$ is a functor precisely when for all $x,y\in X$ $f(x)\leq\inf_{x'\in X}f(x')+X(x',x)$. 
-Indeed, if $f$ is a functor then $f(x)\leq f(x')+X(x',x)$, since $f(x)-f(x')=Q(f(x'),f(x))\leq X(x',x)$. 
+Given $f:X\to \Lawv$, $f$ is a functor precisely when for all $x,y\in X$ $f(x)\leq\inf_{x'\in X}f(x')+X(x',x)$. 
+Indeed, if $f$ is a functor then $f(x)\leq f(x')+X(x',x)$, since $f(x)-f(x')=\Lawv(f(x'),f(x))\leq X(x',x)$. 
 Conversely, if $f(x)\leq f(x')+X(x',x)$ holds for all $x'$, then 
-$Q(f(x),f(x'))=f(x')-f(x)\leq X(x',x)$. 
+$\Lawv(f(x),f(x'))=f(x')-f(x)\leq X(x',x)$. 
 \end{remark}
 
 
 
 \begin{remark}[Yoneda embedding]
-%$\Lawv$ is a $\Lawv$-category with $Q(x,y)=|x-y|$. 
-%For any $\Lawv$-category $X$ we can define a new $\Lawv$-category $\mathsf{Dist}(X,Q)$ (that we note simply as $[X,Q]$) whose objects are the distributors $x:\{\star\}\pfun X$, or equivalently, the functors from $X$ to $\Lawv$, i.e.~those $x\in \Lawv^{X}$ such that $|x_{a}-x_{b}|\leq X(a,b)$, or equivalently $x_{a}+X(a,b) \geq x_{b}$.
+%$\Lawv$ is a $\Lawv$-category with $\Lawv(x,y)=|x-y|$. 
+%For any $\Lawv$-category $X$ we can define a new $\Lawv$-category $\mathsf{Dist}(X,Q)$ (that we note simply as $[X,\Lawv]$) whose objects are the distributors $x:\{\star\}\pfun X$, or equivalently, the functors from $X$ to $\Lawv$, i.e.~those $x\in \Lawv^{X}$ such that $|x_{a}-x_{b}|\leq X(a,b)$, or equivalently $x_{a}+X(a,b) \geq x_{b}$.
 
 
-The \emph{Yoneda embedding} is the faithful functor $\B Y: X\to [X,Q]$ given by $\B Y(x)(y)=X(y,x)$. The functoriality and faithfulness of $\B Y$ follow from
+The \emph{Yoneda embedding} is the faithful functor $\B Y: X\to [X,\Lawv]$ given by $\B Y(x)(y)=X(y,x)$. The functoriality and faithfulness of $\B Y$ follow from
 \begin{align}
-[X,Q](\B Y(x),\B Y(x'))= X(x,x') \tag{Yoneda}
+[X,\Lawv](\B Y(x),\B Y(x'))= X(x,x') \tag{Yoneda}
 \end{align}
 which is proved as follows: for all $y\in X$ we have 
 \begin{align*}
-Q( \B Y(x)(y),\B Y(x')(y))&= \B Y(x')(y)-\B Y(x)(y) \\
+\Lawv( \B Y(x)(y),\B Y(x')(y))&= \B Y(x')(y)-\B Y(x)(y) \\
 &= X(y,x')-X(y,x) \leq X(x,x')
 \end{align*}
 where the last step follows from $X(y,x)+X(x,x')\geq X(y,x')$. 
-From this we deduce that $[X,Q](\B Y(x),\B Y(x'))=\sup_{y\in X}Q( \B Y(x)(y),\B Y(x')(y))\leq X(x,x')$. 
+From this we deduce that $[X,\Lawv](\B Y(x),\B Y(x'))=\sup_{y\in X}\Lawv( \B Y(x)(y),\B Y(x')(y))\leq X(x,x')$. 
 For the converse direction, we have  
 \begin{align*}
 X(x,x') &  = X(x,x') - 0 \\ &=
 X(x,x')- X(x,x)
-\\& =\B Y(x')(x)-\B Y(x)(x)= Q(\B Y(x)(x),\B Y(x')(x))\\
-&\leq [X,Q](\B Y(x), \B Y(x'))
+\\& =\B Y(x')(x)-\B Y(x)(x)= \Lawv(\B Y(x)(x),\B Y(x')(x))\\
+&\leq [X,\Lawv](\B Y(x), \B Y(x'))
 \end{align*}
 \end{remark}
 
 
 \begin{remark}
 The \emph{opposite Yoneda embedding} is the faithful functor
-$\B Y^{\mathrm{op}}: X\to [X,Q]^{\mathrm{op}}$ given by $\B Y^{\mathrm{op}}(x)(y)=X(x,y)$. The functoriality and faithfulness of $\B Y^{\mathrm{op}}$ follow from
+$\B Y^{\mathrm{op}}: X\to [X,\Lawv]^{\mathrm{op}}$ given by $\B Y^{\mathrm{op}}(x)(y)=X(x,y)$. The functoriality and faithfulness of $\B Y^{\mathrm{op}}$ follow from
 \begin{align}\label{eq:yonedaop}
-[X,Q](\B Y^{\mathrm{op}}(x),\B Y^{\mathrm{op}}(x'))= X(x',x) \tag{Yoneda$^{\mathrm{op}}$}
+[X,\Lawv](\B Y^{\mathrm{op}}(x),\B Y^{\mathrm{op}}(x'))= X(x',x) \tag{Yoneda$^{\mathrm{op}}$}
 \end{align}
 which is proved similarly to the case of $\B Y$.
 \end{remark}
@@ -96,14 +96,14 @@ For a $\Lawv$-category $X$, we write $x\simeq y$ when $X(x,y)=X(y,x)=0$. $\simeq
 Let $X$ be a skeletal $\Lawv$-category. Then $X$ is complete iff the Yoneda embedding has a left-adjoint.
 \end{proposition}
 \begin{proof}
- For all $ x\in [X,Q]$, let $\sup x$ be defined as a weighted colimit via
+ For all $ x\in [X,\Lawv]$, let $\sup x$ be defined as a weighted colimit via
 $$
 X(\sup x, b)= \sup_{a\in X} X(a,b)-x_{a}
 $$
 that is, $\sup  x= \mathrm{colim}(  x, \mathrm{id}_{X})$, where $ x$ is seen as a distributor $x:\{\star\}\pfun X$.
 
 
-Let us check that $\sup: [X,Q]\to X$ is a functor. First, let us check the  inequality
+Let us check that $\sup: [X,\Lawv]\to X$ is a functor. First, let us check the  inequality
 \begin{align}\label{eq:in1}
 (X\multimapinv y)\cdot ( y\multimapinv x)\geq (X\multimapinv x)\end{align}
 as follows:
@@ -124,11 +124,11 @@ From \eqref{eq:in1} we deduce immediately the inequality below:
 \end{align}
 and we can now compute:
 \begin{align*}
-[X,Q](x,  y)&= \sup_{a\in X} y_{a}-x_{a}\\
+[X,\Lawv](x,  y)&= \sup_{a\in X} y_{a}-x_{a}\\
  &\stackrel{\tiny\eqref{eq:in2}}{\geq}
  \sup_{a\in X} \left( \sup_{b\in X}X(b,a)-x_{a}\right) -\left(  \sup_{b\in X}X(b,a)- y_{a}   \right )\\
  &= \sup_{a\in X}X(\sup x, a)-X(\sup  y, a)\\
- &= [X,Q](\B Y^{\mathrm{op}}(\sup y),\B Y^{\mathrm{op}}(\sup x))
+ &= [X,\Lawv](\B Y^{\mathrm{op}}(\sup y),\B Y^{\mathrm{op}}(\sup x))
  \tag{\ref{eq:yonedaop}}
  \\
 &=X(\sup x, \sup  y)
@@ -145,17 +145,17 @@ X(\sup \B Y(x), y) & = \sup_{z\in X}X(z,y) -\B Y(x)(z) \\
 %%$X(x,y) \leq \sup_{z}X(z,y)-X(x,z)$.
 %
 
-Moreover, for all $x\in [X,Q]$, we have $\B Y(\sup x)\geq x$:  
+Moreover, for all $x\in [X,\Lawv]$, we have $\B Y(\sup x)\geq x$:  
 \begin{align*}
 \B Y(\sup x)(a) &= X(a,\sup x)\\
 &= X(  \sup(\B Y(a)),\sup x) \\
-& \geq [X,Q]( \B Y(a), x)\\
+& \geq [X,\Lawv]( \B Y(a), x)\\
 &\geq x_{a}-\B Y(a)(a) \\
 &=
  x_{a}-X(a,a)  = x_{a}
 \end{align*}
 %where in the last step we use the fact that 
-%$[X,Q](  \B Y(a),x)= \sup_{b}x_{b}-X(a,b) = x_{a}$.
+%$[X,\Lawv](  \B Y(a),x)= \sup_{b}x_{b}-X(a,b) = x_{a}$.
 %
 %$ y\in \Lawv^{X}$, 
 % $\| \B Y(\sup x)-  y\|_{\infty}=\| \B Y(\sup x)- x\|_{\infty}$. Indeed we have 
@@ -195,7 +195,7 @@ $f  = X\multimapinv g $ and
 $g = f\multimap X$. 
 The \emph{MacNeill completion of $X$} is the $\Lawv$-category $\B M(X)$ made of those 
 $f:\{\star\}\pfun X$ such that $f\coh g$ for some $g:X\pfun \{\star\}$, with
-$\B M(X)(f,f')=[X,Q](f,f')$. 
+$\B M(X)(f,f')=[X,\Lawv](f,f')$. 
 \end{definition}
 
 
@@ -249,14 +249,14 @@ $\B Y(\sup x)=x$:
 % 
 %
 %\item \emph{Cauchy-completeness} is the case where $X$ contains the points $\sup x, \sup y$, for any 
-% any two \emph{adjoint} presheaves $x, y\in [X,Q]$, i.e.~satisfying $0=\inf_{a}x_{a}+ y_{a}$ and $x_{a}+ x_{b}\geq X(a,b)$. 
+% any two \emph{adjoint} presheaves $x, y\in [X,\Lawv]$, i.e.~satisfying $0=\inf_{a}x_{a}+ y_{a}$ and $x_{a}+ x_{b}\geq X(a,b)$. 
 % Notice that given a pair $(x,  y)$ we can define a Cauchy sequence by finding $a_{n}$ satisfying 
 % $x_{a_{n}}+ y_{a_{n}}\leq \frac{1}{n}$. Indeed this implies $X(a_{n},a_{n+1})\leq x_{a_{n}}+ y_{a_{n+1}}\leq x_{a_{n}}+ y_{a_{n}}+x_{a_{n+1}}+ y_{a_{n+1}}=\frac{1}{n}+\frac{1}{n+1}$.
 % Conversely, any (equivalence class of) Cauchy sequences $a_{n}$ yields an adjoint pair given by
 % $x_{a}= \lim_{n}X(a_{n},a)$ and $ y_{a}=\lim_{n}X(a,a_{n})$. 
 % 
 %% 
-%% \item \emph{Isbell-completeness} (or \emph{MacNeill completeness}) is the case where $X$ contains the points $\sup x, \sup  y$, for any two presheaves $x,  y\in [X,Q]$ satisfying 
+%% \item \emph{Isbell-completeness} (or \emph{MacNeill completeness}) is the case where $X$ contains the points $\sup x, \sup  y$, for any two presheaves $x,  y\in [X,\Lawv]$ satisfying 
 %% $
 %% x_{a}= \sup_{b\in X}X(b,a)- y_{b}
 %% $.
@@ -323,7 +323,7 @@ $B= (\sup_{j\in J}a_{j}-b_{j})-\epsilon$, again with ``$-$'' usual subtraction, 
 
 \begin{lemma}
 In any complete $\Lawv$-category, $x\otimes \epsilon \simeq \sup(  \B Y(x)+\epsilon  )$.
-In the complete $\Lawv$-category $[X,Q]$, $x\otimes \epsilon= x+\epsilon$.
+In the complete $\Lawv$-category $[X,\Lawv]$, $x\otimes \epsilon= x+\epsilon$.
 \end{lemma}
 \begin{proof}
 We have 
@@ -333,8 +333,8 @@ X(\sup(\B Y(x)+\epsilon), x')& =\sup_{y\in X}X(z,x')- (\B Y(x)(z)+\epsilon)\\
 &= (\sup_{y\in X}X(z,x')-X(z,x))-\epsilon\\
 &= X(x,x')-\epsilon
 \end{align*}
-which shows $x\otimes \epsilon=\sup(\B Y(x)+\epsilon)$. In $[X,Q]$ we have 
-$[X,Q](x+\epsilon, x')=\sup_{a\in X}(x_{a}+\epsilon)-x'_{a}= (\sup_{a\in X}x_{a}-x'_{a})-\epsilon= [X,Q](x, x')-\epsilon$, which shows $x\otimes \epsilon \simeq x+\epsilon$, and since $[X,Q]$ is skeletal, $x\otimes \epsilon=x+\epsilon$.
+which shows $x\otimes \epsilon=\sup(\B Y(x)+\epsilon)$. In $[X,\Lawv]$ we have 
+$[X,\Lawv](x+\epsilon, x')=\sup_{a\in X}(x_{a}+\epsilon)-x'_{a}= (\sup_{a\in X}x_{a}-x'_{a})-\epsilon= [X,\Lawv](x, x')-\epsilon$, which shows $x\otimes \epsilon \simeq x+\epsilon$, and since $[X,\Lawv]$ is skeletal, $x\otimes \epsilon=x+\epsilon$.
 \end{proof}
 
 
@@ -345,7 +345,7 @@ X(x', x\multimapinv \epsilon)= X(x',x)-\epsilon
 In other words, in a tensored and cotensored $\Lawv$-category we have $X(x\otimes \epsilon,y)= X(x,y\multimapinv \epsilon)$. 
 
 \begin{example}
-The $\Lawv$-category $[X,Q]$ is cotensored, with $x\multimapinv \epsilon:= x-\epsilon$. Indeed we have $[X,Q](x,  y\multimapinv \epsilon)=\sup_{a\in X}( y_{a}-\epsilon)-x_{a}=(\sup_{a\in X} y_{a}-x_{a})-\epsilon= [X,Q](x,  y)-\epsilon$.
+The $\Lawv$-category $[X,\Lawv]$ is cotensored, with $x\multimapinv \epsilon:= x-\epsilon$. Indeed we have $[X,\Lawv](x,  y\multimapinv \epsilon)=\sup_{a\in X}( y_{a}-\epsilon)-x_{a}=(\sup_{a\in X} y_{a}-x_{a})-\epsilon= [X,\Lawv](x,  y)-\epsilon$.
 \end{example}
 
 \begin{definition}
@@ -410,7 +410,7 @@ We only prove the second claim, the first being proved similarly.
 If a $\Lawv$-category $X$ is tensored, cotensored and order-complete, then it is complete.
 \end{proposition}
 \begin{proof}
-For all $x\in [X,Q]$, let $\sup x:= \bigvee_{a\in X}a\otimes x_{a}$. 
+For all $x\in [X,\Lawv]$, let $\sup x:= \bigvee_{a\in X}a\otimes x_{a}$. 
 Let us check that $X(\sup x, b)= \sup_{a\in X}X(a,b)-x_{a}$, using Lemma \ref{lemma:supinf}:
 \begin{align*}
 X(\sup x, b) &= \sup_{a\in X}X(a\otimes x_{a},b)\\
@@ -622,7 +622,7 @@ Proposition \ref{prop:tenfun} it commutes with joins, so it is a morphism of the
 %Observe that $\widehat f$ can be extended to a function $f^{*}$ from $\Lawv^{X}$ to $\Lawv^{Y}$.
 %Now, $ f^{*}$ is generated by the matrix $k_{f}\in \Lawv^{X\times Y}$ given by $k_{ f}(a,b)=f(e_{a})(b)$, so that for all $x\in \Lawv^{X}$, 
 %$f^{*}(x)(b)=\bigvee_{a\in X}k_{f}(a,b)+x_{a}$, and thus
-%in particular, for all $x\in [X,Q]$, 
+%in particular, for all $x\in [X,\Lawv]$, 
 %$\widehat f(x)(b)=f^{*}(x)(b)$.
 %\end{proof}
 
@@ -862,29 +862,29 @@ On the other hand, if $f=\zeta(h)$, then the uniqueness of $h_{f'}$ ensures that
 
 \begin{proposition}
 \begin{itemize}
-\item[i.] $\Mod(Q,M)\simeq M$.
+\item[i.] $\Mod(\Lawv,M)\simeq M$.
 \item[ii.] $\Mod(M,N)\simeq \Mod(N^{\mathrm{op}},M^{\mathrm{op}})$.
 \item[iii.] $\Mod(M, \Lawv^{\mathrm{op}})\simeq M^{\mathrm{op}}$.
 \end{itemize}
 (all isomorphisms of sup-lattices).
 \end{proposition}
 \begin{proof}
-Define $\alpha:M\to \Mod(Q,M)$ by $\alpha(x)(\epsilon)=x\star\epsilon$ and 
-$\beta:\Mod(Q,M)\to M$ by $\beta(f)=f(0)$. Then we have that 
+Define $\alpha:M\to \Mod(\Lawv,M)$ by $\alpha(x)(\epsilon)=x\star\epsilon$ and 
+$\beta:\Mod(\Lawv,M)\to M$ by $\beta(f)=f(0)$. Then we have that 
 $\alpha(\beta(f))(\epsilon)=\alpha(f(0))(\epsilon)=f(0)\star\epsilon=f(\epsilon)$, and 
 $\beta(\alpha(x))=\beta(\lambda \epsilon.x\star\epsilon)=x\star0=x$.
 
 If $f\in \Mod(M,N)$, since it preserves joins, it has a right-adjoint $f^{*}:N^{\mathrm{op}}\to M^{\mathrm{op}}$, such that $f(x)\leq y$ iff $x\leq f^{*}(y)$. 
 
 
-By i.~$\Mod(Q,M^{\mathrm{op}})\simeq M^{\mathrm{op}}$ and we conclude by ii.
+By i.~$\Mod(\Lawv,M^{\mathrm{op}})\simeq M^{\mathrm{op}}$ and we conclude by ii.
 \end{proof}
 
 \begin{proposition}
 \begin{itemize}
 \item[i.] $\Mod(M,N)\simeq (M\otimes N^{\mathrm{op}})^{\mathrm{op}}$.
 \item[ii.] $M\otimes N\simeq \Mod(M, N^{\mathrm{op}})^{\mathrm{op}}$.
-\item[iii.] $Q\otimes  M \simeq M\otimes Q\simeq Q$.
+\item[iii.] $\Lawv\otimes  M \simeq M\otimes \Lawv\simeq \Lawv$.
 \end{itemize}
 \end{proposition}
 \begin{proof}
@@ -893,7 +893,7 @@ $\Mod(M,N)\simeq \Mod(M, \Mod(N^{\mathrm{op}},\Lawv^{\mathrm{op}}))
 (M\otimes N^{\mathrm{op}})^{\mathrm{op}}$.
 Claim ii.~is proved similarly.
 
-For claim iii.~$Q\otimes M\simeq M\otimes M\simeq \Mod(M, \Lawv^{\mathrm{op}})^{\mathrm{op}}\simeq (M^{\mathrm{op}})^{\mathrm{op}}=M$. 
+For claim iii.~$\Lawv\otimes M\simeq M\otimes M\simeq \Mod(M, \Lawv^{\mathrm{op}})^{\mathrm{op}}\simeq (M^{\mathrm{op}})^{\mathrm{op}}=M$. 
 \end{proof}
 
 
@@ -914,7 +914,7 @@ Further useful properties are the following:
 \end{proposition}
 \begin{proof}
 $M^{X}$ coincides with the product $\Pi_{x\in X}M$. We have then 
-$\Lawv^{X}\otimes M \simeq (\Pi_{x}Q)\otimes M \simeq \Pi_{x}(Q\otimes M) \simeq \Pi_{x}M\simeq M^{X}$.
+$\Lawv^{X}\otimes M \simeq (\Pi_{x}\Lawv)\otimes M \simeq \Pi_{x}(\Lawv\otimes M) \simeq \Pi_{x}M\simeq M^{X}$.
 
 For ii., using i.~we have $\Lawv^{X}\otimes \Lawv^{Y}\simeq( \Lawv^{Y})^{X}\simeq \Lawv^{X\times Y}$.
 \end{proof}
