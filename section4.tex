@@ -246,29 +246,22 @@ This follows from Proposition \ref{prop:troplinear} and the remark that, for all
 \end{proof}
 This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 
-
-
-
-We can now look at what happens with tLs, i.e.~when considering the full exponential $!$.
-First, since a tropical polynomial can be represented as a tropical linear function from $\Lawv^{\C M_{\mathrm{deg}(\varphi)(X)}}$ to $\Lawv$, from Proposition \ref{prop:boundedlip} we deduce:
+Observe that, for any tropical polynomial $\varphi:\Lawv^{X}\to \Lawv^{Y}$, the associated matrix has shape $!_{\mathrm{deg}(\varphi)}(X)\times Y\to \Lawv$ (as any monomial $ix+c_{i}$ yields a matrix entry on $!_{i}X\times Y$). Hence, using Proposition \ref{prop:boundedlip}, we have:
 \begin{corollary}\label{prop:polylip}
-Any tropical polynomials $\varphi:\Lawv^{X}\to\Lawv$ are $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
 
 
-Using Corollary \ref{prop:polylip}, an immediate consequence of %the lines after Theorem~\ref{thm:modelsTaylor} is:
-Corollary~\ref{cor:T(M)=M} is:
+
+Moreover, from Proposition \ref{prop:boundedlip}, we can also deduce the desired Lipschitz decomposition of the Taylor expansion (using Corollary~\ref{cor:T(M)=M}):
 
 \begin{corollary}\label{thm:M=infLip}
- If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions.
+ If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions (via its Taylor expansion \eqref{eq:taylorcat}).
 \end{corollary}
- 
-% 
-%
-%The proposition above, together with Theorem \ref{theorem:fepsilon}, can be used to show that tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz over $(0,\infty)^{X}$. 
 
- 
-Moreover, as consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
+
+Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
+As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
 Actually, we can prove a more general statement, also covering the infinitary case.
 
 
@@ -296,7 +289,7 @@ Claim 2) follows directly from Theorem~\ref{thmTLSlocLip}.
 
 Finally, let us discuss the differential structure. The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by 
 \begin{equation}
-D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu*a}+x_{a}+\mu y\right\}
+D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}
 \end{equation}
 One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
 Moreover, the Taylor formula \eqref{eq:taylorcat} yields a ``tropical'' Taylor formula for tLs of the form 
