@@ -1,0 +1,73 @@
+We thank the anonymous reviewers for their comments and suggestions.
+We reply to a few of them below.
+
+Reviewer 1:
+
+> "which can be written as a parameterized power series of the form" what does this mean? $f$ is a single function, but $f_t$ is an infinite family of functions. does it mean $f$ can be written as $f_t$ for some fixed constant $t$?"
+
+
+Rigirare la frittata su f, f_t ecc.
+
+
+> Theorem 24 to bottom of column: I found this discussion hard to follow.
+
+One of the core aspects of Theorem 24 is that on any L-module one can define a canonical metric; the goal of this paragraph is thus to describe in an explicit way the metrics associated with the SMCC structure of LMOD (or, equivalently, the metrics defining the SMCC structure of LCCAT). Yet we think that we should have noted X,Y rather as M,N, in order to avoid confusion.  
+
+Concerning tensors, in the previous page (after Prop. 19) we introduced the tensor product in LMOD and recalled that an element of it is a join of basic tensors x(x)y.
+
+
+
+
+Reviewer 2:
+
+> "Some of the calculations in the appendix regarding the differential story can be referenced away."
+
+We thank the reviewer for his careful reading of the whole paper (including the long appendix), and for his numerous suggestions concerning results appearing in the recent literature. We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found its results very interesting. We will adjust our presentation following such remarks.
+
+As a general remark, our results on LREL and LREL_! in Section III are based on relatively unsurprising checks (yet, it is always interesting to know that one can avoid long checks and use a theorem instead!). Since this paper is also addressed to the program metrics community, which is less familiar with linear logic and weighted relational models, this section is mainly thought to provide a relatively concrete presentation of (the tropical variant of) this model, studied in more detail in the following sections.
+ 
+> "Theorem 81 is important and should have appeared in the main paper."
+
+Theorem 29 is (essentially) Theorem 81 from the appendix, but without mention of differential linear categories. We chose not to mention the latter in the main text (and thus to limit our discussion of differential operators to the cartesian case) because our results concerning them are either folklore or based on well-known results/techniques.
+
+
+
+> "In the introduction, you say "the somehow canonical "Taylor semantics for STdLC". Why is that? What is the justification for this statement?"
+
+...
+
+
+> "I suggest rewriting Section III.D based on the comments made above, and explain that the differential structure comes from the fact that LREL is a differential category."
+
+OK? Connettere alla discussione sopra??
+
+
+Reviewer 3:
+
+
+> "It is good that the model can characterize
+    differential privacy of programs, but its implication to the
+    verification tasks is not discussed."
+
+Of course, the applications in Section 5 are just sketched. Our main goal in this paper was to demonstrate that tropical methods, which are widely applied in computer science (but not in the linear logic/lambda-calculus community) can make sense also for studying the quantitative semantics of the lambda-calculus. Concrete developments of such applications are thus left for future work.
+ 
+
+> "Another limitation of the
+    paper's model is that it can not handle probabilistic programs
+    involving continuous distributions"
+
+This is indeed a well-known limitations of the semantics of probabilistic programs based on weighed relational models (e.g. probabilistic coherent spaces [33]). Still, such semantics are well-studied and led to strong results (e.g. full abstraction theorems). Still, we agree that this limitation should be mentioned.
+
+
+> "In complex analysis, Laurent series include terms of negative
+    degrees, while here I think we only consider terms with
+    non-negative degrees."
+
+This is true, yet in the literature on tropical mathematics (to which we refer, e.g. [59]) these are defined only with positive coefficients. We agree that this should be explicitly mentioned, in order to avoid confusion.
+
+> "Is Theorem 24, which is one of the main claims in the paper,
+    original, or subsumed by [71]?"
+
+We think that the main contribution in Section 6 is to show that an abstract correspondence known in the categorical literature can be extended to account for the relevant structure for interpreting the differential lambda-calculus. Hence we see Theorems 27 and 29, rather than Theorem 24 (whose statement and proof can be deduced from the results of [71]) as the main claims of this section.
+
+
