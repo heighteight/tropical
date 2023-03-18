@@ -29,8 +29,8 @@ We are here supposing that a database can be encoded as a function X --> [0,1], 
 
 > Theorem 24 to bottom of column: I found this discussion hard to follow.
 
-One of the core aspects of Theorem 24 is that on any L-module one can define a canonical metric; the goal of this paragraph is thus to describe in an explicit way the metrics associated with the SMCC structure of LMOD (or, equivalently, the metrics defining the SMCC structure of LCCAT). Maybe we should use M,N rather than X,Y in order to avoid confusion.  
-Concerning tensors, in the previous page (after Prop. 19) we introduced the tensor product in LMOD and recalled that an element of it is a join of basic tensors x(x)y.
+One of the core aspects of Theorem 24 is that on any L-module one can define a canonical metric; the goal of this paragraph is to describe explicitly the metrics associated with the SMCC structure of LMOD (equivalently, the SMCC structure of LCCAT). We should use M,N rather than X,Y to avoid confusion.  
+On tensors: in the previous page (after Prop. 19) we introduced the tensor product in LMOD and recalled that its elementsare joins of basic tensors x(x)y.
 
 
 
