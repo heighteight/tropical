@@ -94,6 +94,6 @@ This is true, yet often in the literature on tropical mathematics (to which we r
 > "Is Theorem 24, which is one of the main claims in the paper,
     original, or subsumed by [71]?"
 
-We think that the main contribution in Section 6 is to show that an abstract correspondence (expressed indeed by Theorem 24) known in the categorical literature can be extended to account for the relevant structure for interpreting the differential lambda-calculus. Hence, we see Theorems 27 and 29 as the main claims of this section, rather than Theorem 24 (whose statement and proof can be deduced from the results of [71]). We will clarify this.
+We think that the main contribution in Section 6 is to show that an abstract correspondence (expressed indeed by Theorem 24) known in the categorical literature can be extended to account for the relevant structure for interpreting the differential lambda-calculus. Hence, we see Theorems 27 and 29 as the main claims of this section, rather than Theorem 24 (which can be deduced from the results of [71]). We will clarify this.
 
 
