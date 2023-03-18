@@ -1,31 +1,26 @@
 
-We thank very much all the reviewers for their careful reading and comments.
+We thank very much the reviewers for their careful reading and comments.
 We will take care of their suggestions in correcting typos and unclear sentences.
 Below we reply to a few questions and observations.
 
 
 Reviewer 1:
 
-
 > on $t^!(x) := t o_! x$:
 
 We are tacitly using the standard identification of Q^X with QRel_!(T,X)=QRel(!T,X) where T=\emptyset is the terminal object.
-
 
 > on $[[M]]^!$:
 
 It is the function discussed in the previous answer (i.e. in equation (6) at page 5).
 
-
 > on the functions f and f_t:
 
 We mean that we consider f a power series of shape \sum_n a_n x^n, and for fixed t>0 we take c_n := log_t (a_n), so that f can be written in the shape given in the paper. We agree that the subsection is not very clear, so we will rephrase it.
 
-
 > "Prop 17: why is the input of $f$ suddenly $[0, 1]^X$?"
 
 We are here supposing that a database can be encoded as a function X --> [0,1], which is indeed often the case (for instance, for a relational database -- take X as the key/attributes and [0,1] as the datas). We will make this tacit assumption explicit.
-
 
 > On the discussion after Theorem 24:.
 
@@ -33,34 +28,24 @@ One of the core aspects of Theorem 24 is that on any L-module one can define a c
 On tensors: in the previous page (after Prop. 19) we introduced the tensor product in LMOD and recalled that its elementsare joins of basic tensors x(x)y.
 
 
-
-
 Reviewer 2:
 
-
 First of all, we thank the reviewer for their thorough reading. We will adjust our presentation following their useful remarks!
-
 
 > Comments 1, 2, 7, 8.
 
 We thank the reviewer for his careful reading of the appendix. We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found it very interesting. As a general remark, our results on LREL_! in Section III are mostly unsurprising checks, yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and its models, we think it is useful to provide a concrete presentation of the tropical relational model. We will adjust references and replace "Fact" with "Proposition/Lemma" together with the appropriate reference, as in Section IV. For the final version of the paper, instead of a long appendix we will make a long version of the paper available online.
 
-
 > On Theorem 81.
 
 The main claim of this theorem appears in the main text as Theorem 29, but without mention of differential linear categories. We chose not to introduce the latter in the main text as we only use them, via well-known results, to prove results about non linear categories.
-
 
 > On "the somehow canonical "Taylor semantics for STdLC".
 
 We agree that the sentence is not clear, so we'll modify it. We simply meant that since Taylor and relational semantics are tightly related, it is natural to look at what happens in that kind of models. 
 
 
-
-
 Reviewer 3:
-
-
 
 > "It is good that the model can characterize
     differential privacy of programs, but its implication to the
@@ -74,11 +59,9 @@ As we see it, the main goal of this paper is to demonstrate that tropical method
 
 This is indeed a well-known limitation of the semantics of probabilistic programs based on weighed relational models (e.g. probabilistic coherent spaces [33]). Still, such semantics are well-studied and led to strong results (e.g. full abstraction theorems). Anyway, we agree that this limitation should be mentioned.
 
-
 > p.4 on the hat operation
 
 It is supposed to be defined by those lines. But we agree that it is not clear, so we will rephrase it better.
-
 
 > on Laurent series and terms of negative degrees
 
