@@ -1,8 +1,7 @@
 
-We thank very much all the reviewers for the careful comments.
-We will of course take care in correcting all the typos and unclear sentences.
-Below we anwer to the main points.
-
+We thank very much all the reviewers for their careful reading and comments.
+We will take care of their suggestions in correcting typos and unclear sentences.
+Below we reply to a few questions and observations.
 
 
 Reviewer 1:
@@ -10,7 +9,7 @@ Reviewer 1:
 
 > p5 "setting $t^!(x) := t o_! x$"...
 
-We are tacitly using the standard indentification of Q^X with the morphisms in QRel_!(T,X)=QRel(!T,X) where T=\emptyset is the terminal object.
+We are tacitly using the standard identification of Q^X with QRel_!(T,X)=QRel(!T,X) where T=\emptyset is the terminal object.
 
 
 >  p7 what is $[[M]]^!$?
@@ -20,12 +19,12 @@ It is the function discussed in the previous answer (i.e. in equation (6) at pag
 
 > p7 "which can be written as a parameterized power series of the form" what does this mean? $f$ is a single function, but $f_t$ is an infinite family of functions. does it mean $f$ can be written as $f_t$ for some fixed constant $t$?"
 
-We mean that we consider f a power series of shape \sum_n a_n x^n, and for fixed t>0 we take c_n := log_t (a_n), so that f can be written in the shape given in the paper. We agree that the subsection is not clear, so we will rephrase it better.
+We mean that we consider f a power series of shape \sum_n a_n x^n, and for fixed t>0 we take c_n := log_t (a_n), so that f can be written in the shape given in the paper. We agree that the subsection is not very clear, so we will rephrase it.
 
 
 > p9 Prop 17: why is the input of $f$ suddenly $[0, 1]^X$?
 
-We are supposing to see a database as a function X --> [0,1], which is indeed often the case (for instance, for a relational database -- take X as the key/attributes and [0,1] as the datas). We will mention that.
+We are here supposing that a database can be encoded as a function X --> [0,1], which is indeed often the case (for instance, for a relational database -- take X as the key/attributes and [0,1] as the datas). We will make this tacit assumption explicit.
 
 
 > Theorem 24 to bottom of column: I found this discussion hard to follow.
@@ -39,19 +38,18 @@ Concerning tensors, in the previous page (after Prop. 19) we introduced the tens
 Reviewer 2:
 
 
-First of all, we thank you for your thorough reading. We will surely adjust our presentation following your useful remarks!
+First of all, we thank the reviewer for their thorough reading. We will adjust our presentation following their useful remarks!
 
 
 > Comment 1, comment 2, comment 7, comment 8.
 
-We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found its results very interesting/. As a general remark, our results on LREL and LREL_! in Section III are indeed based on relatively unsurprising checks; but since this paper is also addressed to the program metrics community, which is less familiar with linear logic and weighted relational models, this section is mainly thought to provide a relatively concrete presentation of (the tropical variant of) this model, before studying it in more detail in the following sections.
-Therefore, our plan is to adjust Section III by making clearer what results are general (by also replacing the use of "Fact" with "Proposition/Lemma" toghether with the appropriate reference), and making clearer that the point of that section is to show how they look like in a tropical setting.
-We would also accordingly adjust the appendix in case it should appear in an eventual final version of the paper.
+We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found its results very interesting. As a general remark, our results on LREL and LREL_! in Section III are mostly based on relatively unsurprising checks; yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and weighted relational models, this section is mainly thought to provide a relatively concrete presentation of (the tropical variant of) this model, before studying it in more detail in the following sections.
+We will adjust Section III with a clear distinction between general results about weighted relational models (also replacing the use of "Fact" with "Proposition/Lemma" together with the appropriate reference), and results and observations related to the tropical model. For the final version of the paper, our plan is to make a long version of the paper available online.
 
 
 > "Theorem 81 is important and should have appeared in the main paper."
 
-Theorem 81, from the appendix, appears in the main text as Theorem 29, except for the mention of differential linear categories. We chose not to mention the latter in the main text because our results concerning them are either folklore or based on well-known results/techniques.
+Theorem 81 from the appendix, appears in the main text as Theorem 29, except for the mention of differential linear categories. We chose not to mention the latter in the main text because our results concerning them are either folklore or based on well-known results/techniques.
 
 
 > "In the introduction, you say "the somehow canonical "Taylor semantics for STdLC". Why is that? What is the justification for this statement?"
@@ -69,8 +67,7 @@ Reviewer 3:
     differential privacy of programs, but its implication to the
     verification tasks is not discussed."
 
-You are right, the applications in Section 5 are just sketched. However, one of the main goals of this paper is to demonstrate that tropical methods, which are widely applied in computer science (but not in the linear logic/lambda-calculus community) can make sense also for studying the quantitative semantics of the lambda-calculus. Concrete developments of such applications are thus left for future work. We will clarify that point.
- 
+As we see it, the main goal of this paper is to demonstrate that tropical methods, which are widely applied in computer science (yet not in the linear logic/lambda-calculus community) do make sense also for studying the lambda-calculus from a quantitative viewpoint, and potentially intersect active research directions (like the study of differential privacy for higher-order languages [64]). As we observe in the conclusions, the applications in Section 5 are indeed just sketched, and we left concrete developments for future work.  
 
 > "Another limitation of the
     paper's model is that it can not handle probabilistic programs
@@ -81,19 +78,20 @@ This is indeed a well-known limitation of the semantics of probabilistic program
 
 > p.4 where is this hat operation defined?
 
-It is supposed to be defined by those line. But we agree that it is not clear, so we will rephrase it better.
+It is supposed to be defined by those lines. But we agree that it is not clear, so we will rephrase it better.
 
 
 > "In complex analysis, Laurent series include terms of negative
     degrees, while here I think we only consider terms with
     non-negative degrees."
 
-This is true, yet often in the literature on tropical mathematics (to which we refer, e.g. [59]) these are defined only with positive coefficients. We will explicitly mention it.
+This is true, yet in the literature on tropical mathematics (to which we refer, e.g. [59]) these are generally defined only with positive coefficients. In order to avoid confusion, wee will explicitly mention this remark.
 
 
 > "Is Theorem 24, which is one of the main claims in the paper,
     original, or subsumed by [71]?"
 
-We think that the main contribution in Section 6 is to show that an abstract correspondence (expressed indeed by Theorem 24) known in the categorical literature can be extended to account for the relevant structure for interpreting the differential lambda-calculus. Hence, we see Theorems 27 and 29 as the main claims of this section, rather than Theorem 24 (which can be deduced from the results of [71]). We will clarify this.
+In our opinion, the main contribution in Section 6 is not Theorem 24 per se. As recalled at the beginning of the section, all results up to Theorem 24 are either known from the literature or folklore. Indeed, Theorem 24 follows from much more general results in [71], and our work in this part, which is visible in the appendix, was to provide concrete calculations for the main claims (as the results in the literature are very abstract and cover a more general situation).
+Rather, we think that our main contribution is to show that the abstract correspondence expressed by Theorem 24 can be extended to account for the relevant structure necessary to interpret the differential lambda-calculus, and provides in this way a natural extension of the tropical relational model. Hence, we see Theorems 27 and 29 as our main claims of this section (these claims and their proofs are, to our knowledge, new). Anyway, we will clarify this.
 
 
