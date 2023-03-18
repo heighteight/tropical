@@ -43,7 +43,7 @@ First of all, we thank the reviewer for their thorough reading. We will adjust o
 
 > Comment 1, comment 2, comment 7, comment 8.
 
-We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found its results very interesting. As a general remark, our results on LREL and LREL_! in Section III are mostly based on relatively unsurprising checks; yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and weighted relational models, this section is mainly thought to provide a relatively concrete presentation of (the tropical variant of) this model, before studying it in more detail in the following sections.
+We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found its results very interesting. As a general remark, our results on LREL and LREL_! in Section III are mostly based on relatively unsurprising checks; yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and weighted relational models, this section is mainly thought to provide a relatively concrete presentation of (the tropical variant of) this model.
 We will adjust Section III with a clear distinction between general results about weighted relational models (also replacing the use of "Fact" with "Proposition/Lemma" together with the appropriate reference), and results and observations related to the tropical model. For the final version of the paper, our plan is to make a long version of the paper available online.
 
 
