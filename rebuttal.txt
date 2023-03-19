@@ -30,11 +30,9 @@ On tensors: in the previous page (after Prop. 19) we introduced the tensor produ
 
 Reviewer 2:
 
-First of all, we thank the reviewer for their thorough reading. We will adjust our presentation following their useful remarks!
-
 > Comments 1, 2, 7, 8.
 
-We thank the reviewer for his careful reading of the appendix. We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found it very interesting. As a general remark, our results on LREL_! in Section III are mostly unsurprising checks, yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and its models, we think it is useful to provide a concrete presentation of the tropical relational model. We will adjust references and replace "Fact" with "Proposition/Lemma" together with the appropriate reference, as in Section IV. For the final version of the paper, instead of a long appendix we will make a long version of the paper available online.
+We thank the reviewer for their careful reading of the appendix. We were not aware of Lemay's "Coderelictions for Free Exponential Modalities" and we found it very interesting. As a general remark, our results on LREL_! in Section III are mostly unsurprising checks, yet, as this paper is also addressed to the program metrics community, which is less familiar with linear logic and its models, we think it is useful to provide a concrete presentation of the tropical relational model. We will adjust references and replace "Fact" with "Proposition/Lemma" together with the appropriate reference, as is done in Section VI. For the final version of the paper, instead of a long appendix we will make a long version of the paper available online.
 
 > On Theorem 81.
 
@@ -65,13 +63,13 @@ It is supposed to be defined by those lines. But we agree that it is not clear, 
 
 > on Laurent series and terms of negative degrees
 
-We agree that this may cause confusion, yet in tropical mathematics literature, e.g. [59], these are generally defined only with positive coefficients. We will explicitly indicate this.
+We agree that this may cause confusion, yet in the tropical mathematics literature, e.g. [59], these are generally defined only with positive coefficients. We will explicitly indicate this.
 
 
 > "Is Theorem 24, which is one of the main claims in the paper,
     original, or subsumed by [71]?"
 
-In our opinion, the main contribution in Section 6 is not Theorem 24 per se. As recalled at the beginning of the section, all results up to Theorem 24 are either known from the literature or folklore. Indeed, Theorem 24 follows from much more general results in [71], and our work in this part, which is visible in the appendix, was to provide concrete calculations for the main claims (as the results in the literature are very abstract and cover a more general situation).
-Rather, we think that our main contribution is to show that the abstract correspondence expressed by Theorem 24 can be extended to account for the relevant structure necessary to interpret the differential lambda-calculus, and provides in this way a natural extension of the tropical relational model. Hence, we see Theorems 27 and 29 as our main claims of this section (these claims and their proofs are, to our knowledge, new). Anyway, we will clarify this.
+In our opinion, the main contribution in Section 6 is not Theorem 24 per se. As recalled at the beginning of the section, all results up to Theorem 24 are either known from the literature or folklore. Indeed, the statement of Theorem 24 follows from general results in [71], and our work in this part, which is visible in the appendix, was to provide concrete calculations for the case of LMOD (as the results in the literature are very abstract and cover a more general situation).
+Instead, we think that the main novelty in this section is to show that the abstract correspondence expressed by Theorem 24 can be extended to account for the relevant structure necessary to interpret the differential lambda-calculus, and that this yields a "coordinate-free" generalization of the tropical relational model. Hence, we see Theorems 27 and 29 as the main technical results of this section (these claims and their proofs are, to our knowledge, new). Anyway, we will clarify this.
 
 
