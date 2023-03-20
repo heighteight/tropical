@@ -40,7 +40,7 @@ The main claim of this theorem appears in the main text as Theorem 29, but witho
 
 > On "the somehow canonical "Taylor semantics for STdLC".
 
-We agree that the sentence is not clear, so we'll modify it. We simply meant that since Taylor and relational semantics are tightly related, it is natural to look at what happens in that kind of models. 
+We agree that the sentence is not clear, so we will modify it. We simply meant that since Taylor and relational semantics are tightly related, it is natural to look at what happens in that kind of models. 
 
 
 Reviewer 3:
@@ -59,17 +59,17 @@ This is indeed a well-known limitation of the semantics of probabilistic program
 
 > p.4 on the hat operation
 
-It is supposed to be defined by those lines. But we agree that it is not clear, so we will rephrase it better.
+It is supposed to be defined by those lines. But we agree that it is not clear, so we will rephrase it.
 
 > on Laurent series and terms of negative degrees
 
-We agree that this may cause confusion, yet in the tropical mathematics literature, e.g. [59], these are generally defined only with positive coefficients. We will explicitly indicate this.
+We agree that this may cause confusion, yet in the tropical mathematics literature, e.g. [59], these are often defined only with positive coefficients. We will explicitly indicate this.
 
 
 > "Is Theorem 24, which is one of the main claims in the paper,
     original, or subsumed by [71]?"
 
-In our opinion, the main contribution in Section 6 is not Theorem 24 per se. As recalled at the beginning of the section, all results up to Theorem 24 are either known from the literature or folklore. Indeed, the statement of Theorem 24 follows from general results in [71], and our work in this part, which is visible in the appendix, was to provide concrete calculations for the case of LMOD (as the results in the literature are very abstract and cover a more general situation).
-Instead, we think that the main novelty in this section is to show that the abstract correspondence expressed by Theorem 24 can be extended to account for the relevant structure necessary to interpret the differential lambda-calculus, and that this yields a "coordinate-free" generalization of the tropical relational model. Hence, we see Theorems 27 and 29 as the main technical results of this section (these claims and their proofs are, to our knowledge, new). Anyway, we will clarify this.
+In our opinion, the main contribution in Section 6 is not Theorem 24 per se. As recalled at the beginning of the section, all results up to Theorem 24 can be either derived from the literature or folklore. Indeed, the statement of Theorem 24 follows from general results in [71], and our work in this part, which is visible in the appendix, was to provide concrete calculations for the case of LMOD (as the results in the literature are very abstract and cover a more general situation).
+Instead, we think that the main novelty in this section is to show that the abstract correspondence expressed by Theorem 24 can be actually extended to account for the relevant structure necessary to interpret the differential lambda-calculus, and that this yields a "coordinate-free" generalization of the tropical relational model. Hence, we see Theorems 27 and 29 as the main technical results of this section (these claims and their proofs are, to our knowledge, new). Anyway, we will clarify this.
 
 
