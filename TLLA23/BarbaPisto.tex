@@ -1,0 +1,124 @@
+\documentclass[submission,%copyright,creativecommons
+]{eptcs}
+\providecommand{\event}{TLLA 2023} % Name of the event you are submitting to
+%\usepackage{breakurl}             % Not needed if you use pdflatex only.
+\usepackage{underscore}           % Only needed if you use pdflatex.
+
+\usepackage{macros}
+\usepackage{tikz}
+  \usetikzlibrary{calc}
+\usepackage{hyperref}
+\usepackage{stmaryrd,amssymb,proof,cmll,mathrsfs,amsmath,amsthm}
+\usepackage{todonotes}
+
+
+\title{Tropical methods in Lambda-Calculus}
+\author{Davide Barbarossa
+\institute{DISI, Universit\`a di Bologna}
+\email{davide.barbarossa@unibo.it}
+\and
+\qquad\qquad Paolo Pistone
+\institute{\qquad\qquad\qquad DISI, Universit\`a di Bologna}
+\email{\qquad\qquad\qquad paolo.pistone@unibo.it}
+}
+\def\titlerunning{Trends in Linear Logic and Applications}
+\def\authorrunning{D.\ Barbarossa and P.\ Pistone}
+
+\newcommand\eg{\textit{e.g.\ }}
+\newcommand\etc{\textit{etc}}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We propose an interpretation of the $\lambda$-calculus in the framework of tropical mathematics, as a unified framework for both program metrics, based on the analysis of program sensitivity via Lipschitz-conditions, and for resource analysis, based on higher-order program differentiation.
+We sketch the relation of this semantics to quantitative properties like differential privacy, convergence logprobabilities and Probabilistic Coherent spaces.
+Finally, we study the abstract correspondence between this tropical semantics and Lawvere’s generalised metric spaces.
+\end{abstract}
+
+\section*{Motivation}
+
+
+
+\section{Tropical Laurent Series}
+
+
+
+\section{Relations to quantitative properties}
+
+
+
+\section{Lawvere's generalised metric spaces}
+
+
+
+%The optional arguments of {\tt $\backslash$documentclass$\{$eptcs$\}$} are
+%\begin{itemize}
+%\item at most one of
+%{\tt adraft},
+%{\tt submission} or
+%{\tt preliminary},
+%\item at most one of {\tt publicdomain} or {\tt copyright},
+%\item and optionally {\tt creativecommons},
+%  \begin{itemize}
+%  \item possibly augmented with
+%    \begin{itemize}
+%    \item {\tt noderivs}
+%    \item or {\tt sharealike},
+%    \end{itemize}
+%  \item and possibly augmented with {\tt noncommercial}.
+% \end{itemize}
+%\end{itemize}
+%We use {\tt adraft} rather than {\tt draft} so as not to confuse hyperref.
+%The style-file option {\tt submission} is for papers that are
+%submitted to {\tt $\backslash$event}, where the value of the latter is
+%to be filled in in line 2 of the tex-file. Use {\tt preliminary} only
+%for papers that are accepted but not yet published. The final version
+%of your paper that is to be uploaded at the EPTCS website should have
+%none of these style-file options.
+
+%By means of the style-file option
+%\href{http://creativecommons.org/licenses/}{creativecommons}
+%authors equip their paper with a Creative Commons license that allows
+%everyone to copy, distribute, display, and perform their copyrighted
+%work and derivative works based upon it, but only if they give credit
+%the way you request. By invoking the additional style-file option {\tt
+%noderivs} you let others copy, distribute, display, and perform only
+%verbatim copies of your work, but not derivative works based upon
+%it. Alternatively, the {\tt sharealike} option allows others to
+%distribute derivative works only under a license identical to the
+%license that governs your work. Finally, you can invoke the option
+%{\tt noncommercial} that let others copy, distribute, display, and
+%perform your work and derivative works based upon it for
+%noncommercial purposes only.
+
+%Authors' (multiple) affiliations and emails use the commands
+%{\tt $\backslash$institute} and {\tt $\backslash$email}.
+%Both are optional.
+%Authors should moreover supply
+%{\tt $\backslash$titlerunning} and {\tt $\backslash$authorrunning},
+%and in case the copyrightholders are not the authors also
+%{\tt $\backslash$copyrightholders}.
+%As illustrated above, heuristic solutions may be called for to share
+%affiliations. Authors may apply their own creativity here \cite{multipleauthors}.
+
+
+
+\section*{Bibliography}
+
+%We request that you use
+%\href{http://eptcs.web.cse.unsw.edu.au/eptcs.bst}
+%{\tt $\backslash$bibliographystyle$\{$eptcs$\}$}
+%\cite{bibliographystylewebpage}, or one of its variants
+%\href{http://eptcs.web.cse.unsw.edu.au/eptcsalpha.bst}{eptcsalpha},
+%\href{http://eptcs.web.cse.unsw.edu.au/eptcsini.bst}{eptcsini} or
+%\href{http://eptcs.web.cse.unsw.edu.au/eptcsalphaini.bst}{eptcsalphaini}
+%\cite{bibliographystylewebpage}. Compared to the original {\LaTeX}
+%{\tt $\backslash$biblio\-graphystyle$\{$plain$\}$},
+%it ignores the field {\tt month}, and uses the extra bibtex fields {\tt eid}, {\tt doi}, {\tt ee} and {\tt url}. The first is for electronic identifiers (typically the number $n$ indicating the $n^{\rm th}$ paper in an issue) of papers in electronic journals that do not use page numbers. The other three are to refer, with life links, to electronic incarnations of the paper.
+
+\nocite{*}
+\bibliographystyle{eptcs}
+%\bibliography{generic}
+\end{document}
