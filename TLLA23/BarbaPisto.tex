@@ -4,15 +4,15 @@
 %\usepackage{breakurl}             % Not needed if you use pdflatex only.
 \usepackage{underscore}           % Only needed if you use pdflatex.
 
-\usepackage{macros}
 \usepackage{tikz}
   \usetikzlibrary{calc}
 \usepackage{hyperref}
 \usepackage{stmaryrd,amssymb,proof,cmll,mathrsfs,amsmath,amsthm}
 \usepackage{todonotes}
 
+\input{macros}
 
-\title{Tropical methods in Lambda-Calculus}
+\title{Tropical methods in Lambda-Calculus?}
 \author{Davide Barbarossa
 \institute{DISI, Universit\`a di Bologna}
 \email{davide.barbarossa@unibo.it}
@@ -31,18 +31,127 @@
 \begin{document}
 \maketitle
 
-\begin{abstract}
-We propose an interpretation of the $\lambda$-calculus in the framework of tropical mathematics, as a unified framework for both program metrics, based on the analysis of program sensitivity via Lipschitz-conditions, and for resource analysis, based on higher-order program differentiation.
-We sketch the relation of this semantics to quantitative properties like differential privacy, convergence logprobabilities and Probabilistic Coherent spaces.
-Finally, we study the abstract correspondence between this tropical semantics and Lawvere’s generalised metric spaces.
-\end{abstract}
+%\begin{abstract}We propose to study the interpretation of the $\lambda$-calculus in the framework of tropical mathematics, as a unified framework for both program metrics -- based on the analysis of program sensitivity via Lipschitz-conditions -- and for resource analysis -- based on higher-order program differentiation.We sketch the relation of this semantics to quantitative properties like differential privacy, convergence logprobabilities and Probabilistic Coherent spaces.Finally, we study the abstract correspondence between this tropical semantics and Lawvere’s generalised metric spaces.\end{abstract}
 
-\section*{Motivation}
+%\section*{Motivation}
 
 
+Among the quantitative approaches towards which the programming language community has directed its interest in recent years%(e.g.\ \cite{decarvalho2018, Accattoli2022}, \cite{Breuvart2018, PistoneLICS2022}, \cite{Barthe_2012} \cite{Reed2010, dallago}, \cite{Ehrhard2011, Staton2017}, \cite{difflambda}),
+, two different directions have received considerable attention. 
+On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask  whether they compute functions which do not differ \emph{too much}, and thus study denotational frameworks in which types are endowed with a metric \cite{Reed2010},\cite{Bonchi2018}, \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
+On the other hand, there is the approach based on \emph{differential} \cite{difflambda}, \cite{difflambda}, \cite{Manzo2013, Breuvart2018, PistoneLICS2022}.  or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}.
+
+
+In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
+In metric semantics, linear programs correspond to \emph{non-expansive} maps, that is, to functions that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret \emph{bounded} programs (i.e.~programs with a fixed duplication bound) as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
+By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs leads to consider functions defined as \emph{power series}.
+
+At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
+in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz.
+The fundamental motivation of this work is then the observation that 
+this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics where, for instance, the monomial $x^{n}$ precisely reads as the linear function $n\cdot x$.
+Tropical mathematics \cite{Simon} is a well established algebraic and geometrical framework, with tight connections with optimisation theory \cite{Sturmfelds}, where the usual ring structure of numbers based on addition and multiplication is replaced by the semiring structure given, respectively, by ``$\min$'' and ``$+$''.
+For instance, the polynomial $p(x,y)=x^{2}+xy^{2}+y^{3}$, when interpreted over the tropical semiring, translates as the piecewise linear function
+$
+\varphi(x,y)=\min\{2x, x+2y, 3y\}
+$.
+
+Coming back to our discussion on program semantics, tropical geometry might seem to provide precisely what look for, as it turns the monomials $x^{n}$ into the Lipschitz map  $n\cdot x$.
+Actually, a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
+However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken. 
+
+The viewpoint that we develop in the following sections, may suggests the application of optimization methods based on tropical mathematics to the study of the $\lambda$-calculus and its quantitative extensions, but it scales to a 
+more abstract level, leading to introduce a 
+differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}).
+
+In this contribution we only sketch some of the main results of our still work in progress analysis.
+
+\section{Tropical mathematics in a nutshell}
+
+More rigorously, we let the \emph{tropical semiring}, the structure at the heart of tropical mathematics, be $([0,\infty], \min, +)$.
+Remark that this coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014} (the order is the reverse order $\geq$ on $\BB R$ and the monoid action is addition), the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}, and we will take this point of view in the last section of this contributions.
+A tropical polynomial is a piece-wise linear function $f:\Lawv\to \Lawv$ of the form $f(x)=\min_{i_{1},\dots, i_{k}}\{i_{j}x+c_{i_{j}}\}$
+where the $i_{j}$ are natural numbers and the $c_{i_{j}}$ are in $\Lawv$.
+For example, the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{ix+2^{-i}\}$
+are illustrated in Fig.~\ref{fig:plot1} for $n\leq 4$.
+A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes). For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $i \leq n$.
+With this definition, tropical roots mimic the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
+$f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
+A \emph{tropical Laurent series} (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function that can be expressed as $f(x)=\inf_{n}\{nx+\matr f_{n}\}$, with $\matr  f_{n}$ a sequence in $\Lawv$. In other words, a tLs is a ``limit'' of tropical polynomials of higher and higher degree. For instance, the function $\varphi(x):=\inf_{n\in\N}\set{nx+\frac{1}{2^n}}$ (illustrated in Fig.~\ref{fig:plot1}), that we will take as our running example, 
+is the ``limit'' of the polynomials $\varphi_{n}$. Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials. For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
+
+\section{Tropical weighted semantics in a nutshell}
+
+The study of matrices with values over the tropical semiring can be seen as a special case of the
+\emph{quantitative relational semantics} \cite{Manzo2013}, a well-studied semantics of the $\lambda$-calculus and linear logic:
+for a fixed \emph{continuous} semi-ring $Q$ [Def. II.5, \cite{Manzo2013}], the category $\QREL$ has sets as objects and set-indexed matrices with coefficients in $Q$ as morphisms, i.e.~$\QREL(X,Y)=Q^{X\times Y}$ (\cite{Manzo2013} would call it $Q^\Pi$).
+As it is expected, $Q^X$ is a $Q$-semimodule and the bijection $\hat{(\cdot)}$ identifies the set of linear maps from $Q^X$ to $Q^Y$ with 
+ $\HOM{\QREL}{X}{Y}$.
+
+The tropical relational model is thus provided by the category $\LREL$ of matrices with values over $\Lawv$ (which, being a quantale, is indeed a continuous semi-ring).
+%, where $\Lawv$ is the already introduced Lawvere quantale, seen as the idempotent complete semiring $(\BB R_{\geq0}\cup\set{\infty},\inf,\infty,+,0)$.
+%The category $\LREL$ is well-defined because $\Lawv$ is a continuous semiring (w.r.t.\ its quantale order $\preceq$.
+%This amounts to check that $\min$ and $+$ commute with the $\inf$ (as operations on $\BB R_{\geq0}\cup\set{\infty}$, which is immediate), and that $(\Lawv,\preceq)$ is a cpo with $\infty$ as bottom element (which is immediate since in $\Lawv$ we have $\vee = \inf$) .
+It is worth observing that the formula for composition in $\LREL$ %is the tropicalisation of the one defining it in $\QREL$, i.e.
+reads as \ $(st)_{a,c}:=\inf\limits_{b\in Y}\set{s_{b,c}+t_{a,b}}$;
+ similarly, the linear functions $f:\Lawv^X\to \Lawv^Y$ induced by matrices, which we call \emph{tropical linear}, are exactly those of shape $f(x)_b=\inf\limits_{a\in X} \set{\matr f_{a,b}+x_a}$, for some matrix $\matr f$ from $X$ to $Y$.
+%\end{remark}
+By applying more or less well-known results (taken from \cite{Manzo2013}, CITARE LEMAYYYY), one obtains that $\LREL$ gives rise to denotational models of several variants of the $\lam$-calculus:
+
+\begin{fact}
+ $\LREL$ is a SMCC, thus a model of the linear $\STLC$.
+
+ The coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$.
+
+The exponential $!$ can be ``decomposed'' into a family of \emph{graded} exponentials $(!_n)_{n\in\N}$ turning $\LREL$, together with $(!_n)_{n\in\N}$, is a model for $\BSTLC$. 
+
+ $\LREL_!$ equipped with $D$, is a CC$\partial$C and the interpretation of the Taylor expansion of a $\STLC$-term $M$, given in \eqref{eq:taylor}, converges to the one of $M$.
+\end{fact}
+
+In the previous result, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$ where $(s\circ_! t)_{\mu,c}$ is:
+$
+ \inf\limits_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1+\cdots +\mu_n}
+ \left\{s_{[b_1,\dots,b_n],c} + \sum\limits_{i=1}^n t_{\mu_i,b_i}\right\}$.
+and the \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
+
+
+In particular, the Taylor formula decomposes an unbounded application as a limit of bounded ones, one might well ask whether it could be possible to see this formula as interpreting  a $\lambda$-term 
+as a limit of Lipschitz maps, in some sense, thus bridging the metric and differential approaches.  
+Here, a natural direction to look for is the \emph{relational semantics}, i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
+However, in this semantics, terms with bounded applications correspond to \emph{polynomials}, i.e.~to non-Lipschitz functions. 
+
+Yet, what if these polynomials were tropical ones, i.e.~piecewise linear functions? This way, \eqref{eq:taylor} could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
+as a limit of \emph{more and more sensitive} operations. 
 
 \section{Tropical Laurent Series}
 
+ As usual, a matrix $t\in\HOM{\LREL_!}{X}{Y}$ yields a linear map $\Lawv^{!X}\to\Lawv^Y$, but we can also ``express it in the base $X$'', i.e.\ see it as a map $t^!:\Lawv^X\to\Lawv^Y$, by setting 
+ $t^!(x):=t\circ_! x$.
+%  (we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
+ This is the notion of \emph{non-linear} map generated by the CCC-structure of $\LREL_!$.
+ Concretely, we have
+ \begin{equation}
+ t^!(x)_b=\inf\limits_{\mu\in !X} \set{\mu x+ t_{\mu,b}}
+ \end{equation}
+ where $\mu x:=\sum\limits_{a\in X} \mu(a)x_a$.
+ These functions correspond then to tLs with possibly infinitely many variables (in fact, as many as the elements of $X$). 
+
+Therefore, we study in this section the properties of those functions, from the point of view of mathematical analysis.
+%In the following we will also refer to them as tLs. 
+ 
+% 
+% We will call them simply \emph{tropical Laurent series (tLs)}.
+% %Since in the general case of $\QREL$, $t^!$ is a Laurent series with operations in $Q$, let us call \emph{tropical Laurent series} the functions of shape $t^!$ for some $t\in\HOM{\LREL_!}{X}{Y}$.
+%\end{remark}
+%
+%We find the usual notion of tLs of one variable as follows:
+
+%\begin{remark}
+Notice that, by identifying $!\set{*}\simeq \N$ and $\Lawv^{\set{*}}\simeq\Lawv$, the tLs generated by the morphisms in $\HOM{\LREL_!}{\set{*}}{\set{*}}$ are exactly the functions $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\set{nx+\matr f(n)}$, for some $\matr f:\N\to\Lawv$, i.e.\ usual tLs's of one variable.
+In a similar way, the tropical polynomials can be identified with the tLs
+$f:\Lawv^X\to\Lawv^Y$ 
+ for which the support $\C F=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$ is \emph{finite}, and which have thus shape $f(x)_b:=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$.
+ This is again the generalisation of usual tropical polynomials to the case of infinitely many variables.
 
 
 \section{Relations to quantitative properties}
@@ -51,6 +160,14 @@ Finally, we study the abstract correspondence between this tropical semantics an
 
 \section{Lawvere's generalised metric spaces}
 
+We already remarked that the tropical semiring $\Lawv$ coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$.
+In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
+
+\begin{remark}
+ The category $\QREL$ is (equivalent to) a subcategory of the category $Q\SF{Mod}$ of \emph{complete} $Q$-semimodules.
+ If $\QREL$ corresponds to considering semimodules (the $Q^X$'s) whose vectors are given in coordinates w.r.t.\ a \emph{fixed base} (the set $X$), $Q\SF{Mod}$ corresponds to considering semimodules in abstract, without fixing a base.
+ We take this viewpoint in Section~\ref{section6}.
+\end{remark}
 
 
 %The optional arguments of {\tt $\backslash$documentclass$\{$eptcs$\}$} are
@@ -105,7 +222,7 @@ Finally, we study the abstract correspondence between this tropical semantics an
 
 
 
-\section*{Bibliography}
+%\section*{Bibliography}
 
 %We request that you use
 %\href{http://eptcs.web.cse.unsw.edu.au/eptcs.bst}
@@ -118,7 +235,11 @@ Finally, we study the abstract correspondence between this tropical semantics an
 %{\tt $\backslash$biblio\-graphystyle$\{$plain$\}$},
 %it ignores the field {\tt month}, and uses the extra bibtex fields {\tt eid}, {\tt doi}, {\tt ee} and {\tt url}. The first is for electronic identifiers (typically the number $n$ indicating the $n^{\rm th}$ paper in an issue) of papers in electronic journals that do not use page numbers. The other three are to refer, with life links, to electronic incarnations of the paper.
 
-\nocite{*}
-\bibliographystyle{eptcs}
+%\nocite{*}
+%\bibliographystyle{eptcs}
 %\bibliography{generic}
+
+%\bibliographystyle{plain}
+%\bibliography{tropical.bib}
+
 \end{document}
