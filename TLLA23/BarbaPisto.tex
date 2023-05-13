@@ -35,36 +35,37 @@
 
 %\section*{Motivation}
 
-
-Among the quantitative approaches towards which the programming language community has directed its interest in recent years%(e.g.\ \cite{decarvalho2018, Accattoli2022}, \cite{Breuvart2018, PistoneLICS2022}, \cite{Barthe_2012} \cite{Reed2010, dallago}, \cite{Ehrhard2011, Staton2017}, \cite{difflambda}),
-, two different directions have received considerable attention. 
-On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask  whether they compute functions which do not differ \emph{too much}, and thus study denotational frameworks in which types are endowed with a metric \cite{Reed2010},\cite{Bonchi2018}, \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
-On the other hand, there is the approach based on \emph{differential} \cite{difflambda}, \cite{difflambda}, \cite{Manzo2013, Breuvart2018, PistoneLICS2022}.  or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}.
-
+Two different quantitative approaches have received considerable attention from the programming language community in recent years: %(e.g.\ \cite{decarvalho2018, Accattoli2022}, \cite{Breuvart2018, PistoneLICS2022}, \cite{Barthe_2012} \cite{Reed2010, dallago}, \cite{Ehrhard2011, Staton2017}, \cite{difflambda}), on the one hand one there is 
+the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk} is based on the fact that when considering e.g.\ probabilistic %or approximate 
+computation, %rather than asking whether two programs compute \emph{the same} function,
+it is natural to ask whether two programs compute functions which %do not differ \emph{too much}
+approximate each other (instead of equality of functions).
+This led to denotational frameworks in which types are endowed with a metric \cite{Reed2010},\cite{Bonchi2018}, \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
+On the other hand, there is the approach based on \emph{differential} \cite{difflambda}, \cite{difflambda}, \cite{Manzo2013, Breuvart2018, PistoneLICS2022} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}.
+This led to syntactic or denotational frameworks in which one can define a \emph{Taylor expansion} of programs.
 
 In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
-In metric semantics, linear programs correspond to \emph{non-expansive} maps, that is, to functions that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret \emph{bounded} programs (i.e.~programs with a fixed duplication bound) as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
-By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs leads to consider functions defined as \emph{power series}.
+In metric semantics, linear programs correspond to \emph{non-expansive} maps, that is, to functions that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret programs with a fixed duplication bound as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
+By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs gives rise to \emph{power series}.
 
 At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
-in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz.
-The fundamental motivation of this work is then the observation that 
+in metric models $n$ times duplication results in a  \emph{linear} $n$-Lipschitz function $n\cdot x$, while in differential models this results in a non-Lipschitz \emph{polynomial} function $x^{n}$.
+The fundamental motivation of this work is the observation that 
 this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics where, for instance, the monomial $x^{n}$ precisely reads as the linear function $n\cdot x$.
-Tropical mathematics \cite{Simon} is a well established algebraic and geometrical framework, with tight connections with optimisation theory \cite{Sturmfelds}, where the usual ring structure of numbers based on addition and multiplication is replaced by the semiring structure given, respectively, by ``$\min$'' and ``$+$''.
-For instance, the polynomial $p(x,y)=x^{2}+xy^{2}+y^{3}$, when interpreted over the tropical semiring, translates as the piecewise linear function
-$
-\varphi(x,y)=\min\{2x, x+2y, 3y\}
-$.
-
-Coming back to our discussion on program semantics, tropical geometry might seem to provide precisely what look for, as it turns the monomials $x^{n}$ into the Lipschitz map  $n\cdot x$.
 Actually, a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
 However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken. 
 
-The viewpoint that we develop in the following sections, may suggests the application of optimization methods based on tropical mathematics to the study of the $\lambda$-calculus and its quantitative extensions, but it scales to a 
+Tropical mathematics \cite{Simon} is a well established algebraic and geometrical framework, with tight connections with optimisation theory \cite{Sturmfelds}, where the usual ring structure of numbers based on addition and multiplication is replaced by the semiring structure given, respectively, by ``$\min$'' and ``$+$''.
+For instance, the polynomial $p(x,y)=x^{2}+xy^{2}+y^{3}$, when interpreted over the tropical semiring, translates as the piecewise linear function
+$
+\trop f(\alpha,\beta)=\min\{2\alpha, \alpha+2\beta, 3\beta\}
+$.
+
+The viewpoint that we develop in the following sections can be read as the proposition of a setting for bridging the two approaches mentioned at the beginning, and may suggests the application of methods based on tropical mathematics to the study of the $\lambda$-calculus and its quantitative extensions.
+It also scales to a 
 more abstract level, leading to introduce a 
 differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}).
-
-In this contribution we only sketch some of the main results of our still work in progress analysis.
+We will only sketch some of our main results.% of our our analysis.
 
 \section{Tropical mathematics in a nutshell}
 
