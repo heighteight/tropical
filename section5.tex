@@ -60,7 +60,7 @@ We use this calculus as a toy example for our purposes, and it can be seen as a 
 
 Consider now the following term $M$ of type $\bool$:
 \[
- (\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\true\oplus_p\false))
+ (\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true))
 \]
 Let us give addresses $\omega\in\set{00,01,100,101,110,111}$ to the occurrences of $\true,\false$ in $M$, by following the tree structure of $M$, reading $0$ as ``left'' and $1$ as ``right''.
 The same addresses also represent all the different possible reduction paths from $M$ to a normal form.
