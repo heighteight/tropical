@@ -3,11 +3,26 @@
 \providecommand{\event}{TLLA 2023} % Name of the event you are submitting to
 %\usepackage{breakurl}             % Not needed if you use pdflatex only.
 \usepackage{underscore}           % Only needed if you use pdflatex.
-
-\usepackage{tikz}
-  \usetikzlibrary{calc}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\EnableBpAbbreviations
 \usepackage{hyperref}
-\usepackage{stmaryrd,amssymb,proof,cmll,mathrsfs,amsmath,amsthm}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz-cd}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usetikzlibrary{cd}
+%\usepackage{mathabx}
+\usepackage{cmll}
+\usepackage{stmaryrd}
 \usepackage{todonotes}
 
 \input{macros}
@@ -74,19 +89,19 @@ This coincides with the \emph{Lawvere quantale} $\Lawv$ \cite{Hofmann2014, Stubb
 This is the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}, and we will take this point of view in the last section of this contribution.
 A \emph{tropical polynomial} is a piece-wise linear function $\varphi:\Lawv\to \Lawv$ of the form $\varphi(x)=\min_{j=1,\dots,k}\{i_{j}x+\matr \varphi_{i_{j}}\}$, with $i_{j}\in\N$, $\matr \varphi_{i_{j}}\in\Lawv$ and $k$ finite.
 Those are always Lipschitz functions.
-For example, $\varphi_{n}(x)=\min_{i\leq n}\{ix+2^{-i}\}$.
-A \emph{tropical root} of a tropical polynomial $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable, i.e.\ where the minimum defining $\varphi$ is attained at least twice, i.e.~where the slope of $\varphi$ changes. E.g., the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, $i \leq n$.
+For example, $\varphi_{n}(x)=\min_{i\leq n}\{ix+2^{-i}\}$, plotted in Fig~\ref{fig:plot1}.
+A \emph{tropical root} of $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable, i.e.\ where the minimum defining $\varphi$ is attained at least twice, i.e.~where the slope of $\varphi$ changes. E.g., the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, $i \leq n$.
 %With this definition, tropical roots mimic the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
 A \emph{tropical Laurent series} (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function $\varphi:\Lawv\to \Lawv$ of the form $\varphi(x)=\inf_{n\in\N}\{nx+\matr \varphi_{n}\}$, with $\matr \varphi_{n}\in\Lawv$.
 That is, a tLs is a ``limit'' of tropical polynomials of higher and higher degree.
 For example $\varphi(x):=\inf_{i\in\N}\set{ix+2^{-i}}$ %that we will take as our running example, 
-is the ``limit'' of the polynomials $\varphi_{n}$. %Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials.
+is the ``limit'' of the $\varphi_{n}$, see Fig~\ref{fig:plot1}. %Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials.
 %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
 TLs may be non Lipschitz, and their study is less developed than that of tropical polynomials.
 
 \paragraph{Tropical weighted relational semantics in a nutshell}
 
-The study of matrices with values over the tropical semiring can be seen as a special case of the
+The study of matrices with values over the tropical semiring can is a special case of the
 \emph{weighted relational semantics} \cite{Manzo2013}, a well-studied semantics of the $\lambda$-calculus and linear logic:
 for a fixed \emph{continuous} semi-ring $Q$ [Def. II.5, \cite{Manzo2013}], the category $\QREL$ has sets as objects and set-indexed matrices with coefficients in $Q$ as morphisms, i.e.~$\HOM \QREL X Y=Q^{X\times Y}$. %(\cite{Manzo2013} would call it $Q^\Pi$).
 As expected, $Q^X$ is a $Q$-semimodule and we can identify $\HOM{\QREL}{X}{Y}$ with the set of linear maps from $Q^X$ to $Q^Y$.
@@ -109,7 +124,7 @@ Furthermore, $!$ can be decomposed into a family of \emph{graded} exponentials $
 Finally, $\LREL_!$ can be equipped with a \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined by: $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
 This turns $(\LREL_!,D)$ into a CC$\partial$C, i.e.\ a model of the differential $\lambda$-calculus.
 Remember that the (quantitative) Taylor expansion of an ordinary $\lambda$-term $M$ is an inductively defined series $\Te{M}$ of differential $\lambda$-terms, the only non-trivial case being $\Te{PQ} :=  \sum_{k=0}^{\infty} (\Der^{k}[P] \cdot Q^{k})0$.
-It can be seen that the series interpreting in $\LREL_!$ the Taylor expansion of a $\STLC$-term $M$, converges to the interpretation of $M$.
+It can be seen that the morphisms of $\LREL_!$ can always be Taylor expanded, and the series interpreting in $\LREL_!$ the Taylor expansion of a $\STLC$-term $M$, converges to the interpretation of $M$.
 Now, the Taylor formula decomposes an unbounded application as a limit of bounded ones.
 So one might well ask whether this formula interprets a $\lambda$-term 
 as a limit of Lipschitz maps and thus bridging, in a sense, the metric and differential approaches previously mentioned.  
@@ -117,7 +132,7 @@ as a limit of Lipschitz maps and thus bridging, in a sense, the metric and diffe
 But terms with bounded applications correspond semantically to \emph{polynomials}, usually non-Lipschitz functions. 
 Yet, if these polynomials were tropical ones, the Taylor expansion would really decompose $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps: just like in mathematical analysis, unbounded application could be seen 
 as a limit of \emph{more and more sensitive} operations.
-This is precisely the content of our Theorem~\ref{}.
+This is precisely the content of our Theorem~\ref{thm:main}(3).
 
 \section{Tropical Laurent Series}
 
@@ -141,6 +156,137 @@ In this section we study the properties of generalised tLs, from the point of vi
 %We find the usual notion of tLs of one variable as follows:
 
 %\begin{remark}
+
+
+\begin{wrapfigure}{r}{0.3\textwidth}%
+%\begin{figure}
+\begin{tikzpicture}[scale=0.55]
+\begin{axis}[samples=250]
+\addplot[yellow,domain=0:0.8] {1+0.02};
+
+\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
+
+
+\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
+\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
+\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
+
+\addplot[violet,domain=0:0.8] {min(
+10*x+1/1424,
+9*x+1/712,
+8*x+1/356,
+7*x+1/128,
+6*x+1/64,
+5*x+1/32,
+4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
+
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{Plot of the tropical polynomials $\varphi_1,\varphi_2,\varphi_3,\varphi_4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet).}
+\label{fig:plot1}
+%\end{figure} 
+\end{wrapfigure} %%
+
+\begin{proposition}\label{prop:nondecr+conc}
+ Any tLs $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
+\end{proposition}
+
+
+%In Example~\ref{ex:famous_ex}, 
+Look at Fig~\ref{fig:plot1}: it appears that $\varphi$ behaves \emph{locally} like the polynomials $\varphi_{n}$. 
+%In particular, for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, $\varphi$ coincides with $\varphi_{n}$ for $\epsilon \geq 2^{-(n+1)}$, the smallest tropical root of $\varphi_{n}$.
+However, at
+%
+%$x\in [\epsilon,\infty]$, with $\epsilon>0$
+%It can be proven by hand that $\varphi(x)$ is a $\min$ for all $x>0$.
+ $x=0$ we have that $\varphi(x=0)=\inf_{i\in\N} 2^{-i}=0$, and this is the only point where the $\inf$ is \emph{not} a $\min$.
+Also, while the derivative of $\varphi$ is bounded on all $\BB R_{>0}$, at $x=0$ it tends to $\infty$.
+This phenomenon is reminiscent of [Example 7, \cite{Ehrhard2005}],
+%Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
+which actually motivated our first investigations.
+In fact, these properties are shared by all tLs with \emph{finitely} many variables, as shown by the following result.
+
+
+Remark that $!\set{1,\dots,k}$ can be identified with $\N^k$.
+So the matrix of a tLs $f$ with finitely many variables $x=x_1,\dots,x_k$ (and one variable $f(x)$ in output) can be given as a $\matr f:\N^k\to\Lawv$, and $f$ has shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, where $nx$ is the scalar product.
+
+\begin{theorem}\label{theorem:fepsilon}
+ Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tLs with matrix $\matr f:\N^k\to\Lawv$.
+ For all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
+% 
+% \begin{enumerate}
+%  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
+%  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
+  %\item 
+$f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
+% \end{enumerate}
+\end{theorem}
+\begin{proof}[Proof sketch]
+Let $\C F_\epsilon$ be the set of $n\in\N^{k}$ such that 
+$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
+We can show that it is finite and does the job.
+\end{proof}
+
+
+
+The norm $\norm{\cdot}_\infty$ on $\BB R$ naturally induces a metric $\norm{x-y}_{\infty}$ over the spaces $\Lawv^{X}$.
+We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics.
+\emph{Wlog}, we will often take $Y=\set{*}$. 
+
+First, it can be seen that all tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
+%\begin{proof}[Proof sketch]
+%Using the fact that $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
+%the problem reduces to checking that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
+This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
+%\begin{proof}
+%Using $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
+%first observe that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$; we now have
+%$|f(\B x)_{b}-f(\B y)_{b}| \leq |(\inf_{a\in X}\matr f_{a,b}-\B x_{a})-(\inf_{a\in X}\matr f_{a,b}-\B y_{a})| \leq
+%\sup_{a\in X}|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})|\leq 
+% \| \B x-\B y\|_{\infty}$.
+%\end{proof}
+Let us now consider the case of bounded exponentials:
+\begin{proposition}\label{prop:boundedlip}
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+\end{proposition}
+\begin{proof}[Proof sketch]
+It follows from the above lines about tropical linear functions, plus the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to finite multisets of degree $\leq n$.%
+%Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \matr f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
+%$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
+%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
+\end{proof}
+This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
+It also entails that for any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+
+
+Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
+As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
+Actually, we can prove a more general statement, also covering the infinitary case.
+
+
+\begin{theorem}\label{thmTLSlocLip}
+ All tLs $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}^X$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+The core of the proof is a convex analysis argument showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
+\end{proof}
+
+Finally, the differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by $D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$.
+One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
+Moreover, the Taylor formula enjoyed by $\LREL_!$ morphisms, yields a ``tropical'' Taylor formula for tLs of the form $f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
+
+
+The above results translate into the following facts about the interpretation of higher-order programs:
+\begin{corollary}\label{thm:main}
+For any $\lambda$-term $M$:
+\begin{enumerate}
+\item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M^!:\model\Gamma \to \model A$ is a \emph{Lipschitz} map.
+\item if $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is a \emph{locally Lipschitz} map.
+\item  if $\Gamma \vdash_{\STLC}M:A$, then its Taylor exp.\ decomposes $\model M^!: \model\Gamma \to \model A$ into an $\inf$ of \emph{Lipschitz}~maps.
+\end{enumerate}
+\end{corollary}
 
 
 \section{Relations to quantitative properties}
