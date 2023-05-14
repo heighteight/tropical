@@ -132,7 +132,7 @@ as a limit of Lipschitz maps and thus bridging, in a sense, the metric and diffe
 But terms with bounded applications correspond semantically to \emph{polynomials}, usually non-Lipschitz functions. 
 Yet, if these polynomials were tropical ones, the Taylor expansion would really decompose $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps: just like in mathematical analysis, unbounded application could be seen 
 as a limit of \emph{more and more sensitive} operations.
-This is precisely the content of our Theorem~\ref{thm:main}(3).
+This is precisely the content of our Corollary~\ref{cor:main}(3).
 
 \section{Tropical Laurent Series}
 
@@ -279,7 +279,7 @@ Moreover, the Taylor formula enjoyed by $\LREL_!$ morphisms, yields a ``tropical
 
 
 The above results translate into the following facts about the interpretation of higher-order programs:
-\begin{corollary}\label{thm:main}
+\begin{corollary}\label{cor:main}
 For any $\lambda$-term $M$:
 \begin{enumerate}
 \item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M^!:\model\Gamma \to \model A$ is a \emph{Lipschitz} map.
@@ -293,16 +293,51 @@ For any $\lambda$-term $M$:
 
 
 
-\section{Lawvere's generalised metric spaces}
+\section{Getting rid of bases}
 
-We already remarked that the tropical semiring $\Lawv$ coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$.
-In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
+Remember that a $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
+$\Lawv$ is the most basic example of $\Lawv$-module.
+ Other basic examples of $\Lawv$-modules are the sets $\Lawv^{X}$, with order and action defined pointwise. 
+A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
 
-\begin{remark}
- The category $\QREL$ is (equivalent to) a subcategory of the category $Q\SF{Mod}$ of \emph{complete} $Q$-semimodules.
- If $\QREL$ corresponds to considering semimodules (the $Q^X$'s) whose vectors are given in coordinates w.r.t.\ a \emph{fixed base} (the set $X$), $Q\SF{Mod}$ corresponds to considering semimodules in abstract, without fixing a base.
- We take this viewpoint in Section~\ref{section6}.
-\end{remark}
+Observe that the category $\LREL$ is (equivalent to) a subcategory of $\Lawv\SF{Mod}$.
+While $\LREL$ corresponds to considering modules (the $\LREL^X$'s) whose vectors are given in coordinates w.r.t.\ a \emph{fixed base} (the set $X$), $\Lawv\SF{Mod}$ corresponds to considering semimodules in abstract, without fixing a base.
+
+
+
+
+
+
+We already remarked that the tropical semiring coincides with the \emph{Lawvere quantale} $\Lawv$.
+In particular, Lawvere was the first to observe that a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law.
+Indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories} (in short, a $\Lawv$-category) \cite{Lawvere1973, Hofmann2014, Stubbe2014}.
+%Indeed, spelling out the definition, a $\Lawv$-enriched category is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
+%\begin{align}
+%0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
+%X(y,z)+X(x,y)&\geq  X(x,z) \tag{$\Lawv$-cat 2}
+%\end{align}
+%This structure is often referred to as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}. %, or as a \emph{quasi-metric space}. 
+%A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when $X(x,y)=0$ implies $x=y$, and \emph{symmetric} when it coincides with its opposite category $X^{\op}(x,y):=X(y,x)$, i.e.~when $X(x,y)=X(y,x)$. 
+A metric space, in the usual sense, is just a particular case of $\Lawv$-category.
+%Notice that any $\Lawv$-category $X$ induces a skeletal category $X^{\sk}$ by quotienting points under $X(x,y)=0$, and a symmetric one by letting $X^{\sym}(x,y)=\max\{X(x,y),X^{\op}(x,y)\}$.
+Remark that $\Lawv$ has a canonical $\Lawv$-enriched structure given by $\Lawv(r,s)=s \overset{\cdot}{-} r$ (where ``$ \overset{\cdot}{-}$'' indicates truncated subtraction), 
+and the Euclidean distance coincides with its symmetrization $\Lawv^{\sym}(x,y):=\max\{\Lawv(x,y),\Lawv^{\op}(x,y)\}$.
+
+
+%A $\Lawv$-enriched \emph{functor} between $\Lawv$-categories $X,Y$ is just a non-expansive map $f:X\to Y$, as functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
+Now, by considering distributors, one defines the notion of \emph{continuous} functor $f:X\to Y$ as one that commutes with all existing weighted colimits in $X$.
+A $\Lawv$-enriched category $X$ is said \emph{categorically complete} (or just \emph{complete}) if all weighted colimits over $X$ exist. 
+We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors.
+We mention this notions because it can be shown (~\cite{Stubbe2006}) that, actually, $\Mod$ and $\GMet$ are isomorphic categories.
+This is interesting for us because it suggests to transport the metric point of view of $\GMet$ on our modules in $\Mod$.
+Actually, we can even show that:
+\begin{theorem}
+$\Mod_{!}$ or, equivalently, $\GMet_{!}$, can be equipped with a differential $D$ making it a $CC\partial C$.
+\end{theorem}
+That is, one does not need to stick to a base in order to interpret types/programs.
+This differential extends the one for $\LREL_{!}$;
+in order to define the exponential $!$ over $\Mod$ we use the well-known recipe from \cite{Mellies2018, Manzo2013}, consisting in defining a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$, and then define $!$ as the product of the symmetric algebras.
+
 
 
 %The optional arguments of {\tt $\backslash$documentclass$\{$eptcs$\}$} are
