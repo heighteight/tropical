@@ -90,6 +90,32 @@
 \newcommand{\twoheaddownarrow}{\mathrel{\rotatebox[origin=c]{270}{$\twoheadrightarrow$}}\!}
 
 
+%LIST ENVIRONMENTS
+
+\newcounter{numberone}
+
+\newenvironment{varenumerate}
+{
+	\begin{list}{\arabic{numberone}.}
+		{
+			\usecounter{numberone}
+			\setlength{\itemsep}{0pt}
+			\setlength{\topsep}{0pt}
+			\setlength{\parsep}{0pt}
+			\setlength{\partopsep}{0pt}
+			\setlength{\leftmargin}{15pt}
+			\setlength{\rightmargin}{0pt}
+			\setlength{\itemindent}{0pt}
+			\setlength{\labelsep}{5pt}
+			\setlength{\labelwidth}{15pt}
+	}}
+	{
+	\end{list} 
+}
+
+
+
+
 %MATH EVIRONMENTS
 
 \newtheorem{example}{Example}

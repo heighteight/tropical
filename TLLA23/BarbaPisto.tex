@@ -25,16 +25,18 @@
 \usepackage{stmaryrd}
 \usepackage{todonotes}
 
+
 \input{macros}
 
-\title{Tropical methods in Lambda-Calculus}
+
+\title{Tropical Mathematics and the Lambda-Calculus}
 \author{Davide Barbarossa
 \institute{DISI, Universit\`a di Bologna}
 \email{davide.barbarossa@unibo.it}
 \and
 \qquad\qquad Paolo Pistone
 \institute{\qquad\qquad\qquad DISI, Universit\`a di Bologna}
-\email{\qquad\qquad\qquad paolo.pistone@unibo.it}
+\email{\qquad\qquad\qquad paolo.pistone2@unibo.it}
 }
 \def\titlerunning{Trends in Linear Logic and Applications}
 \def\authorrunning{D.\ Barbarossa and P.\ Pistone}
@@ -50,22 +52,20 @@
 
 %\section*{Motivation}
 
-Two different quantitative approaches have received considerable attention from the programming language community in recent years: %(e.g.\ \cite{decarvalho2018, Accattoli2022}, \cite{Breuvart2018, PistoneLICS2022}, \cite{Barthe_2012} \cite{Reed2010, dallago}, \cite{Ehrhard2011, Staton2017}, \cite{difflambda}), on the one hand one there is 
-the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk} is based on the fact that when considering e.g.\ probabilistic %or approximate 
-computation, %rather than asking whether two programs compute \emph{the same} function,
-it is natural to ask whether two programs compute functions which %do not differ \emph{too much}
-approximate each other, instead of equality of functions.
-This led to denotational frameworks in which types are endowed with a metric \cite{Reed2010},\cite{Bonchi2018}, \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
-On the other hand, there is the approach based on \emph{differential} \cite{difflambda}, \cite{difflambda}, \cite{Manzo2013, Breuvart2018, PistoneLICS2022} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}.
-This led to syntactic or denotational frameworks in which one can define a \emph{Taylor expansion} of programs.
-In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
-In metric semantics, linear programs correspond to \emph{non-expansive} maps, i.e.\ that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret programs with a fixed duplication bound as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
+In recent years, more and more interest in the programming language community has been directed towards the study of quantitative properties of programs like computing the number of computation steps or convergence probabilities, as opposed to purely qualitative properties like termination or program equivalence. 
+In particular, two different quantitative approaches have received considerable attention from the programming language community. On the one hand, the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk} is based on the observation that probabilistic or numerical algorithms are not though to compute a target function $f$ \emph{exactly}, but only in an approximate way; hence, one is usually interested to know whether the computed function is \emph{not too far} from $f$, rather than equal to $f$. This led to study denotational frameworks in which types are endowed with metrics measuring similarities in program behavior \cite{Reed2010},\cite{Bonchi2018}, \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
+On the other hand, there is the approach based on \emph{differential} \cite{difflambda}, \cite{difflambda}, \cite{Manzo2013, Breuvart2018, PistoneLICS2022} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the \emph{relational semantics}\cite{Manzo2012, Manzo2013, dill} and \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}.
+This led to study syntactic or denotational frameworks in which one can define a \emph{Taylor expansion} of programs.
+
+
+In both approaches a crucial role is played by the notion of \emph{linearity}, in the sense of linear logic, i.e.~of using inputs exactly once. In metric semantics, linear programs correspond to \emph{non-expansive} functions, i.e.\ maps that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret programs with a fixed duplication bound as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
 By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs gives rise to \emph{power series}.
 
-At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
+The starting observation of this work is that, at a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
 in metric models $n$ times duplication results in a $n$-Lipschitz \emph{linear} function $n\cdot x$, while in differential models this results in a non-Lipschitz \emph{polynomial} function $x^{n}$.
-Our main observation is that 
-this gap is overcome once we interpret these functions in the framework of tropical mathematics where, for instance, $x^{n}$ precisely reads as $n\cdot x$.
+ At the same time, 
+this gap may be overcome once we interpret these functions in the framework of tropical mathematics where, for instance, $x^{n}$ precisely reads as $n\cdot x$.
+
 Tropical mathematics \cite{Simon} is a well established algebraic and geometrical framework, with tight connections with optimisation theory \cite{Sturmfelds}, where the usual ring structure of numbers based on addition and multiplication is replaced by the semiring structure given, respectively, by ``$\min$'' and ``$+$''.
 For instance, the polynomial $p(x,y)=x^{2}+xy^{2}+y^{3}$, when interpreted over the tropical semiring, translates as the piecewise linear function
 $
@@ -80,6 +80,8 @@ This also scales to a
 more abstract level, leading to introduce a differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}).
 %We will only sketch some of our main results.% of our our analysis.
 
+\section{The Tropical Semantics of Linear Logic }
+
 \paragraph{Tropical mathematics in a nutshell}
 
 We let the \emph{tropical semiring}  $\Lawv$, the structure at the heart of tropical mathematics, be $[0,\infty]$ with addition $\min$ and multiplication $+$.
@@ -88,7 +90,7 @@ $\Lawv$ is at the heart of the categorical study of metric spaces initiated by L
 A \emph{tropical polynomial} is a piece-wise linear function $\varphi:\Lawv\to \Lawv$ of the form $\varphi(x)=\min_{j=1,\dots,k}\{i_{j}x+\matr \varphi_{i_{j}}\}$, with $i_{j}\in\N$, $\matr \varphi_{i_{j}}\in\Lawv$ and $k$ finite.
 Those are always Lipschitz functions.
 For example, $\varphi_{n}(x)=\min_{i\leq n}\{ix+2^{-i}\}$, plotted in Fig~\ref{fig:plot1}.
-A \emph{tropical root} of $\varphi$ is a point $x\in \Lawv$ where the minimum defining $\varphi$ is attained at least twice.%, i.e.\ where $\varphi$ is not differentiable, i.e.~where the slope of $\varphi$ changes.
+A \emph{tropical root} of $\varphi$ is a point $x\in \Lawv$ where the minimum defining $\varphi$ is attained at least twice. %, i.e.\ where $\varphi$ is not differentiable, i.e.~where the slope of $\varphi$ changes.
 E.g., the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, $i \leq n$.
 %With this definition, tropical roots mimic the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
 A \emph{tropical Laurent series} (of one variable $x\in\Lawv$), shortly a \emph{tLs}, is a function $\varphi:\Lawv\to \Lawv$ of the form $\varphi(x)=\inf_{n\in\N}\{nx+\matr \varphi_{n}\}$, with $\matr \varphi_{n}\in\Lawv$.
@@ -97,7 +99,7 @@ For example $\varphi(x):=\inf_{i\in\N}\set{ix+2^{-i}}$ %that we will take as our
 is the ``limit'' of the $\varphi_{n}$, see Fig~\ref{fig:plot1}. %Since $\inf$s are not in general $\min$s, the behavior of tLS may be less predictable than that of tropical polynomials.
 %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points.
 Finally, for a polynomial/power series $f(x)=\sum_n a_nx^n$, one defines its \emph{tropicalization} $\trop f(\alpha):=\inf_n\set{-\log a_n+n\alpha}$.
-TLs may be non Lipschitz, and their study is less developed than that of tropical polynomials.
+TLs are in general not Lipschitz, and their study is less developed than that of tropical polynomials.
 
 \paragraph{Tropical weighted relational semantics in a nutshell}
 
@@ -120,22 +122,6 @@ Here, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\t
 $
  \inf\limits_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1+\cdots +\mu_n}
  \left\{s_{[b_1,\dots,b_n],c} + \sum_{i=1}^n t_{\mu_i,b_i}\right\}$.
-Furthermore, $!$ can be decomposed into a family of \emph{graded} exponentials $(!_n)_{n\in\N}$ turning $(\LREL,(!_n)_{n\in\N})$ in a model for $\BSTLC$. 
-Finally, $\LREL_!$ can be equipped with a \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined by: $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise. %(where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
-This turns $(\LREL_!,D)$ into a CC$\partial$C, i.e.\ a model of the differential $\lambda$-calculus.
-Remember that the (quantitative) Taylor expansion of an ordinary $\lambda$-term $M$ is an inductively defined series $\Te{M}$ of differential $\lambda$-terms, the only non-trivial case being $\Te{PQ} :=  \sum_{k=0}^{\infty} (\Der^{k}[P] \cdot Q^{k})0$.
-It can be seen that the morphisms of $\LREL_!$ can always be Taylor expanded, and the series interpreting in $\LREL_!$ the Taylor expansion of a $\STLC$-term $M$, converges to the interpretation of $M$.
-The Taylor formula decomposes an unbounded application as a limit of bounded ones.
-So one might well ask whether this formula interprets a $\lambda$-term 
-as a limit of Lipschitz maps and thus bridging, in a sense, the metric and differential approaches previously mentioned.  
-%Here, a natural direction to look for is the \emph{relational semantics}, i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
-But terms with bounded applications correspond to \emph{polynomials}, usually non-Lipschitz functions. 
-Yet, if these polynomials were tropical, the Taylor expansion would really decompose $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps: just like in mathematical analysis, unbounded application could be seen 
-as a limit of \emph{more and more sensitive} operations.
-This is precisely the content of our Corollary~\ref{cor:main}(3).
-
-\section{Tropical Laurent Series}
-
  As usual, a matrix $t\in\HOM{\LREL_!}{X}{Y}$ yields a \emph{linear} map $\Lawv^{!X}\to\Lawv^Y$, but we can also ``express it in the base $X$'' and see it as a \emph{non-linear} map $t^!:\Lawv^X\to\Lawv^Y$, by setting 
  $t^!(x):=t\circ_! x$.
 %  (we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
@@ -146,7 +132,42 @@ This is precisely the content of our Corollary~\ref{cor:main}(3).
 For $X=Y=\set{*}$, we get usual tLs of one variable.
 Instead, if the support $\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$ of $f$ is \emph{finite}, we get %maps of shape $f(x)_b:=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, i.e.\ 
 tropical polynomials in possibly infinitely many variables.
-In this section we study the properties of generalised tLs, from the point of view of mathematical analysis.
+Furthermore, $!$ can be decomposed into a family of \emph{graded} exponentials $(!_n)_{n\in\N}$ turning $(\LREL,(!_n)_{n\in\N})$ in a model for a $\mathit{BLL}$-style simply typed $\lambda$-calculus, that we call $\BSTLC$ (see e.g.~\cite{Brunel2014}).
+
+ 
+Finally, $\LREL_!$ can be equipped with a \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined by: $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise. %(where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
+This turns $(\LREL_!,D)$ into a CC$\partial$C, i.e.\ a model of the differential $\lambda$-calculus.
+Remember that the (quantitative) Taylor expansion of an ordinary $\lambda$-term $M$ is an inductively defined series $\Te{M}$ of differential $\lambda$-terms, the only non-trivial case being $\Te{PQ} :=  \sum_{k=0}^{\infty} (\Der^{k}[P] \cdot Q^{k})0$.
+It can be seen that the morphisms of $\LREL_!$ can always be Taylor expanded, and the series interpreting in $\LREL_!$ the Taylor expansion of a $\STLC$-term $M$, converges to the interpretation of $M$.
+
+%
+%
+%The Taylor formula decomposes an unbounded application as a limit of bounded ones.
+%So one might well ask whether this formula interprets a $\lambda$-term 
+%as a limit of Lipschitz maps and thus bridging, in a sense, the metric and differential approaches previously mentioned.  
+%%Here, a natural direction to look for is the \emph{relational semantics}, i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
+%But terms with bounded applications correspond to \emph{polynomials}, usually non-Lipschitz functions. 
+%Yet, if these polynomials were tropical, the Taylor expansion would really decompose $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps: just like in mathematical analysis, unbounded application could be seen 
+%as a limit of \emph{more and more sensitive} operations.
+%This is precisely the content of our Corollary~\ref{cor:main}(3).
+
+\section{Tropical Laurent Series Yield a Metric Semantics of $\STLC$}
+
+The main goal of this section is to show that the interpretation of $\STLC$ in the tropical relational model yields a metric semantics, where the spaces $\Lawv^{X}$ are endowed with the $\|\cdot\|_{\infty}$-norm metric, and programs are interpreted as \emph{locally Lipschitz} maps:
+\begin{theorem}\label{cor:main}
+For any $\lambda$-term $M$:
+\begin{varenumerate}
+\item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M^!:\model\Gamma \to \model A$ is a \emph{Lipschitz} map.
+\item if $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is a \emph{locally Lipschitz} map. Moreover, the Taylor expansion decomposes $\model M^!$ into an $\inf$ of \emph{Lipschitz}~maps.
+\end{varenumerate}
+\end{theorem}
+Recall that the Taylor formula decomposes an unbounded application as a limit of bounded ones; the result above presents this as a decomposition of an higher-order program as a limit of Lipschitz maps, and provides thus a bridge between the metric and the differential approaches.
+
+ 
+The proof of the result above passes through the study of topological and metric properties of tLs. 
+We first studied tLs with respect to the topology induced by the $\|\cdot\|_{\infty}$-norm.
+%
+%In this section we study the properties of generalised tLs, from the point of view of mathematical analysis.
 %In the following we will also refer to them as tLs. 
  
 % 
@@ -157,6 +178,47 @@ In this section we study the properties of generalised tLs, from the point of vi
 %We find the usual notion of tLs of one variable as follows:
 
 %\begin{remark}
+
+
+
+
+\begin{proposition}\label{prop:nondecr+conc}
+ Any tLs $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order, and continuous w.r.t.~the norm $\|\cdot\|_{\infty}$.
+\end{proposition}
+
+
+
+
+
+%
+%The norm $\norm{\cdot}_\infty$ on $\BB R$ naturally induces a metric $\norm{x-y}_{\infty}$ over the spaces $\Lawv^{X}$.
+%We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics.
+%\emph{Wlog}, we will often take $Y=\set{*}$. 
+
+Let us now consider metric properties. First, it can be seen that all tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive. 
+%\begin{proof}[Proof sketch]
+%Using the fact that $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
+%the problem reduces to checking that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
+This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
+%\begin{proof}
+%Using $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
+%first observe that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$; we now have
+%$|f(\B x)_{b}-f(\B y)_{b}| \leq |(\inf_{a\in X}\matr f_{a,b}-\B x_{a})-(\inf_{a\in X}\matr f_{a,b}-\B y_{a})| \leq
+%\sup_{a\in X}|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})|\leq 
+% \| \B x-\B y\|_{\infty}$.
+%\end{proof}
+More generally, linear maps with bounded exponentials yield Lipschitz maps:
+\begin{proposition}\label{prop:boundedlip}
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+\end{proposition}
+%\begin{proof}[Proof sketch]
+%It follows from the above lines about tropical linear functions, plus the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to finite multisets of degree $\leq n$.%
+%%Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \matr f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
+%%$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
+%%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
+%\end{proof}
+This result is perfectly analogous to what happens in the metric models recalled in the introduction, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
+It also entails that for any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 
 
 \begin{wrapfigure}{r}{0.3\textwidth}%
@@ -185,18 +247,14 @@ In this section we study the properties of generalised tLs, from the point of vi
 \end{axis}
 
 \end{tikzpicture}
-\caption{Plot of the tropical polynomials $\varphi_1,\varphi_2,\varphi_3,\varphi_4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet).}
+\caption{\small Plot of the tropical polynomials $\varphi_1,\varphi_2,\varphi_3,\varphi_4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet).}
 \label{fig:plot1}
 %\end{figure} 
 \end{wrapfigure} %%
 
-\begin{proposition}\label{prop:nondecr+conc}
- Any tLs $f:\Lawv^X\to\Lawv^Y$ is non-decreasing and concave, w.r.t.\ the pointwise order.
-\end{proposition}
-
-
-%In Example~\ref{ex:famous_ex}, 
-Look at Fig~\ref{fig:plot1}: it appears that $\varphi$ behaves \emph{locally} like the polynomials $\varphi_{n}$. 
+Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
+First, we consider the interesting case of tLs with \emph{finitely many variables}. 
+Let us start by an example, shown in Fig~\ref{fig:plot1}: the 1-variable tLs $\varphi(x)=\inf_{i}\{x+2^{-i}\}$ behaves \emph{locally} like the polynomials $\varphi_{n}(x)=\min_{i\leq n}\{x+2^{-i}\}$. 
 %In particular, for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, $\varphi$ coincides with $\varphi_{n}$ for $\epsilon \geq 2^{-(n+1)}$, the smallest tropical root of $\varphi_{n}$.
 However, at
 %
@@ -206,7 +264,7 @@ However, at
 Also, while the derivative of $\varphi$ is bounded on all $\BB R_{>0}$, at $x=0$ it tends to $\infty$.
 This phenomenon is reminiscent of [Example 7, \cite{Ehrhard2005}].
 %Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019 which actually motivated our first investigations.
-In fact, these properties are shared by all tLs with \emph{finitely} many variables, as shown by the following result (we identify $!\set{1,\dots,k}$ with $\N^k$, so the matrix of a tLs $f$ with variables $x=x_1,\dots,x_k$ can be given as a $\matr f:\N^k\to\Lawv$, and $f$ has shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, where $nx$ is the scalar product).
+In fact, these properties are shared by all tLs with {finitely} many variables, as shown by the following result (we identify $!\set{1,\dots,k}$ with $\N^k$, so the matrix of a tLs $f$ with variables $x=x_1,\dots,x_k$ can be given as a $\matr f:\N^k\to\Lawv$, and $f$ has shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, where $nx$ is the scalar product).
 
 \begin{theorem}\label{theorem:fepsilon}
  Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tLs with matrix $\matr f:\N^k\to\Lawv$.
@@ -219,46 +277,16 @@ In fact, these properties are shared by all tLs with \emph{finitely} many variab
 $f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
 % \end{enumerate}
 \end{theorem}
-\begin{proof}[Proof sketch]
-Take $\C F_\epsilon$ the set of $n\in\N^{k}$ such that 
-$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
-\end{proof}
-
-
-
-The norm $\norm{\cdot}_\infty$ on $\BB R$ naturally induces a metric $\norm{x-y}_{\infty}$ over the spaces $\Lawv^{X}$.
-We will show that tLs satisfy suitable Lipschitz properties  w.r.t.~these metrics.
-\emph{Wlog}, we will often take $Y=\set{*}$. 
-
-First, it can be seen that all tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
 %\begin{proof}[Proof sketch]
-%Using the fact that $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
-%the problem reduces to checking that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
-This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
-%\begin{proof}
-%Using $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
-%first observe that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$; we now have
-%$|f(\B x)_{b}-f(\B y)_{b}| \leq |(\inf_{a\in X}\matr f_{a,b}-\B x_{a})-(\inf_{a\in X}\matr f_{a,b}-\B y_{a})| \leq
-%\sup_{a\in X}|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})|\leq 
-% \| \B x-\B y\|_{\infty}$.
+%Take $\C F_\epsilon$ the set of $n\in\N^{k}$ such that 
+%$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
 %\end{proof}
-Let us now consider the case of bounded exponentials:
-\begin{proposition}\label{prop:boundedlip}
-If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
-\end{proposition}
-%\begin{proof}[Proof sketch]
-%It follows from the above lines about tropical linear functions, plus the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to finite multisets of degree $\leq n$.%
-%%Using the fact that $f(\B x)_{b}=\inf_{\mu\in \C M_{\leq n}(X)}\{ \matr f_{\mu,b}+ \mu (!_{n}\B x) \}$, where $!_{n}\B x\in \Lawv^{\C M_{\leq n}(X)}$ is given by 
-%%$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
-%%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
-%\end{proof}
-This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
-It also entails that for any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+The result above suggests that the local behavior of tLs with finitely many variables can be studied with the tools of tropical geometry (e.g.~tropical roots, Newton polygones), as suggested in the next section. 
+Moreover, a consequence of Theorem~\ref{theorem:fepsilon} is that all tLs with {finitely many} variables are always \emph{locally} Lipschitz on $\BB R_{>0}$.
+The following result extends this property to all tLs, also covering the case with infinitely many variables.
 
 
-Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
-As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
-Actually, we can prove a more general statement, also covering the infinitary case.
+
 
 
 \begin{theorem}\label{thmTLSlocLip}
@@ -268,26 +296,17 @@ The core of the proof is a convex analysis argument showing that an arbitrary fu
 
 Finally, the differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by $D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$.
 One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
-Moreover, the Taylor formula enjoyed by $\LREL_!$ morphisms, yields a ``tropical'' Taylor formula for tLs of the form $f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
+Finally, the Taylor formula enjoyed by $\LREL_!$ morphisms, yields a ``tropical'' Taylor formula for tLs of the form $f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$.
 
 
-The above results translate into the following facts about the interpretation of higher-order programs:
-\begin{corollary}\label{cor:main}
-For any $\lambda$-term $M$:
-\begin{enumerate}
-\item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M^!:\model\Gamma \to \model A$ is a \emph{Lipschitz} map.
-\item if $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is a \emph{locally Lipschitz} map.
-\item  if $\Gamma \vdash_{\STLC}M:A$, then its Taylor exp.\ decomposes $\model M^!: \model\Gamma \to \model A$ into an $\inf$ of \emph{Lipschitz}~maps.
-\end{enumerate}
-\end{corollary}
 
 
-\section{Relations to quantitative properties}
+\section{Tropical Semantics as Quantitative Semantics: Computing Likelihoods of Reduction Paths}
 
 Since algebraic and geometric properties in tropical mathematics are usually more tractable from a computational point of view, in several well-known applications (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}) one starts from a given modelised phenomenon, typically expressed by some polynomial function $f$, and studies 
 what of its properties can be deduced from the \emph{tropicalization} $\trop f$ of $f$.
-Let us illustrate a few possible direction following a similar pattern, where of course our modelled phenomenon are programs.%: for a $\lambda$-term $M$, which can be expressed in $\LREL_!$ as a tropical polynomial or power series $\model M$, and we investigate what quantitative properties of $M$ can be deduced from it. In particular, it is useful to think of $\model M = \trop f$ for some polynomial or power series $f$.
-We sketch here only one example, regarding probabilities, but we are currently working on other setting including differential privacy, finiteness spaces and best case analysis.
+This idea suggests several natural directions in which the tropical semantics of a higher-order program could be used to deduce properties which can be expressed as an optimization problem.%: for a $\lambda$-term $M$, which can be expressed in $\LREL_!$ as a tropical polynomial or power series $\model M$, and we investigate what quantitative properties of $M$ can be deduced from it. In particular, it is useful to think of $\model M = \trop f$ for some polynomial or power series $f$.
+We sketch here only one example, regarding probabilities, but we are currently working on other directions including \emph{differential privacy} and \emph{best case analysis}.
 
 As a toy example, consider a probabilistic extension $\STLC_\oplus$ of $\STLC$, with a new ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the usual rules.
 %\[ \dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}  \qquad\qquad \dfrac{\Gamma\vdash M:A}{\Gamma\vdash pM:A}\]
@@ -354,24 +373,36 @@ Yet, we do not have a full understanding of the role of roots in this setting.
 % Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log p,-\log(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the bias of $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are smapled by $M$ during its tossings to normal form, knowing that some $\true$ was sampled.
 
 
-\section{Getting rid of bases}
+\section{Getting rid of bases: $\Lawv$-modules as generalized metric spaces}
 
-We take $\Lawv$-modules to be triples $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
-$\Lawv$ is the most basic example of $\Lawv$-module.
- Other basic examples of $\Lawv$-modules are the sets $\Lawv^{X}$, with order and action defined pointwise. 
-A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
+As we have seen, tropical semantics provides a viewpoint in which metric and differential properties are somehow unified. This approach can be made more abstract, thanks to a fundamental categorical correspondence between tropical linear algebra (i.e.~the study of quantale modules over $\Lawv$) and the theory of Lawvere's \emph{generalized metric spaces} (see \cite{Fuji, Stubbe2006}).
 
-Observe that the category $\LREL$ is (equivalent to) a subcategory of $\Lawv\SF{Mod}$.
-While $\LREL$ corresponds to considering modules (the $\LREL^X$'s) whose vectors are given in coordinates w.r.t.\ a \emph{fixed base} (the set $X$), $\Lawv\SF{Mod}$ corresponds to considering semimodules in abstract, without fixing a base.
-
-
-
+A quantale module over $\Lawv$, shortly a \emph{$\Lawv$-module} (not to be confused with a module on $\Lawv$ \emph{as a semiring}), is a triple  $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$. 
+%Notice that this defines the usual notion of module over the Lawvere quantale $\Lawv$, and this does \emph{not} coincide with the modules on $\Lawv$ \emph{as a semiring} (which are indeed well-studied and well-known to provide a $CC\partial C$ {\color{red}LEMAYYYY}). 
+The most basic example of $\Lawv$-modules are given by the spaces $\Lawv^{X}$, with order and action defined pointwise.
 
 
 
 We already remarked that the tropical semiring coincides with the \emph{Lawvere quantale} $\Lawv$.
 In particular, Lawvere was the first to observe that a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law.
 Indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories} (in short, a $\Lawv$-category) \cite{Lawvere1973, Hofmann2014, Stubbe2014}.
+Many topological properties of metric spaces translate in this way into purely categorical ones. In particular, $\Lawv$-enriched categories which are \emph{cocomplete} in the (enriched) categorical sense (i.e.~all weighted colimits exist) satisfy usual metric completeness properties (e.g.~Cauchy-completeness or Isbell-completeness). 
+
+Now, any $\Lawv$-module $M$ can be endowed with a metric 
+$M(x,y)=\inf\{\epsilon \mid \epsilon \star x \geq y\}$, yielding a cocomplete $\Lawv$-enriched category and, conversely, any cocomplete $\Lawv$-enriched category $X$ has a $\Lawv$-module structure with order $x\leq y$ when $X(y,x)=0$, and monoidal operation defined via a suitable weighted colimit.
+This induces an equivalence between the SMCC $\Mod$ of $\Lawv$-modules and their homomorphisms and the SMCC $\GMet$ of cocomplete $\Lawv$-enriched categories and cocontinuous functors (notice that functoriality in $\GMet$ is just non-expansiveness). 
+
+
+%
+%A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
+%
+%Observe that the category $\LREL$ is (equivalent to) a subcategory of $\Lawv\SF{Mod}$.
+%While $\LREL$ corresponds to considering modules (the $\LREL^X$'s) whose vectors are given in coordinates w.r.t.\ a \emph{fixed base} (the set $X$), $\Lawv\SF{Mod}$ corresponds to considering semimodules in abstract, without fixing a base.
+
+
+
+
+
 %Indeed, spelling out the definition, a $\Lawv$-enriched category is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
 %\begin{align}
 %0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
@@ -379,24 +410,28 @@ Indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories} 
 %\end{align}
 %This structure is often referred to as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}. %, or as a \emph{quasi-metric space}. 
 %A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when $X(x,y)=0$ implies $x=y$, and \emph{symmetric} when it coincides with its opposite category $X^{\op}(x,y):=X(y,x)$, i.e.~when $X(x,y)=X(y,x)$. 
-A metric space, in the usual sense, is just a particular case of $\Lawv$-category.
-%Notice that any $\Lawv$-category $X$ induces a skeletal category $X^{\sk}$ by quotienting points under $X(x,y)=0$, and a symmetric one by letting $X^{\sym}(x,y)=\max\{X(x,y),X^{\op}(x,y)\}$.
-Remark that $\Lawv$ has a canonical $\Lawv$-enriched structure given by $\Lawv(r,s)=s \overset{\cdot}{-} r$ (where ``$ \overset{\cdot}{-}$'' indicates truncated subtraction), 
-and the Euclidean distance coincides with its symmetrization $\Lawv^{\sym}(x,y):=\max\{\Lawv(x,y),\Lawv^{\op}(x,y)\}$.
+%A metric space, in the usual sense, is just a particular case of $\Lawv$-category.
+%%Notice that any $\Lawv$-category $X$ induces a skeletal category $X^{\sk}$ by quotienting points under $X(x,y)=0$, and a symmetric one by letting $X^{\sym}(x,y)=\max\{X(x,y),X^{\op}(x,y)\}$.
+%Remark that $\Lawv$ has a canonical $\Lawv$-enriched structure given by $\Lawv(r,s)=s \overset{\cdot}{-} r$ (where ``$ \overset{\cdot}{-}$'' indicates truncated subtraction), 
+%and the Euclidean distance coincides with its symmetrization $\Lawv^{\sym}(x,y):=\max\{\Lawv(x,y),\Lawv^{\op}(x,y)\}$.
 
 
 %A $\Lawv$-enriched \emph{functor} between $\Lawv$-categories $X,Y$ is just a non-expansive map $f:X\to Y$, as functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
-Now, by considering distributors, one defines the notion of \emph{continuous} functor $f:X\to Y$ as one that commutes with all existing weighted colimits in $X$.
-A $\Lawv$-enriched category $X$ is said \emph{categorically complete} (or just \emph{complete}) if all weighted colimits over $X$ exist. 
-We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors.
-We mention this notions because it can be shown (~\cite{Stubbe2006}) that, actually, $\Mod$ and $\GMet$ are isomorphic categories.
-This is interesting for us because it suggests to transport the metric point of view of $\GMet$ on our modules in $\Mod$.
-Actually, we can even show that:
+%Now, by considering distributors, one defines the notion of \emph{continuous} functor $f:X\to Y$ as one that commutes with all existing weighted colimits in $X$.
+%A $\Lawv$-enriched category $X$ is said \emph{categorically complete} (or just \emph{complete}) if all weighted colimits over $X$ exist. 
+%We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors.
+%We mention this notions because it can be shown (~\cite{Stubbe2006}) that, actually, $\Mod$ and $\GMet$ are isomorphic categories.
+
+
+Our contribution was, first, to observe that the SMCC structure of $\LREL$ lifts to that of the more general category $\Mod\equiv\GMet$ and, secondly, to define an exponential $!$ in $\Mod\equiv\GMet$, using a well-known recipe from \cite{Mellies2018, Manzo2013} based on the construction of symmetric algebras, and show that in this way also the exponential and differential structure of $\LREL_{!}$ lifts to this more general setting:
+%
+%This is interesting for us because it suggests to transport the metric point of view of $\GMet$ onto our modules in $\Mod$.
+%Actually, we can even show that:
 \begin{theorem}
 $\Mod_{!}$ or, equivalently, $\GMet_{!}$, can be equipped with a differential $D$ making it a $CC\partial C$.
 \end{theorem}
-In order to define the exponential $!$ over $\Mod$ we use the well-known recipe from \cite{Mellies2018, Manzo2013}, consisting in defining a symmetric algebra %$\Sym_{n}(M)$
-as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$, and then define $!$ as the product of the symmetric algebras.
+%In order to ,, consisting in defining a symmetric algebra %$\Sym_{n}(M)$
+%as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$, and then define $!$ as the product of the symmetric algebras.
 
 
 
