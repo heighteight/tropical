@@ -118,7 +118,7 @@ Remark that the composition in $\LREL$ %is the tropicalisation of the one defini
 reads as \ $(s\circ t)_{a,c}:=\inf_{b\in Y}\set{s_{b,c}+t_{a,b}}$;
 similarly, linear maps $f:\Lawv^X\to \Lawv^Y$ are of shape $f(x)_b=\inf_{a\in X} \set{x_a+\matr f_{a,b}}$, for some matrix $\matr f\in Q^{X\times Y}$ and are precisely those induced by $\matr f\in\HOM \LREL X Y$. We call them \emph{tropical linear}.
 %\end{remark}
-By applying known results (taken from \cite{Manzo2013},  {\color{red}CITARE LEMAYYYY}), one obtains that $\LREL$ gives rise to denotational models of several variants of the $\lam$-calculus:
+By applying known results (taken from \cite{Manzo2013}, \cite{Laird2020}, \cite{LemayCALCO2021}), one obtains that $\LREL$ gives rise to denotational models of several variants of the $\lam$-calculus:
 first, $\LREL$ is a SMCC, i.e.\ a model of the linear $\STLC$.
 Also, the coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$, where $!$ is the usual multiset comonad (so $!X$ is the set of finite multisets on $X$).
 Here, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$ given by
@@ -222,7 +222,7 @@ If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}
 %%$(!_{n}\B x)_{[a_{1},\dots, a_{k}]}=\sum_{i=1}^{k}\B x_{a_{i}}$, 
 %%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
 %\end{proof}
-This result is perfectly analogous to what happens in the metric models recalled in the introduction.%, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
+This result is perfectly analogous to what happens in the metric models recalled in the introduction. %, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 It also entails that any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 
 
@@ -433,12 +433,13 @@ This induces an isomorphism between the SMCC $\Mod$ of $\Lawv$-modules and their
 %We mention this notions because it can be shown (~\cite{Stubbe2006}) that, actually, $\Mod$ and $\GMet$ are isomorphic categories.
 
 
-Our contribution was, first, to observe that the SMCC structure of $\LREL$ lifts to that of the more general category $\Mod\equiv\GMet$; secondly, to define an exponential $!$ in $\Mod\equiv\GMet$, using a well-known recipe from \cite{Mellies2018, Manzo2013} based on the construction of symmetric algebras, and show that in this way also the exponential and differential structure of $\LREL_{!}$ lift to this more general setting:
+At this point, it can be shown that the SMCC structure of $\LREL$ lifts in a natural way to that of the more general category $\Mod\equiv\GMet$; secondly, an exponential $!$ in $\Mod\equiv\GMet$, can be defined via a well-known recipe  based on the construction of symmetric algebras \cite{Mellies2018, Manzo2013, Laird2020} .
+Since $!$ makes $\GMet$ a Lafont category, one can either do a few calculations or apply general theorems from the literature (e.g.~\cite{LemayCALCO2021}) to obtain the following result, which lifts also the exponential and differential structure of $\LREL_{!}$ to this more general setting:
 %
 %This is interesting for us because it suggests to transport the metric point of view of $\GMet$ onto our modules in $\Mod$.
 %Actually, we can even show that:
 \begin{theorem}\label{thm:no-base}
-$\Mod_{!}$ or, equivalently, $\GMet_{!}$, can be equipped with a differential $D$ making it a $CC\partial C$.
+$\Mod_{!}$ or, equivalently, $\GMet_{!}$, can be equipped with a differential $D$ making it a $CC\partial C$. 
 \end{theorem}
 %In order to ,, consisting in defining a symmetric algebra %$\Sym_{n}(M)$
 %as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$, and then define $!$ as the product of the symmetric algebras.
