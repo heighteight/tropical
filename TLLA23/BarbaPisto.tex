@@ -77,8 +77,10 @@ $.
 
 A tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties.
 Connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
+
 However, a thorough investigation of the full power of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken.
-We sketch here some first steps, with the idea of bridging the two approaches mentioned above, and suggesting the application of tropical methods to the study of the $\lambda$-calculus and its quantitative extensions.
+We sketch here some first steps.
+The aim is to bride the two approaches mentioned above by making them \emph{coexist}, and suggesting the application of tropical methods to the study of the $\lambda$-calculus and its quantitative extensions.
 This also scales to a 
 more abstract level, leading to introduce a differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}).
 %We will only sketch some of our main results.% of our our analysis.
@@ -118,7 +120,7 @@ Remark that the composition in $\LREL$ %is the tropicalisation of the one defini
 reads as \ $(s\circ t)_{a,c}:=\inf_{b\in Y}\set{s_{b,c}+t_{a,b}}$;
 similarly, linear maps $f:\Lawv^X\to \Lawv^Y$ are of shape $f(x)_b=\inf_{a\in X} \set{x_a+\matr f_{a,b}}$, for some matrix $\matr f\in Q^{X\times Y}$ and are precisely those induced by $\matr f\in\HOM \LREL X Y$. We call them \emph{tropical linear}.
 %\end{remark}
-By applying known results (taken from \cite{Manzo2013}, \cite{Laird2020}, \cite{LemayCALCO2021}), one obtains that $\LREL$ gives rise to denotational models of several variants of the $\lam$-calculus:
+By applying known results (taken from \cite{Manzo2013}, \cite{Laird2020}, \cite{LemayCALCO2021}), one obtains that $\LREL$ gives rise to denotational models of several variants of the simply typed $\lam$-calculus ($\STLC$):
 first, $\LREL$ is a SMCC, i.e.\ a model of the linear $\STLC$.
 Also, the coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$, where $!$ is the usual multiset comonad (so $!X$ is the set of finite multisets on $X$).
 Here, the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$ given by
@@ -134,12 +136,13 @@ $(s\circ_! t)_{\mu,c}:=
  These functions correspond then to generalised tLs, i.e.\ with possibly infinitely many variables (as many as the elements of $X$) and for $X=Y=\set{*}$, we get usual tLs of one variable.
 Instead, if the support $\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$ of $f$ is \emph{finite}, we get %maps of shape $f(x)_b:=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, i.e.\ 
 tropical polynomials in possibly infinitely many variables.
-Furthermore, $!$ can be decomposed into a family of \emph{graded} exponentials $(!_n)_{n\in\N}$ turning $(\LREL,(!_n)_{n\in\N})$ in a model for a $\mathit{BLL}$-style simply typed $\lambda$-calculus, that we call $\BSTLC$ (see e.g.~\cite{Brunel2014}).
+Furthermore, $!$ can be decomposed into a family of \emph{graded} exponentials $(!_n)_{n\in\N}$ turning $(\LREL,(!_n)_{n\in\N})$ in a model for a %$\mathit{BLL}$-style
+simply typed $\lambda$-calculus with \emph{bounded} duplications, on the style of~\cite{Brunel2014}, call it $\BSTLC$.%(see e.g.~\cite{Brunel2014}).
 
  
 Finally, $\LREL_!$ can be equipped with a \emph{differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined by: $(Dt)_{\mu\oplus\rho,b}:=t_{\rho+\mu,b}$ if $\#\mu=1$ and $:=\infty$ otherwise. %(where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).
 This turns $(\LREL_!,D)$ into a CC$\partial$C, i.e.\ a model of the differential $\lambda$-calculus.
-Remember that the (quantitative) Taylor expansion of an ordinary $\lambda$-term $M$ is an inductively defined series $\Te{M}$ of differential $\lambda$-terms, the only non-trivial case being $\Te{PQ} :=  \sum_{k=0}^{\infty} (\Der^{k}[P] \cdot Q^{k})0$.
+Remember that the (qualitative) Taylor expansion of an ordinary $\lambda$-term $M$ is an inductively defined series $\Te{M}$ of differential $\lambda$-terms, the only non-trivial case being $\Te{PQ} :=  \sum_{k=0}^{\infty} (\Der^{k}[P] \cdot Q^{k})0$.
 It can be seen that the morphisms of $\LREL_!$ can always be Taylor expanded, and the series interpreting in $\LREL_!$ the Taylor expansion of a $\STLC$-term $M$, converges to the interpretation of $M$.
 
 %
@@ -155,7 +158,7 @@ It can be seen that the morphisms of $\LREL_!$ can always be Taylor expanded, an
 
 \section{Tropical Laurent Series and Metric Semantics for $\STLC$}
 
-The main goal of this section is to show that the interpretation of $\STLC$ in the tropical relational model yields a metric semantics, where the spaces $\Lawv^{X}$ are endowed with the $\|\cdot\|_{\infty}$-norm metric, and programs are interpreted as \emph{locally Lipschitz} maps:
+The main goal of this section is to show that the interpretation of the above mentioned variants of the $\STLC$ in the tropical relational model yields a metric semantics, where the spaces $\Lawv^{X}$ are endowed with the $\|\cdot\|_{\infty}$-norm metric, and programs are interpreted as \emph{locally Lipschitz} maps:
 \begin{theorem}\label{cor:main}
 For any $\lambda$-term $M$:
 \begin{varenumerate}
@@ -169,8 +172,11 @@ Recall that the syntactic Taylor expansion decomposes an unbounded application a
 the result above lifts this decomposition to a semantic level, presenting a higher-order program as limits of Lipschitz maps: it provides thus a bridge between the metric and the differential approaches.
 
  
-The proof of the result above passes through the study of topological and metric properties of tLs. 
+The proof of the result above requires the study of %topological and metric properties of
+tLs from the point of view of mathematical analysis. 
 We first studied tLs with respect to the topology induced by the $\|\cdot\|_{\infty}$-norm.
+
+
 %
 %In this section we study the properties of generalised tLs, from the point of view of mathematical analysis.
 %In the following we will also refer to them as tLs. 
@@ -214,7 +220,8 @@ This result shows that, in analogy with that happens in usual metric semantics, 
 %\end{proof}
 More generally, linear maps with bounded exponentials yield Lipschitz maps:
 \begin{proposition}\label{prop:boundedlip}
-If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a %bounded
+matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is a $n$-Lipschitz map.
 \end{proposition}
 %\begin{proof}[Proof sketch]
 %It follows from the above lines about tropical linear functions, plus the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to finite multisets of degree $\leq n$.%
@@ -223,7 +230,7 @@ If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}
 %%it suffices to check that $\| (!_{n}\B x)-(!_{n}\B y)\|_{\infty}\leq n\cdot \| \B x-\B y\|_{\infty}$ and apply Proposition \ref{prop:troplinear}.
 %\end{proof}
 This result is perfectly analogous to what happens in the metric models recalled in the introduction. %, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
-It also entails that any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+It also entails that any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$ is $\mathrm{deg}(\varphi)$-Lipschitz.
 
 
 \begin{wrapfigure}{r}{0.3\textwidth}%
@@ -280,16 +287,16 @@ In fact, these properties are shared by all tLs with {finitely} many variables, 
 %  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
 %  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
   %\item 
-$f$ coincides on all $[\epsilon,\infty]^k$ with the tropical {polynomial} $P_\epsilon(x):=\min_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
+$f$ coincides on all $[\epsilon,\infty]^k$ with the tropical \emph{polynomial} $P_\epsilon(x):=\min_{n\in \C F_\epsilon}\set{nx+\matr f(n)}$.
 % \end{enumerate}
 \end{theorem}
 %\begin{proof}[Proof sketch]
 %Take $\C F_\epsilon$ the set of $n\in\N^{k}$ such that 
 %$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
 %\end{proof}
-The result above suggests that the local behavior of tLs with finitely many variables can be studied with the tools of tropical geometry (e.g.~tropical roots, Newton polygones). %as suggested in the next section. 
+The result above suggests that, far from $0$, the behavior of tLs with finitely many variables can be studied with the tools of tropical geometry (e.g.~tropical roots, Newton polygones). %as suggested in the next section. 
 Moreover, a consequence of Theorem~\ref{theorem:fepsilon} is that all tLs with {finitely many} variables are always \emph{locally} Lipschitz on $\BB R_{>0}$.
-The following result extends this property to all tLs, also covering the case with infinitely many variables.
+The following result extends this property to all tLs, including the case with infinitely many variables.
 
 
 
@@ -298,7 +305,7 @@ The following result extends this property to all tLs, also covering the case wi
 \begin{theorem}\label{thmTLSlocLip}
  All tLs $\Lawv^X\to\Lawv$ are locally Lipschitz on $\BB R_{>0}^X$.
 \end{theorem}
-The core of the proof is a convex analysis argument showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
+The core of the proof is a simple convex analysis argument showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
 
 Finally, let us look at the differential operator $D$ of $\LREL_{!}$.
 It translates into a differential operator $D_{!}$ turing a tLs $f:\Lawv^{X}\to \Lawv^{Y}$ into a tLs $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by $D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$.
@@ -310,9 +317,8 @@ Finally, the Taylor formula enjoyed by $\LREL_!$ morphisms, yields a ``tropical'
 
 \section{Tropical Semantics and Quantitative Properties: Likelihoods of Reduction Paths}
 
-Since algebraic and geometric properties in tropical mathematics are usually more tractable from a computational point of view, in several well-known applications (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}) one starts from a given modelled phenomenon, typically expressed by some polynomial function $f$, and studies 
-what of its properties can be deduced from the \emph{tropicalization} $\trop f$ of $f$.
-This idea suggests several natural directions in which the tropical semantics of a higher-order program could be used to deduce properties which can be expressed as an optimization problem.%: for a $\lambda$-term $M$, which can be expressed in $\LREL_!$ as a tropical polynomial or power series $\model M$, and we investigate what quantitative properties of $M$ can be deduced from it. In particular, it is useful to think of $\model M = \trop f$ for some polynomial or power series $f$.
+Since algebraic and geometric properties in tropical mathematics are usually more tractable from a computational point of view, in several well-known applications (e.g.~for optimization problems related to machine learning \cite{Pachter2004, Zhang2018, Maragos2021}) one starts from a given modelled phenomenon, typically expressed by some polynomial function $f$, and studies which of its properties can be deduced from the \emph{tropicalization} $\trop f$ of $f$.
+This idea suggests several natural directions in which the tropical semantics of a higher-order programs could be used to deduce properties which can be expressed as an optimization problem.%: for a $\lambda$-term $M$, which can be expressed in $\LREL_!$ as a tropical polynomial or power series $\model M$, and we investigate what quantitative properties of $M$ can be deduced from it. In particular, it is useful to think of $\model M = \trop f$ for some polynomial or power series $f$.
 We sketch here only one example, regarding probabilities, but we are currently working on other directions including \emph{differential privacy} and \emph{best case analysis}.
 
 As a toy example, consider a probabilistic extension $\STLC_\oplus$ of $\STLC$, with a new ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the usual rules.
@@ -343,8 +349,8 @@ $P_{111}(p,q):=q^3$,
 $P_{01}(p,q):=pq$,
 $P_{110}(p,q)=P_{101}(p,q):=q^2p$.
 They correspond to the respective reduction path from $M$ to the normal term of the given address.
-$P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$.%after all the coin tossings in $M$ are performed.
-Thinking of $p,q$ as parameters, $P_{\omega}$ is the \emph{likelihood function} of the event $\omega$.
+$P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$,%after all the coin tossings in $M$ are performed.
+i.e.\ the \emph{likelihood function} of the reduction given by $\omega$.
 The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead the whole probability of obtaining $\true$ after all the tossings (similarly a $Q_{0}(p,q)$ for $\false$).
 This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}.
 A typical question in this case would be: \emph{knowing that $M$ produced $\true$, which is the choice of the parameters $p,q$ that maximizes the probability that %the produced occurrence of $\true$ was a fixed $\true_{\omega_0}$ (i.e. that 
@@ -361,7 +367,7 @@ $(\trop Q_1)( -\log x, -\log y) = (\trop P_{\omega_0})( -\log x, -\log y)$.
 
 \begin{remark}
  By adapting \cite[Section IV]{Manzo2013}, it can be seen that $\LREL_!$ is a model of $\STLC_\oplus$.
- In particular, if we set $\model \bool:=\set{0,1}$, our running example $M$ is interpreted as $\model M\in\Lawv^{\set{0,1}}$ giving the tropicalised probabilities: $\model M_0=(\trop Q_0)(p,1-p)$, $\model M_1=(\trop Q_1)(p,1-p)$.
+ In particular, if we set $\model \bool:=\set{0,1}$, our running example $M$ is interpreted as $\model M\in\Lawv^{\set{0,1}}$ giving the following tropicalised probabilities: $\model M_0=(\trop Q_0)(p,1-p)$, $\model M_1=(\trop Q_1)(p,1-p)$.
 \end{remark}
 
 
@@ -374,22 +380,22 @@ This means that, for $p\in[0,1]$ s.t.\ $1-p\geq p^{\frac{2}{3}}$ (for example, $
 Remembering that $2x=P_{00}(x,y)$, for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled is the occurrence $\true_{00}$.
 We have thus answered our question.
 %\end{example}
-Also, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a root of $\trop Q_1$ or of $\trop Q_0$ provide the values of the bias of $\oplus_p$ for which there are at least two different \emph{equiprobable} paths from $M$ to its normal form.
+Also, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a root of $\trop Q_1$ or of $\trop Q_0$, provide the values of the bias of $\oplus_p$ for which there are at least two different \emph{equiprobable} paths from $M$ to its normal form.
 Yet, we do not have a full understanding of the role of roots in this setting.
 % Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log p,-\log(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the bias of $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are smapled by $M$ during its tossings to normal form, knowing that some $\true$ was sampled.
 
 
 \section{Getting rid of bases: $\Lawv$-modules as generalized metric spaces}
 
-As we have seen, tropical semantics provides a viewpoint in which metric and differential properties are somehow unified.
+As we have seen, tropical semantics provides a viewpoint in which metric and differential properties coexist.
 This approach can be made more abstract, thanks to a fundamental categorical correspondence between tropical linear algebra (i.e.~the study of quantale modules over $\Lawv$) and the theory of Lawvere's \emph{generalized metric spaces} (see \cite{Fuji, Stubbe2006}).
 
 A quantale module over $\Lawv$, shortly a \emph{$\Lawv$-module}%(not to be confused with a module on $\Lawv$ \emph{as a semiring})
 , is a triple  $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$. 
 %Notice that this defines the usual notion of module over the Lawvere quantale $\Lawv$, and this does \emph{not} coincide with the modules on $\Lawv$ \emph{as a semiring} (which are indeed well-studied and well-known to provide a $CC\partial C$ {\color{red}LEMAYYYY}). 
-The most basic example of $\Lawv$-modules are given by the spaces $\Lawv^{X}$, with order and action defined pointwise.
+The most basic examples of $\Lawv$-modules are given by the spaces $\Lawv^{X}$, with order and action defined pointwise.
 We see them as modules given together with a fixed base, $X$.
-Our Theorem~\ref{thm:no-base} says that one can actually give a semantic of high order programs without need to fix a base.
+Theorem~\ref{thm:no-base} says that one can actually give a semantic of high order programs without need to fix a base.
 
 
 
@@ -433,7 +439,7 @@ This induces an isomorphism between the SMCC $\Mod$ of $\Lawv$-modules and their
 %We mention this notions because it can be shown (~\cite{Stubbe2006}) that, actually, $\Mod$ and $\GMet$ are isomorphic categories.
 
 
-At this point, it can be shown that the SMCC structure of $\LREL$ lifts in a natural way to that of the more general category $\Mod\equiv\GMet$; secondly, an exponential $!$ in $\Mod\equiv\GMet$, can be defined via a well-known recipe  based on the construction of symmetric algebras \cite{Mellies2018, Manzo2013, Laird2020} .
+At this point, it can be shown that the SMCC structure of $\LREL$ lifts in a natural way to that of the more general category $\Mod\simeq\GMet$; secondly, an exponential $!$ in $\Mod\simeq\GMet$, can be defined via a well-known recipe  based on the construction of symmetric algebras \cite{Mellies2018, Manzo2013, Laird2020} .
 Since $!$ makes $\GMet$ a Lafont category, one can either do a few calculations or apply general theorems from the literature (e.g.~\cite{LemayCALCO2021}) to obtain the following result, which lifts also the exponential and differential structure of $\LREL_{!}$ to this more general setting:
 %
 %This is interesting for us because it suggests to transport the metric point of view of $\GMet$ onto our modules in $\Mod$.
