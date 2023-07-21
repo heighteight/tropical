@@ -1,0 +1,48 @@
+
+
+
+\subsection{The tropicalization of polynomials and power series}
+
+%Since many algebraic and geometric properties of tropical maps are often simpler and more combinatorial than the corresponding  properties of non-tropical functions, a typical application of tropical mathematics is to study how much can be deduced of some function starting from the properties of its tropicalization.
+%In Section \ref{section5} we will follow a similar direction, investigating what quantitative properties of a higher-order programs are revealed by the study of its tropical interpretation.
+%
+
+Let us first recall how standard polynomials and power series over $[0,1]$ can be turned into tLs via the so-called \emph{Maslov dequantization} \cite{Litvinov2007}.
+%
+%Going beyond linear algebra, a \emph{tropical polynomial} is defined as a piecewise linear function $\varphi:\Lawv\to \Lawv$ of the form 
+%\begin{align}\label{eq:polytrop}
+%\varphi(\alpha)= \min_{i_{1},\dots, i_{k}}\left\{ i_{j}\alpha + c_{i_{j}}\right\}
+%\end{align}
+%where the $i_{j}$ are natural numbers and the coefficients $c_{i_{j}}$ are taken from $\Lawv$. For instance, the polynomial
+%$\varphi_{3}(\alpha)=\min\{ 3\alpha+1/8,2\alpha+1/4, \alpha+1/2, \alpha\}$ will be discussed in Section \ref{section4}, and its graph is illustrated in Fig.~\ref{fig:plot1}.
+%A value $\alpha\in \Lawv$ is a \emph{root} of the polynomial $P$ when
+%the minimum at $\varphi(\alpha)$ is attained at least twice (equivalently, when 
+% $\varphi$ is not differentiable at $\alpha$). In other words, the tropical roots of $\varphi$ coincide with the points where the slope of $\varphi$ changes. 
+%%
+%Intuitively, tropical polynomials look much like standard polynomials, although with ``$+$'' replaced by ``$\min$'', and ``$\times$'' replaced by ``$+$''. 
+%In fact, this intuition can be made precise as follows: 
+
+%For any positive real $t$, the tropical polynomials are in one-to-one correspondence with the functions $f:[0,1]\to [0,1]$ which can be written as a \emph{parameterized} polynomial 
+%$f_{t}(x)= \sum_{i=1}^{n}t^{c_{i}}x^{n}$, with the $c_{i}\in [0,\infty]$. 
+%%Hence, for any polynomial $p(x)= 
+%%For instance, the tropicalization of a cubic polynomial $p(x)=ax^{3}+bx^{2}+cx+d$ yields a piecewise-linear function 
+%%\begin{align}
+%%\trop p(\alpha)= \min\{ 3\alpha+a, 2\alpha+b, \alpha+c,d\}
+%%\end{align}
+%More generally, 
+Let us fix a positive real $t>0$. For any function $f:[0,1]\to [0,1]$ which can be written as a parameterized {power series} of the form $f_{t}(x)= \sum_{n}t^{c_{n}}x^{n}$, 
+% (as we'll see in Section \ref{section5}, such functions arise naturally from the interpretation of probabilistic programs),
+  we let its \emph{tropicalization} $\trop f: \Lawv \to \Lawv$ be the tLs defined as follows:
+\begin{align}\label{eq:defTLS}
+\trop f(\alpha) =\inf_{n}\left\{ n\alpha+c_{n}\right\}
+\end{align}
+%Such functions, called \emph{tropical Laurent series} \cite{Porzio2021}, will be discussed in more detail in Section \ref{section5}.
+Clearly, for any $t>0$, there is a one-to-one correspondence between the representations of power series in parameterized form and the associated tLs. Moreover, 
+$f$ and $\trop f$ can be related by a limit passage as follows: the functions $\phi_{t}(x)= -\log_{t}x$ and $\varphi_{t}(\alpha)= t^{-\alpha}$ define continuous bijections between $[0,1]$ and $[0,\infty]$ and, by letting
+$\trop_{t}f: [0,\infty]\to [0,\infty]$ be defined by 
+$\trop_{t}f(\alpha)= \phi_{t}\circ f \circ \psi_{t}$, one has that 
+$\trop f= \lim_{t\to 0}\trop_{t}f$. 
+Indeed, one can check that the ``parameterized'' sums and product $\alpha \sumt{t}\beta:= \phi_{t}(\psi_{t}(\alpha)+\psi_{t}(\beta))= -\log_{t}(t^{-\alpha}+t^{-\beta})$ and 
+$\alpha \prodt{t}\beta:= \phi_{t}( \psi_{t}(\alpha)\psi_{t}(\beta))=
+-\log_{t}(t^{-\alpha}t^{-\beta})$ converge respectively to $\min\{\alpha,\beta\}$ and $\alpha+\beta$, when $t\to 0$.
+

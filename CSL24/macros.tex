@@ -1,0 +1,129 @@
+
+
+% MATH TEXT STYLES
+\newcommand{\B}[1]{\mathbf{#1}}
+\newcommand{\BB}[1]{\mathbb{#1}}
+\newcommand{\C}[1]{\mathcal{#1}}
+\newcommand{\F}[1]{\mathfrak{#1}}
+\newcommand{\TT}[1]{\mathtt{#1}}
+\newcommand{\RM}[1]{\mathrm{#1}}
+\newcommand{\SF}[1]{\mathsf{#1}}
+
+
+
+%CATEGORIES
+
+\newcommand{\Met}{\mathsf{Met}}
+\newcommand{\Mod}{\Lawv\mathsf{Mod}}
+\newcommand{\GMet}{\Lawv\mathsf{CCat}}
+\newcommand{\Fun}{\mathsf{Fun}}
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\Yon}{\B{Y}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\matr}[1]{\hat{#1}}
+
+\newcommand\pfun{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+
+
+
+% LAMBDA CALCULI
+
+\newcommand{\lamcalc}{$\lambda$-calculus}
+\newcommand{\lam}{\lambda}
+
+\newcommand{\STLC}{\RM{STLC}}
+\newcommand{\BSTLC}{\mathsf b\RM{STLC}}
+\newcommand{\RSTLC}{\C R\RM{STLC}}
+\newcommand{\STDLC}{\RM{ST}\partial\RM{LC}}
+\newcommand{\Real}{\SF{Real}}
+
+\newcommand{\Der}{\SF D}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\Diff}[2]{\Der[#1,#2]}
+
+\newcommand{\finMS}[1]{\C M_{\RM{fin}}(#1)}
+
+\newcommand{\true}{\RM{True}}
+\newcommand{\false}{\RM{False}}
+\newcommand{\bool}{\SF{Bool}}
+
+\newcommand{\Te}[1]{\C T(#1)}
+
+
+
+
+% METRIC STUFF
+\newcommand{\Lawv}{\BB L}
+\newcommand{\QualREL}[1]{#1 \SF{Rel}}
+\newcommand{\QREL}{\QualREL{Q}}
+\newcommand{\LREL}{\QualREL{\Lawv}}
+\newcommand{\LCAT}{\Lawv\SF{CCat}}
+
+\newcommand{\op}{\mathrm{op}} 
+\newcommand{\sk}{\mathrm{sk}} 
+\newcommand{\sym}{\mathrm{sym}} 
+\newcommand{\menus}{\dotdiv} 
+
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\supnorm}[1]{\lVert#1\rVert_\infty}
+\newcommand{\absv}[1]{\left\lvert#1\right\rvert}
+
+% TROPICAL STUFF
+
+\newcommand{\trop}[1]{\SF t #1}
+\newcommand{\model}[1]{\llbracket#1\rrbracket}
+\newcommand{\nodel}[1]{\langle #1\rangle}
+\newcommand{\sumt}[1]{{+}^{#1}}
+\newcommand{\prodt}[1]{{\times}^{#1}}
+
+
+% MISCELLANEOUS
+
+\newcommand{\HOM}[3]{{#1}(#2,#3)}
+\newcommand{\N}{\BB N}
+\newcommand{\R}{\BB R}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\multiset}{\C M_{\mathrm{fin}}}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\twoheaddownarrow}{\mathrel{\rotatebox[origin=c]{270}{$\twoheadrightarrow$}}\!}
+
+
+%LIST ENVIRONMENTS
+
+
+\newenvironment{varenumerate}
+{
+	\begin{list}{\arabic{numberone}.}
+		{
+			\usecounter{numberone}
+			\setlength{\itemsep}{0pt}
+			\setlength{\topsep}{0pt}
+			\setlength{\parsep}{0pt}
+			\setlength{\partopsep}{0pt}
+			\setlength{\leftmargin}{15pt}
+			\setlength{\rightmargin}{0pt}
+			\setlength{\itemindent}{0pt}
+			\setlength{\labelsep}{5pt}
+			\setlength{\labelwidth}{15pt}
+	}}
+	{
+	\end{list} 
+}
+
+
+
+
+
+%MATH EVIRONMENTS
+
+
+
+
+
+
+
+
+

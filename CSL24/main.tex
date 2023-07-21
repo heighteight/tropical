@@ -1,0 +1,190 @@
+
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
+%This is a template for producing LIPIcs articles. 
+%See lipics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
+
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+%\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\EnableBpAbbreviations
+\usepackage{hyperref}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz-cd}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usetikzlibrary{cd}
+\usepackage{mathabx}
+\usepackage{cmll}
+\usepackage{stmaryrd}
+\usepackage{wrapfig}
+
+\input{prooftree}
+
+\usepackage{proof}
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\input{macros}
+
+\title{Linearity and tropical mathematics in the Lambda-calculus} %TODO Please add
+
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+
+\author{Davide {Barbarossa}}{Dipartimento di Informatica, Universit\`a di Bologna, %[optional: Address], 
+Italy% \and My second affiliation, Country 
+\and \url{https://lipn.univ-paris13.fr/\~barbarossa/index.html} }{davide.barbarossa@unibo.it}{https://orcid.org/0000-0003-4608-8282}{%(Optional)Funding each author
+}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+
+\author{Paolo {Pistone}}{Dipartimento di Informatica, Universit\`a di Bologna, %[optional: Address], 
+Italy% \and LIP, Universit\'e de Lyon, France 
+\and \url{%WebPage
+} }{paolo.pistone2@unibo.it}{%Orchid
+}{%(Optional)Funding each author
+}
+
+
+\authorrunning{D.\,Barbarossa and P.\,Pistone} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+
+\Copyright{Davide Barbarossa and Paolo Pistone} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+
+\ccsdesc[500]{Theory of computation~Lambda calculus}
+\ccsdesc[300]{Theory of computation~Categorical semantics}
+\ccsdesc[100]{Theory of computation~Linear logic}%TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\keywords{Differential lambda-calculus, Tropical semiring, Relational semantics, Lawvere quantale, Program metrics} %TODO mandatory; please add comma-separated list of keywords
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+
+\funding{This work has been supported by the DIAPASoN project}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+\acknowledgements{%I want to thank \dots
+}%optional
+
+%\nolinenumbers %uncomment to disable line numbering
+
+
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Access}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+In this paper we study an interpretation of the $\lambda$-calculus in the framework of tropical mathematics, by considering the relational semantics weighted on the tropical semiring.
+We consider it as providing a unified framework where both program metrics, as based on the analysis of program sensitivity via Lipschitz-conditions, and resource analysis, as based on higher-order program differentiation, coexist. This is possible thanks to the fact that this is also a model of both a graded lambda-calculus ensuring bounded duplications, and the differential lambda-calculus. We only show the starting result of our line of research: thanks to the tropical operations we consider, in such model programs with bounded duplication are Lipschitz maps, simply typed terms are locally Lipschitz maps and the differential terms appearing in the Taylor expansion of a term (also called resource terms) are Lipschitz maps. Therefore, the lambda-calculus Taylor expansion decomposes semantically the simply typed term as an inf of more and more sensitive functions.
+\end{abstract}
+
+\section{Introduction}
+\input{section1}
+
+
+%\section{The Two Quantitative Approaches to the $\lambda$-calculus}\label{section2}
+\input{section2}
+
+
+\section{The category $\LREL$}\label{section3}
+
+\input{section3new}
+
+\subsection{... As (weighted relational) model of several $\lambda$-calculi}
+
+The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here.
+Although the majority of the properties mentioned in the present section are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting.
+Moreover, we end the section by stating some property of $\LREL$ not necessarily shared with all the models in the general class.
+The real interest in our particular model will come in the next \autoref{sec:tls}.
+
+\paragraph{Prohibited duplication/erasure: the \emph{linear} $\STLC$}\label{sec:3A}\input{section3A}
+
+\paragraph{Allowed duplication/erasure: the $\STLC$}\label{sec:3B}\input{section3B}
+
+\paragraph{Controlled duplication/erasure: the $\BSTLC$ and the $\STDLC$}\label{sec:3C}\input{section3C}
+
+
+\section{Tropical Laurent Series}\label{sec:tls}\input{section4}
+
+
+\section{Future lines of research}\label{sec:future}
+
+{\color{red}2 pagine in totale}
+
+\subsection{Quantitaive analysis: probabilistic, differential privacy}\label{sec:app}
+%\input{section5}
+%\input{section5C}
+
+\newpage
+
+\subsection{Generalized Metric Spaces and Modules over the Lawvere Quantale}\label{section6}
+%At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
+%Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
+%A consequence of these observations is that, as we discussed below, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
+%In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
+%\input{section6}%
+
+\newpage
+
+
+
+\section{Related Work}\label{section7}
+\input{section7}
+
+
+\section{Conclusion}\label{section8}
+\input{section8}
+
+%%
+%% Bibliography
+%%
+
+%% Please use bibtex, 
+
+\bibliography{tropical}
+
+\appendix
+
+\section{Styles of lists, enumerations, and descriptions}\label{sec:itemStyles}
+
+
+\section{Theorem-like environments}\label{sec:theorem-environments}
+
+
+\end{document}
