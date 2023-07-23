@@ -20,14 +20,6 @@ $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots ca
 %A
 % simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
 
-
-
-A \emph{tropical Laurent series} of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\{nx+\matr f_{n}\}$, with $\matr  f_{n}\in\Lawv$.
-In other words, it is a ``limit'' of tropical polynomials of higher and higher degree.
-E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}), that we will take as our running example, 
-is the ``limit'' of the polynomials $\varphi_{n}$.
-Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
-
 %\begin{figure}
 %\begin{subfigure}{0.4\textwidth}
 %\begin{tikzpicture}[scale=0.6]
@@ -104,6 +96,12 @@ Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predi
 \caption{\small Tropical polynomials $\varphi_0,\dots,\varphi_4$ (top to bottom), and the limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.}
 \label{fig:plot1}%\end{figure}%
 \end{wrapfigure} %%
+
+A \emph{tropical Laurent series} of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\{nx+\matr f_{n}\}$, with $\matr  f_{n}\in\Lawv$.
+In other words, it is a ``limit'' of tropical polynomials of higher and higher degree.
+E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}), that we will take as our running example, 
+is the ``limit'' of the polynomials $\varphi_{n}$.
+Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
 
 %
 %
@@ -248,13 +246,14 @@ This result shows that, in analogy with that happens in usual metric semantics, 
 %Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
 The following proposition provides a useful characterization of the functional metrics in $\LREL$, relying on 
 the bijection between $\HOM{\LREL}{X}{Y}$ and set of tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$.
+
 \begin{proposition}
-For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $\norm{ \matr f-\matr g}_{\infty} =  \sup_{x\in \Lawv^{X}}
-\norm{ f( x)-g(x)}_{\infty}$.\end{proposition}
+For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $d_{\infty}(\matr f,\matr g)=d_\infty(f,g)$.% $\norm{ \matr f-\matr g}_{\infty} =  \sup_{x\in \Lawv^{X}} \norm{ f( x)-g(x)}_{\infty}$.
+\end{proposition}
 
 Let us now consider the case of bounded exponentials:
 \begin{proposition}\label{prop:boundedlip}
-If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a bounded matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+If a tLs $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:!_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
 \end{proposition}
 \begin{proof}[Proof sketch]
 This follows from Proposition \ref{prop:troplinear} and the remark that, for all $x\in \Lawv^{X}$, $\norm{ !_{n} x-!_{n} y}_{\infty}\leq n\cdot \norm{ x- y}_{\infty}$, where $!_{n} x$ is the restriction of $! x$ to $\C M_{\leq n}(X)$.%
@@ -269,15 +268,6 @@ Observe that, for any tropical polynomial $\varphi:\Lawv^{X}\to \Lawv^{Y}$, the 
 For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
 
-
-
-Moreover, from Proposition \ref{prop:boundedlip}, we can also deduce the desired Lipschitz decomposition of the Taylor expansion (using Corollary~\ref{cor:T(M)=M}):
-
-\begin{corollary}\label{thm:M=infLip}
- If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions (via its Taylor expansion \eqref{eq:taylorcat}).
-\end{corollary}
-
-
 Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
 As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
 Actually, we can prove a more general statement, also covering the infinitary case.
@@ -288,20 +278,6 @@ Actually, we can prove a more general statement, also covering the infinitary ca
 \end{theorem}
 \begin{proof}[Proof sketch]
 The core of the proof is a convex analysis argument (see the Appendix) showing that an arbitrary function $f:\Lawv^X\to\Lawv$ which is non-decreasing, concave and continuous, must be locally Lipschitz. 
-\end{proof}
-
-
-The results just presented translate into the following facts about the interpretation of higher-order programs:
-\begin{corollary}
-For any $\lambda$-term $M$:
-\begin{enumerate}
-\item if $\Gamma \vdash_{\BSTLC} M:A$, then $\model M^!:\model\Gamma \to \model A$ is a Lipschitz map.
-\item if $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is a locally Lipschitz map.
-\end{enumerate}
-\end{corollary} 
-\begin{proof}
-As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite matrix  and  its corresponding linear map $\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Corollary~\ref{prop:polylip}.
-Claim 2) follows directly from Theorem~\ref{thmTLSlocLip}.
 \end{proof}
 
 
@@ -325,8 +301,33 @@ where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
 \end{proposition} 
 
 
+The results just presented translate into the following facts about the interpretation of higher-order programs:
+
+\begin{corollary}
+Let $\model A$ be a finite set.
+\begin{enumerate}
+\item $\model{\Gamma \vdash_{\BSTLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{Lipschitz} map.
+\item $\model{\Gamma \vdash_{\STLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{locally} Lipschitz map.
+\item $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!$ of \emph{tropical polynomials}, thus (as $\model A$ is finite), \emph{Lipschitz} functions.
+\end{enumerate}
+\end{corollary} 
+\begin{proof}
+1). As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite matrix  and  its corresponding linear map $\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Corollary~\ref{prop:polylip}.
+2). It follows directly from Theorem~\ref{thmTLSlocLip}.
+3). It follows from the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
+\end{proof}
+
+Remark that the restriction to the ground type $*$ in (2) is without loss of generality, thanks Currying.
+
+%Moreover, from Proposition \ref{prop:boundedlip}, we can also deduce the desired Lipschitz decomposition of the Taylor expansion (using Corollary~\ref{cor:T(M)=M}):
+
+%\begin{corollary}\label{thm:M=infLip}
+% If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions (via its Taylor expansion \eqref{eq:taylorcat}).
+%\end{corollary}
+
+
 %A consequence of this result is that the distance between two differential programs can always be approximated via bounded programs:
 %\begin{corollary}
 %For all $\lambda$-terms $M,N: A\to B$ of $\STDLC$, for all $\epsilon >0$, there exists $K\in \BB N$ such that 
-%$|\|\model{M}-\model{N}\|_{\infty}- | \| \model{
+%$|\|\model{M}-\model{N}\|_{\infty}- |\| \model{
 %\end{corollary}
