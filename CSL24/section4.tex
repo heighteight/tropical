@@ -11,14 +11,6 @@ As we explain in a moment, those are generalised \emph{tropical Laurent series} 
 A \emph{tropical polynomial} is a piece-wise linear function $f:\Lawv\to \Lawv$ of the form $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$, where $i_{j}\in\N$ and $c_{i_{j}}\in\Lawv$.
 For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
 are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
-A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes).
-For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
-Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
-$f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
-%Tropical polynomials and their roots are the main object of study of tropical geometry.
-%
-%A
-% simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
 
 %\begin{figure}
 %\begin{subfigure}{0.4\textwidth}
@@ -96,6 +88,15 @@ $f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots ca
 \caption{\small Tropical polynomials $\varphi_0,\dots,\varphi_4$ (top to bottom), and the limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.}
 \label{fig:plot1}%\end{figure}%
 \end{wrapfigure} %%
+
+A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes).
+For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
+Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
+$f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
+%Tropical polynomials and their roots are the main object of study of tropical geometry.
+%
+%A
+% simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
 
 A \emph{tropical Laurent series} of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\{nx+\matr f_{n}\}$, with $\matr  f_{n}\in\Lawv$.
 In other words, it is a ``limit'' of tropical polynomials of higher and higher degree.
@@ -306,7 +307,7 @@ The results just presented translate into the following facts about the interpre
 \begin{corollary}
 Let $\model A$ be a finite set.
 \begin{enumerate}
-\item $\model{\Gamma \vdash_{\BSTLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{Lipschitz} map.
+\item $\model{\Gamma \vdash_{\BSTLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{tropical polynomial}, thus (as $\model A$ is finite), a \emph{Lipschitz} function.
 \item $\model{\Gamma \vdash_{\STLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{locally} Lipschitz map.
 \item $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!$ of \emph{tropical polynomials}, thus (as $\model A$ is finite), \emph{Lipschitz} functions.
 \end{enumerate}
@@ -317,17 +318,19 @@ Let $\model A$ be a finite set.
 3). It follows from the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
 \end{proof}
 
-Remark that the restriction to the ground type $*$ in (2) is without loss of generality, thanks Currying.
+Remark that the restriction $\model A$ finite is without loss of generality, since by Currying all programs can be seen having type $*$, which is natural to interpret as a singleton.
 
-%Moreover, from Proposition \ref{prop:boundedlip}, we can also deduce the desired Lipschitz decomposition of the Taylor expansion (using Corollary~\ref{cor:T(M)=M}):
+A consequence of (3) is that the distance between two programs can always be approximated via Lipschitz tropical polynomial approximants of the initial two programs.
+\begin{corollary}
+ Let $\Gamma \vdash_{\STLC} M:A$ and $\Delta\vdash_{\STLC} N:B$.
+ For all $\epsilon>0$, $x\in\Lawv^{\model \Gamma}$, $b\in\model A$, there exist $t\in\Te{M}$, $u\in\Te{N}$ s.t.\ $\big| \model{\Gamma \vdash_{\STLC} M:A}^!(x)_b - \model{\Delta \vdash_{\STLC} N:B}^!(x)_b \big| \leq 2\epsilon + \big| \model{\Gamma \vdash_{\STDLC} t:A}^!(x)_b - \model{\Delta \vdash_{\STDLC} u:B}^!(x)_b \big|$.
+\end{corollary}
 
-%\begin{corollary}\label{thm:M=infLip}
-% If $\Gamma \vdash_{\STLC}M:A$, then $\model M^!: \model\Gamma \to \model A$ is an $\inf$ of \emph{Lipschitz} functions (via its Taylor expansion \eqref{eq:taylorcat}).
-%\end{corollary}
-
-
-%A consequence of this result is that the distance between two differential programs can always be approximated via bounded programs:
-%\begin{corollary}
-%For all $\lambda$-terms $M,N: A\to B$ of $\STDLC$, for all $\epsilon >0$, there exists $K\in \BB N$ such that 
-%$|\|\model{M}-\model{N}\|_{\infty}- |\| \model{
-%\end{corollary}
+\begin{remark}
+ Let $X$, $Y$ be sets and let $\langle \_,\_\rangle:X\times Y \to \mathbb{R}$.
+ For $f:X\to \mathbb R$, define $f^*:Y\to \mathbb R$ by $f^*(y):= \sup_{x\in X}\{\langle x,y\rangle - f(x)\}$.
+ Then for $X=!A$, $Y=\Lawv^A$, where $A$ is a set, and $\langle \mu, y \rangle:= \mu y$, we have that $f^!=(-f)^*$ for all $f\in\Lawv^{!A}$.
+ This is precisely the same formal construction yielding the well-known convex conjugate $f^*$ of a function $f$, by taking $X$ any vector space, $Y$ its dual space, and $\langle \_,\_\rangle$ the application bilinear form (acting as the scalar product on coordinates).
+ This construction is in turn a generalisation of the Legendre transformation.
+ Despite the formal constructions being the same, we ignore for the moment if these could be connected to the study of high-order programs in our setting.
+\end{remark}
