@@ -1,7 +1,10 @@
 For starting, remark that although a matrix $t\in\HOM{\LREL_!}{X}{Y}$ yields a linear map $\Lawv^{!X}\to\Lawv^Y$, by exploiting the coKleisli structure we can also ``express it in the base $X$'', i.e.\ see it as a \emph{non-linear} map $t^!:\Lawv^X\to\Lawv^Y$, by setting $t^!(x):=t\circ_! x$. %(we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
 Concretely, we have $t^!(x)_b=\inf_{\mu\in !X} \set{\mu x+ t_{\mu,b}}$, where $\mu x:=\sum_{a\in X} \mu(a)x_a$.
 In this section we establish some topological and metric properties of such functions, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
-As we explain in a moment, those are generalised \emph{tropical Laurent series} (\emph{tLs} for short), and as the literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}), several results we prove in this section are, to our knowledge, new.
+In analogy with \cite{DanEhrh2011}, we could call them \emph{tropical entire functions}, but since, as we explain in a moment, those are generalised \emph{tropical Laurent series}, we will use the latter terminology, or \emph{tLs} for short.
+The literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
+
+Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
 
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
@@ -192,13 +195,19 @@ The core of the proof is showing that this set is indeed finite and enough for c
 \subsection{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
 The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of real numbers).
-By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} \absv{x_a}$ on $\Lawv^X$, we can generalise this property by dropping the case of $x$ having some $0$ coordinate:
+By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} x_a$ on $\Lawv^X$, we can generalise this property, dropping the case of $x$ having some $0$ coordinate:
 
 \begin{theorem}\label{thm:cont}
- All tLs $f:\Lawv^X\to\Lawv$ are continuous on $\BB R_{>0}^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
+ All tLs $f:\Lawv^X\to\Lawv$ are continuous on $(0,\infty)^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
 \end{theorem}
 \begin{proof}
- It follows after adapting [Proposition 4.4, \cite{Cobzas2017}] in order to prove that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
+%It follows after adapting \cite[Proposition 4.4]{Cobzas2017} in order to prove that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
+\cite[Proposition 4.4.(3)]{Cobzas2017} shows that if a real-valued convex function with domain a convex open subset of a locally convex topological $\BB R$-vector space is, locally around any point, bounded from above by a finite non-zero constant, then it is continuous on all its domain.
+Now, our $f$ is concave, so $-f$ is convex.
+Also, since $f\geq 0$ on all $\Lawv^X$, we have e.g.\ $-f\leq 1$ on $\Lawv^X$.
+Remark that we cannot immediately apply \cite[Proposition 4.4.(3)]{Cobzas2017}, since $\Lawv^X$ is not even a $\BB R$-vector space.
+But $(0,\infty)^X\subseteq \BB R^X$ is open and convex, and $\BB R^X$ is a locally convex topological $\BB R$-vector space.
+Thus \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f\big|_{(0,\infty)^X}$, hence that of $f\big|_{(0,\infty)^X}$.
 \end{proof}
 
 We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
@@ -208,7 +217,7 @@ $x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
 Such order actually coincides with the pointwise order on $\Lawv^X$.
 This makes it a Scott-continuous dcpo.
 Suitable categories of cones have been recently investigated as models of probabilistic computation (\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
-Here we will just mention that:
+In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
 
 \begin{theorem}\label{thm:ScottCont}
  All monotone (w.r.t.\ pointwise order) and $\norm{\cdot}_{\infty}$-continuous functions $f:(0,\infty)^X\to (0,\infty)$ are Scott-continuous.
