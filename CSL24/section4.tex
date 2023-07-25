@@ -138,7 +138,7 @@ usual tLs's of one variable.
  In a similar way, tLs
 $f:\Lawv^X\to\Lawv^Y$ 
  with \emph{finite} supports $\C F_b=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$, and which have thus shape $f(x)_b=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, are generalisation of usual tropical polynomials to the case of possibly infinitely many variables.
-
+For instance, for a $t\in\HOM{\LREL}{!_n X}{Y}$ (this is in particular the case for the interpretations of $\BSTLC$-terms), we will consider the (generalised) tropical polynomial $t^!:\Lawv^X\to\Lawv^Y$ defined by $t^!(x)_b:=\inf_{\mu\in !_nX}\{\mu x+t_{\mu,b}\}$.
 % 
 % , i.e.~for a \emph{finite} set $\C F\subseteq \, !X$.
 %%Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they 
@@ -313,9 +313,11 @@ Let $\model A$ be a finite set.
 \end{enumerate}
 \end{corollary} 
 \begin{proof}
-1). As we observed, the interpretation $\model A$ of a bounded type is a finite set, hence $\model M$ must be a finite matrix  and  its corresponding linear map $\Lawv^{\model A} \to \Lawv^{\model B}$ is thus a tropical polynomial, so we apply Corollary~\ref{prop:polylip}.
-2). It follows directly from Theorem~\ref{thmTLSlocLip}.
-3). It follows from the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
+1). We already observed that the interpretation of a $\BSTLC$-type $B$ is alway a finite set, so thus is $!_n \model B$.
+So the $\inf$ defining $(\_)^!$ is actually a $\min$.
+So the interpretation of a bounded term is a tropical polynomial, so we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and since $\model A$ is finite (by taking the maximum Lipschitz constant among the finite number of them), we obtain the thesis.
+2). It follows immediately from Theorem~\ref{thmTLSlocLip} and the fact that $\model A$ is finite.
+3). It follows from \autoref{cor:T(M)=M} plus the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
 \end{proof}
 
 Remark that the restriction $\model A$ finite is without loss of generality, since by Currying all programs can be seen having type $*$, which is natural to interpret as a singleton.

@@ -63,9 +63,8 @@ Here we set $\model{\bool}:=\{0,1\}$ and $\model{\vdash_{\mathrm{PCF}^{\Lawv}} \
 
 \begin{remark}
  Now the matrix interpreting a term need no longer be boolean.
- For instance, $\model{\vdash_{\STLC_\oplus} \true:\bool}_i$ is $p$ if $i=1$ and it is $1-p$ if $i=0$.
- In general, one can show that $\model{\Gamma \vdash_{\STLC_\oplus} M:A}\in[0,1]^{!\model \Gamma \times \model A}$.
- Coefficients $> 1$ may be considered when dealing with other kinds of effects.
+ For instance, $\model{\vdash_{\STLC_\oplus} \true\oplus_p\false :\bool}_i$ is $p$ if $i=1$ and it is $1-p$ if $i=0$.
+ %In general, one can show that $\model{\Gamma \vdash_{\STLC_\oplus} M:A}\in[0,1]\cup\{\infty\}^{!\model \Gamma \times \model A}$. Coefficients $> 1$ may be considered when dealing with other kinds of effects.
 \end{remark}
 
 Consider %the following closed term $M$ of type $\bool$:
