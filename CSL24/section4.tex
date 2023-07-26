@@ -19,115 +19,7 @@ So, such $t^!$'s are special cases of tLs and thus, \emph{Wlog}, in the followin
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
-\subsection{From tropical polynomials to tLs}\label{sec:4A}
 
-A \emph{tropical polynomial} is a piece-wise linear function $f:\Lawv\to \Lawv$ of the form $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$, where $i_{j}\in\N$ and $c_{i_{j}}\in\Lawv$.
-For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
-are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
-
-%\begin{figure}
-%\begin{subfigure}{0.4\textwidth}
-%\begin{tikzpicture}[scale=0.6]
-%\begin{axis}[samples=250]
-%\addplot[yellow,domain=0:0.8] {1+0.02};
-%
-%\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
-%
-%
-%\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
-%\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
-%\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
-%
-%\addplot[violet,domain=0:0.8] {min(
-%10*x+1/1424,
-%9*x+1/712,
-%8*x+1/356,
-%7*x+1/128,
-%6*x+1/64,
-%5*x+1/32,
-%4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
-%
-%
-%\end{axis}
-%
-%\end{tikzpicture}
-%\caption{}
-%\label{fig:plot1}
-%\end{subfigure}
-%\begin{subfigure}{0.4\textwidth}
-%\begin{tikzpicture}[scale=0.6]
-%\begin{axis}[samples=50, view={15}{45}]
-%\addplot3[orange,domain=0:2] {min(2*x, 2*x+y, 3*y)};
-%
-%\end{axis}
-%\end{tikzpicture}
-%\caption{}
-%\label{fig:plot2}
-%\end{subfigure}
-%\label{fig:plot12}
-%\caption{
-%\ref{fig:plot1}
-% (a) Plot of the tropical polynomials $\varphi_{n}$, for $0\leq n\leq 4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.
-%\ref{fig:plot2}
-%(b) Plot of $\varphi(x,y)=\min\{2x, 2x+y,3y\}$.
-%}
-%\end{figure} 
-
-\begin{wrapfigure}{r}{0.5\textwidth}%\begin{figure}
-\begin{tikzpicture}[scale=0.9]
-\begin{axis}[samples=250]
-\addplot[yellow,domain=0:0.8] {1+0.02};
-
-\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
-
-
-\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
-\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
-\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
-
-\addplot[violet,domain=0:0.8] {min(
-10*x+1/1424,
-9*x+1/712,
-8*x+1/356,
-7*x+1/128,
-6*x+1/64,
-5*x+1/32,
-4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
-
-
-\end{axis}
-
-\end{tikzpicture}
-\caption{\small Tropical polynomials $\varphi_0,\dots,\varphi_4$ (top to bottom), and the limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.}
-\label{fig:plot1}%\end{figure}%
-\end{wrapfigure} %%
-
-A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable. In other words, the roots of $\varphi$ are the points where the minimum defining $\varphi$ is attained at least twice (i.e.~where the slope of $\varphi$ changes).
-For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
-Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
-$f(x)=\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
-%Tropical polynomials and their roots are the main object of study of tropical geometry.
-%
-%A
-% simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
-
-A \emph{tropical Laurent series} of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\{nx+\matr f_{n}\}$, with $\matr  f_{n}\in\Lawv$.
-In other words, it is a ``limit'' of tropical polynomials of higher and higher degree.
-E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}), that we will take as our running example, 
-is the ``limit'' of the polynomials $\varphi_{n}$.
-Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
-
-%
-%
-%We will take as our running example
-%%given respectively by Equation~\ref{eq:polytrop} and Equation~\ref{eq:defTLS}.
-%A positive $x\in[0,\infty)$ is said to be a (finite) \emph{tropical root} of a tropical Laurent series $f:\Lawv\to\Lawv$ iff $f$ is not differentiable at $x$ (w.r.t.\ the usual topology on $\BB R_{\geq0}$.This is equivalent to ask that the $\inf$ defining $f$ at $x$ is obtained \emph{at least} twice.{\color{red} \`e vero anche per TLS o solo per poly questo? Inoltre, Robol parla anche di finite end-points of the domain: nel nostro caso sarebbe $x=0$}
-
-%\begin{example}\label{ex:famous_ex}
-% The function $f:\Lawv\to\Lawv$ defined by $f(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ is a tropical Laurent series.
-%\end{example}
-
-%By plotting its graph {\color{red}vogliamo plottarlo?}, we observe several properties that we will lift to the more general case that we will consider in the next lines, and this example will serve as running one.
 
 %\begin{remark}%[Tropical Laurent series]
  Remark that the map $t^!:\Lawv^X\to\Lawv^Y$ introduced above from a matrix $t\in\HOM{\LREL_!}{X}{Y}$, corresponds to a tLs with \emph{possibly infinitely} many variables (in fact, as many as the elements of $X$). %In the following we will also refer to them as tLs. 
@@ -146,10 +38,7 @@ usual tLs's of one variable.
 % Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
 \end{remark}
 
- In a similar way, tLs
-$f:\Lawv^X\to\Lawv^Y$ 
- with \emph{finite} supports $\C F_b=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$, and which have thus shape $f(x)_b=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, are generalisation of usual tropical polynomials to the case of possibly infinitely many variables.
-If $\model *$ is finite, this is in particular the case for the interpretations of $\BSTLC$-terms, since then the interpretation of any $\BSTLC$-type $B$ is a finite set, and thus also $!_n \model B$ is.
+If $\model *$ is finite, then the interpretations of $\BSTLC$-terms is a (generalised) tropical polynomial, since then the interpretation of any $\BSTLC$-type $B$ is a finite set, and thus also $!_n \model B$ is.
 % 
 % , i.e.~for a \emph{finite} set $\C F\subseteq \, !X$.
 %%Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they 

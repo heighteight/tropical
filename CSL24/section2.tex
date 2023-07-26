@@ -1,34 +1,77 @@
+
+
+
 %Recall the two approaches with more details on lambda-calculus and on existing challenges.
 
 
 %In this section, we discuss in some more detail the two approaches to quantitative semantics we mentioned in the Introduction, at the same time providing an overview of how we aim at bridging them using tropical mathematics.
 
-\paragraph*{Metric approach: bounded $\lambda$-calculus in a nutshell}
-
-On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask whether they compute functions which do not differ \emph{too much} by controlling the propagation of an error during the computation.
-This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
-%As already mentioned, in many situations (e.g.~when dealing with computationally difficult problems, or in differential privacy \cite{Alvim2011, Reed2010}), one %does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, a small error in the input will produce a comparably small error in the output. 
-%In all these cases, it is common to consider forms of denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which account for differences in behavior. 
-A fundamental insight coming from this line of work is that \emph{affine} programs, i.e.~programs that may use their input at most once, correspond to \emph{non-expansive} (or $1$-Lipschitz) maps, that is, to functions $f$ for which the distances
-$d(f(x),f(y))$ produced in output are bounded by the distances $d(x,y)$ in input. 
-This is due to the fact that the category $\Met$ of pseudo-metric spaces and non-expansive maps provides a model of the %\emph{linear} simply typed $\lambda$-calculus, being a \emph{symmetric monoidal closed} category, and in fact it also models 
-\emph{affine} $\lambda$-calculus (it is symmetric monoidal closed, cartesian and monoidal units coincide). 
-The metric approach is not restricted to affine programs, but can be extended to programs with \emph{bounded} duplications \cite{Reed2010, Gaboardi2017}: the idea is that a program duplicating its input $K$ times will give rise to a $K$-\emph{Lipschitz} map.
-For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which duplicates the function input $f$, yields a $2$-Lipschitz map between the metric space $\BB R\multimap \BB R$ of non-expansive real functions and itself. %: if $f,g$ are two non-expansive maps differing by at most $\epsilon$ (i.e.~for which $|f(x)-g(x)|\leq \epsilon$ holds for all $x\in \BB R$), then the application of $M$ to $f$ and $g$ will produce two maps differing by at most $2\epsilon$. 
-By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $rX:=(X,%d_{r}(x,y)=
-rd(x,y))$ and $Y$, the program $M$ above 
-can thus be interpreted as a non-expansive map from $2(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
+\paragraph*{Controlled duplication/erasure via graded types: bounded $\lambda$-calculus $\BSTLC$}\label{sec:BSTLC}
 
 These observations have led to the study of linear $\lambda$-calculi with \emph{graded} exponentials, like $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied to the study of differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded linear exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
 The language $\BSTLC$ we consider is a simplified version of the language $\mathrm{Fuzz}$ \cite{Reed2010}. 
 The terms are as for the $\STLC$, the types are $A::= * \ \mid  \ !_{n}A \multimap A$ and type judgements are of the form $\Gamma \vdash M:A$, where a context $\Gamma$ is a set of declarations of the form $x :_{n}A$, with $n\in \mathbb N$.
-The typing rules are given in Fig.~\ref{fig:rules}, where $\Gamma+\Delta$ is defined letting $(\Gamma, x:_{m} A)+( \Delta, x:_{n} A) =  (\Gamma+\Delta), x:_{m+n}A$, and $m\Gamma$ is made all $x:_{mn}A$ for $(x:_{n}A) \in \Gamma$.  
+The typing rules are: %given in Fig.~\ref{fig:rules}
+	\[ \scriptsize \arraycolsep=5pt\def\arraystretch{2.8}
+	\begin{array}{cccc}
+		\prooftree
+		\Gamma \vdash M:A
+		\justifies
+		\Gamma, x:_{0}B \vdash M:A
+		\endprooftree 
+		&
+		\prooftree
+		\Gamma, x:_{n}B, y:_{m} B\vdash M:A
+		\justifies
+		\Gamma, x:_{n+m}B\vdash M\{x/y\}:A
+		\endprooftree 
+		&
+		\prooftree
+		\Gamma, x:_{n} A\vdash M: B
+		\justifies
+		\Gamma\vdash \lambda x.M: !_{n}A\multimap B
+		\endprooftree
+		&
+		\prooftree
+		\Gamma \vdash M: !_nA\multimap B
+		\quad
+		\Delta\vdash N: A
+		\justifies
+		\Gamma +n\Delta\vdash MN: B
+		\endprooftree
+	\end{array}
+	\]
+where $\Gamma+\Delta$ is defined letting $(\Gamma, x:_{m} A)+( \Delta, x:_{n} A) =  (\Gamma+\Delta), x:_{m+n}A$, and $m\Gamma$ is made all $x:_{mn}A$ for $(x:_{n}A) \in \Gamma$.  
 The axiom is $x:_{1}A\vdash x: A$.
 The main feature of this language is that if $\vdash \lambda x.M:\,!_nA\multimap B$, then $x$ will be duplicated exactly $n$ times in the reduction to the normal form.
 %E.g., $\vdash_{\BSTLC} \lambda {\color{red}z}.\left( \lambda x{\color{green}y}. yxx \right)z : \, !_{\color{red}2} *\multimap !_{\color{green}1}(!_{\color{violet}1} * \multimap !_{\color{blue}1} * \multimap *) \multimap *$.
-The $\BSTLC$ can be interpreted in a symmetric monoidal closed category (SMCC) equipped with a \emph{$\mathbb N$-graded linear exponential comonad} \cite{Katsumata2018}.
 %Observe that one can always type an affine term like e.g.~$\lambda xy.x$ with a linear type $A\multimap B\multimap A$. Instead, a term like $\lambda xy.x(xy)$ containing two occurrences of $x$ cannot be given the linear type $(A\multimap A)\multimap (A\multimap A)$ but a type of the form
 %$!_{2}(A\multimap A)\multimap (A\multimap A)$. 
+
+%\begin{remark}\label{rmk:ModelsOfBSTLC}
+%Similarly to It is known {\color{red}(([reference??] e dire meglio)} 
+The $\BSTLC$ can be interpreted in a symmetric monoidal closed category (SMCC) equipped with a \emph{$\mathbb N$-graded linear exponential comonad} \cite{Katsumata2018}.
+Now, one can see that the exponential $!$ can be ``decomposed'' into a family of \emph{graded} exponentials functors $!_n:\LREL\to\LREL$ ($n\in\BB N$), defined on objects by taking multisets of cardinality \emph{at most} $n$. %  lift to functors 
+The sequence $(!_n)_{n\in\N}$ gives rise to a $\N$-graded linear exponential comonad on (the SMC) $\LREL$, %satisfying the adjunction: $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
+i.e.\ $(\LREL,(!_n)_{n\in\N})$ is a model of $\BSTLC$. 
+In particular, bounded arrow types are interpreted via $\model{!_{n}A\multimap B}:= !_{n}\model A \times \model B$ and so, 
+if $\model *$ is finite, then $\model{A}$ is a finite set for any type $A$ of $\BSTLC$.
+%\end{remark}
+%Bounded types are interesting because of the following proposition:
+%\begin{proposition}
+%For all bounded types $A,B$, the morphisms from $\model A$ to $\model B$ (in all parametric relational models) correspond to polynomials.
+%\end{proposition}
+%\begin{proof}
+%It suffices to check that $\model A$ is finite for all bounded types $A$. Indeed this implies that a morphism $t:\model A\to \model B$ is a finite matrix $t: \model A \times \model B \to \Lawv$.Hence, its corresponding map $\widehat t:\Lawv^{\model A} \to \Lawv^{\model B}$ is a polynomial.
+%\end{proof}
+
+%For example (here $!_{n}(\Lawv^{X}):= \Lawv^{\C M_{\leq n}(X)}$):
+%\begin{itemize}
+%\item a map $f\in \LREL( !_{1}\Lawv, \Lawv)$ is of the form $f(x)=\min \{x+a,b\}$;
+%\item a map $f\in \LREL(!_{2}\Lawv, \Lawv)$ is a ``quadratic'' polynomial $f(x)=\min\{2x+a, x+b, c\}$.
+%\end{itemize}
+
+\begin{comment}
 
 \begin{figure*}
 
@@ -100,12 +143,9 @@ The $\BSTLC$ can be interpreted in a symmetric monoidal closed category (SMCC) e
 	\caption{Typing rules (axiom rules are given in the text) for $\BSTLC$ (top) and $\STDLC$ (bottom).}\label{fig:rules}
 \end{figure*}
 
+\end{comment}
 
-\paragraph*{Resource approach: differential $\lambda$-calculus in a nutshell}
-
-On the other hand, there is the approach based on \emph{differential} \cite{difflambda} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable for the probabilistic setting \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
-%A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic \cite{dill}) and its categorical models. 
-The key ingredient is a \emph{differential operator} $\Der$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Diff{M}{N}$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Diff{M}{N}$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$). 
+\paragraph*{Controlled duplication/erasure via resources: the differential $\lambda$-calculus $\STDLC$}\label{sec:STDLC}
 
 The syntax of the differential $\lambda$-calculus $\STDLC$ (e.g.\ \cite[Section 3]{Manzo2010}), is given by the \emph{terms} $M$ and the \emph{sums} $\mathbb T$, mutually generated by: $M::= x\mid \lambda x.M \mid M\mathbb T \mid \Diff{M}{M}$ and $\mathbb T::= 0 \mid M \mid M+\mathbb T$,
 quotiented by: $\alpha$-equivalence; $+,0$ form a commutative monoid on the set of sums; %, i.e.\ commutativity and associativity of $+$ and neutrality of $0$ w.r.t.\ $+$;
@@ -115,7 +155,42 @@ linearity of $\lam x.(\_)$, $\Diff{\_}{\_}$ and $(\_)\mathbb T$ (but \emph{not} 
 We follow the tradition of quotienting also for the idempotency of $+$.
 %Sums are, then, just \emph{finite} sets of terms.
 Simple types are $A::= *\mid A\to A$.
-The typing system is in Figure~\ref{fig:rules}, where a context $\Gamma$ is a list of typed variable declarations.
+The typing rules are: %in Figure~\ref{fig:rules}
+	\[ \scriptsize \arraycolsep=5pt\def\arraystretch{2.8}
+	\begin{array}{cccc}
+		\prooftree
+		\Gamma, x: A\vdash M: B
+		\justifies
+		\Gamma\vdash \lambda x.M: A\to B
+		\endprooftree 
+		&
+		\prooftree
+		\Gamma \vdash M: A\to B
+		\quad
+		\Gamma\vdash \mathbb T: A
+		\justifies
+		\Gamma \vdash M\mathbb T: B
+		\endprooftree 
+		&
+		\prooftree
+		\Gamma \vdash M: A\to B
+		\quad
+		\Gamma \vdash N: A
+		\justifies
+		\Gamma \vdash \Diff{M}{N}: A\to B
+		\endprooftree
+		&
+		\prooftree
+		\Gamma\vdash M_1: A
+		\,\cdots\,
+		\Gamma \vdash M_n:A
+		\justifies
+		\Gamma \vdash M_1+\cdots +M_n : A
+		\using (n\geq 2)
+		\endprooftree
+	\end{array}
+	\]
+where a context $\Gamma$ is a list of typed variable declarations.
 The axioms are $\Gamma, x:A \vdash x: A$ and $\Gamma\vdash 0:A$.
 
 %In $\BSTLC$ the typing system handles duplications; in $\STDLC$ the syntax with its operational semantics (that we do not give) does it.
@@ -139,19 +214,6 @@ In particular, if the \emph{multiplicities} of the arguments (the colored expone
 : *\to (* \to * \to *) \to *$, then the term reduces to the empty sum $0$ (representing an \emph{error}).
 \end{comment}
 %Correspondingly, the syntax of the simply typed \emph{differential} $\lambda$-calculus ($\STDLC$) is defined by enriching $\STLC$ with a monoid structure $0,+$ over terms, as well as with $\Der$ and a notion of \emph{linear substitution} (see \cite{difflambda} or the Appendix for details).
-%The models of $\STDLC$ are the cartesian \emph{closed} differential categories ($CC\partial C$), which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential operator are both well-behaved with respect to the closed structure \cite{Manzo2012}. 
-
-The $\STDLC$ can be interpreted in Cartesian closed differential $\lambda$-categories (CC$\partial\lambda$C)\cite{Manzo2010,Blute2009, Blute2019}.
-In them, homsets are equipped with a structure of commutative monoid %(i.e.\ we can add morphisms and there is a $0$ morphism)
-%, it is Cartesian closed%(with the closed structure compatible with the additive structure)
-and with a certain \emph{differential operator} $D$, generalising the usual notion of differential, see e.g.\ \cite{BluteEhrhTass10}.
-%An example is the CC$\partial\lambda$C of convenient vector spaces with smooth maps, where $D$ is the ``real'' differential $Df:\mathbb{V}\times\mathbb{V}\rightarrow \mathbb{W}$, $Df(x,u):=\dfrac{d}{dt}{\!\Big|_{t=0}} f(x+tu)$, of smooth maps $f:\mathbb{V}\rightarrow \mathbb{W}$.
-%More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
-%\begin{itemize}
-%\item $\C C$ is left-additive, i.e.~its hom-sets have the structure of commutative monoids, and the cartesian structure is well-behaved w.r.t.~this monoid structure;
-%\item $\C C$ is equipped with a differential operator $D:
-%\C C(X,Y)\to \C C(X\times X,Y)$ satisfying some axioms which capture usual properties of differentials (e.g.~the linearity of $D$ in one of its two variables, the chain rule, etc.).
-%\end{itemize}
 
 Another intriguing similarity between program derivatives and 
 actual derivatives is provided by the \emph{Taylor expansion} $\C T$:
@@ -165,6 +227,73 @@ As in analysis, it decomposes an application as a series of $k$-linear functions
 In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.
 Since we only consider idempotent sum, the factorial coefficient disappears, and the resulting Taylor map is called the \emph{qualitative} Taylor expansion, indicated by $\Te{\_}$.
 % (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
+
+%Until now we simply specialised well-known results in our tropical case, with the intent of showing how things read in this particular case.
+%Now we go further, by showing that $\LREL_!$ actually admits a \emph{differential structure}, turning it into a model of the $\STDLC$, i.e.~a $CC\partial C$.
+%This viewpoint
+%, is where the \emph{metric} and the \emph{differential} viewpoints converge, as explained in the Introduction and Section II, and it % will be further generalised in Section \ref{section6}.
+
+%A model of the $\STDLC$ is usually understood as so-called \emph{Cartesian closed differential categories} (CC$\partial$C), see \cite{Manzo2012} for details.
+%In order to treat the $+$ and the constructor $D[\_]\cdot (\_)$ of $\STDLC$, the main features of a CC$\partial$C $\C C$ are that:
+%
+%1) $\C C$ is a left-additive-CCC, i.e.\ its Homsets are commutative monoids and its Cartesian closed structure is well behaved w.r.t.\ this monoid structure;
+%
+%2) $\C C$ is equipped with a differential operator map $D:\HOM{\C C}{X}{Y}\to \HOM{\C C}{X\times X}{Y}$ (here $\times$ is the Cartesian product of $\C C$) satisfying $8$ axioms, called D1, ..., D7, D-curry.
+
+%Let us show the differential structure of $\LREL_!$ (remember that the Cartesian product of $\LREL_!$ is the disjoint union $+$).
+
+%\begin{definition} The \emph{tropical differential operator} is the map $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (where a multiset $\nu \in !(X+X)$ is identified with a disjoint sum of $\mu,\rho\in !X$).\end{definition}
+
+%The models of $\STDLC$ are the cartesian \emph{closed} differential categories ($CC\partial C$), which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential operator are both well-behaved with respect to the closed structure \cite{Manzo2012}. 
+The $\STDLC$ can be interpreted in Cartesian closed differential $\lambda$-categories (CC$\partial\lambda$C)\cite{Manzo2010,Blute2009, Blute2019}.
+In them, homsets are equipped with a structure of commutative monoid %(i.e.\ we can add morphisms and there is a $0$ morphism)
+%, it is Cartesian closed%(with the closed structure compatible with the additive structure)
+and with a certain \emph{differential operator} $D$, generalising the usual notion of differential, see e.g.\ \cite{BluteEhrhTass10}.
+%An example is the CC$\partial\lambda$C of convenient vector spaces with smooth maps, where $D$ is the ``real'' differential $Df:\mathbb{V}\times\mathbb{V}\rightarrow \mathbb{W}$, $Df(x,u):=\dfrac{d}{dt}{\!\Big|_{t=0}} f(x+tu)$, of smooth maps $f:\mathbb{V}\rightarrow \mathbb{W}$.
+%More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
+%\begin{itemize}
+%\item $\C C$ is left-additive, i.e.~its hom-sets have the structure of commutative monoids, and the cartesian structure is well-behaved w.r.t.~this monoid structure;
+%\item $\C C$ is equipped with a differential operator $D:
+%\C C(X,Y)\to \C C(X\times X,Y)$ satisfying some axioms which capture usual properties of differentials (e.g.~the linearity of $D$ in one of its two variables, the chain rule, etc.).
+%\end{itemize}
+Now, applying \cite[Theorem 6.1]{lemay2020} one can check that
+%\begin{proposition}[{\color{red}LEMAY??}]\label{thm:LREL!CCDC}
+ $\LREL_!$ becomes a CC$\partial\lambda$C, i.e.\ a model of the $\STDLC$, when equipped with the \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X\& X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (using the iso $(\mu,\rho)\in !Z\times !Z'\mapsto\mu\oplus\rho \in !(Z+Z')$).
+%\end{proposition}
+%\begin{remark}For $t\in\HOM{\LREL}{!X}{Y}$, we have: $D^2 t\in\HOM{\LREL_!}{(X+X)+(X+X)}{Y}$, where $(D^2 t)_{(\rho\oplus\rho')\oplus(\nu\oplus\nu'),b}$ equals $t_{\nu+\nu'+\rho',b}$ if $\rho=\emptyset$ and $\#\rho'=1=\#\nu$; it equals $t_{\rho+\nu',b}$ if $\rho'=\emptyset=\nu$ and $\#\rho=1$; it equals $\infty$ otherwise.\end{remark}
+%This ensures that one can define a sound interpretation of $\STDLC$-terms in the standard way (see [Section 4.3, \cite{Manzo2010}]).
+This model is also well-behaved w.r.t.\ the Taylor expansion, as expressed by the following two results.
+As it can be patientely checked, in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
+
+\begin{theorem}\label{thm:modelsTaylor}
+ For all $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$ we have:%, the evaluation of $t$ over $s$ yields 
+ \begin{align}\label{eq:taylorcat}
+  \RM{ev}\circ_!\langle t,s\rangle =
+  \inf\limits_{n\in\N}
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
+ \end{align} 
+\end{theorem}
+%It is worth discussing the formula above a bit more. 
+Here,
+%:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
+%$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
+$u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
+Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical %interpretation of the
+version of the usual Taylor expansion.
+%Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+Finally, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
+
+\begin{corollary}\label{cor:T(M)=M}
+ If $\Gamma\vdash_{\STLC} M:A$, then $\model{\Gamma\vdash_{\STDLC} \Te M:A}:=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC} t:A}$ converges to $\model{\Gamma\vdash_{\STLC} M:A}$. %the interpretation of the Taylor expansion of a $\STLC$-term $M$, given in \eqref{eq:taylor}, converges to the one of $M$.
+\end{corollary}
+
+As already mentioned, by straightforward induction on $M$ (using that composition and $D$ easily preserve ``booleaness'' and projections and evaluation of  $\LREL$ are boolean) one can prove that:
+
+\begin{proposition}\label{prop:descrete}
+ For all the previous four languages, except $\STLC_\oplus$, we have that $\model{\Gamma\vdash M:A}\in\Lawv^{!\model{\Gamma}\times\model{A}}$ is a \emph{boolean} matrix, i.e.\ actually $\model{\Gamma\vdash M:A}\in\{0,\infty\}^{!\model{\Gamma}\times\model{A}}$.
+\end{proposition}
+
+Even if the interpretation of those languages is trivia, we shall still focus on them in order to set the basis of the further studies and in order to see some already interesting properties of their interpretation.{\color{red}SPIEGARE MEGLIO}
 
 %More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
 %Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
@@ -191,8 +320,6 @@ Since we only consider idempotent sum, the factorial coefficient disappears, and
 %\end{align}
 % In this framework the differential operator is naturally represented by formal differentiation of polynomials, where, as one would expect, 
 % $\Der[\sum_{n}a_{n}x^{n}]=\sum_{n}\Der[a_{n}x^{n}]$ and $\Der[a_{0}x^{0}]=0$ and $\Der[a_{n+1}x^{n+1}]= (n+1)a_{n+1}x^{n}$, so that power series can be Taylor expanded. 
-
-
 
 
 

@@ -47,11 +47,9 @@
 
 \input{macros}
 
-\title{Tropical mathematics for the Lambda-calculus 1}
-\subtitle{The potential of tropical wheighted relational semantics%for probabilities and Taylor expansion
-} %TODO Please add
+\title{Tropical mathematics for the Lambda-calculus} %TODO Please add
 
-\titlerunning{Tropical mathematics for the Lambda-calculus 1} %TODO optional, please use if title is longer than one line
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
 \author{Davide {Barbarossa}}{Dipartimento di Informatica, Universit\`a di Bologna, %[optional: Address], 
 Italy% \and My second affiliation, Country 
@@ -118,44 +116,44 @@ A typical result of such line of research is that, thanks to the tropical operat
 We finally describe some promising lines of research, showing in particular how such tropical model expresses natural optimisation problems of probabilistic calculi.
 \end{abstract}
 
-\section{Introduction}
+\section{Two kinds of quantitative approaches}
 \input{section1}
 
 
-\section{Preliminaries and motivation}
-\input{section2bis}
+\section{The category $\LREL$}\label{section3}
 
-\section{Tropical weighted relational semantics of several $\lambda$-calculi}\label{section3}
+\input{section3new}
 
+\subsection{... As (weighted relational) model of several $\lambda$-calculi}
 The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here. Although the majority of such properties are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting, but also to make the non-expert in such topics reader able to follow.
 The real interest in our particular model will come in the next \autoref{sec:tls}.
 
+\paragraph{Prohibited duplication/erasure: the \emph{linear} $\STLC$}\label{sec:3A}\input{section3A}
 
-\paragraph*{Prohibited duplication/erasure: the \emph{linear} $\STLC$}\label{sec:3A}
-\input{section3A}
+\paragraph{Allowed duplication/erasure: the $\STLC$}\label{sec:3B}\input{section3B}
 
-\paragraph*{Allowed duplication/erasure: the $\STLC$ and a toy probabilistic $\lambda$-calculus $\STLC_\oplus$}\label{sec:STLC+STLCO}
-
-\input{section3B}
-
-\input{section2}
+\paragraph{Controlled duplication/erasure: the $\BSTLC$ and the $\STDLC$}\label{sec:3C}\input{section3C}
 
 
-\section{Tropical Laurent Series}\label{sec:tls}
-\input{section4}
+\section{Tropical Laurent Series}\label{sec:tls}\input{section4}
 
 
-%\section{Future lines of research}\label{sec:future}
+\section{Future lines of research}\label{sec:future}
 
-%\subsection{Quantitaive analysis}\label{sec:app}
-%%\input{section5C}
+{\color{red}3 pagine in totale}
 
-%\subsection{Generalized Metric Spaces and Modules over the Lawvere Quantale}\label{section6}
+\subsection{Quantitaive analysis}\label{sec:app}
+\input{section5}
+%\input{section5C}
+
+\subsection{Generalized Metric Spaces and Modules over the Lawvere Quantale}\label{section6}
 %%At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
 %Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
 %A consequence of these observations is that, as we discussed below, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
 %In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
 %\input{section6}%
+
+\newpage
 
 
 \section{Related Work}\label{section7} \input{section7}
@@ -171,9 +169,9 @@ The real interest in our particular model will come in the next \autoref{sec:tls
 
 %\bibliography{tropical}
 
-%\appendix
+\appendix
 
-%\section{\autoref{section3}}\label{app-sec:section3}
+\section{\autoref{section3}}\label{app-sec:section3}
 
 
 \end{document}

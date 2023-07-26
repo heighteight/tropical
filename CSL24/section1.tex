@@ -6,10 +6,27 @@ intersection type systems aimed at capturing time or space resources \cite{decar
 probabilistic \cite{Ehrhard2011, Staton2017} or differential \cite{difflambda} extensions of the $\lambda$-calculus. 
 The main reason to look for methods relying on (quantitative extensions of) type-theory or denotational semantics is that these approaches yield \emph{modular} and \emph{compositional} techniques, that is, allow one to deduce properties of complex programs from the properties of their constituent parts.   
 Among such quantitative approaches, two different directions have received considerable attention, which we recall below.
+In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
 
-%\subsection{Two kinds of quantitative approaches}\label{section2}
+\paragraph*{Two kind of quantitative approaches}
 
-\input{Section2}
+On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask whether they compute functions which do not differ \emph{too much} by controlling the propagation of an error during the computation.
+This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
+%As already mentioned, in many situations (e.g.~when dealing with computationally difficult problems, or in differential privacy \cite{Alvim2011, Reed2010}), one %does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, a small error in the input will produce a comparably small error in the output. 
+%In all these cases, it is common to consider forms of denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which account for differences in behavior. 
+A fundamental insight coming from this line of work is that \emph{affine} programs, i.e.~programs that may use their input at most once, correspond to \emph{non-expansive} (or $1$-Lipschitz) maps, that is, to functions $f$ for which the distances
+$d(f(x),f(y))$ produced in output are bounded by the distances $d(x,y)$ in input. 
+This is due to the fact that the category $\Met$ of pseudo-metric spaces and non-expansive maps provides a model of the %\emph{linear} simply typed $\lambda$-calculus, being a \emph{symmetric monoidal closed} category, and in fact it also models 
+\emph{affine} $\lambda$-calculus (it is symmetric monoidal closed, cartesian and monoidal units coincide). 
+The metric approach is not restricted to affine programs, but can be extended to programs with \emph{bounded} duplications \cite{Reed2010, Gaboardi2017}: the idea is that a program duplicating its input $K$ times will give rise to a $K$-\emph{Lipschitz} map.
+For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which duplicates the function input $f$, yields a $2$-Lipschitz map between the metric space $\BB R\multimap \BB R$ of non-expansive real functions and itself. %: if $f,g$ are two non-expansive maps differing by at most $\epsilon$ (i.e.~for which $|f(x)-g(x)|\leq \epsilon$ holds for all $x\in \BB R$), then the application of $M$ to $f$ and $g$ will produce two maps differing by at most $2\epsilon$. 
+By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $rX:=(X,%d_{r}(x,y)=
+rd(x,y))$ and $Y$, the program $M$ above 
+can thus be interpreted as a non-expansive map from $2(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
+
+On the other hand, there is the approach based on \emph{differential} \cite{difflambda} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable for the probabilistic setting \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
+%A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic \cite{dill}) and its categorical models. 
+The key ingredient is a \emph{differential operator} $\Der$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Diff{M}{N}$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Diff{M}{N}$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$). 
 
 
 %On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask   whether they compute functions which do not differ \emph{too much}. This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
@@ -52,15 +69,7 @@ Among such quantitative approaches, two different directions have received consi
 
 
 
-\subsection{Tropical mathematics and program semantics } 
-
-In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
-In metric semantics, linear programs correspond to \emph{non-expansive} maps, that is, to functions that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret \emph{bounded} programs (i.e.~programs with a fixed duplication bound) as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
-By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs leads to consider functions defined as \emph{power series}.
-
-A natural question is thus whether these two apparently unrelated ways of interpreting linearity and duplication can be somehow reconciled. At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
-in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz. The fundamental motivation of this work is then the observation that 
-this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics, where, as we'll see, the monomial $x^{n}$ precisely reads as the linear function $n\cdot x$.
+\paragraph*{Tropical mathematics and program semantics } 
 
 Tropical mathematics was introduced in the seventies by the Brazilian mathematician Imre Simon \cite{Simon} as an alternative approach to algebra and geometry where the usual ring structure of numbers based on addition and multiplication is replaced by the semiring structure given, respectively, by ``$\min$'' and ``$+$''.
 %
@@ -77,10 +86,14 @@ In the last decades, tropical geometry evolved into a vast and rich research dom
 Computationally speaking, working with $\min$ and $+$ is generally easier than working with standard addition and multiplication; for instance, the fundamental (and generally intractable) problem of finding the roots of a polynomial admits a \emph{linear time} algorithm in the tropical case (and, moreover,  the tropical roots can be used to approximate the actual roots \cite{Noferini2015}).
 The computational nature of tropical notions explains why these are so widely applied in computer science, notably for convex analysis and machine learning (see \cite{Maragos2021} for a recent survey).
 
-\subsection{This paper and our contributions}
+Coming back to our discussion on program linearity, in metric semantics, linear programs correspond to \emph{non-expansive} maps, that is, to functions that do not increase distances; moreover, the possibility of duplicating inputs leads to interpret \emph{bounded} programs (i.e.~programs with a fixed duplication bound) as \emph{Lipschitz-continuous} maps \cite{Gaboardi2017}.
+By contrast, in the standard semantics of the differential $\lambda$-calculus, linear programs correspond to linear maps, in the usual algebraic sense, while the possibility of duplicating inputs leads to consider functions defined as \emph{power series}.
 
-Coming back to our discussion on program semantics %tropical geometry might seem to provide precisely what look for, as it turns the monomials $x^{n}$ into the Lipschitz map  $n\cdot x$.
-the metric approach usually yields Lipschitz conditions for affine programs, but what about ``unbounded'', simply typed $\lambda$-calculus (the ordinary one)?
+A natural question is thus whether these two apparently unrelated ways of interpreting linearity and duplication can be somehow reconciled. At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
+in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz. The fundamental motivation of this work is then the observation that 
+this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics, where, as we'll see, the monomial $x^{n}$ precisely reads as the linear function $n\cdot x$.
+
+Now, the metric approach usually yields Lipschitz conditions for affine programs, but what about ``unbounded'', simply typed $\lambda$-calculus (the ordinary one)?
 In such case, one might lose the Lipschitz property, so the programs might be \emph{too} sensitive to errors. 
 %For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the program $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
 It is indeed well-known that the category $\Met$ is \emph{not} Cartesian closed, so it is not a model of $\STLC$ (yet, several Cartesian closed \emph{sub-}categories of $\Met$ do exist, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
@@ -103,6 +116,12 @@ Yet, what if these polynomials were tropical ones, i.e.~piecewise linear functio
 At this point, it is worth mentioning that a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
 However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken. 
 
+{\color{red}Dire proba! Non solo metric vs differential}
+
+
+\paragraph*{This paper and our contributions}
+
+{\color{red}Dire proba!}
 %\subsection{Contributions}
 
 In this paper we demonstrate that the relational interpretation of the $\lambda$-calculus based on tropical mathematics does indeed provides the desired bridge between differential and metric semantics. Moreover, we show that the conceptual unification of these two approaches suggests ways in which techniques from resource-analysis could be used in sensitivity analysis and \emph{vice-versa}, paving the way for new  applications of tropical geometry to the  study of higher-order programs.
