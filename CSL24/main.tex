@@ -37,6 +37,7 @@
 \usepackage{cmll}
 \usepackage{stmaryrd}
 \usepackage{wrapfig}
+\usepackage{relsize}
 
 \input{prooftree}
 
@@ -110,16 +111,13 @@ Italy% \and LIP, Universit\'e de Lyon, France
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-In this paper we study an interpretation of the $\lambda$-calculus in the framework of tropical mathematics, by considering the relational semantics weighted on the tropical semiring.
-We consider it as providing a unified framework where both program metrics, as based on the analysis of program sensitivity via Lipschitz-conditions, and resource analysis, as based on higher-order program differentiation, coexist. This is possible thanks to the fact that this is also a model of both a graded lambda-calculus ensuring bounded duplications, and the differential lambda-calculus. We only show the starting result of our line of research: thanks to the tropical operations we consider, in such model programs with bounded duplication are Lipschitz maps, simply typed terms are locally Lipschitz maps and the differential terms appearing in the Taylor expansion of a term (also called resource terms) are Lipschitz maps. Therefore, the lambda-calculus Taylor expansion decomposes semantically the simply typed term as an inf of more and more sensitive functions.
+We study the interpretation of the lambda-calculus in a framework based on tropical mathematics, by considering the relational semantics weighted on the tropical semiring. The aim is to provide a framework where both program metrics, based on the analysis of program sensitivity via Lipschitz conditions, and resource analysis, based on higher-order program differentiation, coexist. In order to do that, we consider a graded-types lambda-calculus and the differential lambda-calculus, both languages ensuring bounded duplications.
+A typical result of such line of research is that, thanks to the tropical operations, a simply typed term is interpreted as a locally Lipschitz map, which is in turn decomposed as an inf of more and more sensitive Lipschitz ones, corresponding to the interpretations of the approximants given by the lambda-calculus Taylor expansion.
+We finally describe some promising lines of research, showing in particular how such tropical model expresses natural optimisation problems of probabilistic calculi.
 \end{abstract}
 
 \section{Two kinds of quantitative approaches}
 \input{section1}
-
-
-%\section{The Two Quantitative Approaches to the $\lambda$-calculus}\label{section2}
-%\input{section2}
 
 
 \section{The category $\LREL$}\label{section3}
@@ -127,10 +125,7 @@ We consider it as providing a unified framework where both program metrics, as b
 \input{section3new}
 
 \subsection{... As (weighted relational) model of several $\lambda$-calculi}
-
-The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here.
-Although the majority of the properties mentioned in the present section are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting.
-Moreover, we end the section by stating some property of $\LREL$ not necessarily shared with all the models in the general class.
+The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here. Although the majority of such properties are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting, but also to make the non-expert in such topics reader able to follow.
 The real interest in our particular model will come in the next \autoref{sec:tls}.
 
 \paragraph{Prohibited duplication/erasure: the \emph{linear} $\STLC$}\label{sec:3A}\input{section3A}
@@ -147,13 +142,12 @@ The real interest in our particular model will come in the next \autoref{sec:tls
 
 {\color{red}3 pagine in totale}
 
-\subsection{Quantitaive analysis%: probabilistic, differential privacy
-}\label{sec:app}
+\subsection{Quantitaive analysis}\label{sec:app}
 \input{section5}
 %\input{section5C}
 
 \subsection{Generalized Metric Spaces and Modules over the Lawvere Quantale}\label{section6}
-%At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
+%%At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
 %Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
 %A consequence of these observations is that, as we discussed below, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
 %In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
@@ -162,13 +156,10 @@ The real interest in our particular model will come in the next \autoref{sec:tls
 \newpage
 
 
-
-\section{Related Work}\label{section7}
-\input{section7}
+\section{Related Work}\label{section7} \input{section7}
 
 
-\section{Conclusion}\label{section8}
-\input{section8}
+\section{Conclusion}\label{section8} \input{section8}
 
 %%
 %% Bibliography
@@ -176,14 +167,11 @@ The real interest in our particular model will come in the next \autoref{sec:tls
 
 %% Please use bibtex, 
 
-\bibliography{tropical}
+%\bibliography{tropical}
 
 \appendix
 
-\section{Styles of lists, enumerations, and descriptions}\label{sec:itemStyles}
-
-
-\section{Theorem-like environments}\label{sec:theorem-environments}
+\section{\autoref{section3}}\label{app-sec:section3}
 
 
 \end{document}

@@ -1,10 +1,20 @@
 For starting, remark that although a matrix $t\in\HOM{\LREL_!}{X}{Y}$ yields a linear map $\Lawv^{!X}\to\Lawv^Y$, by exploiting the coKleisli structure we can also ``express it in the base $X$'', i.e.\ see it as a \emph{non-linear} map $t^!:\Lawv^X\to\Lawv^Y$, by setting $t^!(x):=t\circ_! x$. %(we are identifying $\Lawv^X$ with the set $\HOM{\LREL_!}{\emptyset}{X}$ of the \emph{points} of $X$).
 Concretely, we have $t^!(x)_b=\inf_{\mu\in !X} \set{\mu x+ t_{\mu,b}}$, where $\mu x:=\sum_{a\in X} \mu(a)x_a$.
+
 In this section we establish some topological and metric properties of such functions, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
 In analogy with \cite{DanEhrh2011}, we could call them \emph{tropical entire functions}, but since, as we explain in a moment, those are generalised \emph{tropical Laurent series}, we will use the latter terminology, or \emph{tLs} for short.
 The literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
 
 Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
+
+\begin{remark}
+ Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+Same for $\STDLC$.
+Finally, the interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.
+In such situation, we define $t^!:\Lawv^{\mathlarger{+}_{i=1}^n X_{i}}\to\Lawv^Y \simeq \prod_{i=1}^n\Lawv^{X_{i}}\to\Lawv^Y$ as $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in !_{n_i} X_i}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_i}\times Y}$ is the matrix $\widetilde t_{(\mu_1,\dots,\mu_n),b}:=t_{(\mu_1,\dots,\mu_n),b}$ if $\mu_i\in !_{n_i} X_i$ for all $i$, and $:=\infty$ otherwise, which has the same support as $t$.
+So, such $t^!$'s are special cases of tLs and thus, \emph{Wlog}, in the following we only consider tLs.
+\end{remark}
 
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
@@ -136,12 +146,10 @@ usual tLs's of one variable.
 % Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
 \end{remark}
 
-
-
  In a similar way, tLs
 $f:\Lawv^X\to\Lawv^Y$ 
  with \emph{finite} supports $\C F_b=\set{\mu\in!X\mid\matr f_{\mu,b}\neq\infty}$, and which have thus shape $f(x)_b=\min_{\mu\in\C F} \set{\mu x+ t_{\mu,b}}$, are generalisation of usual tropical polynomials to the case of possibly infinitely many variables.
-For instance, for a $t\in\HOM{\LREL}{!_n X}{Y}$ (this is in particular the case for the interpretations of $\BSTLC$-terms), we will consider the (generalised) tropical polynomial $t^!:\Lawv^X\to\Lawv^Y$ defined by $t^!(x)_b:=\inf_{\mu\in !_nX}\{\mu x+t_{\mu,b}\}$.
+If $\model *$ is finite, this is in particular the case for the interpretations of $\BSTLC$-terms, since then the interpretation of any $\BSTLC$-type $B$ is a finite set, and thus also $!_n \model B$ is.
 % 
 % , i.e.~for a \emph{finite} set $\C F\subseteq \, !X$.
 %%Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they 
@@ -205,9 +213,8 @@ By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} x_a$ on $\Lawv^X$,
 \cite[Proposition 4.4.(3)]{Cobzas2017} shows that if a real-valued convex function with domain a convex open subset of a locally convex topological $\BB R$-vector space is, locally around any point, bounded from above by a finite non-zero constant, then it is continuous on all its domain.
 Now, our $f$ is concave, so $-f$ is convex.
 Also, since $f\geq 0$ on all $\Lawv^X$, we have e.g.\ $-f\leq 1$ on $\Lawv^X$.
-Remark that we cannot immediately apply \cite[Proposition 4.4.(3)]{Cobzas2017}, since $\Lawv^X$ is not even a $\BB R$-vector space.
-But $(0,\infty)^X\subseteq \BB R^X$ is open and convex, and $\BB R^X$ is a locally convex topological $\BB R$-vector space.
-Thus \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f\big|_{(0,\infty)^X}$, hence that of $f\big|_{(0,\infty)^X}$.
+%Remark that we cannot immediately apply \cite[Proposition 4.4.(3)]{Cobzas2017}, since $\Lawv^X$ is not even a $\BB R$-vector space.
+Now $(0,\infty)^X\subseteq \BB R^X$ is open and convex, and {\color{red}$\BB R^X$ is a locally convex topological $\BB R$-vector space}, so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f\big|_{(0,\infty)^X}$, hence that of $f\big|_{(0,\infty)^X}$.
 \end{proof}
 
 We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
@@ -322,16 +329,16 @@ Let $\model A$ be a finite set.
 \end{enumerate}
 \end{corollary} 
 \begin{proof}
-1). We already observed that the interpretation of a $\BSTLC$-type $B$ is alway a finite set, so thus is $!_n \model B$.
-So the $\inf$ defining $(\_)^!$ is actually a $\min$.
-So the interpretation of a bounded term is a tropical polynomial, so we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and since $\model A$ is finite (by taking the maximum Lipschitz constant among the finite number of them), we obtain the thesis.
+1). Since $\model A$ is finite, also $\model *$ is.
+Thus, as we already observed, the interpretation of a bounded term is a tropical polynomial.
+Now we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and by taking the maximum Lipschitz constant among the finite number $\mathrm{Card}(\model A)$ of them, we obtain the thesis.
 2). It follows immediately from Theorem~\ref{thmTLSlocLip} and the fact that $\model A$ is finite.
 3). It follows from \autoref{cor:T(M)=M} plus the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
 \end{proof}
 
 Remark that the restriction $\model A$ finite is without loss of generality, since by Currying all programs can be seen having type $*$, which is natural to interpret as a singleton.
 
-A consequence of (3) is that the distance between two programs can always be approximated via Lipschitz tropical polynomial approximants of the initial two programs.
+A consequence of (3) is that the pointwise distance between two interpretations of programs can always be bounded via Lipschitz tropical polynomial approximants of the initial two programs.
 \begin{corollary}
  Let $\Gamma \vdash_{\STLC} M:A$ and $\Delta\vdash_{\STLC} N:B$.
  For all $\epsilon>0$, $x\in\Lawv^{\model \Gamma}$, $b\in\model A$, there exist $t\in\Te{M}$, $u\in\Te{N}$ s.t.\ $\big| \model{\Gamma \vdash_{\STLC} M:A}^!(x)_b - \model{\Delta \vdash_{\STLC} N:B}^!(x)_b \big| \leq 2\epsilon + \big| \model{\Gamma \vdash_{\STDLC} t:A}^!(x)_b - \model{\Delta \vdash_{\STDLC} u:B}^!(x)_b \big|$.

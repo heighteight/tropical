@@ -1,10 +1,10 @@
 %\begin{remark}\label{rmk:ModelsOfBSTLC}
 %Similarly to It is known {\color{red}(([reference??] e dire meglio)} 
-For $\BSTLC$, one can see that the exponential $!$ can be ``decomposed'' into a family of \emph{graded} exponentials functors $!_n:\LREL\to\LREL$ ($n\in\BB N$), defined by taking multisets of cardinality \emph{at most} $n$. %  lift to functors 
+For $\BSTLC$, one can see that the exponential $!$ can be ``decomposed'' into a family of \emph{graded} exponentials functors $!_n:\LREL\to\LREL$ ($n\in\BB N$), defined on objects by taking multisets of cardinality \emph{at most} $n$. %  lift to functors 
 The sequence $(!_n)_{n\in\N}$ gives rise to a $\N$-graded linear exponential comonad on (the SMC) $\LREL$, %satisfying the adjunction: $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
 i.e.\ $(\LREL,(!_n)_{n\in\N})$ is a model of $\BSTLC$. 
-In particular, bounded arrow types are interpreted via $\model{!_{n}A\multimap B}:= \C M_{\leq n}(\model A) \times \model B$ and so, 
-if e.g.\ $\model o=\{\star\}$, then $\model{A}$ is a finite set for any type $A$ of $\BSTLC$.
+In particular, bounded arrow types are interpreted via $\model{!_{n}A\multimap B}:= !_{n}\model A \times \model B$ and so, 
+if $\model *$ is finite, then $\model{A}$ is a finite set for any type $A$ of $\BSTLC$.
 %\end{remark}
 %Bounded types are interesting because of the following proposition:
 %\begin{proposition}
@@ -38,7 +38,7 @@ if e.g.\ $\model o=\{\star\}$, then $\model{A}$ is a finite set for any type $A$
 
 For what concerns $\STDLC$, applying \cite[Theorem 6.1]{lemay2020} one can check that
 %\begin{proposition}[{\color{red}LEMAY??}]\label{thm:LREL!CCDC}
- $\LREL_!$ becomes a CC$\partial\lambda$C, i.e.\ a model of the $\STDLC$, when equipped with the \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X+X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (using the iso $(\mu,\rho)\in !Z\times !Z'\mapsto\mu\oplus\rho \in !(Z+Z')$).
+ $\LREL_!$ becomes a CC$\partial\lambda$C, i.e.\ a model of the $\STDLC$, when equipped with the \emph{tropical differential operator} $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X\& X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (using the iso $(\mu,\rho)\in !Z\times !Z'\mapsto\mu\oplus\rho \in !(Z+Z')$).
 %\end{proposition}
 %\begin{remark}For $t\in\HOM{\LREL}{!X}{Y}$, we have: $D^2 t\in\HOM{\LREL_!}{(X+X)+(X+X)}{Y}$, where $(D^2 t)_{(\rho\oplus\rho')\oplus(\nu\oplus\nu'),b}$ equals $t_{\nu+\nu'+\rho',b}$ if $\rho=\emptyset$ and $\#\rho'=1=\#\nu$; it equals $t_{\rho+\nu',b}$ if $\rho'=\emptyset=\nu$ and $\#\rho=1$; it equals $\infty$ otherwise.\end{remark}
 %This ensures that one can define a sound interpretation of $\STDLC$-terms in the standard way (see [Section 4.3, \cite{Manzo2010}]).
@@ -61,7 +61,7 @@ $u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mat
 Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical %interpretation of the
 version of the usual Taylor expansion.
 %Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
-Finally, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] shows:
+Finally, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
 
 \begin{corollary}\label{cor:T(M)=M}
  If $\Gamma\vdash_{\STLC} M:A$, then $\model{\Gamma\vdash_{\STDLC} \Te M:A}:=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC} t:A}$ converges to $\model{\Gamma\vdash_{\STLC} M:A}$. %the interpretation of the Taylor expansion of a $\STLC$-term $M$, given in \eqref{eq:taylor}, converges to the one of $M$.
@@ -75,6 +75,6 @@ By straightforward induction on $M$ (using that composition and $D$ easily prese
 
 The fact that the coefficients are either $0$ or $\infty$ can be seen as the fact that $\STLC$ is relatively trivial, from this point of view.
 As we will discuss in \autoref{sec:app}, non-trivial coefficients appear when interpreting more interesting languages, like probabilistic ones.
-However, in this paper we shall still focus on $\STLC$, in order to set the basis of the further studies and in order to see some already interesting properties of the interpretation.
+However, in this paper we shall still focus on $\STLC$, in order to set the basis of the further studies and in order to see some interesting properties already of its interpretation.
 
 
