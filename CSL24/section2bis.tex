@@ -141,10 +141,11 @@ $f:\Lawv^X\to\Lawv^Y$
  There is a clear and well-known relation between tropical polynomial/power series and usual polynomials/power series:
 fix a (formal) power series $f=\sum_{i\in I\subseteq\N} a_i x^i$ (polynomials being the case for $I$ finite) with coefficitents $a_i$ in a semiring $Q$;
 fix a \emph{valuation} $\mathrm{val}:Q\to \Lawv$.
-Then one defines the \emph{tropicalisation} $\trop f:\Lawv \to \Lawv$ of $f$ as $\trop f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
-Often, if $Q=[0,1]$, one takes as valuation $\mathrm{val}(a)=-\log a$.
+Then one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+The trivial valutation is the constantly equal to $0$ one, called the \emph{null valuation}.
+A common one, for $Q=[0,1]$, is $\mathrm{val}(a)=-\log a$.
 \end{remark}
 
-\subsection{Probabilities and a worked out motivational example}\label{sec:proba}
+\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
 \input{section5}
 

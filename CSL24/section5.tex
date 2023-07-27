@@ -33,53 +33,40 @@ a variant of the relational semantics modeling strongly normalizing programs via
 
 \end{comment}
 
-For what concerns the probabilistic calculus, let us consider a probabilistic extension of $\STLC$, call it $\STLC_\oplus$:
-we add a ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the usual rules and whose operational semantics adds the usual rules:
-{\small{\[\begin{array}{cccc}
-           \dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
-           &
-           \dfrac{\Gamma\vdash M:A}{\Gamma\vdash pM:A}
-           &
-           M\oplus_p N \to pM
-           &
-           M\oplus_p N \to (1-p)N
-          \end{array}\]}}
-%We add reduction rules:$ M\oplus_p N \to pM \quad$ and $\quad M\oplus_p N \to (1-p)N,$
-so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
-We use this calculus as a toy example for our purposes.
+As a toy exemple, let us consider a first-order probabilistic calculus on booleans:
+the terms are $M::= \true \mid \false \mid M\oplus_p M \mid pM$, for $p\in[0,1]$, and the operational semantics is $M\oplus_p N\to pM$ and $M\oplus_p N \to (1-p)N$, so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
+
 Consider %the following closed term $M$ of type $\bool$:
 $
- \vdash_{\STLC_\oplus} M:=(\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true)):\bool.
+ M:=(\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true)).
  $
-Let us give addresses $\omega\in\set{00,01,100,101,110,111}$ to the occurrences of $\true,\false$ in $M$, by following the tree structure of $M$, reading $0$ as ``left'' and $1$ as ``right''.
+Let us give addresses $\omega\in\set{ll,lr,rll,rlr,rrl,rrr}$ to the occurrences of $\true,\false$ in $M$, by following the tree structure of $M$, ($l$ is ``left'' and $r$ is ``right'').
 The same addresses also represent all the different possible reduction paths from $M$ to a normal form.
-%For instance, $100$ represents the reduction which keeps the right part of the outermost $\oplus_p$ and erases the left part, then continues by choosing the left part twice, reaching at the end the occurrence $\true_{100}$ in $M$, i.e.\ the second occurrence of $\true$ in $M$ starting from the left.
+%For instance, $rll$ represents the reduction which keeps the right part of the outermost $\oplus_p$ and erases the left part, then continues by choosing the left part twice, reaching at the end the occurrence $\true_{rll}$ in $M$, i.e.\ the second occurrence of $\true$ in $M$ starting from the left.
 Calling $q:=1-p$, there are the following six normal terms reachable from $M$:
-$P_{00}(p,q)\true$, 
-$P_{100}(p,q)\true$, 
-$P_{111}(p,q)\true$, 
-$P_{01}(p,q)\false$, 
-$P_{110}(p,q)\false$,
-$P_{101}(p,q)\false$,
-where the $P$'s are the following monomials in $p,q$:
-$P_{00}(p,q):=p^2$,
-$P_{100}(p,q):=qp^2$,
-$P_{111}(p,q):=q^3$,
-$P_{01}(p,q):=pq$,
-$P_{110}(p,q)=P_{101}(p,q):=q^2p$.
-They correspond to the respective reduction path from $M$ to the normal term of the same address.
-$P_{\omega}$ is then the probability (as a function of $p,q$) of obtaining the respective occurrence $\true_{\omega}$ or $\false_\omega$ after all the coin tossings in $M$ are performed.
-Thinking of $p,q$ as parameters, $P_{\omega}$ can thus be read as the \emph{likelihood function} of the event $\omega$.
-The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead the whole probability of obtaining $\true$ after all the tossings, and $Q_{0}(p,q):=P_{01}(p,q)+P_{110}(p,q)+P_{101}(p,q)$ the one for $\false$.
-
-
-%Let us consider in this subsection a probabilistic extension of $\lam$-calculus, call it $\STLC_\oplus$, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[0,1]$.These terms are typed via the rule:
+$P_{ll}(p,q)\true$, 
+$P_{rll}(p,q)\true$, 
+$P_{rrr}(p,q)\true$, 
+$P_{lr}(p,q)\false$, 
+$P_{rrl}(p,q)\false$,
+$P_{rlr}(p,q)\false$,
+where the $P$'s are the following monomial functions in $p,q$:
+$P_{ll}(p,q):=p^2$,
+$P_{rll}(p,q):=qp^2$,
+$P_{rrr}(p,q):=q^3$,
+$P_{lr}(p,q):=pq$,
+$P_{rrl}(p,q)=P_{rlr}(p,q):=q^2p$.
+%They correspond to the respective reduction path from $M$ to the normal term of the same address.
+$P_{\omega}(p,1-p)$ is then the probability of the event ``$M\twoheadrightarrow \true_\omega/\false_\omega$'' (depending on $\omega$).
+Thinking of $p,q$ as parameters, $P_{\omega}(p,q)$ can thus be read as the \emph{likelihood function} of the event ``$M\twoheadrightarrow \true_\omega/\false_\omega$''.
+The polynomial function $Q_{\true}(p,q):=P_{ll}(p,q)+P_{rll}(p,q)+P_{rrr}(p,q)=p^2+p^2q+q^3$ gives instead the probability of the event ``$M\twoheadrightarrow \true$'', and analogously for $Q_{\false}(p,q):=P_{lr}(p,q)+P_{rrl}(p,q)+P_{rlr}(p,q)=pq+2pq^2$.
+%Let us consider in this subsection a probabilistic extension of $\lam$-calculus, call it $\STLC_\oplus$, adding as usual terms of shape $pM+qN$ and $M\oplus_p N$, for $p,q\in[l,r]$.These terms are typed via the rule:
 %\[
 %\dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
 %\]
 %and similar for $\Gamma\vdash pM+qN:A$.We add the reduction rule:
 %\[
-% M\oplus_p N \to pM+(1-p)N
+% M\oplus_p N \to pM+(r-p)N
 %\]
 %so that such terms play the role of probabilistic choices of parameter $p$, as well as the rule:
 %\[
@@ -87,69 +74,64 @@ The polynomial $Q_{1}(p,q):=P_{00}(p,q)+P_{100}(p,q)+P_{111}(p,q)$ gives instead
 %\]
 %Let us consider $M:=(I\oplus_p\Omega)\oplus_p((I\oplus_p\Omega)\oplus_p(I\oplus_p\Omega))$. Reducing to normal form, we have:
 %\[
-% M\twoheadrightarrow (p^2+(1-p)p^2+(1-p)^3)I+(p(1-p)+2(1-p)^2p)\Omega.
+% M\twoheadrightarrow (p^2+(r-p)p^2+(r-p)^3)I+(p(r-p)+2(r-p)^2p)\Omega.
 %\]
-%The index $\omega\in\set{00,100,111,01,110,101}$ of each $P_\omega$ indicates the path of the reduction that led from $M$ to the respective occurrence $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($0$ means ``left'' and $1$ means ``right'').For instance, in order to reach $I_{100}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.$P_{\omega}(p,q)$ gives then the probability (as a function of $p,q$) of obtaining the respective occurrence $I_{\omega}$ or $\Omega_\omega$ in the normal form, if we were to sample at each time we reduce a $\oplus_p$.It can thus also be read as the likelihood function of such event.The polynomials $Q_{1,2}(p,q)$ give instead the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
+%The index $\omega\in\set{ll,rll,rrr,lr,rrl,rlr}$ of each $P_\omega$ indicates the path of the reduction that led from $M$ to the respective occurrence $I_\omega$ of $I$ or $\Omega_\omega$ of $\Omega$ from $M$ to its normal form ($l$ means ``left'' and $r$ means ``right'').For instance, in order to reach $I_{rll}$, i.e.\ the second occurrence of $I$ from the left in $M$, we have to take the right path in the outer $\oplus_p$ of $M$, then two times the left path in the new outer $\oplus_p$'s that we encounter during reduction.$P_{\omega}(p,q)$ gives then the probability (as a function of $p,q$) of obtaining the respective occurrence $I_{\omega}$ or $\Omega_\omega$ in the normal form, if we were to sample at each time we reduce a $\oplus_p$.It can thus also be read as the likelihood function of such event.The polynomials $Q_{r,2}(p,q)$ give instead the whole probability of obtaining respectively $I$ or $\Omega$, in the normal form after such samplings.
+This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baumr966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2ll4}.
 
-This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}.
-Typical questions in this case would be:
+Typical questions in this case would be, for a fixed $\omega_0$:
 %
 %The tropical point of view allows now to express two natural questions about this situation:
 \begin{enumerate}
- \item What is the \emph{maximum likelihood estimator} for the event ``$M$ produces $\true_\omega$'' (similarly for $\false_\omega$)?
- I.e., which is the choice of the parameters $p,q$ that maximizes the probability of getting $\true_\omega$ after all tossings in $M$?
- \item Knowing that $M$ produced $\true$ (similarly for $\false$), which is the choice of the parameters $p,q$ that maximizes the probability that the produced occurrence of $\true$ was a fixed $\true_{\omega_0}$ (i.e. that among the paths leading to $\true$, the one taken was $\omega_0$)?
+ \item Which is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow \false_{\omega_0}$''?
+ I.e., which is the choice of $p,q$ that maximizes the probability $P_{\omega_0}$ of the event ``$M\twoheadrightarrow \false_{\omega_0}$''  ?
+ \item Which is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow \false_{\omega_0}$'', knowing that ``$M\twoheadrightarrow \false$''?
+I.e., which is the choice of $p,q$ that makes $\omega_0$ the most likely path among those leading to $\false$ (i.e.\ that maximizes the conditional probability $\BB P(``M\twoheadrightarrow \false_{\omega_0}'' \mid ``M\twoheadrightarrow \false'')$)?
 \end{enumerate}
-A similar argument could be done by replacing $\true$ and $\false$ by, respectively, a converging and a diverging term (e.g.~in a $\B{PCF}$-style language), so 1) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
+%A similar argument could be done by replacing $\false$ and $\true$ by, respectively, a converging and a diverging term (e.g.~in a $\B{PCF}$-style language), so r) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
 
-%These are questions much in the style of those asked in {\color{red}Ref?} in the framework of {\color{red}??}.
-Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega}, Q_\omega$, which is more easily solved by 
-passing to the tropical monomials/polynomial $\trop P_{\omega},\trop Q_{\omega}$. 
-For 1), we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)\in
+Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega_0}, Q_{\omega_0}$, which is more easily solved by 
+passing to the tropical monomial/polynomial functions $\trop^{\mathrm{val}} P_{\omega_0},\trop^{\mathrm{val}} Q_{\omega_0}$. 
+For 1), by definition of $\RM{arg max}$ and because $-\log$ is stricly decreasing, we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)\in
 %\begin{equation}
 %  \begin{array}{ccccc}
-   \underset{(x,y)}{\RM{arg max}} P_\omega (x,y)
+   \RM{arg max}_{(x,y)} P_{\omega_0} (x,y)
    %& 
    = %&
-   \underset{(x,y)}{\RM{arg min}}\set{-\log_c P_\omega (x,y)}
+   \RM{arg min}_{(x,y)}\set{-\log P_{\omega_0} (x,y)}
    %&
    =%&
-   \underset{(x,y)}{\RM{arg max}}\set{(\trop P_\omega) (-\log_c x,-\log_c y)} \label{eq:argmax}$
+   \RM{arg min}_{(x,y)}\set{(\trop P_{\omega_0}) (-\log x,-\log y)} \label{eq:argmax}$
+where this holds for any valuation.
+Remark that $(\trop P_{\omega})( -\log x, -\log y)$ is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow \false_{\omega}$'', se we see that the tropicalisation allows to compute such quantities.
 %  \end{array}
 %\end{equation}
-where the equalities hold for all $0<c\neq1$.
-For 2), %the $\omega_0$ is s.t.\ $\max\limits_{\omega\in\set{00,100,111}} \, P_\omega(x,y) = P_{\omega_0}(x,y)$. So
+For 2), %the $\omega_l$ is s.t.\ $\max\limits_{\omega\in\set{ll,rll,rrr}} \, P_\omega(x,y) = P_{\omega_l}(x,y)$. So
 we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and
-$\max\limits_{\omega\in\set{00,100,111}} \, P_\omega(x,y) = P_{\omega_0}(x,y)$.
-This last condition is equivalent to ask that $\min\limits_{\omega\in\set{00,100,111}} \, -\log_c P_\omega(x,y) = -\log_c P_{\omega_0}(x,y)$, i.e.\ $(\trop Q_1)( -\log_c x, -\log_c y) = (\trop P_{\omega_0})( -\log_c x, -\log_c y)\label{eq:max}$.
-In both cases, passing through $\trop $ %P_\omega, \trop Q_\omega$ 
-makes the problem easier, as this amounts to study tropical polynomials (for instance computing tropical roots can be done in linear time \cite{Noferini2015}). %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
+$\max_{\omega\in\set{lr,rrl,rlr}} \, P_\omega(p,q) = P_{\omega_0}(p,q)$, i.e.\ $\min_{\omega\in\set{lr,rrl,rlr}} \, -\log P_\omega(p,q) = -\log P_{\omega_0}(p,q)$.
+Remembering that $\trop^{\mathrm{val}} Q_{\false}(p,q)=\min\set{p+q, \mathrm{val}(2)+p+2q}$, we see that our minimization problem is equivalent to the equality $(\trop^0 Q_{\false})( -\log p, -\log q) = (\trop^0 P_{\omega_0})( -\log x, -\log y)\label{eq:max}$
+and this holds only for the null valuation.
+Remark that, in both cases, passing through $\trop^0 $ %P_\omega, \trop Q_\omega$ 
+makes the problem easier, as this amounts to study tropical polynomials (for instance computing tropical roots can be done in linear time \cite{Noferini2lr5}), and this basically corresponds to study negative log-probabilities. %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
 
-\begin{remark}
- The interpretation $\model{\vdash_{\STLC_\oplus} M:\bool}\in\Lawv^{\set{0,1}}$ of our running example gives the tropicalised probabilities: $\model M_0=(\trop Q_0)(p,1-p)$, $\model M_1=(\trop Q_1)(p,1-p)$.
- Therefore, the model $\LREL_!$ expresses such optimisation problems 
-% (in $p$ and $q$, not after the substitution $q:=1-p$) 
-% are extracted from it,
- \ref{eq:argmax}, \ref{eq:max} of $\STLC_\oplus$-programs. 
+%For our running example $M$, we have $\trop Q_{\true}(x,y)=\min\set{2x,y+2x,3y}$ and $\trop Q_{\false}(x,y)=\min\set{x+y,2y+x}$. Studying $\trop Q_{\true}$ %, whose plot is in Fig.~\ref{fig:plot2}, we see that $\trop Q_{\true}(x,y)=3y$ iff $y\leq \frac{2}{3}x$, and it coincides with $2x$ otherwise. Remembering that $3y=P_{rrr}(x,y)$, we can now solve the optimisation problem~\ref{eq:max} for $\omega_l=rrr$: via the substitution $x:=-\log p$, $y:=-\log (r-p)$, Equation~\ref{eq:max} is equivalent to $-\log (r-p)\leq -\frac{2}{3}\log_c p$, i.e.\ $r-p\geq p^{\frac{2}{3}}$. This means that, for $p\in[0,1]$ s.t.\ $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), the most likely occurrence of $\true$ to obtain, knowing that $M$ sampled $\true$ in its normal form, is $\true_{rrr}$. Remembering that $2x=P_{ll}(x,y)$, for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled is the occurrence $\true_{ll}$. We have thus answered question 2) above for $\true$.
+
+From this situation we notice the following important:
+
+\begin{remark}\label{rmk:tropof01Rel}
+This toy first-order language can be interpreted in the already mentioned $\overline{R_{\geq 0}}\mathrm{Rel}$ and in $\LREL$.
+We do not give details now since, from the following section, we will introduce the interpretation of interesting high-order calculi, including a probabilistic one containing the one of this section.
+But it is important to mention already at this point that the probabilities are already captured by the $[0,\infty]\mathrm{Rel}$ model: the $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}\in[0,\infty]^{\set{0,1}}$ of our running example $M$ is $\model M_0=Q_{\false}(p,1-p)$, $\model M_1=Q_{\true}(p,1-p)$.
+Therefore, this optimisation problems are already expressible by taking $\trop^0\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$. 
+Now, the model $\LREL$ is precisely null-valuation tropicalisation of $\overline{R_{\geq 0}}\mathrm{Rel}$, i.e.\ $\model{M}^{\LREL}=\trop^0\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$.
+This corresponds to quotienting the polynomial interpreting $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$ w.r.t.\ idempotent sum, as the null valuation eliminates all the coefficients (different from $1$).
+A precise study of the ``tropicalisation of $\overline{R_{\geq 0}}\mathrm{Rel}$'' is left for future investigations, as it is related with power series arising from more sophisticated calculi with paramethers (in the style of \cite{} {\color{red}Ehrhard!}).
+We therefore have that $\model{M}^{\LREL}_0(-\log p,-\log (1-p)$ is the negative log-probability of \emph{any} of the (equiprobable) most likely paths of reduction to normal form.
+We take these observations as a motivation for considering such model, and the point of this work is to dig into such model, concentrating for this first paper on the relations between the metric and differential tools that we will consider.
+% (in $p$ and $q$, not after the substitution $q:=r-p$) 
+% are extracted from it, \ref{eq:argmax}, \ref{eq:max} of $\STLC_\oplus$-programs. 
 \end{remark}
 
 %Now, in $\LREL$, seen as a model of such probabilistic $\lam$-calculus, the interpretation of a term already computes the tropicalisation of the polynomials expressing the probabilities, because the underlying semiring of the model is tropical.
 %For instance, for our running example $M$:
-%\[\model M = \min\left\{\trop{Q_1}(p,1-p) \cdot \model I, \trop{Q_0}(p,1-p) \cdot \model \Omega\right\}.\]
-
-
-%\begin{example}\label{ex:study}
-For our running example $M$, we have $\trop Q_1(x,y)=\min\set{2x,y+2x,3y}$ and $\trop Q_0(x,y)=\min\set{x+y,2y+x}$.
-Studying $\trop Q_1$ %, whose plot is in Fig.~\ref{fig:plot2}, 
-we see that $\trop Q_1(x,y)=3y$ iff $y\leq \frac{2}{3}x$, and it coincides with $2x$ otherwise.
-Remembering that $3y=P_{111}(x,y)$, we can now solve the optimisation problem~\ref{eq:max} for $\omega_0=111$:
-via the substitution $x:=-\log_c p$, $y:=-\log_c (1-p)$, Equation~\ref{eq:max} is equivalent to $-\log_c (1-p)\leq -\frac{2}{3}\log_c p$, i.e.\ $1-p\geq p^{\frac{2}{3}}$.
-This means that, for $p\in[0,1]$ s.t.\ $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), the most likely occurrence of $\true$ to obtain, knowing that $M$ sampled $\true$ in its normal form, is $\true_{111}$.
-Remembering that $2x=P_{00}(x,y)$, for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled is the occurrence $\true_{00}$.
-We have thus answered question 2) above.
-%\end{example}
-
-\begin{remark}\label{rem:troproots}
- Taking the usual $M$ as example, the $p\in[0,1]$ s.t.\ $(p,1-p)$ is a tropical root of $\trop Q_1$ or of $\trop Q_0$ provide, by definition, the values of the bias of $\oplus_p$ for which there are at least two different equiprobable paths of tossings from $M$ to its normal form.
- Moreover, looking at Equation~\ref{eq:max}, we see that the $p\in[0,1]$ s.t.\ $(-\log_c p,-\log_c(1-p))$ is a tropical root of, say, $\trop Q_1$ are the values of the bias of $\oplus_p$ for which there are at least two different equiprobable occurrences of $\true$ that are smapled by $M$ during its tossings to normal form, knowing that some $\true$ was sampled.
-\end{remark}
+%\[\model M = \min\left\{\trop{Q_r}(p,r-p) \cdot \model I, \trop{Q_l}(p,r-p) \cdot \model \Omega\right\}.\]
