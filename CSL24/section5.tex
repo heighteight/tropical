@@ -33,7 +33,20 @@ a variant of the relational semantics modeling strongly normalizing programs via
 
 \end{comment}
 
-
+For what concerns the probabilistic calculus, let us consider a probabilistic extension of $\STLC$, call it $\STLC_\oplus$:
+we add a ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the usual rules and whose operational semantics adds the usual rules:
+{\small{\[\begin{array}{cccc}
+           \dfrac{\Gamma\vdash M:A \qquad \Gamma\vdash N:A}{\Gamma\vdash M\oplus_p N:A}
+           &
+           \dfrac{\Gamma\vdash M:A}{\Gamma\vdash pM:A}
+           &
+           M\oplus_p N \to pM
+           &
+           M\oplus_p N \to (1-p)N
+          \end{array}\]}}
+%We add reduction rules:$ M\oplus_p N \to pM \quad$ and $\quad M\oplus_p N \to (1-p)N,$
+so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
+We use this calculus as a toy example for our purposes.
 Consider %the following closed term $M$ of type $\bool$:
 $
  \vdash_{\STLC_\oplus} M:=(\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true)):\bool.

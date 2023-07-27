@@ -23,10 +23,22 @@ For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which du
 By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $rX:=(X,%d_{r}(x,y)=
 rd(x,y))$ and $Y$, the program $M$ above 
 can thus be interpreted as a non-expansive map from $2(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
+These observations have led to the study of linear $\lambda$-calculi with \emph{graded} exponentials, like $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied to the study of differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded linear exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
 
 On the other hand, there is the approach based on \emph{differential} \cite{difflambda} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable for the probabilistic setting \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
 %A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic \cite{dill}) and its categorical models. 
-The key ingredient is a \emph{differential operator} $\Der$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Diff{M}{N}$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Diff{M}{N}$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$). 
+The key ingredient is a \emph{differential operator} $\Der$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Diff{M}{N}$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Diff{M}{N}$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$).
+Another intriguing similarity between program derivatives and 
+actual derivatives is provided by the \emph{Taylor expansion} $\C T$:
+%In analysis, a sufficiently regular function can be seen (locally around a point) as its Taylor expansion, i.e.\ a series of polynomials weighted via some rational coefficient.
+%Now, a polynomial in $x$ of degree $k$ can be thought of as a function which uses its argument $x$ exactly $k$ times.
+in $\STDLC$ (even untyped), we can perform a syntactic Taylor expansion of an ordinary $\lambda$-term via an inductively defined map $\Theta$ giving rise to an infinite series of terms, whose crucial case of the definition is
+$
+\Theta(MN)=\sum_{n\in\mathbb{N}}\frac{1}{n!}\Der^n\left[\Theta(M),\Theta(N)^n\right]0.
+$
+As in analysis, it decomposes an application as a series of $k$-linear functions, which can be seen as its approximants.
+In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.
+Since we only consider idempotent sum, the factorial coefficient disappears, and the resulting Taylor map is called the \emph{qualitative} Taylor expansion, indicated by $\Te{\_}$. 
 
 
 %On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask   whether they compute functions which do not differ \emph{too much}. This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
