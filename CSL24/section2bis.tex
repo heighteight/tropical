@@ -3,7 +3,12 @@
 
 %\subsection{Tropical non-linear algebra}\label{sec:4A}
 
-A \emph{tropical polynomial} is a piece-wise linear function $f:\Lawv\to \Lawv$ of the form $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$, where $i_{j}\in\N$ and $c_{i_{j}}\in\Lawv$.
+\begin{definition}
+A \emph{tropical power series} (tPs) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$ and $I\subseteq \N$.
+If $I$ is finite, $f$ is said to be a \emph{tropical polynomial}. 
+\end{definition}
+
+A tropical polynomial is always a piece-wise linear function since it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$
 For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
 are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 
@@ -84,20 +89,18 @@ are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 \label{fig:plot1}%\end{figure}%
 \end{wrapfigure} %%
 
-A \emph{tropical root} of a tropical polynomials $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes), or equivalently, where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
+A \emph{tropical root} of a tropical power series $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes), or equivalently, where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
 %For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
-Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as
-$f(x)=k\min\{x,x_{0}\}+ g(x)$. Yet, unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
+%Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=k\min\{x,x_{0}\}+ g(x)$.
+Unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
 %Tropical polynomials and their roots are the main object of study of tropical geometry.
 %
 %A
 % simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
 
-A \emph{tropical Laurent series} of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{n\in\N}\{nx+\matr f_{n}\}$, with $\matr  f_{n}\in\Lawv$.
-In other words, it is a ``limit'' of tropical polynomials of higher and higher degree.
+Since $\inf$s are not in general $\min$s, a tPs is a ``limit'' of tropical polynomials of higher and higher degree, and its behaviour may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
 E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}) %that we will take as our running example, 
 is the ``limit'' of the polynomials $\varphi_{n}$.
-Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
 
 %
 %
@@ -116,7 +119,7 @@ Since $\inf$s are not in general $\min$s, the behaviour of tLS may be less predi
 Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ is totally ordered by the partial order: $\alpha \preceq \beta$ iff $\alpha +  \beta = \beta$, then one defines a \emph{valuation} \cite{Izhakian2015} to be a map $\mathrm{val}:Q\to L$ s.t.\ $\mathrm{val}(0)=0$, $\mathrm{val}(1)=1$, $\mathrm{val}(ab)=\mathrm{val}(a)\mathrm{val}(b)$, $\mathrm{val}(a+b)\preceq \max\set{\mathrm{val}(a),\mathrm{val}(b)}$.
 The valuation which is constantly equal to $1\in L$ on all the invertibles of $Q$ is called the \emph{trivial valuation} $\mathrm{val}_1$.
 
-Now, for a (formal) power series $f=\sum_{i\in I\subseteq\N} a_i x^i$ (polynomials being the case for $I$ finite) with coefficitents $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficitents $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
 
 Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series

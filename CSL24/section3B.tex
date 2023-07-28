@@ -27,11 +27,16 @@ The cartesian product $\&$ of $\LREL_!$ (and of $\LREL$) is the disjoint union $
 \inf_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1+\cdots +\mu_n}
  \left\{s_{[b_1,\dots,b_n],c} + \sum_{i=1}^n t_{\mu_i,b_i}\right\}$.
 
-\begin{remark}
-One can see that the matrix interpreting a $\STLC$-term is always boolean (i.e.\ its coefficients are either $0$ or $\infty$) can be seen as the fact that $\STLC$ is relatively trivial, from this point of view.
-This is also the case for the differential $\lambda$-calculus that we will introduce in a moment, so we state and discuss this property at that point (\autoref{prop:descrete}).
+By induction on $M$ %(using that composition and $D$ easily preserve ``booleaness'' and projections and evaluation of  $\LREL$ are boolean)
+one can prove that:
+
+\begin{proposition}\label{prop:descrete}
+ For $\BSTLC$ and $\STDLC$ (and thus also for its fragment $\STLC$), we have that $\model{\Gamma\vdash M:A}\in\Lawv^{!\model{\Gamma}\times\model{A}}$ is a \emph{boolean} matrix, i.e.\ actually $\model{\Gamma\vdash M:A}\in\{0,\infty\}^{!\model{\Gamma}\times\model{A}}$.
+\end{proposition}
+
+This can be seen as the fact that such calculi are relatively trivial, from this point of view.
+Even if the interpretation of those languages is trivia, we shall still focus on them in order to set the basis of the further studies and in order to see some already interesting properties of their interpretation.{\color{red}SPIEGARE MEGLIO}
 %It is instructive what its CCC-structure looks like in our tropical world.
-\end{remark}
 
 %As it is well-known, the Cartesian closed structure %of a category $\C C$  allows to define a sound interpretation $\model{\Gamma\vdash M:A}\in\HOM{\LREL_{!}}{\model \Gamma}{\model A}$ of terms as morphisms.
 %In our case, we have:
