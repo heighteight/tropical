@@ -193,13 +193,17 @@ where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
 \end{proposition} 
 
 
-The results just presented translate into the following facts about the interpretation of higher-order programs:
+The results just presented translate into the following facts about the interpretation of higher-order programs.
+Remark that the metric spaces $(\Lawv^{\mathlarger{+}_{i=1}^n X_i},d_{\infty})$ and $(\prod_{i=1}^n \Lawv^{X_i},\max_{i=1}^n d^{X_i}_\infty)$ are trivially isometric, so we identify them.
+
+% Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+%Finally, the interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.In such situation, we define $t^!:\Lawv^{\mathlarger{+}_{i=1}^n X_{i}}\to\Lawv^Y \simeq \prod_{i=1}^n\Lawv^{X_{i}}\to\Lawv^Y$ as $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in !_{n_i} X_i}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$. Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_i}\times Y}$ is the matrix $\widetilde t_{(\mu_1,\dots,\mu_n),b}:=t_{(\mu_1,\dots,\mu_n),b}$ if $\mu_i\in !_{n_i} X_i$ for all $i$, and $:=\infty$ otherwise, which has the same support as $t$.
 
 \begin{corollary}
 Let $\model A$ be a finite set.
 \begin{enumerate}
 \item $\model{\Gamma \vdash_{\BSTLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{tropical polynomial}, thus (as $\model A$ is finite), a \emph{Lipschitz} function.
-\item $\model{\Gamma \vdash_{\STLC} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ is a \emph{locally} Lipschitz map.
+\item $\model{\Gamma \vdash_{\STLC} M:A}^!, \model{\Gamma \vdash_{\STLC_\oplus} M:A}^!:\Lawv^{\model\Gamma} \to \Lawv^{\model A}$ are \emph{locally} Lipschitz maps.
 \item $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!$ of \emph{tropical polynomials}, thus (as $\model A$ is finite), \emph{Lipschitz} functions.
 \end{enumerate}
 \end{corollary} 
@@ -213,17 +217,10 @@ Now we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and b
 
 Remark that the restriction $\model A$ finite is without loss of generality, since by Currying all programs can be seen having type $*$, which is natural to interpret as a singleton.
 
+Remark that, if $Y$ is finite and $f:\Lawv^{\mathlarger{+}_{i=1}^n X_i}\to\Lawv^Y$ is $K$-Lipschitz, then $f:\prod_{i=1}^n \Lawv^{X_i}\to \Lawv^Y$ is $K$-Lipschitz on each of the $n$ variable separately.
+
 A consequence of (3) is that the pointwise distance between two interpretations of programs can always be bounded via Lipschitz tropical polynomial approximants of the initial two programs.
 \begin{corollary}
  Let $\Gamma \vdash_{\STLC} M:A$ and $\Delta\vdash_{\STLC} N:B$.
  For all $\epsilon>0$, $x\in\Lawv^{\model \Gamma}$, $b\in\model A$, there exist $t\in\Te{M}$, $u\in\Te{N}$ s.t.\ $\big| \model{\Gamma \vdash_{\STLC} M:A}^!(x)_b - \model{\Delta \vdash_{\STLC} N:B}^!(x)_b \big| \leq 2\epsilon + \big| \model{\Gamma \vdash_{\STDLC} t:A}^!(x)_b - \model{\Delta \vdash_{\STDLC} u:B}^!(x)_b \big|$.
 \end{corollary}
-
-\begin{remark}
- Let $X$, $Y$ be sets and let $\langle \_,\_\rangle:X\times Y \to \mathbb{R}$.
- For $f:X\to \mathbb R$, define $f^*:Y\to \mathbb R$ by $f^*(y):= \sup_{x\in X}\{\langle x,y\rangle - f(x)\}$.
- Then for $X=!A$, $Y=\Lawv^A$, where $A$ is a set, and $\langle \mu, y \rangle:= \mu y$, we have that $f^!=(-f)^*$ for all $f\in\Lawv^{!A}$.
- This is precisely the same formal construction yielding the well-known convex conjugate $f^*$ of a function $f$, by taking $X$ any vector space, $Y$ its dual space, and $\langle \_,\_\rangle$ the application bilinear form (acting as the scalar product on coordinates).
- This construction is in turn a generalisation of the Legendre transformation.
- Despite the formal constructions being the same, we ignore for the moment if these could be connected to the study of high-order programs in our setting.
-\end{remark}

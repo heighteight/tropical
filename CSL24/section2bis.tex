@@ -141,9 +141,19 @@ $f:\Lawv^X\to\Lawv^Y$
  There is a clear and well-known relation between tropical polynomial/power series and usual polynomials/power series:
 fix a (formal) power series $f=\sum_{i\in I\subseteq\N} a_i x^i$ (polynomials being the case for $I$ finite) with coefficitents $a_i$ in a semiring $Q$;
 fix a \emph{valuation} $\mathrm{val}:Q\to \Lawv$.
+Remember that a valuation by definition always sends $1\in Q$ to $0$.
 Then one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
-The trivial valutation is the constantly equal to $0$ one, called the \emph{null valuation}.
-A common one, for $Q=[0,1]$, is $\mathrm{val}(a)=-\log a$.
+The constantly equal to $0$ valuation is called the \emph{null valuation}.
+A common valuation on $Q=[0,1]$ is $\mathrm{val}(a)=-\log a$.
+\end{remark}
+
+\begin{remark}
+ Let $X$, $Y$ be sets and let $\langle \_,\_\rangle:X\times Y \to \mathbb{R}$.
+ For $f:X\to \mathbb R$, define $f^*:Y\to \mathbb R$ by $f^*(y):= \sup_{x\in X}\{\langle x,y\rangle - f(x)\}$.
+ Then for $X=!A$, $Y=\Lawv^A$, where $A$ is a set, and $\langle \mu, y \rangle:= \mu y$, we have that $f^!(y)=(-f)^*(-y)$ for all $f\in\Lawv^{!A}$.
+ This is precisely the same formal construction yielding the well-known convex conjugate $f^*$ of a function $f$, by taking $X$ any vector space, $Y$ its dual space, and $\langle \_,\_\rangle$ the application bilinear form (acting as the scalar product on coordinates).
+ This construction is in turn a generalisation of the Legendre transformation.
+ Despite the formal constructions being the same, we ignore for the moment if these could be connected to the study of high-order programs in our setting.
 \end{remark}
 
 \subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
