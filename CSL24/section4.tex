@@ -192,8 +192,65 @@ where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
 %(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
 \end{proposition} 
 
+\subsection{The tropical interpretation of high-order programs}\label{subsec:tro_int}
 
-The results just presented translate into the following facts about the interpretation of higher-order programs.
+Rcall that the Taylor expansion $\Te{MN}$ of $MN$ is the set $\set{\Der^{n}[t,u_1,\dots,u_n]0 \mid n\in\N,t\in\Te{M},u_i\in\Te{N}}$.
+%One defines its interpretation as $\model{\Te{MN}}:=\inf_{n\in\N,t\in\Te{M},u_i\in\Te{N}} \model{\Der^{n}[t,u_1,\dots,u_n]0}$.
+$\LREL_!$ is also well-behaved w.r.t.\ the Taylor expansion, as expressed by the following two results.
+First, it can be patientely checked that in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
+
+\begin{theorem}\label{thm:modelsTaylor}
+ For all $t\in\HOM{\LREL_!}{Z}{X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$ we have:%, the evaluation of $t$ over $s$ yields 
+ \begin{align}\label{eq:taylorcat}
+  \RM{ev}\circ_!\langle t,s\rangle =
+  \inf\limits_{n\in\N}
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
+ \end{align} 
+\end{theorem}
+%It is worth discussing the formula above a bit more. 
+Here,
+%:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
+%$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
+$u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
+Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$,  i.e.~it coincides with the tropical %interpretation of the
+version of the usual Taylor expansion.
+%Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+Second, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
+
+\begin{corollary}\label{cor:T(M)=M}
+ For $\Gamma\vdash_{\STLC} M:A$, we have %$\model{\Gamma\vdash_{\STDLC} \Te M:A}:=
+$\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC} t:A}$. %the interpretation of the Taylor expansion of a $\STLC$-term $M$, given in \eqref{eq:taylor}, converges to the one of $M$.
+\end{corollary}
+
+%More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
+%Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
+%For example, if $M$ is the term $\lambda fx.f(fx)$ considered before, $\Der[M]$ takes a first input $N$ and passes it linearly to $M$. Notice that there are two ways of doing so, corresponding to the two bound occurrences of $f$ in $M$: either by applying $N$ to $fx$, or by 
+%applying $f$ linearly to $Nx$ (indeed, if $f$ were applied in an unrestricted way, it might duplicate $Nx$, so that $N$ would not be used linearly). This justifies the equation below, in which $\Der[M]$ is identified with the non-deterministic sum of the two possible linear choices:
+%\begin{align}
+%\Der\left[\lambda f x.f(fx)\right]\cdot N = 
+%\lambda fx. N(fx) + \left(\Der[f]\cdot (Nx)\right)(fx)
+%\end{align}
+%More generally, one can define a notion of $k$-bounded application $\Der^{(k)}[M]\cdot N^{k}$, where $\Der^{(0)}[M]\cdot N^{0}= M$ and $\Der^{(k+1)}[M]\cdot N^{k+1}= \Der[ \Der^{(k)}[M]\cdot N^{k}]\cdot N$, corresponding to passing $N$ to $M$ exactly $k$ times.
+%
+%
+%The name ``differential'' for the operator $\Der[-]$ is justified by the fact that it satisfies many properties of the usual differential operator of analysis $\Der[f]:= \lambda xy. \frac{\mathsf df(y)}{\mathsf dy}\cdot x$. Notably, it is additive in its first variable (i.e.~it commutes with the non-deterministic sum operator), and satisfies the chain rule.
+%Most famously, the differential operator can be used to define a Taylor formula for $\lambda$-terms, which decomposes an unrestricted application into a formal non-deterministic sum of bounded applications:
+
+%
+%More generally, the relational semantics interprets unbounded programs as \emph{analytic functions}, that is, as functions admitting a representation as power series. For instance, observing that an analytic map $f: \BB R\to \BB R$, where $f(x)=\sum_{n}\widehat f_{n}\cdot x^{n}$ is uniquely determined by the sequence $\widehat f_{n}$, the program $M_{\infty}:=\lambda fx.fx: (\BB R\To \BB R)\To (\BB R\To \BB R)$ is represented by the power series below:
+%\begin{align}
+%F_{\infty}(f,x)= \sum_{n=0}^{\infty} \widehat f_{n} x^{n}
+%\end{align}
+%By restricting ourselves to bounded applications, the terms in the power series become finite, that is, the interpretation becomes a \emph{polynomial}: for instance, the program $M_{2}:=\lambda fx. \sum_{i=0}^{2}\Der^{(i)}[f]\cdot x^{i}$, corresponding to passing $x$ \emph{at most twice} to $f$, is represented by the polynomial
+%\begin{align}
+%F_{\leq 2}(f,x)=\widehat f_{2} x^{2}  + \widehat f_{1}x +  \widehat f_{0} 
+%\end{align}
+% In this framework the differential operator is naturally represented by formal differentiation of polynomials, where, as one would expect, 
+% $\Der[\sum_{n}a_{n}x^{n}]=\sum_{n}\Der[a_{n}x^{n}]$ and $\Der[a_{0}x^{0}]=0$ and $\Der[a_{n+1}x^{n+1}]= (n+1)a_{n+1}x^{n}$, so that power series can be Taylor expanded. 
+
+
+
+The results presented in all this paper translate now into the following facts about the interpretation of higher-order programs.
 Remark that the metric spaces $(\Lawv^{\mathlarger{+}_{i=1}^n X_i},d_{\infty})$ and $(\prod_{i=1}^n \Lawv^{X_i},\max_{i=1}^n d^{X_i}_\infty)$ are trivially isometric, so we identify them.
 
 % Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.

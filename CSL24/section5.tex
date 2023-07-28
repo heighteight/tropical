@@ -91,7 +91,7 @@ I.e., which is the choice of $p,q$ that makes $\omega_0$ the most likely path am
 %A similar argument could be done by replacing $\false$ and $\true$ by, respectively, a converging and a diverging term (e.g.~in a $\B{PCF}$-style language), so r) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
 
 Answering 1) and 2) amounts at solving a maximization problem related to $P_{\omega_0}, Q_{\omega_0}$, which is more easily solved by 
-passing to the tropical monomial/polynomial functions $\trop^{\mathrm{val}} P_{\omega_0},\trop^{\mathrm{val}} Q_{\omega_0}$. 
+passing to the tropical monomial/polynomial functions $\trop P_{\omega_0},\trop^{\mathrm{val}} Q_{\omega_0}$, for any fixed valuation.
 For 1), by definition of $\RM{arg max}$ and because $-\log$ is stricly decreasing, we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and $(p,q)\in
 %\begin{equation}
 %  \begin{array}{ccccc}
@@ -102,32 +102,32 @@ For 1), by definition of $\RM{arg max}$ and because $-\log$ is stricly decreasin
    %&
    =%&
    \RM{arg min}_{(x,y)}\set{(\trop P_{\omega_0}) (-\log x,-\log y)} \label{eq:argmax}$
-where this holds for any valuation.
-Remark that $(\trop P_{\omega})( -\log x, -\log y)$ is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow \false_{\omega}$'', se we see that the tropicalisation allows to compute such quantities.
+where this holds for any valuation (because monomials do not carry any coefficient).
+Remark that $(\trop P_{\omega})( -\log x, -\log y)$ is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow \false_{\omega}$'', so we see that the tropicalisation allows to compute such quantities.
 %  \end{array}
 %\end{equation}
 For 2), %the $\omega_l$ is s.t.\ $\max\limits_{\omega\in\set{ll,rll,rrr}} \, P_\omega(x,y) = P_{\omega_l}(x,y)$. So
 we are looking for $p,q\in[0,1]$ s.t.\ $q=1-p$ and
 $\max_{\omega\in\set{lr,rrl,rlr}} \, P_\omega(p,q) = P_{\omega_0}(p,q)$, i.e.\ $\min_{\omega\in\set{lr,rrl,rlr}} \, -\log P_\omega(p,q) = -\log P_{\omega_0}(p,q)$.
-Remembering that $\trop^{\mathrm{val}} Q_{\false}(p,q)=\min\set{p+q, \mathrm{val}(2)+p+2q}$, we see that our minimization problem is equivalent to the equality $(\trop^0 Q_{\false})( -\log p, -\log q) = (\trop^0 P_{\omega_0})( -\log x, -\log y)\label{eq:max}$
-and this holds only for the null valuation.
+Remembering that $\trop^{\mathrm{val}} Q_{\false}(p,q)=\min\set{p+q, \mathrm{val}(2)+p+2q}$, we see that our minimization problem is equivalent to asking $(\trop^{\mathrm{val}_1} Q_{\false})( -\log p, -\log q) = (\trop^{\mathrm{val}_1} P_{\omega_0})( -\log x, -\log y)\label{eq:max}$,
+and this time this holds, in general, only for the trivial valuation.
 Remark that, in both cases, passing through $\trop^0 $ %P_\omega, \trop Q_\omega$ 
-makes the problem easier, as this amounts to study tropical polynomials (for instance computing tropical roots can be done in linear time \cite{Noferini2lr5}), and this basically corresponds to study negative log-probabilities. %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
+makes the problem easier, as this amounts to study tropical polynomials (for instance computing tropical roots can be done in linear time \cite{Noferini2lr5}), and this essentially corresponds to study negative log-probabilities. %the tropicalisation operator $\trop{}$ as well as the \emph{negative $\log$-probabilities} appear.
 
 %For our running example $M$, we have $\trop Q_{\true}(x,y)=\min\set{2x,y+2x,3y}$ and $\trop Q_{\false}(x,y)=\min\set{x+y,2y+x}$. Studying $\trop Q_{\true}$ %, whose plot is in Fig.~\ref{fig:plot2}, we see that $\trop Q_{\true}(x,y)=3y$ iff $y\leq \frac{2}{3}x$, and it coincides with $2x$ otherwise. Remembering that $3y=P_{rrr}(x,y)$, we can now solve the optimisation problem~\ref{eq:max} for $\omega_l=rrr$: via the substitution $x:=-\log p$, $y:=-\log (r-p)$, Equation~\ref{eq:max} is equivalent to $-\log (r-p)\leq -\frac{2}{3}\log_c p$, i.e.\ $r-p\geq p^{\frac{2}{3}}$. This means that, for $p\in[0,1]$ s.t.\ $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), the most likely occurrence of $\true$ to obtain, knowing that $M$ sampled $\true$ in its normal form, is $\true_{rrr}$. Remembering that $2x=P_{ll}(x,y)$, for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled is the occurrence $\true_{ll}$. We have thus answered question 2) above for $\true$.
 
 From this situation we notice the following important:
 
 \begin{remark}\label{rmk:tropof01Rel}
-This toy first-order language can be interpreted in the already mentioned $\overline{R_{\geq 0}}\mathrm{Rel}$ and in $\LREL$.
-We do not give details now since, from the following section, we will introduce the interpretation of interesting high-order calculi, including a probabilistic one containing the one of this section.
-But it is important to mention already at this point that the probabilities are already captured by the $[0,\infty]\mathrm{Rel}$ model: the $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}\in[0,\infty]^{\set{0,1}}$ of our running example $M$ is $\model M_0=Q_{\false}(p,1-p)$, $\model M_1=Q_{\true}(p,1-p)$.
-Therefore, this optimisation problems are already expressible by taking $\trop^0\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$. 
-Now, the model $\LREL$ is precisely null-valuation tropicalisation of $\overline{R_{\geq 0}}\mathrm{Rel}$, i.e.\ $\model{M}^{\LREL}=\trop^0\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$.
-This corresponds to quotienting the polynomial interpreting $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$ w.r.t.\ idempotent sum, as the null valuation eliminates all the coefficients (different from $1$).
+Our toy first-order language can be interpreted both in the already mentioned $\overline{R_{\geq 0}}\mathrm{Rel}$ and in $\LREL$.
+We do not give details now since in the rest of the paper we will interpret interesting \emph{high-order} calculi, including a probabilistic one containing our toy language.
+But it is important to mention already at this point that the probabilities we just discussed above, are already captured by the $[0,\infty]\mathrm{Rel}$ model: the $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}\in[0,\infty]^{\set{0,1}}$ of our running example $M$ is $\model M_0=Q_{\false}(p,1-p)$, $\model M_1=Q_{\true}(p,1-p)$.
+Therefore, the optimisation problems concerning the negative log-probabilities and likelihoods are already expressible by taking $\trop^{\mathrm{val}_1}\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$. 
+Now, the model $\LREL$ is precisely trivial-valuation tropicalisation of $\overline{R_{\geq 0}}\mathrm{Rel}$, i.e.\ $\model{M}^{\LREL}=\trop^{\mathrm{val}_1}\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$.
+As we remarked in \autoref{rmk:val_trop}, this corresponds to quotienting the polynomial interpreting $\model{M}^{\overline{R_{\geq 0}}\mathrm{Rel}}$ w.r.t.\ idempotent sum.
 A precise study of the ``tropicalisation of $\overline{R_{\geq 0}}\mathrm{Rel}$'' is left for future investigations, as it is related with power series arising from more sophisticated calculi with paramethers (in the style of \cite{} {\color{red}Ehrhard!}).
-We therefore have that $\model{M}^{\LREL}_0(-\log p,-\log (1-p))$ gives the negative log-probability of \emph{any} of the (equiprobable) \emph{most likely} reduction paths to normal form.
-We take these observations as a motivation for considering such model, and the point of this work is to dig into such model, concentrating for this first paper on the relations between the metric and differential tools that we will consider.
+For now, just have in mind that $\model{M}^{\LREL}_0(-\log p,-\log (1-p))$ gives the negative log-probability of \emph{any} of the (equiprobable) \emph{most likely} reduction paths to normal form, so $\LREL$ directly expresses such optimisations problems (no need to pass through a tropicalisation).
+We take these observations as incouraging, and the point of this work is to dig into such model, concentrating for this first paper on the relations between the metric and differential properties that coexist in it.
 % (in $p$ and $q$, not after the substitution $q:=r-p$) 
 % are extracted from it, \ref{eq:argmax}, \ref{eq:max} of $\STLC_\oplus$-programs. 
 \end{remark}
