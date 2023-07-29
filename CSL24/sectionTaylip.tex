@@ -92,7 +92,7 @@ We conclude our discussion by presenting an interesting application of the Taylo
 
 \begin{corollary}
 Suppose $x: A \vdash_{\STLC}M:B$ and $\vdash_{\STLC} N:A$. 
-Then for all $t\in \Te{M}$, with $t\neq \infty$, and $\delta>0$, the tLs $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
+Then for all $t\in \Te{M}$ such that $\model{t}^{!}(\model{N})\neq \infty$, and $\delta>0$, the tLs $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}^{!}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
  $B_{\delta}(\model{N})$.
 \end{corollary}
 {\color{red}ADD PROOF SKETCH}
