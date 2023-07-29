@@ -1,5 +1,5 @@
 
-\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
+\documentclass[a4paper,english, UKenglish,cleveref, autoref, thm-restate]{lipics-v2021}
 %This is a template for producing LIPIcs articles. 
 %See lipics-v2021-authors-guidelines.pdf for further information.
 %for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
@@ -47,8 +47,8 @@
 
 \input{macros}
 
-\title{Tropical mathematics for the Lambda-calculus 1}
-\subtitle{The potential of tropical wheighted relational semantics%for probabilities and Taylor expansion
+\title{Tropical mathematics and the Lambda-calculus I}
+\subtitle{Metric and Differential Analysis of Effectful Programs
 } %TODO Please add
 
 \titlerunning{Tropical mathematics for the Lambda-calculus 1} %TODO optional, please use if title is longer than one line
@@ -122,29 +122,39 @@ We finally describe some promising lines of research, showing in particular how 
 \input{section1}
 
 
-\section{Preliminaries and motivation}
+\section{A Bridge between Metric and Differential Aspects}\label{section5bis}
+\input{section5bis}
+
+
+\section{Tropical Power Series and Effectful Programs}\label{section2}
 \input{section2bis}
+\input{section2bisbis}
 
-\section{Topical linear/non-linear algebra}\label{section3}
-\input{section3C}
+\section{The Tropical Relational Model}\label{section3}
+\input{section3fancy}
 
-\section{Tropical weighted relational semantics for high-order languages}
-
-The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here. Although the majority of such properties are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting, but also to make the non-expert in such topics reader able to follow.
-The real interest in our particular model will come in the next \autoref{sec:tls}.
-
-
-\input{section3A}
-
-\input{section2}
-
-\paragraph*{Allowed duplication/erasure: the probabilistic $\lambda$-calculus $\STLC_\oplus$}\label{sec:STLCO}
-
-\input{section3B}
+%%
+%%\section{Topical linear/non-linear algebra}\label{section3}
+%%\input{section3C}
+%%
+%%\section{Tropical weighted relational semantics for high-order languages}
+%%
+%%The category $\LREL$ satisfies many nice properties which make it able to model all the variants of the $\lambda$-calculi to which we are interested in here. Although the majority of such properties are shared with the general class of models of $\lambda$-calculi called \emph{weighted relational models}, thoroughly studied in \cite{Manzo2013}, we mention them for our particular case in order to highlight how these look like in the tropical setting, but also to make the non-expert in such topics reader able to follow.
+%%The real interest in our particular model will come in the next \autoref{sec:tls}.
+%%
+%%
+%%\input{section3A}
+%%
+%%\input{section2}
+%
+%\paragraph*{Allowed duplication/erasure: the probabilistic $\lambda$-calculus $\STLC_\oplus$}\label{sec:STLCO}
+%
+%\input{section3B}
 
 
 \section{Tropical Laurent Series}\label{sec:tls}
 \input{section4}
+
 
 
 %\section{Future lines of research}\label{sec:future}
@@ -171,7 +181,7 @@ The real interest in our particular model will come in the next \autoref{sec:tls
 
 %% Please use bibtex, 
 
-%\bibliography{tropical}
+\bibliography{tropical}
 
 %\appendix
 

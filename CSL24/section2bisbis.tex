@@ -1,0 +1,97 @@
+% !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
+
+Before discussing how full-scale higher-order programming languages can be interpreted in terms of tropical power series, we highlight how such functions may naturally arise in the study of effectful programming languages.
+We will see that, when considering probabilistic and non-deterministic programs, tropical tools can be used to describe \emph{optimal} properties of programs, that is, the behavior of programs in \emph{the best case}. 
+%Moreover, since, as we'll see, tropical semantics is also a \emph{metric} semantics, it can be used to study how much program behavior is \emph{sensitive} to errors, that is, how a small error in input may be increased in output. 
+
+
+
+
+\subparagraph*{Maximum Likelihood Estimators for Probabilistic Languages}
+
+%
+%Tropical methods have been largely applied as a means to solve optimization problems. Typically, to solve a problem of the form 
+%$$
+%\mathrm{maximize} \ \ p(x_{1},\dots, x_{n})
+%$$
+%where $p(x_{1},\dots, x_{n})$ is some polynomial function, one can instead try to solve the (generally much simpler) problem of maximizing the associated tropical polynomial $\mathsf tp$ instead.
+
+
+
+Let us start with a very basic probabilistic language:
+the terms are $M::= \true \mid \false \mid M\oplus_p M$, for $p\in[0,1]$, and the operational semantics is $M\oplus_p N\to pM$ and $M\oplus_p N \to (1-p)N$, so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
+Consider the program
+$$
+ M:=(\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true)).
+ $$
+ Calling $q=1-p$, to each occurrence of $\true$ or $\false$ in $M$, univocally determined by an address
+$\omega\in \{l,r\}^{*}$, is associated a monomial $P_{\omega}(p,q)$ which determines the probability of the event ``$M\twoheadrightarrow_{\omega} \true/\false$'', that is, that $M$ reduces to $\true/\false$ according to the choices in $\omega$.
+ For instance, we have
+$P_{rll}(p,q):=qp^2$,
+$P_{rrr}(p,q):=q^3$, and 
+$P_{rrl}(p,q)=P_{rlr}(p,q):=q^2p$.
+The polynomial function $Q_{\true}(p,q):=P_{ll}(p,q)+P_{rll}(p,q)+P_{rrr}(p,q)=p^2+p^2q+q^3$ gives instead the probability of the event ``$M\twoheadrightarrow \true$'', and analogously for $Q_{\false}(p,q):=P_{lr}(p,q)+P_{rrl}(p,q)+P_{rlr}(p,q)=pq+2pq^2$.
+
+
+Two natural questions at this point concern the \emph{likelihood} of a given reduction address $\omega_{0}$:
+%
+%The tropical point of view allows now to express two natural questions about this situation:
+\begin{enumerate}
+ \item Which is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow \false_{\omega_0}$''?
+ I.e., which is the choice of $p,q$ that maximizes the probability $P_{\omega_0}$?
+ \item 
+Knowing that $M$ produced $\true$ (similarly for $\false$) , which is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow \false_{\omega_0}$'', knowing that ``$M\twoheadrightarrow \false$''?
+I.e., which is the choice of $p,q$ that makes $\omega_0$ the most likely path among those leading to $\false$ (i.e.\ that maximizes the conditional probability $\BB P(``M\twoheadrightarrow \false_{\omega_0}'' \mid ``M\twoheadrightarrow \false'')$)?
+\end{enumerate}
+
+
+Answering 1) and 2) amounts then at solving a maximization problem related to $P_{\omega_{0}}(p,q)$ or $Q_{\true}(p,q)$. These are more easily solved by passing to the associated tropical polynomials.
+For 1), the maximum values $x,y$ of $P_{rll}(p,q)$ can be computed by finding the \emph{minimum} values of $\mathsf tP_{rll}(-\log p, -\log q)= -2\log p- \log q$. Notice that $\mathsf tP_{rll}$ is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow_{rll} \false$''. For 2), the maximum values of $Q_{\true}(p,q): [0,1]^{2}\to [0,1]$ can be computed as $e^{-\alpha},e^{-\beta}$, where $\alpha,\beta\in[0,\infty]$ are the \emph{minimum} values of the tropical polynomial 
+$\mathsf t Q_{\true}(\alpha,\beta) = \min \{ 2\alpha, 2\alpha+\beta, 3\beta\}$.
+
+
+
+
+While we here consider a very basic language, similar arguments could be done by replacing $\true$ and $\false$ by, respectively, a converging and diverging term (e.g.~in a $\B{PCF}$-style language), so 1) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
+
+
+\subparagraph*{Best Case Analysis for Non-Deterministic Languages}
+
+This example is inspired from \cite{Manzo2013}. Again, we start from a very basic non-deterministic language with terms $M::= \true \mid  \mathsf{gen} \mid  M + M$, with an operation semantics comprising a non-deterministic reduction rule 
+$M_{1}+M_{2} \stackrel{\alpha}{\to} M_{i}$ and a generation rule
+$\mathsf{gen}\stackrel{\beta}{\to} \true +\mathsf{gen}$, 
+where in each case the value $\alpha,\beta\in \Lawv$ indicates a \emph{cost} associated with the reduction (e.g.~the estimated clock value for the simulation of each reduction on a given machine model). 
+Then, any reduction $\omega: M \to^{*} N$ of a term to (one of its) normal form is  associated with a tropical monomial $P_{\omega}( \alpha,\beta)$ consisting of the sum of the costs of all reductions in $\omega$. For a given normal form $N$, the reductions $\omega_{i}: M \to^{*}N$ give rise to a tLs $\inf_{i\in I}P_{\omega_{i}}(\vec \alpha,\beta)$. 
+For example, consider the non-deterministic term below
+$$
+M :=\mathsf{gen}+  ((\true + \true) + \mathsf{gen})
+$$
+The (infinitely many) reduction paths leading to $\true$ can be grouped as follows:
+\begin{itemize}
+\item left, then reduce gen $n+1$-times, then left;
+\item right, then left and then either left or right;
+\item right twice, then reduce gen $n+1$-times and then left.
+\end{itemize}
+This leads to the tLs 
+$$\varphi_{M\to^{*}\true}(\alpha)=\inf_{n\in \mathbb N}\big\{2\alpha+(n+1)\beta, 3\alpha, 3\alpha+(n+1)\beta\big \}= \min\{ 2\alpha+\beta, 3\alpha\}$$which describes all possible behaviors of $M$. Notice that, since $\alpha$ and $\beta$ are always positive, the power series $\varphi_{M\to^{*}\true}(\alpha)$ is indeed equivalent to the tropical polynomial $\min\{ 2\alpha+\beta, 3\alpha\}$. In other words, of the infinitely many behaviors of $M$, only finitely many have chances to be \emph{optimal}: either left + gen + left, or right + left + (left,right). This seems to be a very interesting feature of tropical semantics: reducing to best-case analysis leads, in many cases, to collapse the infinitary description of \emph{all} behaviors to a purely combinatorial description of the finitely many optimal ones. 
+
+Once reduced $\varphi_{M\to^{*}\true}$ to a polynomial, the best behavior among these will depend on the values of $\alpha$ and $\beta$, and by studying the tropical polynomial $\varphi_{M\to^{*}\true}$ one can thus answer questions analogous to 2) above, that is, what are the best choices of costs $\alpha,\beta$ making a \emph{chosen} reduction of $M$ to $\true$ the cheapest one?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

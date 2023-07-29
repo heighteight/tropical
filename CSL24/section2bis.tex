@@ -1,10 +1,26 @@
-\subsection{Elements of tropical mathematics}
-\input{section3new}
+%\subsection{Elements of tropical mathematics}
+%\input{section3new}
+
+In this section we recall tropical polynomials and power series and we discuss how these naturally arise in the study of \emph{optimal} behavior of probabilistic and non-deterministic programs. 
+
+
+At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
+Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
+
+%%A consequence of these observations is that, as we discussed below, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
+%%In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
+%%
 
 %\subsection{Tropical non-linear algebra}\label{sec:4A}
 
+
+Power series and polynomials over the tropical semiring are defined as follows:
+
+
 \begin{definition}
-A \emph{tropical power series}\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} (tPs) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
+A \emph{tropical power series}
+%\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
+(tPs) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
 If $I$ is finite, $f$ is said to be a \emph{tropical polynomial}. 
 \end{definition}
 
@@ -89,16 +105,16 @@ are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 \label{fig:plot1}%\end{figure}%
 \end{wrapfigure} %%
 
-A \emph{tropical root} of a tropical power series $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes), or equivalently, where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
+A \emph{tropical root} of a tropical power series $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes). When $\varphi$ is a polynomial, the roots of $\varphi$ coincide with the points where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
 %For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
 %Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=k\min\{x,x_{0}\}+ g(x)$.
-Unlike in standard algebra, tropical roots can be computed in linear time \cite{Noferini2015}.
+Unlike in standard algebra, tropical roots of tropical polynomials can be computed in linear time \cite{Noferini2015}. 
 %Tropical polynomials and their roots are the main object of study of tropical geometry.
 %
 %A
 % simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
 
-Since $\inf$s are not in general $\min$s, a tPs is a ``limit'' of tropical polynomials of higher and higher degree, and its behaviour may be less predictable than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
+While tropical polynomials are essentially combinatorial objects, this cannot be said for tPs: since $\inf$s are not in general $\min$s, a tPs is a ``limit'' of tropical polynomials of higher and higher degree, and its behavior is in general way more difficult to study than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
 E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}) %that we will take as our running example, 
 is the ``limit'' of the polynomials $\varphi_{n}$.
 
@@ -118,14 +134,15 @@ is the ``limit'' of the polynomials $\varphi_{n}$.
  There is a clear and well-known relation between tropical polynomial/power series and usual polynomials/power series. 
 Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ is totally ordered by the partial order: $\alpha \preceq \beta$ iff $\alpha +  \beta = \beta$, then one defines a \emph{valuation} \cite{Izhakian2015} to be a map $\mathrm{val}:Q\to L$ s.t.\ $\mathrm{val}(0)=0$, $\mathrm{val}(1)=1$, $\mathrm{val}(ab)=\mathrm{val}(a)\mathrm{val}(b)$, $\mathrm{val}(a+b)\preceq \max\set{\mathrm{val}(a),\mathrm{val}(b)}$.
 The valuation which is constantly equal to $1\in L$ on all the invertibles of $Q$ is called the \emph{trivial valuation} $\mathrm{val}_1$.
+Another common valuation is $\mathrm{logval}: \overline{\mathbb R}_{\geq 0} \to [-\infty, \infty]$ given by $\mathrm{logval}(x)=-\log x$. Notice that $\mathrm{logval}$ restricts to a bijection between $[0,1]$ and $\Lawv$.
 
-Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficitents $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
 
 Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series
 That is, it coincides to consider the same power series but with coefficients in $Q$ quotiented for the idempotency of $+$.
 \end{remark}
 
-\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
-\input{section5}
+%\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
+%\input{section5}
 
