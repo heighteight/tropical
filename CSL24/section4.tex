@@ -1,36 +1,31 @@
 
 In this section we establish some topological and metric properties of such functions, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
-In analogy with \cite{DanEhrh2011}, we could call them \emph{tropical entire functions}, but since, as we explain in a moment, those are generalised \emph{tropical Laurent series}, we will use the latter terminology, or \emph{tLs} for short.
 The literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
 
 Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
+Remark that, since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is $t^!(x^1,\dots,x^n)_b=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+Same for $\STDLC$.
 
 \begin{remark}
- Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
-Same for $\STDLC$.
-Finally, the interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.
+The interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.
 In such situation, we define $t^!:\Lawv^{\mathlarger{+}_{i=1}^n X_{i}}\to\Lawv^Y \simeq \prod_{i=1}^n\Lawv^{X_{i}}\to\Lawv^Y$ as $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in !_{n_i} X_i}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
 Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_i}\times Y}$ is the matrix $\widetilde t_{(\mu_1,\dots,\mu_n),b}:=t_{(\mu_1,\dots,\mu_n),b}$ if $\mu_i\in !_{n_i} X_i$ for all $i$, and $:=\infty$ otherwise, which has the same support as $t$.
-So, such $t^!$'s are special cases of tLs and thus, \emph{Wlog}, in the following we only consider tLs.
+So, such $t^!$'s are special cases of tLs and thus we can \emph{Wlog} only consider tPs's.
 \end{remark}
 
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
 
- \begin{remark}
- Our running example is indeed of shape $\varphi=t^!$, for $t\in\Lawv^{!\set{*}\times\set{*}}$, $t_{\mu,*}:=2^{-\# \mu}$.
- However, it is not the interpretation of a $\lam$-term, because its matrix $t$ is not discrete.
-% Therefore $\LREL_!$ is not a full-complete model of $\STLC$.
-\end{remark}
-
-If $\model *$ is finite, then the interpretations of $\BSTLC$-terms is a (generalised) tropical polynomial, since then the interpretation of any $\BSTLC$-type $B$ is a finite set, and thus also $!_n \model B$ is.
 % 
 % , i.e.~for a \emph{finite} set $\C F\subseteq \, !X$.
 %%Remark that we also find usual \emph{tropical polynomials} of tropical geometry as a particular case: they 
 %correspond to the tLs for which the support $\set{n\in\N\mid\widehat f(n)\neq\infty}$ of $\widehat f$ is \emph{finite}. 
 %Actually, for us \emph{tropical polynomial} will mean a function 
 %\end{remark}
+
+
+\subsection{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
 Looking at Fig~\ref{fig:plot1}, we see that $\varphi$, just like the polynomials $\varphi_{n}$, is non-decreasing and concave.
 This is indeed always the case:
@@ -72,11 +67,6 @@ $\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all
 The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 \end{proof}
 
-
-
-
-\subsection{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
-
 The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of real numbers).
 By considering the usual norm $\norm{x}_\infty:=\sup_{a\in X} x_a$ on $\Lawv^X$, we can generalise this property, dropping the case of $x$ having some $0$ coordinate:
 
@@ -106,7 +96,7 @@ In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
  In particular, all tLs $f:\Lawv^X\to\Lawv$ are Scott-continuous on $(0,\infty)^X$ w.r.t.\ the pointwise orders.
 \end{theorem}
 \begin{proof}
- Use the fact, taken from \cite{Selinger2004}, that in a normed $\R_{\geq 0}$-cone $P$, considered with its cone-order, if every bounded directed net in $P$ admits a sup, and if $(v_i)_{i\in I}$ is a directed net in $P$ with an upper bound $v\in P$, then $\exists\bigvee_{i\in I} v_i \in P$ and, if $\inf_{i\in I} \norm{v-v_i} =0$, one has $\bigvee_{i\in I} v_i = v$.
+ Uses \autoref{thm:cont} plus the fact, taken from \cite{Selinger2004}, that in a normed $\R_{\geq 0}$-cone $P$, considered with its cone-order, if every bounded directed net in $P$ admits a sup, and if $(v_i)_{i\in I}$ is a directed net in $P$ with an upper bound $v\in P$, then $\exists\bigvee_{i\in I} v_i \in P$ and, if $\inf_{i\in I} \norm{v-v_i} =0$, one has $\bigvee_{i\in I} v_i = v$.
 \end{proof}
 
 
@@ -248,9 +238,7 @@ $\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC}
 % In this framework the differential operator is naturally represented by formal differentiation of polynomials, where, as one would expect, 
 % $\Der[\sum_{n}a_{n}x^{n}]=\sum_{n}\Der[a_{n}x^{n}]$ and $\Der[a_{0}x^{0}]=0$ and $\Der[a_{n+1}x^{n+1}]= (n+1)a_{n+1}x^{n}$, so that power series can be Taylor expanded. 
 
-
-
-The results presented in all this paper translate now into the following facts about the interpretation of higher-order programs.
+Let us now see what the results proved in the previous section translate into, when referred to the interpretation of higher-order programs.
 Remark that the metric spaces $(\Lawv^{\mathlarger{+}_{i=1}^n X_i},d_{\infty})$ and $(\prod_{i=1}^n \Lawv^{X_i},\max_{i=1}^n d^{X_i}_\infty)$ are trivially isometric, so we identify them.
 
 % Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.

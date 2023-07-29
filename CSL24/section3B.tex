@@ -1,46 +1,3 @@
-%\subsubsection{Unbounded duplications}
-
-\begin{comment}
-
-In order to interpret the full $\STLC$, we need a Cartesian closed category (CCC).
-It is well-known \cite{Mellies2009} that it is always possible to construct a CCC by taking the \emph{co-Kleisli} $\C C_!$ of a so-called \emph{Lafont category} $\C C$.
-%, a construction we now quickly recall.
-%defined via a \emph{Lafont exponential} comonad $!$.
-%Let us quickly recall the ideas behind these notions.
-A SMCC is Lafont when it has finite products and it is equipped with a comonad $!$ (its \emph{Lafont exponential}) which, at level of objects, sends $X$ to an object $!X$ being the free commutative comonoid on $X$.
-Such objects $!X$ represent the \emph{bang} connective of linear logic, granting infinite duplications via the infinite product $X^0\otimes X\otimes X^2\otimes X^3\otimes\cdots$, each factor representing a possible number of duplications.
-It is well-known that, under mild conditions satisfied by $\QREL$, one can explicit this idea via the fact that the map $X\mapsto \finMS{X}$ (where $\finMS{X}$ is the set of finite multi-sets on $X$) lifts to a functor $!:\QREL\to\QREL$ which is a Lafont-exponential comonad.
-Specializing [Corollary III.6, \cite{Manzo2013}] to our case, we have:
-
-\begin{proposition}
- $\LREL$ is Lafont.
-\end{proposition}
-
-\end{comment}
-
-As well-known, if a SMCC is \emph{Lafont}, then one obtains a CCC from it by defining the exponential objects as $X\to Y:=!X \multimap Y$.
-With no surprise $\LREL$ is Lafont (~\cite[Corollary III.6]{Manzo2013}) %and specialising \cite[Theorem III.7]{Manzo2013} 
-w.r.t.\ the usual $!$ acting on objects by taking the set of finite multisets.
-So the coKleisli $\LREL_!$ is CCC, i.e.\ a model of $\STLC$.
-The cartesian product $\&$ of $\LREL_!$ (and of $\LREL$) is the disjoint union $+$ of sets, the \emph{evaluation} morphisms $\RM{ev}$ are matrices in $\Lawv^{!(!X\times Y)+X)\times Y}$, and the coKleisli composition of $s\in\Lawv^{!Y\times Z}$ and $t\in\Lawv^{!X\times Y}$ is the matrix $s\circ_! t\in\Lawv^{!X\times Z}$, $(s\circ_! t)_{\mu,c}:=
-%\begin{align}
-\inf_{n\in\N, b_1\dots,b_n\in Y, \mu = \mu_1+\cdots +\mu_n}
- \left\{s_{[b_1,\dots,b_n],c} + \sum_{i=1}^n t_{\mu_i,b_i}\right\}$.
-
-By induction on $M$ %(using that composition and $D$ easily preserve ``booleaness'' and projections and evaluation of  $\LREL$ are boolean)
-one can prove that:
-
-\begin{proposition}\label{prop:descrete}
- For $\BSTLC$ and $\STDLC$ (and thus also for its fragment $\STLC$), we have that $\model{\Gamma\vdash M:A}\in\Lawv^{!\model{\Gamma}\times\model{A}}$ is a \emph{boolean} matrix, i.e.\ actually $\model{\Gamma\vdash M:A}\in\{0,\infty\}^{!\model{\Gamma}\times\model{A}}$.
-\end{proposition}
-
-This can be seen as the fact that such calculi are relatively trivial, from this point of view.
-Even if the interpretation of those languages is trivia, we shall still focus on them in order to set the basis of the further studies and in order to see some already interesting properties of their interpretation.{\color{red}SPIEGARE MEGLIO}
-%It is instructive what its CCC-structure looks like in our tropical world.
-
-%As it is well-known, the Cartesian closed structure %of a category $\C C$  allows to define a sound interpretation $\model{\Gamma\vdash M:A}\in\HOM{\LREL_{!}}{\model \Gamma}{\model A}$ of terms as morphisms.
-%In our case, we have:
-
 For what concerns the probabilistic calculus, let us consider a probabilistic extension of $\STLC$, call it $\STLC_\oplus$, which also extends the first-order language we used in~\autoref{sec:proba}:
 we add a ground type $\bool$, terms $\true,\false$ of type $\bool$, terms of shape $M\oplus_p N$ and $pM$, for $p\in[0,1]$, typed via the usual rules and whose operational semantics adds the usual rules:
 {\small{\[\begin{array}{cccc}
@@ -67,4 +24,6 @@ Here we set $\model{\bool}:=\{0,1\}$ and $\model{\vdash_{\mathrm{PCF}^{\Lawv}} \
  For instance, $\model{\vdash_{\STLC_\oplus} \true\oplus_p\false :\bool}_i=p$ if $i=1$ and $=1-p$ if $i=0$.
  %In general, one can show that $\model{\Gamma \vdash_{\STLC_\oplus} M:A}\in[0,1]\cup\{\infty\}^{!\model \Gamma \times \model A}$. Coefficients $> 1$ may be considered when dealing with other kinds of effects.
 \end{remark}
+
+A precise investigation of the relation between probabilistic programs and their $\LREL_!$ interpretation is left for further studies.
 
