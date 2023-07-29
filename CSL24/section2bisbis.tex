@@ -26,14 +26,14 @@ $$
  $$
  Calling $q=1-p$, to each occurrence of $\true$ or $\false$ in $M$, univocally determined by an address
 $\omega\in \{l,r\}^{*}$, is associated a monomial $P_{\omega}(p,q)$ which determines the probability of the event ``$M\twoheadrightarrow_{\omega} \true/\false$'', that is, that $M$ reduces to $\true/\false$ according to the choices in $\omega$.
+Thinking of $p,q$ as parameters, $P_{\omega}(p,q)$ can thus be read as the \emph{likelihood function} of the event ``$M\twoheadrightarrow \true_\omega/\false_\omega$''.
  For instance, we have
 $P_{rll}(p,q):=qp^2$,
 $P_{rrr}(p,q):=q^3$, and 
 $P_{rrl}(p,q)=P_{rlr}(p,q):=q^2p$.
 The polynomial function $Q_{\true}(p,q):=P_{ll}(p,q)+P_{rll}(p,q)+P_{rrr}(p,q)=p^2+p^2q+q^3$ gives instead the probability of the event ``$M\twoheadrightarrow \true$'', and analogously for $Q_{\false}(p,q):=P_{lr}(p,q)+P_{rrl}(p,q)+P_{rlr}(p,q)=pq+2pq^2$.
-
-
-Two natural questions at this point concern the \emph{likelihood} of a given reduction address $\omega_{0}$:
+This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baumr966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2ll4}.
+Typical questions in this case would be, for a fixed $\omega_0$:
 %
 %The tropical point of view allows now to express two natural questions about this situation:
 \begin{enumerate}
