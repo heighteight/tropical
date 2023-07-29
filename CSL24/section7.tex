@@ -1,8 +1,11 @@
 
+
+The applications of tropical mathematics in computer science abound, e.g.~in automata theory \cite{Chua1992, Simon}, machine learning \cite{Maragos2021, Pachter2004, Zhang2018}, optimization \cite{Akian2011, Akian2012}, and convex analysis \cite{Lucet2009}. 
+
 The connections between differential $\lambda$-calculus (and differential linear logic), relational semantics, and non-idempotent intersection types are very well-studied (see \cite{decarvalho2018}, and more recently, \cite{Mazza2016} for a more abstract perspective, and \cite{Olimpieri2021, Galal2021} for a 2-categorical, or proof-relevant, extension).
-As we said, the relational semantics over the tropical semi-ring was quickly explored in \cite{Manzo2013}, to provide a ``best case'' resource analysis of a $\B{PCF}$-like language with non-deterministic choice. 
+As we said, the relational semantics over the tropical semiring was quickly explored in \cite{Manzo2013}, to provide a ``best case'' resource analysis of a $\mathrm{PCF}$-like language with non-deterministic choice. 
 \emph{Probabilistic coherent spaces} \cite{Ehrhard2011}, a variant of  the relational semantics, provide an interpretation of higher-order probabilistic programs
-as analytic functions. In \cite{Ehrhard2022} it was observed that such functions satisfy a local Lipschitz condition somehow reminiscent of our examples in Section \ref{section4}.
+as analytic functions. In \cite{Ehrhard2022} it was observed that such functions satisfy a local Lipschitz condition somehow reminiscent of our examples in Section \ref{section2}.
 
 
 The study of linear or bounded type systems for sensitivity analysis was initiated in \cite{Girard92tcs} and later developed \cite{Schopp, SchoppDalLago, Reed2010}.
@@ -10,13 +13,8 @@ The study of linear or bounded type systems for sensitivity analysis was initiat
 Related approaches, although not based on metrics, are provided by \emph{differential logical relations} \cite{dallago} and \emph{change action} models \cite{Picallo2019}.
 
 
-More generally, the literature on program metrics in denotational semantics is vast. Since at least \cite{VANBREUGEL20011} metric spaces, also in Lawvere's generalized sense \cite{Lawvere1973}, have been exploited as an alternative framework to standard, domain-theoretic, denotational semantics. 
-While standard categories of metric spaces are not models of the full simply typed $\lambda$-calculus, several constructions of cartesian closed categories of metric spaces can be found in the literature. For instance, 
-\emph{ultra}-metric spaces form a CCC, and have been shown to model $\B{PCF}$ \cite{Escardo1999}.
-Also \emph{partial} metrics, introduced in \cite{matthews}, have been shown to provide models of $\STLC$, under suitable generalizations \cite{Geoffroy2020}.
-More generally, \cite{Clementino2006} provides a general characterization of exponentiable objects in categories of (generalized) metric spaces, and \cite{PistoneLICS, PistoneFSCD2022} provide other ways to construct CCCs of
-(generalized) metrics, including one based on locally Lipschitz maps, 
-using ideas from {differential logical relations} and quantitative equational theories \cite{Plotk}.
+More generally, the literature on program metrics in denotational semantics is vast. Since at least \cite{VANBREUGEL20011} metric spaces, also in Lawvere's generalized sense \cite{Lawvere1973}, have been exploited as an alternative framework to standard, domain-theoretic, denotational semantics, notably
+\emph{ultra}-metrics and \emph{partial} metrics have been shown to form a CCC \cite{Escardo1999,PistoneLICS, PistoneFSCD2022}.
 
 Motivated by connections with computer science and fuzzy set-theory, 
 the abstract study of generalized metric spaces in the framework of \emph{quantale}- or even \emph{quantaloid}-enriched categories has led to a vast literature in recent years \cite{Hofmann2014, Stubbe2014}, 
@@ -25,12 +23,10 @@ and its connections with tropical mathematics have been explored e.g.~in \cite{F
 Connections between program metrics and the differential $\lambda$-calculus have been already suggested in \cite{PistoneLICS}; moreover, \emph{cartesian difference categories} \cite{Picallo2020} have been proposed as a way to relate derivatives in differential categories with those found in change action models.
 
 
-
-Finally, applications of tropical mathematics in computer science abound, originally for automata theory \cite{Chua1992, Simon}, and more recently
- in optimization methods for machine learning and other statistical models (see e.g.~\cite{Maragos2021, Pachter2004, Zhang2018}), optimization \cite{Akian2011, Akian2012}, and convex analysis \cite{Lucet2009}. While our discussion in Section \ref{section5} is inspired by a well-known application of tropical polynomials to Hidden Markov Models \cite{Pachter2004},  
-the vast literature in this domain lets us think that other ways to 
-apply tropical semantics to the analysis of higher-order programs might be studied.
-
+%While our discussion in Section \ref{section5} is inspired by a well-known application of tropical polynomials to Hidden Markov Models \cite{Pachter2004},  
+%the vast literature in this domain lets us think that other ways to 
+%apply tropical semantics to the analysis of higher-order programs might be studied.
+%
 %
 %Other connections tropical/metric -> Fuji, ??
 %Applications of tropical to computer science.

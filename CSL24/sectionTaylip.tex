@@ -1,0 +1,180 @@
+% !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
+
+
+We now have all elements necessary to relate the metric and differential analysis of higher-order programs in the tropical relational model. 
+
+The key ingredient is the notion of Taylor expansion of $\lambda$-terms, that we now quickly recall. 
+Let $M\cdot \langle N_{1},\dots, N_{k}\rangle$ be an abbreviation for
+$\mathsf D^{n}[M]\cdot \langle N_{1},\dots, N_{k}\rangle$. A \emph{resource $\lambda$-term} is any term belonging to the grammar $t::= x \mid \lambda x.t \mid t\cdot \langle t,\dots, t\rangle$.
+Observe that in a resource term applications are always \emph{bounded}: they may use an exact number of copies of their input. 
+
+
+The Taylor expansion of a $\lambda$-term is a set of resource terms $\Te{M}$ defined inductively as $\Te{x}=\{x\}$, $\Te{\lambda x.M}=\{\lambda x.t\mid t\in \Te{M}\}$ and 
+$\Te{MN}=\{ t\cdot \langle u_{1},\dots, u_{k}\rangle \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$. 
+Considering the term $M=zxx$ from Example \ref{ex:zxx}, all resource terms
+ $t_{n,m}=(z\cdot x^{n})\cdot x^{m}$, for $n,m\in \mathbb N$, are in $\Te{M}$. 
+Observe that the interpretation of $t_{n,m}$ yields a tropical polynomial
+$\model{t_{n,m}}^{!}(x)(z)= y_{[n,m]}+(n+m)x$, rather than a tLs. 
+However, resource term need not always yield a tropical polynomial. For instance, consider $y:(*\to*)\to (*\to*), x:(*\to *) \vdash t:  (*\to  *)$
+with $t=y\cdot (y\cdot x)$. Then 
+$\model{t}^{!}: \Lawv^{  \mathcal M_{\mathrm{fin}}(\mathbb N)\times \mathbb N}
+\times \Lawv^{\mathbb N} \to \Lawv^{\mathbb N}$ is given by
+$
+\model{t}^{!}(y,x)_{i}= \inf_{m,n\in \mathbb N}\big\{    y_{[m],i}  +  y_{[n],m}+  x_{n}\}
+$, 
+which is not a polynomial. Yet, $\model{t}^{!}$ is Lipschitz, more precisely, 1-Lipschitz in $x$ and 2-Lipschitz in $y$. This is a general fact, as shown below.
+
+%
+%$\Te{MN}$ of $MN$ is the set $\set{\Der^{n}[t,u_1,\dots,u_n]0 \mid n\in\N,t\in\Te{M},u_i\in\Te{N}}$.
+We have already shown that the tropical differential makes $\LREL_{!}$ a model of the differential $\lambda$-calculus. We now show that it also models the Taylor expansion (this needs not be true for \emph{any} CC$\partial$C).
+First, it can be patiently checked that in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
+
+\begin{theorem}\label{thm:modelsTaylor}
+ For all $t\in\HOM{\LREL_!}{Z}{!X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$ we have:%, the evaluation of $t$ over $s$ yields 
+ \begin{align}\label{eq:taylorcat}
+  \RM{ev}\circ_!\langle t,s\rangle =
+  \inf\limits_{n\in\N}
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
+ \end{align} 
+\end{theorem}
+%It is worth discussing the formula above a bit more. 
+The equation above is a nothing more than a tropical version of the Taylor formula \eqref{eq:taylor}:
+%:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
+%$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
+$u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
+Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$.
+%,  i.e.~it coincides with the tropical %interpretation of the
+%version of the usual Taylor expansion.
+%Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+Second, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
+
+\begin{corollary}\label{cor:T(M)=M}
+ %For $\Gamma\vdash_{\STLC} M:A$, we have %$\model{\Gamma\vdash_{\STDLC} \Te M:A}:=
+$\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC} t:A}$. %the interpretation of the Taylor expansion of a $\STLC$-term $M$, given in \eqref{eq:taylor}, converges to the one of $M$.
+\end{corollary}
+
+
+
+
+Using the results of the previous section, as well as the results above, we can deduce the following properties:
+
+\begin{theorem}
+Let $\mathcal S\in \{\RM{PCF}^{\Lawv}, \STLC,\BSTLC,\STDLC\}$, $\Gamma\vdash_{\mathcal S}M:A$; for all $a\in \model{A}$,
+\begin{enumerate}
+\item if $\mathcal S=\BSTLC$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is a tropical polynomial, and thus Lipschitz;
+
+\item if $\mathcal S=\STDLC$ and $M$ is a resource term, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is Lipschitz;
+
+\item if $\mathcal S=\STLC,\RM{PCF}^{\Lawv}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is locally Lipschitz;
+
+\item if $\mathcal S=\STLC$, then $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!_{a}$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!_{a}$ of {Lipschitz} functions.
+\end{enumerate}
+
+\end{theorem}
+
+
+
+
+%
+%From this we deduce, inductively, the following fact:
+%\begin{proposition}
+%For any resource $\lambda$-term $t$, if $\Gamma\vdash_{\STDLC}t:A$, then $\model{\Gamma\vdash_{\STDLC}t:A}^{!}$ is a Lipschitz function.
+%\end{proposition}
+%
+%
+%This result shows that the interpretation of a program can be approximated via a family of tropical polynomials, and leads to.
+% \begin{theorem}\label{thm:taylor}
+% $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!_{a}$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!_{a}$ of \emph{tropical polynomials}, that is,of \emph{Lipschitz} functions.
+%\end{theorem}
+
+
+We conclude our discussion by presenting an interesting application of the Taylor expansion in $\LREL_{!}$: as proved in the previous section, all tLs are locally Lipschitz; now, Theorem \ref{thm:taylor} can be used to compute approximations of the Lipschitz constants of an actual higher-order program.
+
+\begin{corollary}
+Suppose $x: A \vdash_{\STLC}M:B$ and $\vdash_{\STLC} N:A$. 
+Then for all $t\in \Te{M}$, with $t\neq \infty$, and $\delta>0$, the tLs $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
+ $B_{\delta}(\model{N})$.
+\end{corollary}
+{\color{red}ADD PROOF SKETCH}
+
+\begin{example}
+Consider again the term $M=zxx$ from Example \ref{ex:zxx}-
+%, satisfying $x:*, z:(*\to*\to*) \vdash M:  *$. Since $\mathcal M_{\mathrm{fin}}(\{*\})\simeq \mathbb N$, we have that 
+%
+% $\model{M}^{!}: \Lawv \times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ is given by
+ The (generalized) tLs $\model{M}^{!}(x)(y)= \inf_{n,n'\in \mathbb N}\{y_{[(n,n')]}+(n+n')x\}$ is not (globally) Lipschitz: for any 
+$L>0$, choose a natural number $N>L$, let $Y\in \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}$ be such that $Y_{\mu}<\infty$ only if $\mu=[(n,n')]$ with $n+n'\geq N$; then $|\model{M}^{!}(x)(Y)- \model{M}^{!}(x+\epsilon)(Y)|\geq N\epsilon > L\epsilon$. 
+Now take the approximant $t= (z\cdot \langle x^{N-1}\rangle) \cdot \langle x\rangle \in \Te{M}$ (chosen so that $\model t^{!}(x)(Y)<\infty$). Its interpretation is the monomial 
+$\model{t}^{!}(x)(Y) = Y_{[(N-1,1)]}+Nx$. We can then compute a Lipschitz-constant for $\model{M}^{!}$ around $\langle x,Y\rangle$
+as $\frac{1}{\delta}\model{t}^{!}(\langle x,Y\rangle+\delta)= N+2 + \frac{Y_{[(N-1,1)]}+Nx}{\delta}$. 
+\end{example}
+%    
+%    %
+%  Consider now $F\in \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}$ given by $F_{\mu}=0$ if $\mu=[(1,1)]$ and $F_{\mu}=\infty$ otherwise. 
+%  Then $\model{M}^{!}(\langle x,F\rangle)=2x$
+%%We show that we can compute a local 
+%More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
+%Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
+%For example, if $M$ is the term $\lambda fx.f(fx)$ considered before, $\Der[M]$ takes a first input $N$ and passes it linearly to $M$. Notice that there are two ways of doing so, corresponding to the two bound occurrences of $f$ in $M$: either by applying $N$ to $fx$, or by 
+%applying $f$ linearly to $Nx$ (indeed, if $f$ were applied in an unrestricted way, it might duplicate $Nx$, so that $N$ would not be used linearly). This justifies the equation below, in which $\Der[M]$ is identified with the non-deterministic sum of the two possible linear choices:
+%\begin{align}
+%\Der\left[\lambda f x.f(fx)\right]\cdot N = 
+%\lambda fx. N(fx) + \left(\Der[f]\cdot (Nx)\right)(fx)
+%\end{align}
+%More generally, one can define a notion of $k$-bounded application $\Der^{(k)}[M]\cdot N^{k}$, where $\Der^{(0)}[M]\cdot N^{0}= M$ and $\Der^{(k+1)}[M]\cdot N^{k+1}= \Der[ \Der^{(k)}[M]\cdot N^{k}]\cdot N$, corresponding to passing $N$ to $M$ exactly $k$ times.
+%
+%
+%The name ``differential'' for the operator $\Der[-]$ is justified by the fact that it satisfies many properties of the usual differential operator of analysis $\Der[f]:= \lambda xy. \frac{\mathsf df(y)}{\mathsf dy}\cdot x$. Notably, it is additive in its first variable (i.e.~it commutes with the non-deterministic sum operator), and satisfies the chain rule.
+%Most famously, the differential operator can be used to define a Taylor formula for $\lambda$-terms, which decomposes an unrestricted application into a formal non-deterministic sum of bounded applications:
+
+%
+%More generally, the relational semantics interprets unbounded programs as \emph{analytic functions}, that is, as functions admitting a representation as power series. For instance, observing that an analytic map $f: \BB R\to \BB R$, where $f(x)=\sum_{n}\widehat f_{n}\cdot x^{n}$ is uniquely determined by the sequence $\widehat f_{n}$, the program $M_{\infty}:=\lambda fx.fx: (\BB R\To \BB R)\To (\BB R\To \BB R)$ is represented by the power series below:
+%\begin{align}
+%F_{\infty}(f,x)= \sum_{n=0}^{\infty} \widehat f_{n} x^{n}
+%\end{align}
+%By restricting ourselves to bounded applications, the terms in the power series become finite, that is, the interpretation becomes a \emph{polynomial}: for instance, the program $M_{2}:=\lambda fx. \sum_{i=0}^{2}\Der^{(i)}[f]\cdot x^{i}$, corresponding to passing $x$ \emph{at most twice} to $f$, is represented by the polynomial
+%\begin{align}
+%F_{\leq 2}(f,x)=\widehat f_{2} x^{2}  + \widehat f_{1}x +  \widehat f_{0} 
+%\end{align}
+% In this framework the differential operator is naturally represented by formal differentiation of polynomials, where, as one would expect, 
+% $\Der[\sum_{n}a_{n}x^{n}]=\sum_{n}\Der[a_{n}x^{n}]$ and $\Der[a_{0}x^{0}]=0$ and $\Der[a_{n+1}x^{n+1}]= (n+1)a_{n+1}x^{n}$, so that power series can be Taylor expanded. 
+%
+%Let us now see what the results proved in the previous section translate into, when referred to the interpretation of higher-order programs.
+%Remark that the metric spaces $(\Lawv^{\mathlarger{+}_{i=1}^n X_i},d_{\infty})$ and $(\prod_{i=1}^n \Lawv^{X_i},\max_{i=1}^n d^{X_i}_\infty)$ are trivially isometric, so we identify them.
+
+% Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+%Finally, the interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.In such situation, we define $t^!:\Lawv^{\mathlarger{+}_{i=1}^n X_{i}}\to\Lawv^Y \simeq \prod_{i=1}^n\Lawv^{X_{i}}\to\Lawv^Y$ as $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in !_{n_i} X_i}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$. Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_i}\times Y}$ is the matrix $\widetilde t_{(\mu_1,\dots,\mu_n),b}:=t_{(\mu_1,\dots,\mu_n),b}$ if $\mu_i\in !_{n_i} X_i$ for all $i$, and $:=\infty$ otherwise, which has the same support as $t$.
+
+%\begin{corollary}
+%Let $\model A$ be a finite set.
+%\begin{enumerate}
+%\item $\model{\Gamma \vdash_{\BSTLC} M:B}^!:\prod\limits_{(x_i:_{n_i} A_i)\in\Gamma} \!\!\!\!\!\Lawv^{\model{A_i}} \to \Lawv^{\model B}$ is a \emph{tropical polynomial}, thus (as $\model A$ is finite), a \emph{Lipschitz} function.
+%\item $\model{\Gamma \vdash_{\STLC} M:B}^!, \model{\Gamma \vdash_{\STLC_\oplus} M:A}^!:\prod\limits_{(x_i: A_i)\in\Gamma} \!\!\!\!\!\Lawv^{\model{A_i}} \to \Lawv^{\model B}$ are \emph{locally} Lipschitz maps.
+%\item $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!$ of \emph{tropical polynomials}, thus (as $\model A$ is finite), \emph{Lipschitz} functions.
+%\end{enumerate}
+%\end{corollary} 
+%\begin{proof}
+%1). Since $\model A$ is finite, also $\model *$ is.
+%Thus, as we already observed, the interpretation of a bounded term is a tropical polynomial.
+%Now we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and by taking the maximum Lipschitz constant among the finite number $\mathrm{Card}(\model A)$ of them, we obtain the thesis.
+%2). It follows immediately from Theorem~\ref{thmTLSlocLip} and the fact that $\model A$ is finite.
+%3). It follows from \autoref{cor:T(M)=M} plus the easily checked fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
+%\end{proof}
+%
+%Remark that the restriction $\model A$ finite is without loss of generality, since by Currying all programs can be seen having type $*$, which is natural to interpret as a singleton.
+%
+%Remark that, if $Y$ is finite and $f:\Lawv^{\mathlarger{+}_{i=1}^n X_i}\to\Lawv^Y$ is $K$-Lipschitz, then $f:\prod_{i=1}^n \Lawv^{X_i}\to \Lawv^Y$ is $K$-Lipschitz on each of the $n$ variable separately.
+
+%A consequence of (3) is that the pointwise distance between two interpretations of programs can always be bounded via Lipschitz tropical polynomial approximants of the initial two programs.
+%\begin{corollary}
+% Let $\Gamma \vdash_{\STLC} M:A$ and $\Delta\vdash_{\STLC} N:B$.
+% For all $\epsilon>0$, $x\in\Lawv^{\model \Gamma}$, $b\in\model A$, there exist $t\in\Te{M}$, $u\in\Te{N}$ s.t.\ $\big| \model{\Gamma \vdash_{\STLC} M:A}^!(x)_b - \model{\Delta \vdash_{\STLC} N:B}^!(x)_b \big| \leq 2\epsilon + \big| \model{\Gamma \vdash_{\STDLC} t:A}^!(x)_b - \model{\Delta \vdash_{\STDLC} u:B}^!(x)_b \big|$.
+%\end{corollary}
+%
+%
+
+
+
+
+
+
