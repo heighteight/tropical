@@ -81,11 +81,12 @@ $\model{\Gamma \vdash M+N:A}=\min\{\model{\Gamma \vdash M:A},\model{\Gamma \vdas
 More precisely, \cite{Manzo2013} considers a language $\mathrm{PCF}^{Q}$ corresponding to $\mathrm{PCF}$ extended with $Q$-module operations, with an operational semantics given by rules $M\stackrel{1}{\to}M'$ for each rule $M\to M'$ of $\mathrm{PCF}$ (here $1$ is the monoidal unit of $Q$) as well as 
 $M_{1}+M_{2} \stackrel{1}{\to}M_{i}$ and $\alpha\cdot M \stackrel{\alpha}{\to} M $.
 Hence, any reduction $\omega: M\to^{*} N$ is naturally associated with a weight $\mathsf w(\omega)\in Q$.
-In particular, from [\cite{Manzo2013}, Theorem V.6] we deduce the following result, which relates the tropical semantics of a program with its best-case operational behavior.  
+In particular, from [\cite{Manzo2013}, Theorem V.6] we deduce the following adequation result:
 \begin{proposition}
 If $\vdash_{\mathrm{PCF}^{\Lawv}} M:\mathrm{Nat}$, then $\model{\vdash_{\mathrm{PCF}^{\Lawv}} M:\mathrm{Nat}}_{n}=  \inf\big\{ \mathsf w(\omega) \ \big \vert \ \omega : M \to \underline n\big \}$ for all $n\in \mathbb N$.
 \end{proposition}
 
+The previous result allows to relate the tropical semantics of a program with its best-case operational behavior.  
 Observe that the two examples shown in Section \ref{section2} can easily be rephrased in the language $\mathrm{PCF}^{\Lawv}$. 
 For instance, for the probabilistic example, %for a given valuation $\RM{val}$, one can use a translation %$(M\oplus_{p}N)^{\RM{val}}= \min\{(M^{\RM{val}}+\RM{val}(p)), N^{\RM{val}}+\RM{val}(1-p)\}$, so that the reductions $:M\oplus_{p}N\stackrel{p}{\to} M$ and $M\oplus_{p}N\stackrel{p-1}{\to} N$ translate into a sequence of two reductions $(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} M^{\RM{val}}\stackrel{\RM{val}(p)}{\to} M$ and $(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} N^{\RM{val}}\stackrel{\RM{val}(1-p)}{\to} M$, with the weight of the latter corresponding to the valuation of the weight of the former. 
 one can use the translation $(M\oplus_{p}N)^{\circ}= \min\{M^{\circ}+p, N^{\circ}+(1-p)\}$, so that the reductions $:M\oplus_{p}N\stackrel{p}{\to} M$ and $M\oplus_{p}N\stackrel{1-p}{\to} N$ translate into a sequence of two reductions $(M\oplus_{p}N)^{\circ} \stackrel{0}{\to} M^{\circ}\stackrel{p}{\to} M$ and $(M\oplus_{p}N)^{\circ} \stackrel{0}{\to} N^{\circ}\stackrel{1-p}{\to} N^{\circ}$.%, with the weight of the latter corresponding to the valuation of the weight of the former. 

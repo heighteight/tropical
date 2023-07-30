@@ -21,9 +21,9 @@ We will see that, when considering probabilistic and non-deterministic programs,
 Let us start with a very basic probabilistic language:
 the terms are $M::= \true \mid \false \mid M\oplus_p M$, for $p\in[0,1]$, and the operational semantics is $M\oplus_p N\to pM$ and $M\oplus_p N \to (1-p)N$, so that $M\oplus_p N$ plays the role of a probabilistic coin toss of bias $p$.
 Consider the program
-$$
+$
  M:=(\true \oplus_p\false)\oplus_p((\true\oplus_p\false)\oplus_p(\false\oplus_p\true)).
- $$
+ $
  Calling $q=1-p$, to each occurrence of $\true$ or $\false$ in $M$, univocally determined by an address
 $\omega\in \{l,r\}^{*}$, is associated a monomial $P_{\omega}(p,q)$ which determines the probability of the event ``$M\twoheadrightarrow_{\omega} \true/\false$'', that is, that $M$ reduces to $\true/\false$ according to the choices in $\omega$.
 Thinking of $p,q$ as parameters, $P_{\omega}(p,q)$ can thus be read as the \emph{likelihood function} of the event ``$M\twoheadrightarrow \true_\omega/\false_\omega$''.
@@ -61,11 +61,11 @@ This example is inspired from \cite{Manzo2013}. Again, we start from a very basi
 $M_{1}+M_{2} \stackrel{\alpha}{\to} M_{i}$ and a generation rule
 $\mathsf{gen}\stackrel{\beta}{\to} \true +\mathsf{gen}$, 
 where in each case the value $\alpha,\beta\in \Lawv$ indicates a \emph{cost} associated with the reduction (e.g.~the estimated clock value for the simulation of each reduction on a given machine model). 
-Then, any reduction $\omega: M \to^{*} N$ of a term to (one of its) normal form is  associated with a tropical monomial $P_{\omega}( \alpha,\beta)$ consisting of the sum of the costs of all reductions in $\omega$. For a given normal form $N$, the reductions $\omega_{i}: M \to^{*}N$ give rise to a tLs $\inf_{i\in I}P_{\omega_{i}}(\vec \alpha,\beta)$. 
-For example, consider the non-deterministic term below
-$$
+Then, any reduction $\omega: M \to^{*} N$ of a term to (one of its) normal form is  associated with a tropical monomial $P_{\omega}( \alpha,\beta)$ consisting of the sum of the costs of all reductions in $\omega$. For a given normal form $N$, the reductions $\omega_{i}: M \twoheadrightarrow N$ give rise to a tLs $\inf_{i\in I}P_{\omega_{i}}(\vec \alpha,\beta)$. 
+For example, consider the non-deterministic term
+$
 M :=\mathsf{gen}+  ((\true + \true) + \mathsf{gen})
-$$
+$
 The (infinitely many) reduction paths leading to $\true$ can be grouped as follows:
 \begin{itemize}
 \item left, then reduce gen $n+1$-times, then left;
@@ -73,9 +73,9 @@ The (infinitely many) reduction paths leading to $\true$ can be grouped as follo
 \item right twice, then reduce gen $n+1$-times and then left.
 \end{itemize}
 This leads to the tLs 
-$$\varphi_{M\to^{*}\true}(\alpha)=\inf_{n\in \mathbb N}\big\{2\alpha+(n+1)\beta, 3\alpha, 3\alpha+(n+1)\beta\big \}= \min\{ 2\alpha+\beta, 3\alpha\}$$which describes all possible behaviors of $M$. Notice that, since $\alpha$ and $\beta$ are always positive, the power series $\varphi_{M\to^{*}\true}(\alpha)$ is indeed equivalent to the tropical polynomial $\min\{ 2\alpha+\beta, 3\alpha\}$. In other words, of the infinitely many behaviors of $M$, only finitely many have chances to be \emph{optimal}: either left + gen + left, or right + left + (left,right). This seems to be a very interesting feature of tropical semantics: reducing to best-case analysis leads, in many cases, to collapse the infinitary description of \emph{all} behaviors to a purely combinatorial description of the finitely many optimal ones. 
+$\varphi_{M\twoheadrightarrow \true}(\alpha)=\inf_{n\in \mathbb N}\big\{2\alpha+(n+1)\beta, 3\alpha, 3\alpha+(n+1)\beta\big \}= \min\{ 2\alpha+\beta, 3\alpha\}$, which describes all possible behaviors of $M$. Notice that, since $\alpha$ and $\beta$ are always positive, the power series $\varphi_{M\twoheadrightarrow\true}(\alpha)$ is indeed equivalent to the tropical polynomial $\min\{ 2\alpha+\beta, 3\alpha\}$. In other words, of the infinitely many behaviors of $M$, only finitely many have chances to be \emph{optimal}: either left + gen + left, or right + left + (left,right). This seems to be a very interesting feature of tropical semantics: reducing to best-case analysis leads, in many cases, to collapse the infinitary description of \emph{all} behaviors to a purely combinatorial description of the finitely many optimal ones. 
 
-Once reduced $\varphi_{M\to^{*}\true}$ to a polynomial, the best behavior among these will depend on the values of $\alpha$ and $\beta$, and by studying the tropical polynomial $\varphi_{M\to^{*}\true}$ one can thus answer questions analogous to 2) above, that is, what are the best choices of costs $\alpha,\beta$ making a \emph{chosen} reduction of $M$ to $\true$ the cheapest one?
+Once reduced $\varphi_{M\twoheadrightarrow\true}$ to a polynomial, the best behavior among these will depend on the values of $\alpha$ and $\beta$, and by studying the tropical polynomial $\varphi_{M\twoheadrightarrow\true}$ one can thus answer questions analogous to 2) above, that is, what are the best choices of costs $\alpha,\beta$ making a \emph{chosen} reduction of $M$ to $\true$ the cheapest one?
 
 
 

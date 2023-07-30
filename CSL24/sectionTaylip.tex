@@ -4,15 +4,15 @@
 We now have all elements necessary to relate the metric and differential analysis of higher-order programs in the tropical relational model. 
 
 The key ingredient is the notion of Taylor expansion of $\lambda$-terms, that we now quickly recall. 
-Let $M\cdot \langle N_{1},\dots, N_{k}\rangle$ be an abbreviation for
-$\mathsf D^{n}[M]\cdot \langle N_{1},\dots, N_{k}\rangle$. A \emph{resource $\lambda$-term} is any term belonging to the grammar $t::= x \mid \lambda x.t \mid t\cdot \langle t,\dots, t\rangle$.
+Let $M\langle N_{1},\dots, N_{k}\rangle$ be an abbreviation for
+$\mathsf D^{k}[M, N_{1},\dots, N_{k}]0$. A \emph{resource $\lambda$-term} is any term belonging to the grammar $t::= x \mid \lambda x.t \mid t \langle t,\dots, t\rangle$.
 Observe that in a resource term applications are always \emph{bounded}: they may use an exact number of copies of their input. 
 
 
 The Taylor expansion of a $\lambda$-term is a set of resource terms $\Te{M}$ defined inductively as $\Te{x}=\{x\}$, $\Te{\lambda x.M}=\{\lambda x.t\mid t\in \Te{M}\}$ and 
-$\Te{MN}=\{ t\cdot \langle u_{1},\dots, u_{k}\rangle \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$. 
+$\Te{MN}=\{ t \langle u_{1},\dots, u_{k}\rangle \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$. 
 Considering the term $M=zxx$ from Example \ref{ex:zxx}, all resource terms
- $t_{n,m}=(z\cdot x^{n})\cdot x^{m}$, for $n,m\in \mathbb N$, are in $\Te{M}$. 
+ $t_{n,m}=z \,\langle x^{n}\rangle\,\langle x^{m}\rangle$, for $n,m\in \mathbb N$, are in $\Te{M}$. 
 Observe that the interpretation of $t_{n,m}$ yields a tropical polynomial
 $\model{t_{n,m}}^{!}(x)(z)= y_{[n,m]}+(n+m)x$, rather than a tLs. 
 However, resource term need not always yield a tropical polynomial. For instance, consider $y:(*\to*)\to (*\to*), x:(*\to *) \vdash t:  (*\to  *)$
@@ -59,15 +59,15 @@ $\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC}
 Using the results of the previous section, as well as the results above, we can deduce the following properties:
 
 \begin{theorem}
-Let $\mathcal S\in \{\RM{PCF}^{\Lawv}, \STLC,\BSTLC,\STDLC\}$, $\Gamma\vdash_{\mathcal S}M:A$; for all $a\in \model{A}$,
+Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\vdash_{\mathcal S}M:A$ and $a\in \model{A}$.
 \begin{enumerate}
-\item if $\mathcal S=\BSTLC$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is a tropical polynomial, and thus Lipschitz;
+\item For $\mathcal S=\BSTLC$, $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is a tropical polynomial, and thus Lipschitz;
 
-\item if $\mathcal S=\STDLC$ and $M$ is a resource term, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is Lipschitz;
+\item For $\mathcal S=\STDLC$, if $t$ is a resource term, then $\model{\Gamma\vdash_{\mathcal S}t:A}^{!}_{a}$ is Lipschitz;
 
-\item if $\mathcal S=\STLC,\RM{PCF}^{\Lawv}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is locally Lipschitz;
+\item For $\mathcal S=\STLC,\RM{PCF}^{\Lawv}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is locally Lipschitz;
 
-\item if $\mathcal S=\STLC$, then $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!_{a}$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!_{a}$ of {Lipschitz} functions.
+\item For $\mathcal S=\STLC$, $\Te{M}$ decomposes $\model{\Gamma \vdash_{\STLC} M:A}^!_{a}$ as an $\inf_{t\in\Te{M}}\model{\Gamma\vdash_{\STDLC} t:A}^!_{a}$ of {Lipschitz} functions.
 \end{enumerate}
 
 \end{theorem}
@@ -104,7 +104,7 @@ Consider again the term $M=zxx$ from Example \ref{ex:zxx}-
 % $\model{M}^{!}: \Lawv \times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ is given by
  The (generalized) tLs $\model{M}^{!}(x)(y)= \inf_{n,n'\in \mathbb N}\{y_{[(n,n')]}+(n+n')x\}$ is not (globally) Lipschitz: for any 
 $L>0$, choose a natural number $N>L$, let $Y\in \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}$ be such that $Y_{\mu}<\infty$ only if $\mu=[(n,n')]$ with $n+n'\geq N$; then $|\model{M}^{!}(x)(Y)- \model{M}^{!}(x+\epsilon)(Y)|\geq N\epsilon > L\epsilon$. 
-Now take the approximant $t= (z\cdot \langle x^{N-1}\rangle) \cdot \langle x\rangle \in \Te{M}$ (chosen so that $\model t^{!}(x)(Y)<\infty$). Its interpretation is the monomial 
+Now take the approximant $t= z \langle x^{N-1}\rangle \langle x\rangle \in \Te{M}$ (chosen so that $\model t^{!}(x)(Y)<\infty$). Its interpretation is the monomial 
 $\model{t}^{!}(x)(Y) = Y_{[(N-1,1)]}+Nx$. We can then compute a Lipschitz-constant for $\model{M}^{!}$ around $\langle x,Y\rangle$
 as $\frac{1}{\delta}\model{t}^{!}(\langle x,Y\rangle+\delta)= N+2 + \frac{Y_{[(N-1,1)]}+Nx}{\delta}$. 
 \end{example}

@@ -13,8 +13,6 @@ Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_
 So, such $t^!$'s are special cases of tLs and thus we can \emph{Wlog} only consider tPs's.
 \end{remark}
 
-In all this section we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$.
-
 %
 %In this section we study the tropical Laurent series $\Lawv^X\to \Lawv ^Y$ from the viewpoint of analysis.
 
@@ -25,9 +23,6 @@ In all this section we consider the sets $\Lawv^X$ endowed with the usual sup-no
 %correspond to the tLs for which the support $\set{n\in\N\mid\widehat f(n)\neq\infty}$ of $\widehat f$ is \emph{finite}. 
 %Actually, for us \emph{tropical polynomial} will mean a function 
 %\end{remark}
-
-
-\subparagraph*{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
 Looking at Fig~\ref{fig:plot1}, we see that $\varphi$, just like the polynomials $\varphi_{n}$, is non-decreasing and concave.
 This is indeed always the case:
@@ -69,6 +64,10 @@ $\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all
 The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 \end{proof}
 
+In all the remainder of this section we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$.
+
+\subparagraph*{Continuity of tLs}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
+
 The tLs $\varphi$ is continuous on $\BB R_{\geq0}$ (w.r.t.\ the usual norm of real numbers).
 We can generalise this property, dropping the case of $x$ having some $0$ coordinate.
 But we have to be careful, because while in the finite dimensional $\BB R^n$, every real convex function is continuous because it is necessarily locally bounded from above (the sup-norm and the euclidean one are equivalent) \cite[Proposition 4.7]{Cobzas2017}, in infinite dimensions the former condition is no longer true \cite[Example 4.8]{Cobzas2017}.
@@ -109,18 +108,18 @@ In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
 
 
 %The norm $\norm{\cdot}_\infty$ naturally induces a metric $\norm{x-y}_{\infty}$ over the spaces $\Lawv^{X}$.
-We will show that tLs satisfy suitable Lipschitz properties w.r.t.\ $\norm{\cdot}_\infty$. 
+%We will show that tLs satisfy suitable Lipschitz properties w.r.t.\ $\norm{\cdot}_\infty$. 
 
 Let us first look at tropical linear functions:
+in analogy with that happens in usual metric semantics, we have:
 
 
 \begin{proposition}\label{prop:troplinear}
-All tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive.  
+All tropical \emph{linear} functions $f: \Lawv^{X}\to \Lawv^{Y}$ are non-expansive (i.e.\ $1$-Lipschitz).  
 \end{proposition}
 %\begin{proof}[Proof sketch]
 %Using the fact that $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
-%the problem reduces to checking that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof}
-This result shows that, in analogy with that happens in usual metric semantics, linear programs are interpreted by non-expansive functions. 
+%the problem reduces to checking that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$.\end{proof} 
 %\begin{proof}
 %Using $f(\B x)_{b}= \inf_{a\in X}\matr f_{a,b}+\B x_{a}$,
 %first observe that $|(\matr f_{a,b}-\B x_{a})- (\matr f_{a,b}-\B y_{a})| = |\B x_{a}-\B y_{a}|\leq \| \B x-\B y\|_{\infty}$; we now have
@@ -132,6 +131,7 @@ This result shows that, in analogy with that happens in usual metric semantics, 
 %Before looking at what happens in the case of non-linear programs, let us make the metric structure of $\LREL$ explicit. 
 The following proposition provides a useful characterization of the functional metrics in $\LREL$, relying on 
 the bijection between $\HOM{\LREL}{X}{Y}$ and set of tropical linear functions from $\Lawv^{X}$ to $\Lawv^{Y}$.
+Remember that $d_\infty(f,g):=\sup_{a\in X} d_\infty(f(x),f(y))$.
 
 \begin{proposition}
 For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $d_{\infty}(\matr f,\matr g)=d_\infty(f,g)$.% $\norm{ \matr f-\matr g}_{\infty} =  \sup_{x\in \Lawv^{X}} \norm{ f( x)-g(x)}_{\infty}$.
@@ -155,43 +155,38 @@ For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{d
 \end{corollary}
 
 Let us now look at what happens with tLs, i.e.~when considering the full exponential $!$.
-As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $\BB R_{>0}$.
+As consequence of Theorem~\ref{theorem:fepsilon}, the tLs with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $(0,\infty)^X$.
 %Actually, we can prove a more general statement, also covering the infinitary case.
 
-One could now obtain the locally Lipschitz property of also infinitely many variables tLs from the results in \cite{Cobzas2017}.
-In \cite[Theorem 6.4]{Cobzas2017} the locally Lipschitz property is obtained in general for LCTVS under the hypothesis of continuity.
-Instead, we replace the continuity hypothesis by the locally bounded condition in our next theorem, which corresponds to the one considered in \cite[Property 6.5]{Cobzas2017}.
-Our next theorem is basically a particular case of \cite[Theorem 6.9, Lemma 6.10]{Cobzas2017}, but we prefer instead to state it for a less general case and not talk about more complex argument involving LCTVS.
-
-\begin{theorem}\label{thm:locLip}
- Let $f:V\subseteq (\BB R^X,d) \to (\BB R,\absv \cdot)$, with $V$ open and convex and $d$ any metric.
- If $f$ is concave and locally bounded, then $f$ is locally Lipschitz.
- Moreover, the Lipschitz constant of $f_{\big|_{\overline{B_{\delta}(x)}}}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} \absv f$.
-\end{theorem}
-\begin{proof}[Proof]
- Call $\overline{B_{\delta}(x)}:=B_1$, $\overline{B_{3\delta}(x)}:=B_3$.
- It suffices to show that for all $x\in V$, there is $\delta>0$ s.t.\ $B_3\subseteq \mathrm{interior}(V)$, $K:=\max_{B_3}  \absv f$ exists and $f_{\big|_{B_1}}$ is $(\frac{1}{\delta}\max_{B_3} \absv f)$-Lipschitz.
-A $\delta$ satisfying the first two conditions exists since $V$ is open and bcause $f$ is locally bounded and $B_3$ is compact.
-Now fix $y,z\in B_1$.
-Call $r:=\frac{d(y,z)}{2\delta}\in[0,1]$.
-We have to show that $\absv{f(y)-f(z)}\leq \frac{K}{\delta}d(y,z)=2Kr$.
-Wlog $y\neq z$.
-So $r\neq 0$ and we can consider $u:=\frac{1+r}{r}z-\frac{1}{r}y$, $v:=\frac{1}{r}y-\frac{r-1}{r}z$.
-We have $u,v\in \overline{B_{2\delta}(z)}=:B_2$ (geometrically, those are the intersections between $B_2$ and the segment between $y$ and $z$).
-Now we have the convex combinations $z=\frac{1}{1+r}y+\frac{r}{1+r}u$ and $y=(1-r)z+rv$, so the concavity of $f$ entails on one hand:
-$f(z)\geq \frac{1}{1+r}f(y)+\frac{r}{1+r}f(z)\geq \frac{f(y)}{1+r} - \frac{rK}{1+r}$, i.e.\ $f(y)-f(z)\leq r(K+f(z))\leq 2rK$, and on the other hand:
-$f(y)\geq (1-r)f(z)+rf(v)\geq f(z)-r(f(z)+K)$, i.e.\ $f(z)-f(y)\leq r(f(z)+K)\leq 2rK$.
-The last inequalities follow because $B_2\subseteq B_3$.
-Putting those together, we have the thesis.
-\end{proof}
-
-Now since $(0,\infty)^X$ is open and convex in $\BB R^X$, %and all tLs are non-negative, 
-we immediately have:
+We wish now to move to the case of infinitely many variables.
+In \cite[Theorem 6.4]{Cobzas2017} a locally Lipschitz property is obtained for locally convex topological vector spaces, under the hypothesis of continuity. \cite[Proposition 6.5]{Cobzas2017} shows that continuity is used in order to have a locally bounded condition, the true main ingredient of the proof.
+Instead of showing how our case fits into such theorems, we prefer to state a theorem, which is basically a particular case of \cite[Theorem 6.9, Lemma 6.10]{Cobzas2017}, already fitting in the topics under consideration in this paper.
 
 \begin{theorem}\label{thmTLSlocLip}
- All tLs $f:\Lawv^X\to\Lawv$ are locally Lipschitz on $(0,\infty)^X$.
- Moreover, the Lipschitz constant of $f_{\big|_{\overline{B_{\delta}(x)}}}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} f$.
+ Let $f:V\subseteq (\BB R^X,d) \to (\BB R,\absv \cdot)$, with $V$ open and convex and $d$ any metric.
+ If $f$ is concave and locally bounded, then $f$ is locally Lipschitz.
+ Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} \absv f$.
+
+Therefore, since $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$, %and all tLs are non-negative, 
+we immediately have that all tLs $f:\Lawv^X\to\Lawv$ are locally Lipschitz on $(0,\infty)^X$.
+Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} f$.
 \end{theorem}
+%\begin{proof}[Proof]
+% Call $\overline{B_{\delta}(x)}:=B_1$, $\overline{B_{3\delta}(x)}:=B_3$.
+% It suffices to show that for all $x\in V$, there is $\delta>0$ s.t.\ $B_3\subseteq \mathrm{interior}(V)$, $K:=\max_{B_3}  \absv f$ exists and $f_{\big|_{B_1}}$ is $(\frac{1}{\delta}\max_{B_3} \absv f)$-Lipschitz.
+%A $\delta$ satisfying the first two conditions exists since $V$ is open and bcause $f$ is locally bounded and $B_3$ is compact.
+%Now fix $y,z\in B_1$.
+%Call $r:=\frac{d(y,z)}{2\delta}\in[0,1]$.
+%We have to show that $\absv{f(y)-f(z)}\leq \frac{K}{\delta}d(y,z)=2Kr$.
+%Wlog $y\neq z$.
+%So $r\neq 0$ and we can consider $u:=\frac{1+r}{r}z-\frac{1}{r}y$, $v:=\frac{1}{r}y-\frac{r-1}{r}z$.
+%We have $u,v\in \overline{B_{2\delta}(z)}=:B_2$ (geometrically, those are the intersections between $B_2$ and the segment between $y$ and $z$).
+%Now we have the convex combinations $z=\frac{1}{1+r}y+\frac{r}{1+r}u$ and $y=(1-r)z+rv$, so the concavity of $f$ entails on one hand:
+%$f(z)\geq \frac{1}{1+r}f(y)+\frac{r}{1+r}f(z)\geq \frac{f(y)}{1+r} - \frac{rK}{1+r}$, i.e.\ $f(y)-f(z)\leq r(K+f(z))\leq 2rK$, and on the other hand:
+%$f(y)\geq (1-r)f(z)+rf(v)\geq f(z)-r(f(z)+K)$, i.e.\ $f(z)-f(y)\leq r(f(z)+K)\leq 2rK$.
+%The last inequalities follow because $B_2\subseteq B_3$.
+%Putting those together, we have the thesis.
+%\end{proof}
 
 \subparagraph*{Tropical differential of tLs}
 

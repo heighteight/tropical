@@ -2,7 +2,8 @@
 
 In this section, we discuss in some more detail the two approaches to quantitative semantics we mentioned in the Introduction, at the same time providing an overview of how we aim at bridging them using tropical mathematics.
 
-\subparagraph*{Metric approach: bounded $\lambda$-terms as Lipschitz functions}
+\subparagraph*{Metric approach: bounded $\lambda$-calculus% as Lipschitz functions
+}
 
 
 In many situations (e.g.~when dealing with computationally difficult problems) one does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, a small error in the input will produce a comparably small error in the output. 
@@ -26,11 +27,11 @@ More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesi
 Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~over any compact set). Indeed, some cartesian closed categories of locally Lipschitz maps have been produced in the literature \cite{Ehrhard2011, PistoneLICS}, and a new example will be exhibited in this paper.
 
 
-\subparagraph*{Resource approach: differential $\lambda$-terms as polynomials}
+\subparagraph*{Resource approach: the differential $\lambda$-calculus% as polynomials
+}
 
 A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic \cite{dill}) and its categorical models. 
-The key ingredient is a \emph{differential operator} $\Der$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Der[M]\cdot N$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Der[M]\cdot N$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$). 
-
+The key ingredient is a \emph{differential constructor} $\Der[\_,\_]$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Der[M,N]$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once (this is why $\Der[M,N]$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$). 
 %Interestingly, the categorical study of the operator $\Der$ has led to the introduction of \emph{cartesian differential categories} $C\partial C$ \cite{Blute2009}, a class of categories providing an abstract axiomatization of differentiation, in the usual mathematical sense. More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
 %\begin{itemize}
 %\item $\C C$ is left-additive, i.e.~its hom-sets have the structure of commutative monoids, and the cartesian structure is well-behaved w.r.t.~this monoid structure;
@@ -42,16 +43,11 @@ The key ingredient is a \emph{differential operator} $\Der$,  added to the usual
 %The models of $\STDLC$ are the 
 %cartesian \emph{closed} differential categories ($CC\partial C$), 
 %which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential operator are both well-behaved with respect to the closed structure \cite{Manzo2012}. 
-
-
-An intriguing similarity between program derivatives and 
-actual derivatives is provided by the \emph{Taylor expansion} $\C T$:
-in $\STDLC$ one can expand any application $MN$ as an infinite formal sum of \emph{linear} applications
-$\Der^{(k)}[M]\cdot N^{k}$, i.e.~where $N$ is passed exactly $k$ times to $M$:
-\begin{align}\label{eq:taylor}
-\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot (\Der^{(k)}[M] \cdot N^{k})0
-\end{align}
-In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
+The reason why $\Der$ is called a ``differential'', is twofold: semantically, its interpretation is a generalisation of the usual differential (see \autoref{section3}); syntactically, it allows to define the so-called \emph{Taylor expansion} $\C T$ of programs:
+the idea is that, in $\STDLC$, one can expand any application $MN$ as an infinite formal sum of \emph{linear} applications
+$\Der^{k}[M,N^k]$, i.e.~where $N$ is linearly passed exactly $k$ times to $M$, and doing this recursively gives rise to the series $\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot \Der^{k}[\Te{M},\Te{N}^k]0$.
+In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.
+Actually, we will work with the so-called \emph{qualitative} Taylor expansion, where one quotients for idempotency of the $+$ operator in the series, and thus the Taylor expansion is just a set (see \autoref{sec:TayLip}).% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
 
 %More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
 %Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
