@@ -1,7 +1,7 @@
 % !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
 
 Before discussing how full-scale higher-order programming languages can be interpreted in terms of tropical power series, we highlight how such functions may naturally arise in the study of effectful programming languages.
-We will see that, when considering probabilistic and non-deterministic programs, tropical tools can be used to describe \emph{optimal} properties of programs, that is, the behavior of programs in \emph{the best case}. 
+We will see that, when considering probabilistic and non-deterministic programs, tropical tools can be used to describe \emph{optimal} properties of programs, that is, the behavior of programs in \emph{the best/worst case}.
 %Moreover, since, as we'll see, tropical semantics is also a \emph{metric} semantics, it can be used to study how much program behavior is \emph{sensitive} to errors, that is, how a small error in input may be increased in output. 
 
 
@@ -46,7 +46,7 @@ I.e., which is the choice of $p,q$ that makes $\omega_0$ the most likely path am
 
 
 Answering 1) and 2) amounts then at solving a maximization problem related to $P_{\omega_{0}}(p,q)$ or $Q_{\true}(p,q)$. These are more easily solved by passing to the associated tropical polynomials.
-For 1), the maximum values $x,y$ of $P_{rll}(p,q)$ can be computed by finding the \emph{minimum} values of $\mathsf tP_{rll}(-\log p, -\log q)= -2\log p- \log q$. Notice that $\mathsf tP_{rll}$ is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow_{rll} \false$''. For 2), the maximum values of $Q_{\true}(p,q): [0,1]^{2}\to [0,1]$ can be computed as $e^{-\alpha},e^{-\beta}$, where $\alpha,\beta\in[0,\infty]$ are the \emph{minimum} values of the tropical polynomial 
+For 1), the maximum values $x,y$ of $P_{rll}(p,q)$ can be computed by finding the \emph{minimum} values of $\mathsf tP_{rll}(-\log p, -\log q)= -2\log p- \log q$. Notice that the latter is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow_{rll} \false$''. For 2), the maximum values of $Q_{\true}(p,q): [0,1]^{2}\to [0,1]$ can be computed as $e^{-\alpha},e^{-\beta}$, where $\alpha,\beta\in[0,\infty]$ are the \emph{minimum} values of the tropical polynomial 
 $\mathsf t Q_{\true}(\alpha,\beta) = \min \{ 2\alpha, 2\alpha+\beta, 3\beta\}$.
 
 

@@ -1,9 +1,9 @@
 % !TEX root = main.tex
 
-What we here call the tropical relational model is indeed an instance of a general and well-known construction that yields, for any \emph{continuous} semiring $Q$, a model $\QREL_{!}$ of effectful extensions of the simply typed $\lambda$-calculus and $\mathrm{PCF}$. In this section we shortly recall this construction, and also discuss how it adapts to model \emph{graded} and \emph{differential} variants of $\STLC$. In the next sections we will instead focus on the peculiar features of the tropical case.
+What we will call in this paper the tropical relational model is indeed an instance of a general and well-known construction that yields, for any \emph{continuous} semiring $Q$, a model $\QREL_{!}$ of effectful extensions of the simply typed $\lambda$-calculus and $\mathrm{PCF}$. Let us shortly recall this construction and then discuss how it adapts to model \emph{graded} and \emph{differential} variants of $\STLC$. In the next sections we will instead focus on the peculiar features of the tropical case.
 
-\subparagraph*{Weighted Relational Models}
-For any \emph{continuous} semiring $Q$ (i.e.~a cpo equipped with an order-compatible semiring structure), one can define a category $\QREL$ of ``$Q$-valued matrices'' which is well-known to yield a model of both probabilistic and non-deterministic versions of $\mathrm{PCF}$ (see e.g.~\cite{Manzo2013, Pagani2018}).
+\subparagraph*{As Linear/Non-Linear Algebra on Moduli}
+For any \emph{continuous} semiring $Q$ (i.e.~a cpo equipped with an order-compatible semiring structure), one can define a category $\QREL$ of ``$Q$-valued matrices''.
 More precisely, $\QREL$ (\cite{Manzo2013} calls it $Q^\Pi$) has sets as objects and set-indexed matrices with coefficients in $Q$ as morphisms, i.e.~$\QREL(X,Y):=Q^{X\times Y}$.
 %The identity morphism of $\QREL$ is the identity matrix $I\in Q^{X\times X}$,
 % given by $i_{a,a}=1$ and $i_{a,b\neq a}=0$, and
@@ -16,7 +16,6 @@ For any set $X$, $Q^X$ is a $Q$-semimodule and we can identify $\HOM{\QREL}{X}{Y
 Notice that usual linear algebra conventions correspond to work in $\QREL^{\op}$, %a matrix $X\times Y\to Q$ is usually called a ``$Y\times X$-matrix'', meaning $Y$ rows and $X$ columns
 e.g.\ the usual matrix-vector product defines a map $Q^Y\to Q^X$.
 Following \cite{Manzo2013, Hofmann2014, Ehrhard2005}, we are instead working with transpose matrices.
-
 $\QREL$ admits a comonad $!$ which acts, on objects, by taking the finite multisets.
 Remember that the coKleisli category $\C C_!$ of a category $\C C$ w.r.t.\ a comonad $!$ is the category whose elements are the same of $\C C$, and $\HOM{\C C_!}{X}{Y}:=\HOM{\C C}{!X}{Y}$, with composition $\circ_!$ defined by making use of the co-multiplication of $!$.
 Now, although a matrix $t\in\HOM{\QREL_!}{X}{Y}$ yields a linear map $\Lawv^{!X}\to\Lawv^Y$, by exploiting the coKleisli structure we can also ``express it in the base $X$'', which leads to the \emph{non-linear} map $t^{!}.Q^{X}\to Q^{Y}$ defined by the power series
@@ -28,7 +27,7 @@ where $x^{\mu}= \prod_{a\in x}x_{a}^{\mu(a)}$.
 %\end{remark}
 
 When we instantiate $Q=\Lawv$, we obtain a category $\LREL$ of $\Lawv$-values matrices. As one might expect, this category is tightly related to Lawvere's theory of (generalized) metric spaces. For the moment, let us just observe that a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law.
-We will come back to this viewpoint in Section \ref{section6}.
+We will come back to this viewpoint in\autoref{sec:GMS}.
 
 Composition in $\LREL$ %is the tropicalisation of the one defining it in $\QREL$, i.e.
 reads as \ $(st)_{a,c}:=\inf_{b\in Y}\set{s_{b,c}+t_{a,b}}$, moreover, the non-linear functions $t^{!}: \Lawv^{X}\to \Lawv^{Y}$ give rise to functions of shape 
@@ -44,17 +43,19 @@ For example, the $\varphi$ of \autoref{fig:plot1} is indeed of shape $\varphi=t^
 \begin{remark}
  Let $X$, $Y$ be sets and let $\langle \_,\_\rangle:X\times Y \to \mathbb{R}$.
  For $f:X\to \mathbb R$, define $f^*:Y\to \mathbb R$ by $f^*(y):= \sup_{x\in X}\{\langle x,y\rangle - f(x)\}$.
- Then for $X=!A$, $Y=\Lawv^A$, where $A$ is a set, and $\langle \mu, y \rangle:= \mu y$, we have that $f^!(y)=(-f)^*(-y)$ for all $f\in\Lawv^{!A}$.
+ Then for $X=!A$, $Y=\Lawv^A$, where $A$ is a set, and $\langle \mu, y \rangle:= \mu y$, we have $f^!(y)=(-f)^*(-y)$ for all $f\in\Lawv^{!A}$.
  This is precisely the same formal construction yielding the well-known convex conjugate $f^*$ of a function $f$, by taking $X$ any vector space, $Y$ its dual space, and $\langle \_,\_\rangle$ the application bilinear form (acting as the scalar product on coordinates).
  This construction is in turn a generalisation of the Legendre transformation.
 % Despite the formal constructions being the same, we ignore for the moment if these could be connected to the study of high-order programs in our setting.
 \end{remark}
 
-\subparagraph*{Interpreting effectful higher-order programs}
+\subparagraph*{As Tropical Weighted Relational Models for effectful higher-order programs}
+
+The categories $\QREL$ are well-known to yield a model of both probabilistic and non-deterministic versions of $\mathrm{PCF}$ (see e.g.~\cite{Manzo2013, Pagani2018}), which are called \emph{Weighted Relational Models}.
 The interpretation of the simply typed $\lambda$-calculus $\STLC$ in $\LREL$ relies on the fact that all categories $\QREL_{!}$ are cartesian closed \cite{Manzo2013}, with cartesian product and exponential objects acting on objects $X,Y$ as, respectively, $X+Y$ and $!X\times Y$. 
-Hence, given an environment $\eta$ associating ground types with sets, any 
-typable term $\Gamma \vdash M:A$ gives rise to a morphism 
-$\model{M}_{\eta}\in \LREL_{!}(\model{\Gamma}_{\eta}, \model{A}_{\eta})$, and thus to a generalized tLs $\model{M}_{\eta}^{!}:\Lawv^{\model{\Gamma}_{\eta}}\to \Lawv^{\model{A}_{\eta}}$. 
+Hence, %given an environment $\eta$ associating ground types with sets, 
+any typable term $\Gamma \vdash M:A$ gives rise to a morphism 
+$\model{\Gamma \vdash M:A}\in \LREL_{!}(\model{\Gamma}, \model{A})$, and thus to a generalized tLs $\model{\Gamma \vdash M:A}^{!}:\Lawv^{\model{\Gamma}}\to \Lawv^{\model{A}}$. 
 This interpretation extends to $\mathrm{PCF}$ by interpreting the fixpoint combinator $\mathbf Y$ via the matrices $\mathrm{fix}^{X}= \inf_{n}\big\{\mathrm{fix}^{X}_{n}\big\} \in \Lawv^{  !(!X\times X) \times X  }$, where 
  $\mathrm{fix}^{X}_{0}=0$ and $\mathrm{fix}^{X}_{n+1}= \RM{ev}\circ_{!}\langle \mathrm{fix}_{n}^{X}, \RM{id} \rangle $.
  
@@ -75,39 +76,38 @@ One can easily check, by induction on a typing derivation, that for any program 
 % $$
 % Moreover,  
 As the homsets $\LREL_{!}(X,Y)$ are $\Lawv$-modules, it is possible to interpret in extensions of $\STLC$ and $\mathrm{PCF}$ comprising $\Lawv$-module operations $\alpha \cdot M$ and $M+N$ \cite{Manzo2013}, by 
-letting $\model{\alpha\cdot M}_{\eta}=\model{M}_{\eta}+\alpha$ and 
-$\model{M+N}_{\eta}=\min\{\model{M}_{\eta},\model{N}_{\eta}\}$. 
+letting $\model{\Gamma \vdash \alpha\cdot M:A}=\model{\Gamma \vdash M:A}+\alpha$ and 
+$\model{\Gamma \vdash M+N:A}=\min\{\model{\Gamma \vdash M:A},\model{\Gamma \vdash N:A}\}$. 
 More precisely, \cite{Manzo2013} considers a language $\mathrm{PCF}^{Q}$ corresponding to $\mathrm{PCF}$ extended with $Q$-module operations, with an operational semantics given by rules $M\stackrel{1}{\to}M'$ for each rule $M\to M'$ of $\mathrm{PCF}$ (here $1$ is the monoidal unit of $Q$) as well as 
 $M_{1}+M_{2} \stackrel{1}{\to}M_{i}$ and $\alpha\cdot M \stackrel{\alpha}{\to} M $.
 Hence, any reduction $\omega: M\to^{*} N$ is naturally associated with a weight $\mathsf w(\omega)\in Q$.
 In particular, from [\cite{Manzo2013}, Theorem V.6] we deduce the following result, which relates the tropical semantics of a program with its best-case operational behavior.  
 \begin{proposition}
-For every closed term $M$ of type $\mathrm{Nat}$ in $\mathrm{PCF}^{\Lawv}$ and $n\in \mathbb N$, $\model{M}_{n}=  \inf\big\{ \mathsf w(\omega) \ \big \vert \ \omega : M \to \underline n\big \}.$
+If $\vdash_{\mathrm{PCF}^{\Lawv}} M:\mathrm{Nat}$, then $\model{\vdash_{\mathrm{PCF}^{\Lawv}} M:\mathrm{Nat}}_{n}=  \inf\big\{ \mathsf w(\omega) \ \big \vert \ \omega : M \to \underline n\big \}$ for all $n\in \mathbb N$.
 \end{proposition}
 
 Observe that the two examples shown in Section \ref{section2} can easily be rephrased in the language $\mathrm{PCF}^{\Lawv}$. 
-For instance, for the probabilistic example, for a given valuation $\RM{val}$, one can use a translation $(M\oplus_{p}N)^{\RM{val}}= \min\{(M^{\RM{val}}+\RM{val}(p)), N^{\RM{val}}+\RM{val}(1-p)\}$, so that the reductions 
-$:M\oplus_{p}N\stackrel{p}{\to} M$ and $M\oplus_{p}N\stackrel{p-1}{\to} N$ translate into a sequence of two reductions
-$(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} M^{\RM{val}}\stackrel{\RM{val}(p)}{\to} M$ 
-and $(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} N^{\RM{val}}\stackrel{\RM{val}(1-p)}{\to} M$, with the weight of the latter corresponding to the valuation of the weight of the former. 
+For instance, for the probabilistic example, %for a given valuation $\RM{val}$, one can use a translation %$(M\oplus_{p}N)^{\RM{val}}= \min\{(M^{\RM{val}}+\RM{val}(p)), N^{\RM{val}}+\RM{val}(1-p)\}$, so that the reductions $:M\oplus_{p}N\stackrel{p}{\to} M$ and $M\oplus_{p}N\stackrel{p-1}{\to} N$ translate into a sequence of two reductions $(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} M^{\RM{val}}\stackrel{\RM{val}(p)}{\to} M$ and $(M\oplus_{p}N)^{\RM{val}} \stackrel{0}{\to} N^{\RM{val}}\stackrel{\RM{val}(1-p)}{\to} M$, with the weight of the latter corresponding to the valuation of the weight of the former. 
+one can use the translation $(M\oplus_{p}N)^{\circ}= \min\{M^{\circ}+p, N^{\circ}+(1-p)\}$, so that the reductions $:M\oplus_{p}N\stackrel{p}{\to} M$ and $M\oplus_{p}N\stackrel{1-p}{\to} N$ translate into a sequence of two reductions $(M\oplus_{p}N)^{\circ} \stackrel{0}{\to} M^{\circ}\stackrel{p}{\to} M$ and $(M\oplus_{p}N)^{\circ} \stackrel{0}{\to} N^{\circ}\stackrel{1-p}{\to} N^{\circ}$.%, with the weight of the latter corresponding to the valuation of the weight of the former. 
 
-Let $\mathrm{PPCF}$ (for \emph{probabilistic $\mathrm{PCF}$} \cite{Pagani2018}) be standard $\mathrm{PCF}$ extended with the constructor $M\oplus_{\frac{1}{2}}N$ and its associated reduction rules. From the above discussion we deduce the following:
+Let $\mathrm{PPCF}$ (for \emph{probabilistic $\mathrm{PCF}$} \cite{Pagani2018}) be standard $\mathrm{PCF}$ extended with the constructor $M\oplus_{p}N$ ($p\in[0,1]$) and its associated reduction rules. From the above discussion we deduce the following:
 
 \begin{corollary}
-For every closed probabilistic term $M$ of type $\mathrm{Nat}$ in $\mathrm{PPCF}$ and $n\in \mathbb N$, 
-$\model{M}^{\mathrm{logval}}_{n}\in \Lawv$ (cf.~Remark \ref{rmk:val_trop}) is the minimum negative log-probability of any
-reduction from $M$ to $\underline n$.
+%For every closed probabilistic term $M$ of type $\mathrm{Nat}$ in $\mathrm{PPCF}$ and $n\in \mathbb N$, 
+Let $\vdash_{\mathrm{PPCF}^{\Lawv}} M:\mathrm{Nat}$ and $n\in\N$.
+Considering its interpretation as a function of $p,1-p$, we have that $\model{\vdash_{\mathrm{PPCF}^{\Lawv}} M^{\circ}:\mathrm{Nat}}_{n}(-\log(p),-\log(1-p))$%\in \Lawv$ (cf.~Remark \ref{rmk:val_trop})
+is the minimum negative log-probability of any reduction from $M$ to $\underline n$, i.e.\ the negative log-probability of (any of) the (equiprobable) most likely reduction path from $M$.
 \end{corollary}
 
-
-\cite{Manzo2013} obtained a similar result for a non-deterministic version of PCF, by translating each term into $\mathrm{PCF}^{\Lawv}$via $(\lambda x.M)^{\circ}=\lambda x.M^{\circ}+1$ and $(\mathbf YM)^{\circ}= \mathbf Y(M^{\circ}+1)$
-(\cite{Manzo2013} considers the discrete tropical semiring $\mathbb N\cup\{\infty\}$, but the result obviously transports to $\Lawv$). 
+Remark that this implies that all solution $p\in[0,1]$ to the equation $-\log w(\omega)= \model{\vdash_{\mathrm{PPCF}^{\Lawv}} M^{\circ}:\mathrm{Nat}}_{n}(-\log(p),-\log(1-p))$ are the values of the probabilistic parameter which make the reduction $\omega$ the most likely.
 
 
-\begin{corollary}[cf.~\cite{Manzo2013}, Corollary VI.10]
-For every closed probabilistic term $M$ of type $\mathrm{Nat}$ in non-deterministic $\mathrm{PCF}$ and $n\in \mathbb N$, 
-$\model{M^{\circ}}_{n}$ is the minimum number of $\beta$- and $\mathsf{fix}$- redexes reduced in a reduction sequence from $M $ to $\underline n$. 
-\end{corollary}
+Finally, \cite{Manzo2013} obtained a similar result for a non-deterministic version of PCF, by translating each term into $\mathrm{PCF}^{\Lawv}$via $(\lambda x.M)^{\circ}=\lambda x.M^{\circ}+1$ and $(\mathbf YM)^{\circ}= \mathbf Y(M^{\circ}+1)$
+(\cite{Manzo2013} considers the discrete tropical semiring $\mathbb N\cup\{\infty\}$, but the result obviously transports to $\Lawv$), and in that case \cite[Corollary VI.10]{Manzo2013} gives that $\model{\vdash M^{\circ}:\mathrm{Nat}}_{n}$ computes the minimum number of $\beta$- and $\mathsf{fix}$- redexes reduced in a reduction sequence from $M $ to $\underline n$. 
+
+%\begin{corollary}[cf.~\cite{Manzo2013}, Corollary VI.10]
+%For every closed probabilistic term $M$ of type $\mathrm{Nat}$ in non-deterministic $\mathrm{PCF}$ and $n\in \mathbb N$, $\model{M^{\circ}}_{n}$ is the minimum number of $\beta$- and $\mathsf{fix}$- redexes reduced in a reduction sequence from $M $ to $\underline n$. 
+%\end{corollary}
 
 %, an instance of the language $\mathrm{PCF}^{\mathcal R}$ of \cite{Manzo2013}, via the translations 
 %$(M\oplus_{p}N)^{\circ} =pM^{\circ}\mathtt{or}(1-p)N^{\circ}$ and $(M+N)^{\circ}=M^{\circ}\mathtt{or}N^{\circ}$.

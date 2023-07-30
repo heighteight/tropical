@@ -131,10 +131,10 @@ is the ``limit'' of the polynomials $\varphi_{n}$.
 %By plotting its graph {\color{red}vogliamo plottarlo?}, we observe several properties that we will lift to the more general case that we will consider in the next lines, and this example will serve as running one.
 
 \begin{remark}\label{rmk:val_trop}
- There is a clear and well-known relation between tropical polynomial/power series and usual polynomials/power series. 
+ There is a well-known relation between tropical polynomial/power series and usual polynomials/power series. 
 Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ is totally ordered by the partial order: $\alpha \preceq \beta$ iff $\alpha +  \beta = \beta$, then one defines a \emph{valuation} \cite{Izhakian2015} to be a map $\mathrm{val}:Q\to L$ s.t.\ $\mathrm{val}(0)=0$, $\mathrm{val}(1)=1$, $\mathrm{val}(ab)=\mathrm{val}(a)\mathrm{val}(b)$, $\mathrm{val}(a+b)\preceq \max\set{\mathrm{val}(a),\mathrm{val}(b)}$.
 The valuation which is constantly equal to $1\in L$ on all the invertibles of $Q$ is called the \emph{trivial valuation} $\mathrm{val}_1$.
-Another common valuation is $\mathrm{logval}: \overline{\mathbb R}_{\geq 0} \to [-\infty, \infty]$ given by $\mathrm{logval}(x)=-\log x$. Notice that $\mathrm{logval}$ restricts to a bijection between $[0,1]$ and $\Lawv$.
+%Notice that if $\mathrm{val}:Q\to ([0,+\infty],+,\cdot,0,1)$ is a valuation, then $\mathrm{logval}(x):Q\to ([-\infty,+\infty],\min,+,+\infty,0)$, $\mathrm{logval}(x):=-\log \mathrm{val}(x)$ is a valuation.
 
 Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
 
