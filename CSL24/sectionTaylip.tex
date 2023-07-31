@@ -3,20 +3,31 @@
 
 We now have all elements necessary to relate the metric and differential analysis of higher-order programs in the tropical relational model. 
 
-The key ingredient is the notion of Taylor expansion of $\lambda$-terms, that we now quickly recall. 
-Let $M\langle N_{1},\dots, N_{k}\rangle$ be an abbreviation for
-$\mathsf D^{k}[M, N_{1},\dots, N_{k}]0$. A \emph{resource $\lambda$-term} is any term belonging to the grammar $t::= x \mid \lambda x.t \mid t \langle t,\dots, t\rangle$.
-Observe that in a resource term applications are always \emph{bounded}: they may use an exact number of copies of their input. 
-
-
-The Taylor expansion of a $\lambda$-term is a set of resource terms $\Te{M}$ defined inductively as $\Te{x}=\{x\}$, $\Te{\lambda x.M}=\{\lambda x.t\mid t\in \Te{M}\}$ and 
-$\Te{MN}=\{ t \langle u_{1},\dots, u_{k}\rangle \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$. 
-Considering the term $M=zxx$ from Example \ref{ex:zxx}, all resource terms
+The key ingredient is the notion of Taylor expansion $\Te{M}$ of a $\lambda$-term $M$, which is a set of terms of the differential $\lambda$-calculus defined as follows:
+%
+%
+%
+% which is defined as follows: 
+%
+%that we now quickly recall. 
+%
+%
+%Let $M\langle N_{1},\dots, N_{k}\rangle$ be an abbreviation for
+%$\mathsf D^{k}[M, N_{1},\dots, N_{k}]0$. A \emph{resource $\lambda$-term} is any term belonging to the grammar $t::= x \mid \lambda x.t \mid t \langle t,\dots, t\rangle$.
+%%
+%
+%The Taylor expansion of a $\lambda$-term is a set of resource terms $\Te{M}$ defined inductively as 
+%
+$\Te{x}=\{x\}$, $\Te{\lambda x.M}=\{\lambda x.t\mid t\in \Te{M}\}$ and 
+$\Te{MN}=\{t\cdot \langle u_{1},\dots, u_{k}\rangle  \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$, where $t\cdot \langle u_{1},\dots, u_{k}\rangle$ is an abbreviation for $\mathsf D^{k}[t, u_{1},\dots, u_{k}] 0$. 
+Observe that in the terms appearing in $\Te{M}$ all applications are always \emph{bounded}: they may use an exact number of copies of their input. 
+Such terms are usually called \emph{resource $\lambda$-terms} \cite{Pagani2009, Manzo2012}.
+Considering the term $M=zxx$ from Example \ref{ex:zxx}, all terms
  $t_{n,m}=z \,\langle x^{n}\rangle\,\langle x^{m}\rangle$, for $n,m\in \mathbb N$, are in $\Te{M}$. 
 Observe that the interpretation of $t_{n,m}$ yields a tropical polynomial
-$\model{t_{n,m}}^{!}(x)(z)= y_{[n,m]}+(n+m)x$, rather than a tLs. 
-However, resource term need not always yield a tropical polynomial. For instance, consider $y:(*\to*)\to (*\to*), x:(*\to *) \vdash t:  (*\to  *)$
-with $t=y\cdot (y\cdot x)$. Then 
+$\model{t_{n,m}}^{!}(x)(z)= y_{[n,m]}+(n+m)x$, rather than a tps. 
+However, resource $\lambda$-terms need not always yield a tropical polynomial. For instance, consider $y:(*\to*)\to (*\to*), x:(*\to *) \vdash t:  (*\to  *)$
+with $t=y\cdot \langle y\cdot \langle x\rangle \rangle\in \Te{y(yx)}$. Then 
 $\model{t}^{!}: \Lawv^{  \mathcal M_{\mathrm{fin}}(\mathbb N)\times \mathbb N}
 \times \Lawv^{\mathbb N} \to \Lawv^{\mathbb N}$ is given by
 $
@@ -38,7 +49,7 @@ First, it can be patiently checked that in $(\LREL_!,D)$ all morphisms can be Ta
  \end{align} 
 \end{theorem}
 %It is worth discussing the formula above a bit more. 
-The equation above is a nothing more than a tropical version of the Taylor formula \eqref{eq:taylor}:
+The equation above is a nothing more than a tropical version of the Taylor formula from the Introduction:
 %:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
 %$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
 $u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
@@ -46,6 +57,8 @@ Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of t
 %,  i.e.~it coincides with the tropical %interpretation of the
 %version of the usual Taylor expansion.
 %Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
+
+
 Second, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
 
 \begin{corollary}\label{cor:T(M)=M}
@@ -58,12 +71,12 @@ $\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC}
 
 Using the results of the previous section, as well as the results above, we can deduce the following properties:
 
-\begin{theorem}
+\begin{theorem}\label{thm:taylor}
 Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\vdash_{\mathcal S}M:A$ and $a\in \model{A}$.
 \begin{enumerate}
 \item For $\mathcal S=\BSTLC$, $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is a tropical polynomial, and thus Lipschitz;
 
-\item For $\mathcal S=\STDLC$, if $t$ is a resource term, then $\model{\Gamma\vdash_{\mathcal S}t:A}^{!}_{a}$ is Lipschitz;
+\item For $\mathcal S=\STDLC$, if $M\in \Te{M'}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is Lipschitz;
 
 \item For $\mathcal S=\STLC,\RM{PCF}^{\Lawv}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is locally Lipschitz;
 
@@ -71,6 +84,13 @@ Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\v
 \end{enumerate}
 
 \end{theorem}
+\begin{proof}
+1). As we already observed, the interpretation of a bounded term is a tropical polynomial.
+2.) From Proposition \ref{prop:troplinear} 2.~observing that a resource term $t(x)$ may use a variable $x$ a fixed number $n$ times, so that its matrix lies in $\Lawv^{!_{n}X\times Y}$. 
+%Now we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and by taking the maximum Lipschitz constant among the finite number $\mathrm{Card}(\model A)$ of them, we obtain the thesis.
+3). From Theorem~\ref{thmTLSlocLip}.
+4). It follows from \autoref{cor:T(M)=M} plus the fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
+\end{proof}
 
 
 
@@ -88,25 +108,29 @@ Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\v
 %\end{theorem}
 
 
-We conclude our discussion by presenting an interesting application of the Taylor expansion in $\LREL_{!}$: as proved in the previous section, all tLs are locally Lipschitz; now, Theorem \ref{thm:taylor} can be used to compute approximations of the Lipschitz constants of an actual higher-order program.
+We conclude our discussion with an application of the Taylor expansion in $\LREL_{!}$: as proved in the previous section, all tps are locally Lipschitz; now, Theorem \ref{thm:taylor} can be used to compute approximations of the Lipschitz constants of an actual higher-order program.
 
 \begin{corollary}
 Suppose $x: A \vdash_{\STLC}M:B$ and $\vdash_{\STLC} N:A$. 
-Then for all $t\in \Te{M}$ such that $\model{t}^{!}(\model{N})\neq \infty$, and $\delta>0$, the tLs $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}^{!}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
+Then for all $t\in \Te{M}$ such that $\model{t}^{!}(\model{N})\neq \infty$, and $\delta>0$, the tps $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}^{!}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
  $B_{\delta}(\model{N})$.
 \end{corollary}
-{\color{red}ADD PROOF SKETCH}
+\begin{proof}
+We apply the Lipschitz estimate from Thm.~\ref{thmTLSlocLip} for $\model{M}^{!}$,  and use the fact that, from Thm.~\ref{thm:taylor} 4.~it follows that $\model{t}^{!}\geq \model{M}^{!}$.
+To conclude, since $\model{t}^{!}$ is concave and non-decreasing, $\max_{\overline{B_{3\delta}(x)}}\model{t}^{!}= \model{t}^{!}(x+3\delta)$, which yields the stated Lipschitz estimate. 
+\end{proof}
+%{\color{red}ADD PROOF SKETCH}
 
 \begin{example}
 Consider again the term $M=zxx$ from Example \ref{ex:zxx}-
 %, satisfying $x:*, z:(*\to*\to*) \vdash M:  *$. Since $\mathcal M_{\mathrm{fin}}(\{*\})\simeq \mathbb N$, we have that 
 %
 % $\model{M}^{!}: \Lawv \times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ is given by
- The (generalized) tLs $\model{M}^{!}(x)(y)= \inf_{n,n'\in \mathbb N}\{y_{[(n,n')]}+(n+n')x\}$ is not (globally) Lipschitz: for any 
+ The (generalized) tps $\model{M}^{!}(x)(y)= \inf_{n,n'\in \mathbb N}\{y_{[(n,n')]}+(n+n')x\}$ is not (globally) Lipschitz: for any 
 $L>0$, choose a natural number $N>L$, let $Y\in \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}$ be such that $Y_{\mu}<\infty$ only if $\mu=[(n,n')]$ with $n+n'\geq N$; then $|\model{M}^{!}(x)(Y)- \model{M}^{!}(x+\epsilon)(Y)|\geq N\epsilon > L\epsilon$. 
 Now take the approximant $t= z \langle x^{N-1}\rangle \langle x\rangle \in \Te{M}$ (chosen so that $\model t^{!}(x)(Y)<\infty$). Its interpretation is the monomial 
 $\model{t}^{!}(x)(Y) = Y_{[(N-1,1)]}+Nx$. We can then compute a Lipschitz-constant for $\model{M}^{!}$ around $\langle x,Y\rangle$
-as $\frac{1}{\delta}\model{t}^{!}(\langle x,Y\rangle+\delta)= N+2 + \frac{Y_{[(N-1,1)]}+Nx}{\delta}$. 
+as $\frac{1}{\delta}\model{t}^{!}(\langle x,Y\rangle+\delta)= 3N+3 + \frac{Y_{[(N-1,1)]}+Nx}{\delta}$. 
 \end{example}
 %    
 %    %
@@ -142,7 +166,7 @@ as $\frac{1}{\delta}\model{t}^{!}(\langle x,Y\rangle+\delta)= N+2 + \frac{Y_{[(N
 %Let us now see what the results proved in the previous section translate into, when referred to the interpretation of higher-order programs.
 %Remark that the metric spaces $(\Lawv^{\mathlarger{+}_{i=1}^n X_i},d_{\infty})$ and $(\prod_{i=1}^n \Lawv^{X_i},\max_{i=1}^n d^{X_i}_\infty)$ are trivially isometric, so we identify them.
 
-% Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tLs $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
+% Since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tps $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ is defined by $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
 %Finally, the interpretations of $\BSTLC$-terms are matrices $t\in\HOM{\LREL}{\bigotimes_{i=1}^n !_{n_i}X_i}{Y}=\Lawv^{\prod_{i=1}^n !_{n_i}X_i\times Y}$.In such situation, we define $t^!:\Lawv^{\mathlarger{+}_{i=1}^n X_{i}}\to\Lawv^Y \simeq \prod_{i=1}^n\Lawv^{X_{i}}\to\Lawv^Y$ as $t^!(x^1,\dots,x^n)_b:=\inf_{\mu_i\in !_{n_i} X_i}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$. Clearly $t^!={\widetilde t}^!$, where $\widetilde t\in\Lawv^{\prod_{i=1}^n ! {X_i}\times Y}$ is the matrix $\widetilde t_{(\mu_1,\dots,\mu_n),b}:=t_{(\mu_1,\dots,\mu_n),b}$ if $\mu_i\in !_{n_i} X_i$ for all $i$, and $:=\infty$ otherwise, which has the same support as $t$.
 
 %\begin{corollary}

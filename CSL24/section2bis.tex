@@ -1,7 +1,7 @@
 %\subsection{Elements of tropical mathematics}
 %\input{section3new}
 
-In this section we recall tropical polynomials and power series and we discuss how these naturally arise in the study of \emph{optimal} behavior of probabilistic and non-deterministic programs. 
+%In this section we recall tropical polynomials and power series and we discuss how these naturally arise in the study of \emph{optimal} behavior of probabilistic and non-deterministic programs. 
 
 
 At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
@@ -20,8 +20,8 @@ Power series and polynomials over the tropical semiring are defined as follows:
 \begin{definition}
 A \emph{tropical power series}
 %\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
-(tPs) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
-If $I$ is finite, $f$ is said to be a \emph{tropical polynomial}. 
+(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
+If $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
 \end{definition}
 
 A tropical polynomial is always a piece-wise linear function since it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$
@@ -109,12 +109,17 @@ A \emph{tropical root} of a tropical power series $\varphi$ is a point $x\in \La
 %For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
 %Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=k\min\{x,x_{0}\}+ g(x)$.
 Unlike in standard algebra, tropical roots of tropical polynomials can be computed in linear time \cite{Noferini2015}. 
+
+
 %Tropical polynomials and their roots are the main object of study of tropical geometry.
 %
 %A
 % simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
+tps with more than one variable are defined as $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
+$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. In Section \ref{section3} we also consider tps with \emph{infinitely many} variables.
 
-While tropical polynomials are essentially combinatorial objects, this cannot be said for tPs: since $\inf$s are not in general $\min$s, a tPs is a ``limit'' of tropical polynomials of higher and higher degree, and its behavior is in general way more difficult to study than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
+
+While tropical polynomials are essentially combinatorial objects, this cannot be said for tps: since $\inf$s are not in general $\min$s, a tps is a ``limit'' of tropical polynomials of higher and higher degree, and its behavior is in general way more difficult to study than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
 E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}) %that we will take as our running example, 
 is the ``limit'' of the polynomials $\varphi_{n}$.
 
@@ -140,8 +145,48 @@ Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being th
 
 Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series
-That is, it coincides to consider the same power series but with coefficients in $Q$ quotiented for the idempotency of $+$.
+That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
 \end{remark}
+
+Observe that tropicalisation is \emph{not} in general an injective operation. 
+This is because tps have a tendency to collapse, if not globally at least locally, onto tropical polynomials. For instance, the tps $\varphi(x,y)=\inf_{n}\{2x+(n+1)y,3x\}$ is  equivalent to the polynomial $\min\{2x+y,3x\}$, since $2x+(n+1)y\geq 2x+y$ holds for all $n$. So the trivial valuation sends both the infinite series $\sum_{n}(x^{2}y^{n+1}+x^{3})$ and the polynomial $x^{2}y+x^{3}$ onto the same map.
+
+Similarly, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
+In particular, %for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, 
+$\varphi$ coincides on $[\epsilon,\infty]$ with $\varphi_{n}$,
+for $\epsilon \geq 2^{-(n+1)}$ (the smallest tropical root of $\varphi_{n}$).
+However, at
+%
+%$x\in [\epsilon,\infty]$, with $\epsilon>0$
+%It can be proven by hand that $\varphi(x)$ is a $\min$ for all $x>0$.
+ $x=0$ we have that $\varphi(x=0)=\inf_{n\in\N} 2^{-n}=0$, and this is the only point where the $\inf$ is \emph{not} a $\min$.
+Also, while the derivative of $f$ is bounded on all $(0,\infty)$, for $x\to 0^+$ it tends to $\infty$.
+In fact, this is a general phenomenon, as showed below:
+%shared by all tps with a finite number of variables, i.e.~of the form $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
+%$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. 
+% 
+%%This phenomenon is reminiscent of \cite[Example 7]{Ehrhard2005},
+%%%Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
+%%which actually motivated our first investigations.
+%In fact, this behavior is shared by all tps with \emph{finitely} many variables, as shown by the following result (we identify $!\set{1,\dots,k}\simeq \N^k$, so the matrix of a tps $f$ with finitely many variables $x=x_1,\dots,x_k$ (and one output variable) is given as a $\matr f:\N^k\to\Lawv$, $f$ having shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, with $nx$ the scalar product).
+
+\begin{theorem}\label{theorem:fepsilon}
+For all tLs $f(x_{1},\dots, x_{k})=\inf_{n\in \mathbb N^{k}}\{n x+\matr f(n)\}$, for all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
+% 
+% \begin{enumerate}
+%  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
+%  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
+  %\item 
+$f$ coincides on all $[\epsilon,\infty]^k$ with $P_\epsilon( x):=\min_{n\in \C F_\epsilon}\set{n x+\matr f(n)}$.
+% \end{enumerate}
+\end{theorem}
+\begin{proof}[Proof sketch]
+Let $\C F_\epsilon$ be the set of $n\in\N^{k}$ such that 
+$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
+The core of the proof is showing that this set is indeed finite and sufficient for computing $f$.
+\end{proof}
+
+As we'll see, the potential of transforming infinitary objects (i.e.~tps) into combinatorial ones (i.e.~tropical polynomials), is one of the most interesting features of tropical semantics. 
 
 %\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
 %\input{section5}

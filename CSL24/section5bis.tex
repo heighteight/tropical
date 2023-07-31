@@ -6,8 +6,7 @@ In this section, we discuss in some more detail the two approaches to quantitati
 }
 
 
-In many situations (e.g.~when dealing with computationally difficult problems) one does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, a small error in the input will produce a comparably small error in the output. 
-
+In many situations (e.g.~when dealing with computationally difficult problems) one does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
 In all these cases, it is common to consider forms of denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which accounts for differences in behavior. 
 A fundamental insight coming from this line of work is that, if one can somehow   \emph{bound} the number of times that a program may duplicate its input, the resulting program will be \emph{Lipschitz-continuous}:  
 if $M$ may duplicate at most $L$ times, then an error $\epsilon$ between two inputs will result in an error less or equal to $L\cdot \epsilon$ in the corresponding outputs \cite{Reed2010, Gaboardi2017}.
@@ -82,10 +81,10 @@ Actually, we will work with the so-called \emph{qualitative} Taylor expansion, w
 
 At this point, as the Taylor formula decomposes an unbounded application as a limit of bounded ones, one might well ask whether it could be possible to see this formula as interpreting  a $\lambda$-term 
 as a limit of Lipschitz maps, in some sense, thus bridging the metric and differential approaches.  
-Here, a natural direction to look for is the \emph{relational semantics}, i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
+Here, a natural direction to look for is the \emph{weighted relational semantics} \cite{Manzo2013}, i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
 However, in this semantics, terms with bounded applications correspond to \emph{polynomials}, i.e.~to non-Lipschitz functions. 
 
-Yet, what if these polynomials were tropical ones, i.e.~piecewise linear functions? This way, \eqref{eq:taylor} could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
+Yet, what if these polynomials were tropical ones, i.e.~piecewise linear functions? This way, the Taylor formula could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
 as a limit of \emph{more and more sensitive} operations. 
 
 
