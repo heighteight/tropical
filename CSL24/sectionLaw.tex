@@ -3,7 +3,7 @@
 As we have seen, the morphisms of $\LREL$ can be seen as continuous functions between the $\Lawv$-modules $\Lawv^{X}$, when the latter are taken with the metric induced by the $\infty$-norm. This viewpoint gives a metric flavor to $\LREL$, and allowed us to relate differential and metric structure. Yet, how far can this correspondence be pushed?
 In particular, is this correspondence restricted to $\Lawv$-modules of the form $\Lawv^{X}$ (i.e.~with a fixed base), or does it hold in some sense for arbitrary $\Lawv$-modules? Is this correspondence restricted to the $\infty$-norm metric, or does it hold for other metrics too?
 
-An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}, that it's worth recalling.
+An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}, that it's certainly worth recalling here, albeit very briefly (more details in the Appendix).
 
  
 %In this section we first reconstruct this correspondence, by combining some {folklore} results with more abstract ones from recent literature in enriched category theory \cite{Fuji, Stubbe2006, Shen2014}. Then we show that this correspondence can be lifted to a model of the full differential $\lambda$-calculus, by suitably generalizing the construction of the Lafont exponential of $\LREL$.
@@ -14,7 +14,7 @@ An answer to these questions comes from an elegant categorical correspondence be
 
 %{$\Lawv$-modules}
 
-On the one hand we have $\Lawv$-modules: these are triples $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
+On the one hand we have $\Lawv$-modules: these are triples $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$. % (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$). 
 A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
  
 % 
@@ -59,18 +59,16 @@ A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and 
 
 
 %\subsection{$\Lawv$-categories}
-On the other hand we have Lawvere's \emph{generalized metric spaces}:
+On the other hand we have Lawvere's \emph{generalized metric spaces}  \cite{Lawvere1973, Hofmann2014, Stubbe2014}:
 Lawvere was the first to observe that a metric space can be described as a \emph{$\Lawv$-enriched} category. Indeed, spelling out the definition, a $\Lawv$-enriched category (in short, a $\Lawv$-category) is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
-$0  \geq X(x,x)$ and $X(y,z)+X(x,y)\geq  X(x,z)$. This structure is often referred to as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}. %, or as a \emph{quasi-metric space}. 
- A metric space, in the usual sense, is thus the same as a skeletal (i.e.~$X(x,y)=0$ implies $x=y$) and symmetric (i.e.~$X(x,y)=X(y,x)$) $\Lawv$-category.
-Notice that a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is just a non-expansive map $f:X\to Y$, as functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
+$0  \geq X(x,x)$ and $X(y,z)+X(x,y)\geq  X(x,z)$. 
+This structure clearly generalizes the usual definition of metric spaces, which indeed are the same as skeletal (i.e.~$X(x,y)=0$ implies $x=y$) and symmetric (i.e.~$X(x,y)=X(y,x)$) $\Lawv$-categories.
+Moreover, a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is nothing but a non-expansive map $f:X\to Y$, since functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
 
+Lawvere also observed that the usual notion of Cauchy-completeness can be formulated, in this framework, as the existence of suitable colimits \cite{Lawvere1973}. A $\Lawv$-category is said \emph{complete} when \emph{all} {weighted colimits} exist in $X$. Let $\GMet$ indicate the category of complete $\Lawv$-categories and continuous (i.e.~colimit-preserving) $\Lawv$-enriched functors. 
 
-A $\Lawv$-category is \emph{complete} when all weighted colimits (cf.~Appendix for a precise definition) exist in $X$. This categorical notion of completeness can be seen as a generalization of the usual notion of Cauchy-completeness.
-We let $\GMet$ indicate the category of complete $\Lawv$-categories and continuous (i.e.~colimit-preserving) $\Lawv$-enriched functors. 
-
-Now, it turns out that the categories $\Mod$ and $\GMet$ are isomorphic \cite{Stubbe2006}. First,  any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
-$M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}$. Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Lawv$-categories. Conversely, complete $\Lawv$-categories are \emph{tensored} (cf.~\cite{Stubbe2014}), and thus admit a $\Lawv$-module structure $\epsilon \otimes x$ (see the Appendix).
+It turns out that the categories $\Mod$ and $\GMet$ are isomorphic \cite{Stubbe2006}. First,  any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
+$M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}$. Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Lawv$-categories. Conversely, complete $\Lawv$-categories are \emph{tensored} (cf.~\cite{Stubbe2014}), and thus admit a suitable $\Lawv$-module structure $\epsilon \otimes x$.
 Moreover, a continuous functor between complete $\Lawv$-categories is the same as a homomorphism of the associated $\Lawv$-modules. 
 %
 %
@@ -125,24 +123,22 @@ Moreover, a continuous functor between complete $\Lawv$-categories is the same a
 
 
 
-To conclude, we show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
-
+To relate this elegant correspondence with our work on $\LREL_{!}$, we show that it lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
 First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting suitable properties of $\Mod$, we may define $!$ as the product of the symmetric algebras.  
 This ensures that the coKleisli category $\Mod_{!}$ is a CCC.
 Moreover, the constructions for $\Mod$ generalize those of $\LREL$, in the sense that $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$ and that $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
-
-
-Finally, general results {\color{red}CITARE} allow us to conclude 
+Finally, as the coKleisli category of a Lafont category with biproducts is always a CC$\partial$C \cite{LemayCALCO2021}, we can endow $\Mod_{!}$ with a suitable differential operator $E$ generalizing $D^{!}$ (see the Appendix) so that:
 \begin{theorem}
-$\Mod_{!}\simeq\GMet_{!}$ is a CC$\partial$C, when equipped with 
-the differential operator $E$ defined, for $f:!M\to N$, by 
-$Ef(\alpha)=
-\bigvee\left\{
-f(\beta\cup [x]) \ \Big \vert  \ 
-\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
-\right\}
-$, where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
-and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}.
+($\Mod_{!}/\GMet_{!},E$) is a CC$\partial$C.
+%, when equipped with 
+%the differential operator $E$ defined, for $f:\ !M\to N$, by 
+%$Ef(\alpha)=
+%\bigvee\left\{
+%f(\beta\cup [x]) \ \Big \vert  \ 
+%\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
+%\right\}
+%$, where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
+%and $S: \ !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}.
 \end{theorem}
 
 

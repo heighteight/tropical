@@ -1,9 +1,8 @@
 % !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
 
+In this section we finally relate the metric and differential analysis of higher-order programs in the tropical relational model. 
 
-We now have all elements necessary to relate the metric and differential analysis of higher-order programs in the tropical relational model. 
-
-The key ingredient is the notion of Taylor expansion $\Te{M}$ of a $\lambda$-term $M$, which is a set of terms of the differential $\lambda$-calculus defined as follows:
+The key ingredient is the notion of Taylor expansion $\Te{M}$ of a $\lambda$-term $M$. This is a set of terms of the differential $\lambda$-calculus defined inductively as: 
 %
 %
 %
@@ -17,47 +16,58 @@ The key ingredient is the notion of Taylor expansion $\Te{M}$ of a $\lambda$-ter
 %%
 %
 %The Taylor expansion of a $\lambda$-term is a set of resource terms $\Te{M}$ defined inductively as 
-%
 $\Te{x}=\{x\}$, $\Te{\lambda x.M}=\{\lambda x.t\mid t\in \Te{M}\}$ and 
 $\Te{MN}=\{t\cdot \langle u_{1},\dots, u_{k}\rangle  \mid k\in \mathbb N, t\in \Te{M}, u_{i}\in \Te{N} \}$, where $t\cdot \langle u_{1},\dots, u_{k}\rangle$ is an abbreviation for $\mathsf D^{k}[t, u_{1},\dots, u_{k}] 0$. 
-Observe that in the terms appearing in $\Te{M}$ all applications are always \emph{bounded}: they may use an exact number of copies of their input. 
-Such terms are usually called \emph{resource $\lambda$-terms} \cite{Pagani2009, Manzo2012}.
+Observe that in the terms appearing in $\Te{M}$ all applications are \emph{bounded}: they may use an exact number of copies of their input. 
+Such terms are usually called \emph{resource $\lambda$-terms} \cite{Pagani2009, Manzo2012}. One can easily check that for all terms $\Gamma \vdash_{\STLC}M:A$ and  $t\in \Te{M}$, also 
+$\Gamma \vdash_{\STDLC}t:A$ holds. 
+\begin{example}
 Considering the term $M=zxx$ from Example \ref{ex:zxx}, all terms
  $t_{n,m}=z \,\langle x^{n}\rangle\,\langle x^{m}\rangle$, for $n,m\in \mathbb N$, are in $\Te{M}$. 
-Observe that the interpretation of $t_{n,m}$ yields a tropical polynomial
+Notice that the interpretation of $t_{n,m}$ yields a tropical polynomial
 $\model{t_{n,m}}^{!}(x)(z)= y_{[n,m]}+(n+m)x$, rather than a tps. 
-However, resource $\lambda$-terms need not always yield a tropical polynomial. For instance, consider $y:(*\to*)\to (*\to*), x:(*\to *) \vdash t:  (*\to  *)$
+However, this is not a general fact: consider $y:(o\to o )\to (o\to o), x:(o\to o) \vdash t:  (o\to  o)$
 with $t=y\cdot \langle y\cdot \langle x\rangle \rangle\in \Te{y(yx)}$. Then 
-$\model{t}^{!}: \Lawv^{  \mathcal M_{\mathrm{fin}}(\mathbb N)\times \mathbb N}
+$\model{t}^{!}: \Lawv^{  !\mathbb N\times \mathbb N}
 \times \Lawv^{\mathbb N} \to \Lawv^{\mathbb N}$ is given by
 $
 \model{t}^{!}(y,x)_{i}= \inf_{m,n\in \mathbb N}\big\{    y_{[m],i}  +  y_{[n],m}+  x_{n}\}
 $, 
-which is not a polynomial. Yet, $\model{t}^{!}$ is Lipschitz, more precisely, 1-Lipschitz in $x$ and 2-Lipschitz in $y$. This is a general fact, as shown below.
+which is not a polynomial. Yet, $\model{t}^{!}$ is Lipschitz, more precisely, 1-Lipschitz in $x$ and 2-Lipschitz in $y$. This is a general fact, as shown by Theorem \ref{thm:taylor} below.
+\end{example}
 
 %
 %$\Te{MN}$ of $MN$ is the set $\set{\Der^{n}[t,u_1,\dots,u_n]0 \mid n\in\N,t\in\Te{M},u_i\in\Te{N}}$.
 We have already shown that the tropical differential makes $\LREL_{!}$ a model of the differential $\lambda$-calculus. We now show that it also models the Taylor expansion (this needs not be true for \emph{any} CC$\partial\lambda$C).
-First, it can be patiently checked that in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
-
+First, it can be patiently checked that (see \cite[Definition 4.22]{Manzo2012}):
+%
+% in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
 \begin{theorem}\label{thm:modelsTaylor}
- For all $t\in\HOM{\LREL_!}{Z}{!X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$ we have:%, the evaluation of $t$ over $s$ yields 
- \begin{align}\label{eq:taylorcat}
-  \RM{ev}\circ_!\langle t,s\rangle =
+Morphisms in $(\LREL_{!},D)$ can be Taylor-expanded: for all $t\in\HOM{\LREL_!}{Z}{!X\multimap Y}$, $s\in\HOM{\LREL_!}{Z}{X}$ we have %, the evaluation of $t$ over $s$ yields 
+% \begin{align}\label{eq:taylorcat}
+  $\RM{ev}\circ_!\langle t,s\rangle =
   \inf\limits_{n\in\N}
-  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.
- \end{align} 
+  \set{((\dots((\Lambda^- t)\star s)\star \dots)\star s)\circ_! \langle \RM{id},\infty \rangle}.$
+% \end{align} 
 \end{theorem}
 %It is worth discussing the formula above a bit more. 
-The equation above is a nothing more than a tropical version of the Taylor formula from the Introduction:
+The equation above is a tropical reformulation of the Taylor formula from the Introduction:
 %:\HOM{\LREL}{!Z}{X\multimap Y}\to \HOM{\LREL}{!(Z+X)}{Y}$
 %$\star:\HOM{\LREL}{!(Z+X)}{Y}\times\HOM{\LREL}{!Z}{X}\to \HOM{\LREL}{!(Z+X)}{Y}$ is defined as 
 $u\star s= (Du)\circ_{!} \langle \langle  \infty, s\circ_{!} \pi_{1}\rangle,\mathrm{id}\rangle$ corresponds to the application of the derivative of $u$ on $s$, and $\Lambda^-$ is the uncurry operator.
-Hence the right-hand term in \eqref{eq:taylorcat} corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$.
+Hence the right-hand term corresponds to the $\inf$ of the $n$-th derivative of $\Lambda^{-}t$ applied to ``$n$ copies'' of $s$.
 %,  i.e.~it coincides with the tropical %interpretation of the
 %version of the usual Taylor expansion.
 %Moreover, since $\LREL_!$ has countable sums (all $\inf$'s converge), and thanks to equation \eqref{eq:taylorcat}, an immediate adaptation of the proof of [Theorem 4.23, \cite{Manzo2012}] entails that the interpretation of the $\STDLC$-Taylor expansion of a $\STLC$-term $M$ given in \eqref{eq:taylor}, converges to the interpretation of $M$.
-
+%Moreover, one can show that the metrics $d_{\infty}$ are compatible with the Taylor formula in the following sense:
+%\begin{proposition}
+%For all tps $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
+%the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz. Moreover 
+%$\norm{ \matr f-\matr g}_{\infty}= \sup_{n} \norm{ {\delta^{(n)}f}- {\delta^{(n)}g}}_{\infty}$, 
+%where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
+%%where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
+%%(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
+%\end{proposition} 
 
 Second, since $\LREL_!$ has countable sums (all countable $\inf$s converge), an immediate adaptation of the proof of \cite[Theorem 4.23]{Manzo2012} shows:
 
@@ -69,7 +79,7 @@ $\model{\Gamma\vdash_{\STLC} M:A}=\inf_{t\in\Te{M}} \model{\Gamma\vdash_{\STDLC}
 
 
 
-Using the results of the previous section, as well as the results above, we can deduce the following properties:
+Using the results of the previous section, as well as the results above, we now deduce the following properties:
 
 \begin{theorem}\label{thm:taylor}
 Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\vdash_{\mathcal S}M:A$ and $a\in \model{A}$.
@@ -85,11 +95,13 @@ Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\v
 
 \end{theorem}
 \begin{proof}
-1). As we already observed, the interpretation of a bounded term is a tropical polynomial.
-2.) From Proposition \ref{prop:troplinear} 2.~observing that a resource term $t(x)$ may use a variable $x$ a fixed number $n$ times, so that its matrix lies in $\Lawv^{!_{n}X\times Y}$. 
+1). From Proposition~\ref{prop:troplinear} 2.~and the remark that for any type of $\BSTLC$, $\model{A}$ is finite.
+2.) From Proposition~\ref{prop:troplinear} 2.~observing that a resource term $t(x)$ may use a variable $x$ a fixed number $n$ times, so that its matrix lies in $\Lawv^{!_{n}X\times Y}$. 
 %Now we apply Corollary~\ref{prop:polylip} to each coordinate of the image, and by taking the maximum Lipschitz constant among the finite number $\mathrm{Card}(\model A)$ of them, we obtain the thesis.
 3). From Theorem~\ref{thmTLSlocLip}.
-4). It follows from \autoref{cor:T(M)=M} plus the fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have $\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
+4). It follows from \autoref{cor:T(M)=M} plus the fact that, for $(f_n)_{n\in\N}\subseteq\Lawv^{!X\times Y}$, we have 
+%$\left(\inf_{n\in\N} f_n\right)^!:\Lawv^X\to\Lawv^Y$, with 
+$\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
 \end{proof}
 
 
@@ -122,7 +134,7 @@ To conclude, since $\model{t}^{!}$ is concave and non-decreasing, $\max_{\overli
 %{\color{red}ADD PROOF SKETCH}
 
 \begin{example}
-Consider again the term $M=zxx$ from Example \ref{ex:zxx}-
+Consider again the term $M=zxx$ from Example \ref{ex:zxx}. 
 %, satisfying $x:*, z:(*\to*\to*) \vdash M:  *$. Since $\mathcal M_{\mathrm{fin}}(\{*\})\simeq \mathbb N$, we have that 
 %
 % $\model{M}^{!}: \Lawv \times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ is given by

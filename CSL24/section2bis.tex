@@ -18,17 +18,17 @@ Power series and polynomials over the tropical semiring are defined as follows:
 
 
 \begin{definition}
-A \emph{tropical power series}
+A \emph{tropical power series} (tps) 
 %\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
 %(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
 in $k$-variables is a function $f:\Lawv^k\to\Lawv$ of shape $f(x)=\inf_{i\in I}\{ix + \matr f(i) \}$, where 
 $I\subseteq\mathbb N^{k}$, $i x$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients.
 When $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
 \end{definition}
-
+Hence, a unary tps is a function $f:\Lawv\to \Lawv$ of the form $f(x)=\inf_{i\in I}\{ix+a_{i}\}$, with $I\subseteq\mathbb N$ and the $a_{i}\in \Lawv$.
 In Section \ref{section3} we also consider tps in \emph{infinitely many} variables.
 
-A tropical polynomial is always a piece-wise linear function since, e.g.\ in one variable, it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$
+A tropical polynomial is always a piece-wise linear function since, e.g.\ in one variable, it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$.
 For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
 are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 
@@ -109,7 +109,7 @@ are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 \label{fig:plot1}%\end{figure}%
 \end{wrapfigure} %%
 
-A \emph{tropical root} of a tropical power series $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes). When $\varphi$ is a polynomial, the roots of $\varphi$ coincide with the points where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
+A \emph{tropical root} of a tps $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes). When $\varphi$ is a polynomial, the roots of $\varphi$ coincide with the points where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
 %For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
 %Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=k\min\{x,x_{0}\}+ g(x)$.
 Unlike in standard algebra, tropical roots of tropical polynomials can be computed in linear time \cite{Noferini2015}. 
@@ -145,7 +145,7 @@ Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ i
 For example, the valuation which gives $1\in L$ on all the invertibles of $Q$ and $0$ otherwise, is called the \emph{trivial valuation} $\mathrm{val}_1$.
 %Notice that if $\mathrm{val}:Q\to ([0,+\infty],+,\cdot,0,1)$ is a valuation, then $\mathrm{logval}(x):Q\to ([-\infty,+\infty],\min,+,+\infty,0)$, $\mathrm{logval}(x):=-\log \mathrm{val}(x)$ is a valuation.
 
-Now, for a power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$, one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+Now, for a power series $f(x)=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$, one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
 %Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series
 %That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
@@ -155,9 +155,9 @@ Now, for a power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case fo
 Notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$ and the zero is $\infty$.
 Therefore, for instance, the tropicalisation (w.r.t.\ any valuation) sends the infinite power series $\sum_{n\geq 2} x^n$ to the tps $\varphi(x)=\inf_n (n+2)x$.
 But the latter always coincides with the tropical polynomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
-This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon}, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
+This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon} below, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
 
-Similarly, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
+For instance, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
 In particular, %for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, 
 $\varphi$ coincides on $[\epsilon,\infty]$ with $\varphi_{n}$,
 for $\epsilon \geq 2^{-(n+1)}$ (the smallest tropical root of $\varphi_{n}$).
@@ -177,7 +177,7 @@ In fact, this is a general phenomenon, as showed below:
 %In fact, this behavior is shared by all tps with \emph{finitely} many variables, as shown by the following result (we identify $!\set{1,\dots,k}\simeq \N^k$, so the matrix of a tps $f$ with finitely many variables $x=x_1,\dots,x_k$ (and one output variable) is given as a $\matr f:\N^k\to\Lawv$, $f$ having shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, with $nx$ the scalar product).
 
 \begin{theorem}\label{theorem:fepsilon}
-For all tLs $f(x_{1},\dots, x_{k})=\inf_{n\in \mathbb N^{k}}\{n x+\matr f(n)\}$, for all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
+For all tps $f(x)=\inf_{n\in \mathbb N^{k}}\{n x+\matr f(n)\}$, for all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
 % 
 % \begin{enumerate}
 %  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
@@ -192,7 +192,7 @@ $\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all
 The core of the proof is showing that this set is indeed finite and sufficient for computing $f$.
 \end{proof}
 
-As we'll see, the potential of transforming infinitary objects (i.e.~tps) into combinatorial ones (i.e.~tropical polynomials), is one of the most interesting features of tropical semantics. 
+As we'll see, the potential of collapsing infinitary objects (i.e.~tps) into combinatorial ones (i.e.~tropical polynomials), is one of the most intriguing features of tropical semantics. 
 
 %\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
 %\input{section5}

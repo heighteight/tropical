@@ -1,7 +1,9 @@
 % !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
 
-In this section we establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
-The literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
+
+As seen in Section \ref{section2}, tropical polynomials are piecewise-linear functions, hence concave and Lipschitz-continuous. Moreover, tps in finitely many variables are locally equivalent to tropical polynomials (except at some singular points), and are thus also concave and locally Lipschitz-continuous.
+In this section we show that much of these properties extend also to tps with infinitely many variables, as those arising from the tropical relational model. %establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+The literature on tropical power series is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
 %
 %Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
 %Remark that, since $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}\in\HOM{\LREL_!}{\mathlarger{\&}_{i=1}^n \model{A_i}}{\model B}\simeq\Lawv^{\prod_{i=1}^n ! \model {A_i}\times \model B}$, the tps $\model{(x_i:A_i)_{i=1}^n\vdash_{\STLC} M:B}^!:\Lawv^{\mathlarger{+}_{i=1}^n \model{A_i}}\to\Lawv^{\model B} \simeq \prod_{i=1}^n\Lawv^{\model{A_i}}\to\Lawv^{\model B}$ has shape $t^!(x^1,\dots,x^n)_b=\inf_{\mu_i\in ! \model{A_i}}\left\{\sum_{i=1}^n\mu_i x^i+t_{(\mu_1,\dots,\mu_n),b}\right\}$.
@@ -59,7 +61,7 @@ The literature in tropical mathematics is often recent (e.g.~\cite{Porzio2021}),
 %The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 %\end{proof}
 %
-In all the remainder of this section we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$.
+In the remainder of this section, by a tropical polynomial or power series we mean one with possibly infintely many variables. Moreover, we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$. 
 
 \subparagraph*{Continuity of tps}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
@@ -93,7 +95,7 @@ so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f$ on $(0,
 
 We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
 Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete \emph{normed cone} (see~\cite{Selinger2004}, or the appendix, for such notions).
-Its cone structure induces an order on it, called its \emph{cone order}:
+Its cone structure induces an order on it, called the \emph{cone order}:
 $x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
 Such order actually coincides with the pointwise order on $\Lawv^X$.
 This makes it a Scott-continuous dcpo.
@@ -104,9 +106,9 @@ In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
  All monotone (w.r.t.\ pointwise order) and $\norm{\cdot}_{\infty}$-continuous functions $f:(0,\infty)^X\to (0,\infty)$ are Scott-continuous.
  In particular, all tps $f:\Lawv^X\to\Lawv$ are Scott-continuous on $(0,\infty)^X$ w.r.t.\ the pointwise orders.
 \end{theorem}
-\begin{proof}
- Uses \autoref{thm:cont} plus the fact, taken from \cite{Selinger2004}, that in a normed $\R_{\geq 0}$-cone $P$, considered with its cone-order, if every bounded directed net in $P$ admits a sup, and if $(v_i)_{i\in I}$ is a directed net in $P$ with an upper bound $v\in P$, then $\exists\bigvee_{i\in I} v_i \in P$ and, if $\inf_{i\in I} \norm{v-v_i} =0$, one has $\bigvee_{i\in I} v_i = v$.
-\end{proof}
+%\begin{proof}
+% From \autoref{thm:cont} plus the fact, taken from \cite{Selinger2004}, that in a normed $\R_{\geq 0}$-cone $P$, considered with its cone-order, if every bounded directed net in $P$ admits a sup, and if $(v_i)_{i\in I}$ is a directed net in $P$ with an upper bound $v\in P$, then $\exists\bigvee_{i\in I} v_i \in P$ and, if $\inf_{i\in I} \norm{v-v_i} =0$, one has $\bigvee_{i\in I} v_i = v$.
+%\end{proof}
 
 
 
@@ -117,7 +119,7 @@ In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
 %We will show that tps satisfy suitable Lipschitz properties w.r.t.\ $\norm{\cdot}_\infty$. 
 
 Let us first look at what happens with those tps which are either \emph{linear} or obtained via bounded exponentials.
-The result below is in analogy with that happens in the usual metric semantics of Fuzz, where 
+The result below is in analogy with what happens in the usual metric semantics of Fuzz, where 
 linear functions are non-expansive and $n$-bounded functions are $n$-Lipschitz \cite{Reed2010}.
 
 
@@ -147,7 +149,7 @@ the bijection between $\HOM{\LREL}{X}{Y}$ and set of tropical linear functions f
 Remember that $d_\infty(f,g):=\sup_{a\in X} d_\infty(f(x),f(y))$.
 
 \begin{proposition}
-For all tropical linear functions $f,g:\Lawv^{X}\to \Lawv^{Y}$, $d_{\infty}(\matr f,\matr g)=d_\infty(f,g)$.% $\norm{ \matr f-\matr g}_{\infty} =  \sup_{x\in \Lawv^{X}} \norm{ f( x)-g(x)}_{\infty}$.
+For all $f,g\in \LREL_{!}(X,Y)$, $d_{\infty}( f,g)=d_\infty(f^{!},g^{!})$.% $\norm{ \matr f-\matr g}_{\infty} =  \sup_{x\in \Lawv^{X}} \norm{ f( x)-g(x)}_{\infty}$.
 \end{proposition}
 
 %Let us now consider the case of bounded exponentials:
@@ -168,8 +170,7 @@ Observe that, for any tropical polynomial $\varphi:\Lawv^{X}\to \Lawv^{Y}$, the 
 For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
 
-Let us now look at what happens with tps, i.e.~when considering the full exponential $!$.
-First observe that, as consequence of Theorem~\ref{theorem:fepsilon}, the tps with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $(0,\infty)^X$. Yet, for the case of infinitely many variables we need a more general argument.
+We now show that, if we consider the \emph{full} exponential $!$, i.e.~arbitrary tps, we can still prove that a local Lipschitz condition holds. %First observe that, as a consequence of Theorem~\ref{theorem:fepsilon}, the tps with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $(0,\infty)^X$. Yet, for the case of infinitely many variables we need a more general argument.
 In \cite[Theorem 6.4]{Cobzas2017} a locally Lipschitz property is obtained for locally convex topological vector spaces, under the hypothesis of continuity. \cite[Proposition 6.5]{Cobzas2017} shows that continuity is used in order to have a locally bounded condition, the crucial ingredient of the proof.
 Instead of showing how our case fits into such theorems, we prefer to state the following theorem, basically a particular case of \cite[Theorem 6.9, Lemma 6.10]{Cobzas2017}:
 %, already fitting in the topics under consideration in this paper.
@@ -204,22 +205,22 @@ By observing that $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$, w
 %Putting those together, we have the thesis.
 %\end{proof}
 
-\subparagraph*{Tropical differential of tps}
-We conclude this section with a few observation on the differential operator over tps.
-The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tps $f:\Lawv^{X}\to \Lawv^{Y}$ into a tps $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by 
-$D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$. One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
-Moreover, the Taylor formula \eqref{eq:taylorcat} yields a ``tropical'' Taylor formula for tps of the form 
-$f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$. 
-
-The following result shows that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
-\begin{proposition}
-For all tps $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
-the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz. Moreover 
-$\norm{ \matr f-\matr g}_{\infty}= \sup_{n} \norm{ {\delta^{(n)}f}- {\delta^{(n)}g}}_{\infty}$, 
-where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
-%where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
-%(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
-\end{proposition} 
+%\subparagraph*{Tropical differential of tps}
+%We conclude this section with a few observations on the differential operator over tps.
+%The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tps $f:\Lawv^{X}\to \Lawv^{Y}$ into a tps $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by 
+%$D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$. One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
+%Moreover, the Taylor formula \eqref{eq:taylorcat} yields a ``tropical'' Taylor formula for tps of the form 
+%$f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$. 
+%
+%The following result shows that the distance between two tropical maps can be approximated using the terms appearing in their Taylor expansions:
+%\begin{proposition}
+%For all tps $f,g: \Lawv^{X}\to \Lawv^{Y}$, and for all $n\in \BB N$, 
+%the functions $x\mapsto D_{!}^{(n)}(f)(!_{n}x,\infty)$ are $n$-Lipschitz. Moreover 
+%$\norm{ \matr f-\matr g}_{\infty}= \sup_{n} \norm{ {\delta^{(n)}f}- {\delta^{(n)}g}}_{\infty}$, 
+%where $\delta^{(n)}h$ indicates the matrix of $D_{!}^{(n)}h$.
+%%where $\delta^{(n)}f:( \Lawv^{X})^{n}\to \Lawv^{X}$ is the tropical linear function $\delta^{(n)}f(\B x_{1},\dots, \B x_{n})=
+%%(\Der^{(n)}f)(\B x_{1},\dots, \B x_{n}, \infty)$. 
+%\end{proposition} 
 
 \begin{comment}
 

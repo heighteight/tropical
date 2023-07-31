@@ -21,7 +21,7 @@ These observations have led to the study of $\lambda$-calculi with \emph{graded}
 %where $n\in \BB N$. Intuitively, $!_{ n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input \emph{at most} $n$ times. More details about $\BSTLC$ are provided in the Appendix.
 
 
-What about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
+Yet, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
 More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, several cartesian closed \emph{sub-}categories of $\Met$ do exist, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
 Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~over any compact set). Indeed, some cartesian closed categories of locally Lipschitz maps have been produced in the literature \cite{Ehrhard2011, PistoneLICS}, and a new example will be exhibited in this paper.
 
@@ -45,12 +45,12 @@ In particular, the application of $\Der[M,N]$ to an ``error term'' $0$ ensures t
 %cartesian \emph{closed} differential categories ($CC\partial C$), 
 %which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential operator are both well-behaved with respect to the closed structure \cite{Manzo2012}. 
 
-The reason why $\Der$ is called a ``differential'', is twofold: semantically, its interpretation is a generalisation of the usual differential (see \autoref{section3}); syntactically, it allows to define the so-called \emph{Taylor expansion} $\C T$ of programs:
+The reason why $\Der$ is called a ``differential'', is twofold: semantically, its interpretation is a generalisation of the usual differential form analysis (see \autoref{section3}); syntactically, it allows to define the so-called \emph{Taylor expansion} $\C T$ of programs:
 the idea is that one can expand any application $MN$ as an infinite formal sum of \emph{linear} applications
 $\Der^{k}[M,N^k]0$, i.e.~where $N$ is linearly passed exactly $k$ times to $M$; 
-doing this recursively gives rise to the series $\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot \Der^{k}[\Te{M},\Te{N}^k]0$.
+doing this recursively gives rise to the suggestive {Taylor formula} $\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot \Der^{k}[\Te{M},\Te{N}^k]0$.
 In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.
-Actually, we will work with the so-called \emph{qualitative} Taylor expansion, where one quotients for idempotency of the $+$ operator in the series, and thus the Taylor expansion becomes just a set (see \autoref{sec:TayLip}).% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
+%Actually, we will work with the so-called \emph{qualitative} Taylor expansion, where one quotients for idempotency of the $+$ operator in the series, and thus the Taylor expansion becomes just a set (see \autoref{sec:TayLip}).% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
 
 %More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
 %Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
@@ -87,13 +87,13 @@ At this point, as the Taylor formula decomposes an unbounded application as a li
 as a limit of Lipschitz maps, in some sense, thus bridging the metric and differential approaches.  
 Here, a natural direction to look for is the \emph{weighted relational semantics} \cite{Manzo2013}, %i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
 due to its strict relations with the Taylor expansion of programs.
-However, in this semantics, terms with bounded applications correspond to \emph{polynomials}, i.e.~to non-Lipschitz functions. 
+However, in this semantics, arbitrary terms correspond to power series, and terms with bounded applications correspond to {polynomials}, hence in any case to functions which are \emph{not} Lipschitz. 
 
-Yet, what if these polynomials were tropical ones, i.e.~piecewise linear functions? This way, the Taylor formula could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
+Yet, what if such polynomials were tropical ones, i.e.~piecewise linear functions? This way, the Taylor formula could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
 as a limit of \emph{more and more sensitive} operations. 
 
 
 This viewpoint, that we develop in the following sections, leads to the somehow unexpected discovery of a bridge between the metric and differential study of higher-order programs.
 This connection not only suggests the application of optimization methods based on tropical mathematics to the study of the $\lambda$-calculus and its quantitative extensions, but it scales to a 
 more abstract level, leading to introduce a 
-differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}). 
+differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}), as shown in Section \ref{sec:GMS}. 

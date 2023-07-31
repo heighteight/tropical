@@ -53,16 +53,15 @@
 
 \titlerunning{Tropical mathematics for the Lambda-calculus 1} %TODO optional, please use if title is longer than one line
 
-\author{Davide {Barbarossa}}{Dipartimento di Informatica, Universit\`a di Bologna, %[optional: Address], 
+\author{Davide {Barbarossa}}{Dipartimento di Informatica - Scienza e Ingegneria, Universit\`a di Bologna, %[optional: Address], 
 Italy% \and My second affiliation, Country 
 \and \url{https://lipn.univ-paris13.fr/\~barbarossa/index.html} }{davide.barbarossa@unibo.it}{https://orcid.org/0000-0003-4608-8282}{%(Optional)Funding each author
 }%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
 
-\author{Paolo {Pistone}}{Dipartimento di Informatica, Universit\`a di Bologna, %[optional: Address], 
+\author{Paolo {Pistone}}{Dipartimento di Informatica - Scienza e Ingegneria, Universit\`a di Bologna, %[optional: Address], 
 Italy% \and LIP, Universit\'e de Lyon, France 
-\and \url{%WebPage
-} }{paolo.pistone2@unibo.it}{%Orchid
-}{%(Optional)Funding each author
+\and \url{http://logica.uniroma3.it/pistone/
+} }{paolo.pistone2@unibo.it}{https://orcid.org/0000-0003-4250-9051}{%(Optional)Funding each author
 }
 
 
@@ -84,7 +83,7 @@ Italy% \and LIP, Universit\'e de Lyon, France
 %\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
 %\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
 
-\funding{This work has been supported by the DIAPASoN project}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+\funding{This work has been supported by the ERC CoG 818616 DIAPASoN.}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
 
 \acknowledgements{%I want to thank \dots
 }%optional
@@ -113,9 +112,10 @@ Italy% \and LIP, Universit\'e de Lyon, France
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-We study the interpretation of the lambda-calculus in a framework based on tropical mathematics, by considering the relational semantics weighted on the tropical semiring. The aim is to provide a framework where both program metrics, based on the analysis of program sensitivity via Lipschitz conditions, and resource analysis, based on higher-order program differentiation, coexist. In order to do that, we consider a graded-types lambda-calculus and the differential lambda-calculus, both languages ensuring bounded duplications.
-A typical result of such line of research is that, thanks to the tropical operations, a simply typed term is interpreted as a locally Lipschitz map, which is in turn decomposed as an inf of more and more sensitive Lipschitz ones, corresponding to the interpretations of the approximants given by the lambda-calculus Taylor expansion.
-We finally describe some promising lines of research, showing in particular how such tropical model expresses natural optimisation problems of probabilistic calculi.
+We study the interpretation of the lambda-calculus in a framework based on tropical mathematics, and we show that it provides a unified framework for both program  metrics, based on the analysis of program sensitivity via Lipschitz conditions, and resource analysis, based on higher-order program differentiation. 
+To do that we focus on the semantics arising from the relational model weighted over the tropical semiring, and we discuss its application to the study of “best case” program behavior for languages with probabilistic and non-deterministic effects. Finally, we show that a general foundation for this approach is provided by an abstract correspondence between tropical algebra and Lawvere’s theory of generalized metric spaces.
+%A typical result of such line of research is that, thanks to the tropical operations, a simply typed term is interpreted as a locally Lipschitz map, which is in turn decomposed as an inf of more and more sensitive Lipschitz ones, corresponding to the interpretations of the approximants given by the lambda-calculus Taylor expansion.
+%We finally describe some promising lines of research, showing in particular how such tropical model expresses natural optimisation problems of probabilistic calculi.
 \end{abstract}
 
 \section{Introduction}
@@ -158,7 +158,7 @@ We finally describe some promising lines of research, showing in particular how 
 \input{section4}
 
 
-\section{Taylor Expansion and Lipschitz Approximation}\label{sec:TayLip}
+\section{Taylor Meets Lipschitz}\label{sec:TayLip}
 \input{sectionTaylip}
 
 \section{Generalized Metric Spaces and $\Lawv$-Modules}\label{sec:GMS}
