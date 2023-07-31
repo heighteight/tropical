@@ -87,7 +87,7 @@ $\model{\Gamma \vdash M+N:A}=\min\{\model{\Gamma \vdash M:A},\model{\Gamma \vdas
 More precisely, \cite{Manzo2013} considers a language $\mathrm{PCF}^{Q}$ corresponding to $\mathrm{PCF}$ extended with $Q$-module operations, with an operational semantics given by rules $M\stackrel{1}{\to}M'$ for each rule $M\to M'$ of $\mathrm{PCF}$ (here $1$ is the monoidal unit of $Q$) as well as 
 $M_{1}+M_{2} \stackrel{1}{\to}M_{i}$ and $\alpha\cdot M \stackrel{\alpha}{\to} M $.
 Hence, any reduction $\omega=\rho_{1}\dots \rho_{k}: M \twoheadrightarrow N$ is naturally associated with a weight $\mathsf w(\omega)=\sum_{i=1}^{k}\mathsf w(\rho_{i})\in Q$.
-In particular, from [\cite{Manzo2013}, Theorem V.6] we deduce the following adequation result:
+In particular, from [Theorem V.6]\cite{Manzo2013} we deduce the following adequation result:
 \begin{proposition}
 $\model{\vdash_{\mathrm{PCF}^{\Lawv}} M:\mathrm{Nat}}_{n}=  \inf\big\{ \mathsf w(\omega) \ \big \vert \ \omega : M \to \underline n\big \}$ for all $n\in \mathbb N$.
 \end{proposition}
@@ -102,7 +102,7 @@ Let $\mathrm{PPCF}$ (for \emph{probabilistic $\mathrm{PCF}$} \cite{Pagani2018}) 
 %For every closed probabilistic term $M$ of type $\mathrm{Nat}$ in $\mathrm{PPCF}$ and $n\in \mathbb N$, 
 Let $\vdash_{\mathrm{PPCF}} M:\mathrm{Nat}$ and $n\in\N$.
 Considering its interpretation as a function of $p,1-p$, we have that $\model{\vdash_{\mathrm{PPCF}} M^{\circ}:\mathrm{Nat}}_{n}(-\log(p),-\log(1-p))$%\in \Lawv$ (cf.~Remark \ref{rmk:val_trop})
-is the minimum negative log-probability of any reduction from $M$ to $\underline n$, i.e.\ the negative log-probability of (any of) the (equiprobable) most likely reduction path from $M$.
+is the minimum negative log-probability of any reduction from $M$ to $\underline n$, i.e.\ the negative log-probability of (any of) the (equiprobable) most likely reduction path from $M$ to $n$.
 \end{corollary}
 
 Remark that this implies that all solution $p\in[0,1]$ to the equation $-\log \mathsf  w(\omega)= \model{\vdash_{\mathrm{PPCF}^{\Lawv}} M^{\circ}:\mathrm{Nat}}_{n}(-\log(p),-\log(1-p))$ are the values of the probabilistic parameter which make the reduction $\omega$ the most likely.

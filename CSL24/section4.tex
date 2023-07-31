@@ -87,7 +87,8 @@ However, \cite[Proposition 4.4.(3)]{Cobzas2017} shows that it is the only requir
 By \autoref{prop:nondecr+conc}, $-f$ is convex.
 Since $f\geq 0$ on all $\Lawv^X$, we have e.g.\ $-f\leq 1$ on $\Lawv^X$.
 %Remark that we cannot immediately apply \cite[Proposition 4.4.(3)]{Cobzas2017}, since $\Lawv^X$ is not even a $\BB R$-vector space.
-Now $(0,\infty)^X\subseteq \BB R^X$ is open and convex, and {\color{red}$\BB R^X$ is a LCTVS}, so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f\big|_{(0,\infty)^X}$, hence that of $f\big|_{(0,\infty)^X}$.
+Now $(0,\infty)^X\subseteq \BB R^X$ is open and convex, %and {\color{red}$\BB R^X$ is a LCTVS}, 
+so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f$ on $(0,\infty)^X$, hence that of $f$ on it.
 \end{proof}
 
 We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
@@ -123,7 +124,7 @@ linear functions are non-expansive and $n$-bounded functions are $n$-Lipschitz \
 \begin{proposition}\label{prop:troplinear}
 \begin{enumerate}
 \item If a tps $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:X\times Y\to \Lawv$ (i.e.~it is linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
-\item If  $f \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+\item If  $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
 \end{enumerate}
 \end{proposition}
 \begin{proof}[Proof sketch]
@@ -169,8 +170,8 @@ For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{d
 
 Let us now look at what happens with tps, i.e.~when considering the full exponential $!$.
 First observe that, as consequence of Theorem~\ref{theorem:fepsilon}, the tps with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $(0,\infty)^X$. Yet, for the case of infinitely many variables we need a more general argument.
-In \cite[Theorem 6.4]{Cobzas2017} a locally Lipschitz property is obtained for locally convex topological vector spaces, under the hypothesis of continuity. \cite[Proposition 6.5]{Cobzas2017} shows that continuity is used in order to have a locally bounded condition, the true main ingredient of the proof.
-Instead of showing how our case fits into such theorems, we prefer to state a theorem, which is basically a particular case of \cite[Theorem 6.9, Lemma 6.10]{Cobzas2017}:
+In \cite[Theorem 6.4]{Cobzas2017} a locally Lipschitz property is obtained for locally convex topological vector spaces, under the hypothesis of continuity. \cite[Proposition 6.5]{Cobzas2017} shows that continuity is used in order to have a locally bounded condition, the crucial ingredient of the proof.
+Instead of showing how our case fits into such theorems, we prefer to state the following theorem, basically a particular case of \cite[Theorem 6.9, Lemma 6.10]{Cobzas2017}:
 %, already fitting in the topics under consideration in this paper.
 
 \begin{theorem}\label{thmTLSlocLip}

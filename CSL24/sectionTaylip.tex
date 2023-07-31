@@ -37,7 +37,7 @@ which is not a polynomial. Yet, $\model{t}^{!}$ is Lipschitz, more precisely, 1-
 
 %
 %$\Te{MN}$ of $MN$ is the set $\set{\Der^{n}[t,u_1,\dots,u_n]0 \mid n\in\N,t\in\Te{M},u_i\in\Te{N}}$.
-We have already shown that the tropical differential makes $\LREL_{!}$ a model of the differential $\lambda$-calculus. We now show that it also models the Taylor expansion (this needs not be true for \emph{any} CC$\partial$C).
+We have already shown that the tropical differential makes $\LREL_{!}$ a model of the differential $\lambda$-calculus. We now show that it also models the Taylor expansion (this needs not be true for \emph{any} CC$\partial\lambda$C).
 First, it can be patiently checked that in $(\LREL_!,D)$ all morphisms can be Taylor expanded  (see \cite[Definition 4.22]{Manzo2012}):
 
 \begin{theorem}\label{thm:modelsTaylor}
@@ -76,7 +76,7 @@ Let $\mathcal S$ be one of $\RM{PCF}^{\Lawv},\STLC,\BSTLC,\STDLC$. Let $\Gamma\v
 \begin{enumerate}
 \item For $\mathcal S=\BSTLC$, $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is a tropical polynomial, and thus Lipschitz;
 
-\item For $\mathcal S=\STDLC$, if $M\in \Te{M'}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is Lipschitz;
+\item For $\mathcal S=\STDLC$, if $t\in \Te{M}$, then $\model{\Gamma\vdash_{\mathcal S}t:A}^{!}_{a}$ is Lipschitz;
 
 \item For $\mathcal S=\STLC,\RM{PCF}^{\Lawv}$, then $\model{\Gamma\vdash_{\mathcal S}M:A}^{!}_{a}$ is locally Lipschitz;
 
