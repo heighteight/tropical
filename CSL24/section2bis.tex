@@ -20,11 +20,15 @@ Power series and polynomials over the tropical semiring are defined as follows:
 \begin{definition}
 A \emph{tropical power series}
 %\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
-(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
-If $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
+%(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
+in $k$-variables is a function $f:\Lawv^k\to\Lawv$ of shape $f(x)=\inf_{i\in I}\{ix + \matr f(i) \}$, where 
+$I\subseteq\mathbb N^{k}$, $i x$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients.
+When $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
 \end{definition}
 
-A tropical polynomial is always a piece-wise linear function since it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$
+In Section \ref{section3} we also consider tps in \emph{infinitely many} variables.
+
+A tropical polynomial is always a piece-wise linear function since, e.g.\ in one variable, it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$
 For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
 are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 
@@ -115,8 +119,8 @@ Unlike in standard algebra, tropical roots of tropical polynomials can be comput
 %
 %A
 % simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
-tps with more than one variable are defined as $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
-$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. In Section \ref{section3} we also consider tps with \emph{infinitely many} variables.
+%Tps with more than one variable are defined as $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
+%$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. In Section \ref{section3} we also consider tps with \emph{infinitely many} variables.
 
 
 While tropical polynomials are essentially combinatorial objects, this cannot be said for tps: since $\inf$s are not in general $\min$s, a tps is a ``limit'' of tropical polynomials of higher and higher degree, and its behavior is in general way more difficult to study than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
@@ -138,18 +142,20 @@ is the ``limit'' of the polynomials $\varphi_{n}$.
 \begin{remark}\label{rmk:val_trop}
  There is a well-known relation between tropical polynomial/power series and usual polynomials/power series. 
 Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ is totally ordered by the partial order: $\alpha \preceq \beta$ iff $\alpha +  \beta = \beta$, then one defines a \emph{valuation} \cite{Izhakian2015} to be a map $\mathrm{val}:Q\to L$ s.t.\ $\mathrm{val}(0)=0$, $\mathrm{val}(1)=1$, $\mathrm{val}(ab)=\mathrm{val}(a)\mathrm{val}(b)$, $\mathrm{val}(a+b)\preceq \max\set{\mathrm{val}(a),\mathrm{val}(b)}$.
-The valuation which is constantly equal to $1\in L$ on all the invertibles of $Q$ is called the \emph{trivial valuation} $\mathrm{val}_1$.
+For example, the valuation which gives $1\in L$ on all the invertibles of $Q$ and $0$ otherwise, is called the \emph{trivial valuation} $\mathrm{val}_1$.
 %Notice that if $\mathrm{val}:Q\to ([0,+\infty],+,\cdot,0,1)$ is a valuation, then $\mathrm{logval}(x):Q\to ([-\infty,+\infty],\min,+,+\infty,0)$, $\mathrm{logval}(x):=-\log \mathrm{val}(x)$ is a valuation.
 
-Now, for a (formal) power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$ (notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$), one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
-
-Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
+Now, for a power series $f=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$, one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+%Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series
-That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
+%That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
 \end{remark}
 
-Observe that tropicalisation is \emph{not} in general an injective operation. 
-This is because tps have a tendency to collapse, if not globally at least locally, onto tropical polynomials. For instance, the tps $\varphi(x,y)=\inf_{n}\{2x+(n+1)y,3x\}$ is  equivalent to the polynomial $\min\{2x+y,3x\}$, since $2x+(n+1)y\geq 2x+y$ holds for all $n$. So the trivial valuation sends both the infinite series $\sum_{n}(x^{2}y^{n+1}+x^{3})$ and the polynomial $x^{2}y+x^{3}$ onto the same map.
+%For instance, the tps $\varphi(x,y)=\inf_{n}\{2x+(n+1)y,3x\}$ coincides with the polynomial $\min\{2x+y,3x\}$, since $2x+(n+1)y\geq 2x+y$ holds for all $n$. So the trivial valuation sends both the infinite series $\sum_{n}(x^{2}y^{n+1}+x^{3})$ and the polynomial $x^{2}y+x^{3}$ onto the same map.
+Notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$ and the zero is $\infty$.
+Therefore, for instance, the tropicalisation (w.r.t.\ any valuation) sends the infinite power series $\sum_{n\geq 2} x^n$ to the tps $\varphi(x)=\inf_n (n+2)x$.
+But the latter always coincides with the tropical polynomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
+This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon}, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
 
 Similarly, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
 In particular, %for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, 

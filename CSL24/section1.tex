@@ -21,7 +21,7 @@ By contrast, in the standard semantics of the differential $\lambda$-calculus, l
 
 
 A natural question is thus whether these two apparently unrelated ways of interpreting linearity and duplication can be somehow reconciled. At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
-in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz. The fundamental motivation of this work is then the observation that 
+in metric models $n$ times duplication results in a \emph{linear} (hence Lipschitz) function $n\cdot x$, while in differential models this results in a \emph{polynomial} function $x^{n}$, hence not Lipschitz. The fundamental intuition of this work is then the observation that 
 this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics, where, as we'll see, the monomial $x^{n}$ precisely reads as the linear function $n\cdot x$.
 
 %%
@@ -121,7 +121,7 @@ Coming back to our discussion on program semantics, tropical geometry might seem
 At this point, it is worth mentioning that a tropical variant of relational semantics has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
 However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken. 
 
-In this paper we demonstrate that the relational interpretation of the $\lambda$-calculus based on tropical mathematics does indeed provide the desired bridge between differential and metric semantics, and we suggest how this approach might be used to study probabilistic and non-deterministic programs (an aspect that will be developed in more detail in a future paper of this series). 
+In this paper we make a first step in such direction, by demonstrating that the relational interpretation of the $\lambda$-calculus based on tropical mathematics does indeed provide the desired bridge between differential and metric semantics, and we suggest how this approach might be used to study probabilistic and non-deterministic programs (this last aspect will be developed in more detail in a future paper of this series). 
 
 %Moreover, we show that the conceptual unification of these two approaches suggests ways in which techniques from resource-analysis could be used in sensitivity analysis and \emph{vice-versa}, paving the way for new  applications of tropical geometry to the  study of higher-order programs.
 
@@ -168,10 +168,11 @@ In this paper we demonstrate that the relational interpretation of the $\lambda$
 Our contributions in this paper are the following:
 \begin{itemize}
 
-\item after recalling the notions of tropical polynomials and power series, we show how these objects naturally arise in the \emph{best-case} analysis of probabilistic and non-deterministic programs, by studying a few very simple examples. This is in Sections \ref{section2} and \ref{section22}.
+\item after recalling the notions of tropical polynomials and power series, we show how these objects naturally arise in the \emph{best-case} analysis of probabilistic and non-deterministic programs, by studying a few simple examples. This is in Sections \ref{section2} and \ref{section22}.
 
-\item We study the relational model over the tropical semiring, which provides a semantics of effectful extensions of $\STLC$ and $\mathrm{PCF}$. Notably, 
- we show that the functions interpreting higher-order programs, which correspond to a generalization of \emph{tropical power series} \cite{Porzio2021}, are locally Lipschitz-continuous and thus yield a full-scale metric semantics for the $\lambda$-calculus and its bounded fragments. This is in Sections \ref{section3} and \ref{sec:tls}.
+\item We study the relational model over the tropical semiring, which provides a semantics of effectful extensions of $\STLC$ (simply typed $\lambda$-calculus) and $\mathrm{PCF}$. Notably, 
+ we show that the functions interpreting higher-order programs, %which correspond to a 
+generalizations of \emph{tropical power series} \cite{Porzio2021}, are locally Lipschitz-continuous and thus yield a full-scale metric semantics for the $\lambda$-calculus and its bounded fragments. This is in Sections \ref{section3} and~\ref{sec:tls}.
  
  \item We exploit the differential structure of the relational model to study the \emph{tropical Taylor expansion} of a $\lambda$-term, which can be seen as an approximation of the term by way of Lipschitz-continuous maps, and we show that it can be used to deduce approximated Lipschitz-constants for higher-order programs.
 This is in Section \ref{sec:TayLip}.
