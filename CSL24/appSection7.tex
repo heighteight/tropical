@@ -1,0 +1,183 @@
+
+
+%\paragraph{Taylor Expansion }
+\subsection{Proof of  Theorem~\ref{thm:modelsTaylor}}
+
+Theorem~\ref{thm:modelsTaylor} states the validity of Taylor expansion in $\LREL_!$.
+We must check for it the following equation, given $f\in \LREL_!(C, B^{A})$ and $g\in \LREL_!(C,A)$:
+$$
+\mathsf{ev}\circ \langle f,g\rangle= \inf_{n\in \BB N}
+\left\{(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{n\text{ times}})\circ \langle \mathrm{id}, \infty\rangle\right\}
+$$
+where:
+\begin{enumerate}
+\item $\mathsf{ev}\in \LREL_!(B^{A}+A, B)$ is the canonical \emph{evaluation} morphism;
+
+\item $\Lambda^{-}(\_):= \mathsf{ev}\circ (\_\times \mathrm{id})$ is the \emph{uncurry} operator;
+
+\item given $f\in \LREL_!(C+A,B)$ and $g\in \LREL_!(C,A)$, 
+$f\star g\in \LREL_!(C+A,B)$ is the morphism obtained by differentiating $f$ in its second component and applying $g$ in that component, i.e.~
+$$
+f\star g =  D(f)\circ \langle \langle \infty, g\circ \pi_{1}\rangle, \mathrm{id}_{C+A}\rangle.
+$$ 
+
+\end{enumerate}
+
+We do it in the following $4$ steps.
+
+
+\begin{enumerate}
+
+\item Let us compute the morphism $\mathsf{ev}$ explicitly: $\mathsf{ev}\in \Lawv^{ \C M_{\mathsf{fin}}(  ( \C M_{\mathsf{fin}}(A)\times B)       +  A    ) \times B  }$ is given by
+$$\mathsf{ev}_{\mu,y}=
+ \begin{cases}
+ 0 & \text{ if } \mu=[ \langle\rho, y\rangle]  \oplus \rho \\
+ \infty & \text{ otherwise}
+ \end{cases}
+ $$
+and observe that, given $f\in \LREL_!(C, B^{A})$ and $g\in \LREL_!(C,A)$, 
+$$
+\big(\mathsf{ev}\circ \langle f,g\rangle \big)_{\chi, y}= 
+\inf\Big \{ 
+\sum_{i=1}^{m}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle [x_{1},\dots, x_{m}],y\rangle}
+\mid 
+x_{1},\dots, x_{m}\in A,
+\chi= \chi'+\sum_{i=1}^{m}\chi_{i}, 
+\Big \}
+$$
+
+
+
+\item Let us compute the morphism $\Lambda^{-}$ explicitly: given $g\in \LREL_!(C, B^{A})$, 
+$\Lambda^{-}(g)\in \LREL_!(C+A, B)$ is given by 
+$$
+\big(\Lambda^{-}(g)\big)_{\rho\oplus\mu,y}=g_{\rho, \langle \mu,y\rangle}
+$$
+
+
+\item Let us compute the morphism $\star$ explicitly: $f\star g$ is given by 
+$$
+(f\star g)_{\rho\oplus\mu,y}=
+\inf\Big\{
+g_{\rho',x}+
+f_{\rho''\oplus(\mu+x)}
+\mid
+x\in A,
+\rho= \rho'+\rho''
+\Big\}
+$$
+
+\item We can now conclude: given the definition of $\mathsf{ev}\circ \langle f,g\rangle$, to check the Taylor equation it is enough to check that, for all $N\in \BB N$, 
+$$
+\left((( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N\text{ times}})\circ \langle \mathrm{id}, \infty\rangle\right)_{\chi,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+
+Let us show, by induction on $N$, the following equality, from which the desired equality easily descends:
+$$
+\big(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N\text{ times}}\big)_{\chi\oplus\mu,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+\begin{itemize}
+
+\item if $N=0$, the right-hand term reduces to 
+$f_{\chi, \langle \mu, y\rangle}=(\Lambda^{-}(f))_{\chi\oplus\mu,y}$;
+
+\item otherwise, let $F=(( \cdots (\Lambda^{-}(f) \underbrace{\star g)\cdots )\star g}_{N-1\text{ times}})$, so that by I.H.~we have
+$$
+F_{\chi\oplus\mu,y}=
+\inf\Big \{ 
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N-1}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N-1}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\Big \}
+$$
+Then we have
+{\small
+\begin{align*}
+\big( F\star g\big)_{\chi\oplus\mu,y}
+&=
+\inf \left \{
+g_{\chi',x}+F_{\chi''\oplus(\mu+x)}
+\mid
+x\in A, \chi=\chi'+\chi''
+\right\}\\
+&=
+\inf\left \{ 
+g_{\chi',x}+
+\inf\left\{
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi'', \langle\mu+ [x_{1},\dots, x_{N-1}]+x,y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N-1}\in A,\\
+\chi^{*}= \chi''+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\right\}
+\ 
+\Big\vert \ 
+\begin{matrix}
+x\in A,\\
+\chi=\chi'+\chi^{*}
+\end{matrix}
+\right \}\\
+&=
+\inf\Big \{ 
+g_{\chi',x}+
+\sum_{i=1}^{N-1}g_{\chi_{i},x_{i}}+
+f_{\chi'', \langle\mu+ [x_{1},\dots, x_{N-1}]+x,y\rangle}
+\mid 
+\begin{matrix}
+x,x_{1},\dots, x_{N-1}\in A,\\
+\chi= \chi'+\chi''+\sum_{i=1}^{N-1}\chi_{i}
+\end{matrix}
+\Big \}\\
+&=
+\inf\Big \{ 
+\sum_{i=1}^{N}g_{\chi_{i},x_{i}}+
+f_{\chi', \langle\mu+ [x_{1},\dots, x_{N}],y\rangle}
+\mid 
+\begin{matrix}
+x_{1},\dots, x_{N}\in A,\\
+\chi= \chi'+\sum_{i=1}^{N}\chi_{i}
+\end{matrix}
+\Big \}.
+\end{align*}
+}
+\end{itemize}
+\end{enumerate}
+
+
+\subsection{Proof of Corollary~\ref{cor:taylor}}
+
+
+\begin{proof}[Proof of Corollary \ref{cor:taylor}]
+Thm.~\ref{thmTLSlocLip} yields the estimate $\max_{\overline{B_{3\delta}(\model{N})}}\model{M}^{!}$. As from Thm.~\ref{thm:taylor} 4.~it follows that $\model{t}^{!}\geq \model{M}^{!}$, we deduce that $K=\max_{\overline{B_{3\delta}(\model{N})}}\model{t}^{!}\geq \max_{\overline{B_{3\delta}(\model{N})}}\model{M}^{!}$ is also a local Lipschitz constant for $\model{M}^{!}$. Moreover, since $\model{t}^{!}$ is concave and non-decreasing, the $\max$ of $\model{t}^{!}$ is attained at the maximum point of $\overline{B_{3\delta}(\model{N})}$, that is, 
+$K= \model{t}^{!}(x+3\delta)$. Finally, from $\model{t}^{!}(\model{N})<\infty$ and the continuity of $\model{t}^{!}$ we deduce $K<\infty$.
+\end{proof}
+
+
+
+
+

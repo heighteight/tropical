@@ -1,0 +1,84 @@
+%\subsection{Section~\ref{sec:4A}: Proof of Theorem~\ref{theorem:fepsilon}}
+
+We give below the complete statement of Theorem \ref{theorem:fepsilon} together with its proof.
+
+First, let us set the following:
+\begin{definition}
+ Let $\preceq$ be the pointwise order on $\N^k$ (i.e.\ for all $ m  , n  \in \N^{K}$, $ m  \preceq  n  $ iff $m_{i}\leq n_{i}$ for all $1\leq i\leq K$).
+ Of course $ m  \prec  n  $ holds exactly when $ m  \preceq  n  $ and $m_{i}<n_{i}$ for at least one $1\leq i\leq K$.
+ Finally, we set $ m  \prec_{1} n  $  iff
+$ m  \prec  n  $ and $\sum_{i=1}^{K}n_{i}-m_{i}=1$ (i.e.\ they differ on exactly one coordinate).
+\end{definition}
+
+We will exploit the following:
+
+\begin{remark}\label{rmk:AC}
+\text{If $U\subseteq \N^{K}$ is infinite, then $U$ contains an infinite ascending chain $ m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$.}.
+
+This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph $(U,\prec_{1})$, indeed a $K$-branching tree; if there is no infinite ascending chain $  m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$, then in particular there is no infinite ascending chain $  m  _{0}\prec_{1}  m  _{1} \prec_{1}  m  _{2} \prec_{1} \dots$ so the tree $U$ has no infinite ascending chain; then by KL it is finite, contradicting the assumption. 
+\end{remark}
+
+\begin{theorem}[Theorem \ref{theorem:fepsilon}]
+Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tps with matrix $\matr f:\N^k\to\Lawv$.
+ For all $0<\epsilon<\infty$, there is $\C F_\epsilon \subseteq \N^k$ such that:
+\begin{enumerate}
+ \item $\C F_\epsilon$ is finite
+ \item If $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \Lawv^k$
+ \item If $f( x _0) = +\infty$ for some $ x _0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$
+ \item The restriction of $f$ on $[\epsilon,\infty]^k$ coincides  with the tropical {polynomial} \[P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{nx+\matr f(n)}\]
+where $nx:=\sum_{i=1}^k n_ix_i$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We let $\mathcal F_\epsilon$ to be the complementary in $\N$ of the set:
+\[
+ \set{ n  \in\N^{K} \mid \textit{either } \hat f ( n  )=+\infty \textit{ or there is }  m  \prec  n  \textit{ s.t.\ } \hat f( m  )\leq\hat f( n  )+\epsilon}.
+\]
+In other words, $ n  \in\mathcal F_\epsilon$ iff $\hat f( n  )<+\infty$ and for all $ m  \prec  n  $, one has $\hat f( m  )>\hat f( n  )+\epsilon$.
+
+1).
+Suppose that $\mathcal F_\epsilon$ is infinite; then, using Remark~\ref{rmk:AC}, it contains an infinite ascending chain
+\[\set{ m  _0\prec  m  _1\prec\cdots}.\]
+By definition of $\mathcal F_\epsilon$ we have then:
+\[+\infty>\hat f( m  _0)>\hat f( m  _1)+\epsilon>\hat f( m  _2)+2\epsilon>\cdots\]
+so that $+\infty>\hat f( m  _0)>\hat f( m  _{i})+i\epsilon\geq i\epsilon$ for all $i\in\N$.
+This contradicts the Archimedean property of $\R$.
+
+2).
+We show that if $\mathcal F_\epsilon=\emptyset$, then $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+This immediately entails the desired result.
+We go by induction on the well-founded order $\prec$ over $ n  \in\N^{K}$:
+
+- if $ n  =0^{K}\notin\mathcal F_\epsilon$, then $\hat f( n  )=+\infty$, because there is no $ m  \prec n  $.
+
+- if $ n  \notin\mathcal F_\epsilon$, with $ n  \neq 0^{K}$ then either $\hat f( n  )=+\infty$ and we are done, or there is $ m  \prec  n  $ s.t.\ $\hat f( m  )\leq \hat f( n  )+\epsilon$.
+By induction $\hat f( m  )=+\infty$ and, since $\epsilon<+\infty$, this entails $\hat f( n  )=+\infty$.
+
+3).
+If $f( x _0)=+\infty$ with $ x _0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+Therefore, no $ n  \in\N^{K}$ belongs to $\mathcal F_\epsilon$.
+
+4).
+We have to show that $f( x )=P_\epsilon( x )$ for all $ x \in [\epsilon,+\infty]^{K}$.
+By 1), it suffices to show that we can compute $f( x )$ by taking the $\inf$, that is therefore a $\min$, only in $\mathcal F_\epsilon$ (instead of all $\N^{K}$).
+If $\mathcal F_\epsilon=\emptyset$ then by 2) we are done (remember that $\min\emptyset := +\infty$).
+If $\mathcal F_\epsilon\neq\emptyset$, we show that for all $ n  \in\N^{K}$, if $ n   \notin\mathcal F_\epsilon$, then there is $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  )+ n   x $.
+We do it again by induction on $\prec_{1}$:
+
+- if $ n  =0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f( n  )=+\infty$ (because there is no $ n  '\prec n  $).
+So any element of $\mathcal F_\epsilon\neq\emptyset$ works.
+
+- if $ n  \neq 0^{K}$, then we have two cases:
+either $\hat f( n  )=+\infty$, in which case we are done as before by taking any element of $\mathcal F_\epsilon\neq\emptyset$.
+Or $\hat f( n  )<+\infty$, in which case (again by definition of $\mathcal F_\epsilon$) there is $ n  '\prec n  $ s.t.\ \begin{equation}\label{eq:n'neps} \hat f( n  ')\leq \hat f( n  )+\epsilon.\end{equation}
+Therefore we have (remark that the following inequalities hold also for the case $x=+\infty$):
+\[\begin{array}{rclr}
+ \hat f( n  ')+ n  ' x  & \leq & \hat f( n  ) + \epsilon +  n' x  & \textit{by \eqref{eq:n'neps}} \\
+ & \leq & \hat f( n  ) + ( n  - n  ') x  +  n  ' x  & \textit{because $\epsilon\leq\min x $ and $\min  x \leq( n  -  n') x $} \\
+ & = & \hat f( n  )+  n   x . &
+\end{array}\]
+Now, if $ n  '\in\mathcal F_\epsilon$ we are done.
+Otherwise $ n  '\notin\mathcal F_\epsilon$ and we can apply the induction hypothesis on it, obtaining an $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  ')+ n  ' x $.
+Therefore this $ m  $ works.
+\end{proof}
+

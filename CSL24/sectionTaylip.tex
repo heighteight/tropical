@@ -122,12 +122,12 @@ $\left(\inf_{n\in\N} f_n\right)^!=\inf_{n\in\N} f_n^!$.
 
 We conclude our discussion with an application of the Taylor expansion in $\LREL_{!}$: as proved in the previous section, all tps are locally Lipschitz; now, Theorem \ref{thm:taylor} can be used to compute approximations of the Lipschitz constants of an actual higher-order program.
 
-\begin{corollary}
+\begin{corollary}\label{cor:taylor}
 Suppose $x: A \vdash_{\STLC}M:B$ and $\vdash_{\STLC} N:A$. 
 Then for all $t\in \Te{M}$ such that $\model{t}^{!}(\model{N})\neq \infty$, and $\delta>0$, the tps $\model{ x:A\vdash_{\STLC}M:B}^{!}$ is $\frac{\model{t}^{!}(\model{N}+2\delta)}{\delta}$-Lipschitz over the open ball
  $B_{\delta}(\model{N})$.
 \end{corollary}
-\begin{proof}
+\begin{proof}[Proof sketch.]
 We apply the Lipschitz estimate from Thm.~\ref{thmTLSlocLip} for $\model{M}^{!}$,  and use the fact that, from Thm.~\ref{thm:taylor} 4.~it follows that $\model{t}^{!}\geq \model{M}^{!}$.
 To conclude, since $\model{t}^{!}$ is concave and non-decreasing, $\max_{\overline{B_{3\delta}(x)}}\model{t}^{!}= \model{t}^{!}(x+3\delta)$, which yields the stated Lipschitz estimate. 
 \end{proof}
