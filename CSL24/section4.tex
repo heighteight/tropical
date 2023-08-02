@@ -93,18 +93,18 @@ Now $(0,\infty)^X\subseteq \BB R^X$ is open and convex, %and {\color{red}$\BB R^
 so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f$ on $(0,\infty)^X$, hence that of $f$ on it.
 \end{proof}
 
-We conclude this subsection by noticing that $\Lawv^X$ with the usual $+$ and the usual $\cdot$ is a $\BB R_{\geq0}$-semimodule.
-Together with the norm $\norm{\cdot}_\infty$, it can be proved that it is a Scott-complete \emph{normed cone} (see~\cite{Selinger2004}, or the appendix, for such notions).
+We conclude this subsection by noticing that, as a set, $\Lawv=[0,\infty]$, and  $[0,\infty]^X$ with the usual $+$ and $\cdot$ is a $\BB R_{\geq0}$-semimodule, let us call it $\overline{\BB R}_{\geq 0}^X$.
+Together with the norm $\norm{\cdot}_\infty$, it can be showed to be a Scott-complete \emph{normed cone} (see~\cite{Selinger2004} or the appendix).
 Its cone structure induces an order on it, called the \emph{cone order}:
-$x\leq y$ iff $y=x+z$ for some (unique) $z\in\Lawv^X$.
-Such order actually coincides with the pointwise order on $\Lawv^X$.
+$x\leq y$ iff $y=x+z$ for some (unique) $z\in\overline{\BB R}_{\geq 0}^X$.
+Such order actually coincides with the pointwise order on $\overline{\BB R}_{\geq 0}$.
 This makes it a Scott-continuous dcpo.
 Suitable categories of cones have been recently investigated as models of probabilistic computation (\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
 In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
 
 \begin{theorem}\label{thm:ScottCont}
  All monotone (w.r.t.\ pointwise order) and $\norm{\cdot}_{\infty}$-continuous functions $f:(0,\infty)^X\to (0,\infty)$ are Scott-continuous.
- In particular, all tps $f:\Lawv^X\to\Lawv$ are Scott-continuous on $(0,\infty)^X$ w.r.t.\ the pointwise orders.
+ In particular, all tps $f:\overline{\BB R}_{\geq 0}^X\to\overline{\BB R}_{\geq 0}$ are Scott-continuous on $(0,\infty)^X$ w.r.t.\ the pointwise orders.
 \end{theorem}
 %\begin{proof}
 % From \autoref{thm:cont} plus the fact, taken from \cite{Selinger2004}, that in a normed $\R_{\geq 0}$-cone $P$, considered with its cone-order, if every bounded directed net in $P$ admits a sup, and if $(v_i)_{i\in I}$ is a directed net in $P$ with an upper bound $v\in P$, then $\exists\bigvee_{i\in I} v_i \in P$ and, if $\inf_{i\in I} \norm{v-v_i} =0$, one has $\bigvee_{i\in I} v_i = v$.
@@ -125,7 +125,7 @@ linear functions are non-expansive and $n$-bounded functions are $n$-Lipschitz \
 
 \begin{proposition}\label{prop:troplinear}
 \begin{enumerate}
-\item If a tps $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:X\times Y\to \Lawv$ (i.e.~it is linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
+\item If a tps $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:X\times Y\to \Lawv$ (i.e.~it is tropical linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
 \item If  $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
 \end{enumerate}
 \end{proposition}
