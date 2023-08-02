@@ -2,7 +2,8 @@
 
 
 As seen in Section \ref{section2}, tropical polynomials are piecewise-linear functions, hence concave and Lipschitz-continuous. Moreover, tps in finitely many variables are locally equivalent to tropical polynomials (except at some singular points), and are thus also concave and locally Lipschitz-continuous.
-In this section we show that much of these properties extend also to tps with infinitely many variables, as those arising from the tropical relational model. %establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+In this section we show that much of these properties extend also to tps with infinitely many variables, as those arising from the tropical relational model, %establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+and by a tropical polynomial or power series we mean one with possibly infintely many variables.
 The literature on tropical power series is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
 %
 %Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
@@ -61,7 +62,14 @@ The literature on tropical power series is often recent (e.g.~\cite{Porzio2021})
 %The core of the proof is showing that this set is indeed finite and enough for computing $f$.
 %\end{proof}
 %
-In the remainder of this section, by a tropical polynomial or power series we mean one with possibly infintely many variables. Moreover, we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$. 
+Notice that, as a set, $\Lawv^X=[0,\infty]^X$, and with the usual $+$ and $\cdot$ it is a $\BB R_{\geq0}$-semimodule, let us call it $\overline{\BB R}_{\geq 0}^X$.
+Together with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$, it can be showed to be a Scott-complete \emph{normed cone} (see~\cite{Selinger2004} or the appendix).
+Suitable categories of cones have been recently investigated as models of probabilistic computation (\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
+The cone structure of $\overline{\BB R}_{\geq 0}^X$ also induces a partial order on it, its \emph{cone partial-order}:
+$x\leq y$ iff $y=x+z$ for some (unique) $z\in\overline{\BB R}_{\geq 0}^X$.
+It actually coincides with the pointwise order on $\overline{\BB R}_{\geq 0}$ (and makes it a Scott-continuous dcpo).
+In this section we consider tps w.r.t.\ this structure.
+%Moreover, we consider the sets $\Lawv^X$ endowed with the usual sup-norm $\norm{x}_\infty:=\sup_{a\in X} x_a$. 
 
 \subparagraph*{Continuity of tps}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
@@ -71,7 +79,7 @@ This is indeed always the case:
 \begin{proposition}\label{prop:nondecr+conc}
  All tps 
  %$f:\Lawv^X\to\Lawv^Y$
-are non-decreasing and concave, w.r.t.\ the pointwise order on $\Lawv^{X}$.
+are non-decreasing and concave, w.r.t.\ the pointwise order on $\overline{\BB R}_{\geq 0}^{X}$.
 \end{proposition}
 
 
@@ -81,26 +89,19 @@ But we have to be careful, because while in the finite dimensional $\BB R^n$, ev
 However, \cite[Proposition 4.4.(3)]{Cobzas2017} shows that it is the only requirement to ask: if a real-valued convex function with domain a convex open subset of a locally convex topological $\BB R$-vector space (LCTVS) is, locally around any point, bounded from above by a finite non-zero constant, then it is continuous on all its domain.
 
 \begin{theorem}\label{thm:cont}
- All tps $f:\Lawv^X\to\Lawv$ are continuous on $(0,\infty)^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
+ All tps $f:\overline{\BB R}_{\geq 0}^X\to\overline{\BB R}_{\geq 0}$ are continuous on $(0,\infty)^X$, w.r.t.\ to the norm $\norm{\cdot}_\infty$.
 \end{theorem}
 \begin{proof}
 %It follows after adapting \cite[Proposition 4.4]{Cobzas2017} in order to prove that if a real-valued function on a locally convex topological $\BB R$-vector space is, locally around $x$, concave and bounded by a finite constant, then it is continuous at $x$.
 %Now, our $f$ is concave, so 
 By \autoref{prop:nondecr+conc}, $-f$ is convex.
-Since $f\geq 0$ on all $\Lawv^X$, we have e.g.\ $-f\leq 1$ on $\Lawv^X$.
+Since $f\geq 0$ on all $\overline{\BB R}_{\geq 0}^X$, we have e.g.\ $-f\leq 1$ on $\overline{\BB R}_{\geq 0}^X$.
 %Remark that we cannot immediately apply \cite[Proposition 4.4.(3)]{Cobzas2017}, since $\Lawv^X$ is not even a $\BB R$-vector space.
 Now $(0,\infty)^X\subseteq \BB R^X$ is open and convex, %and {\color{red}$\BB R^X$ is a LCTVS}, 
 so \cite[Proposition 4.4.(3)]{Cobzas2017} entails the continuity of $-f$ on $(0,\infty)^X$, hence that of $f$ on it.
 \end{proof}
 
-We conclude this subsection by noticing that, as a set, $\Lawv=[0,\infty]$, and  $[0,\infty]^X$ with the usual $+$ and $\cdot$ is a $\BB R_{\geq0}$-semimodule, let us call it $\overline{\BB R}_{\geq 0}^X$.
-Together with the norm $\norm{\cdot}_\infty$, it can be showed to be a Scott-complete \emph{normed cone} (see~\cite{Selinger2004} or the appendix).
-Its cone structure induces an order on it, called the \emph{cone order}:
-$x\leq y$ iff $y=x+z$ for some (unique) $z\in\overline{\BB R}_{\geq 0}^X$.
-Such order actually coincides with the pointwise order on $\overline{\BB R}_{\geq 0}$.
-This makes it a Scott-continuous dcpo.
-Suitable categories of cones have been recently investigated as models of probabilistic computation (\cite{Crubillie2018, EhrPagTas2018, Ehrhard2020}).
-In analogy with \cite[Proposition 17]{DanEhrh2011}, we have:
+In analogy with \cite[Proposition 17]{DanEhrh2011}, we also have:
 
 \begin{theorem}\label{thm:ScottCont}
  All monotone (w.r.t.\ pointwise order) and $\norm{\cdot}_{\infty}$-continuous functions $f:(0,\infty)^X\to (0,\infty)$ are Scott-continuous.
@@ -125,8 +126,8 @@ linear functions are non-expansive and $n$-bounded functions are $n$-Lipschitz \
 
 \begin{proposition}\label{prop:troplinear}
 \begin{enumerate}
-\item If a tps $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f:X\times Y\to \Lawv$ (i.e.~it is tropical linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
-\item If  $f: \Lawv^{X}\to \Lawv^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \Lawv$, then $f$ is $n$-Lipschitz-continuous.
+\item If a tps $f: \overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$ arises from a matrix $\matr f:X\times Y\to \overline{\BB R}_{\geq 0}$ (i.e.~it is tropical linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
+\item If  $f: \overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \overline{\BB R}_{\geq 0}$, then $f$ is $n$-Lipschitz-continuous.
 \end{enumerate}
 \end{proposition}
 \begin{proof}[Proof sketch]
@@ -165,9 +166,9 @@ For all $f,g\in \LREL_{!}(X,Y)$, $d_{\infty}( f,g)=d_\infty(f^{!},g^{!})$.% $\no
 %This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 
 
-Observe that, for any tropical polynomial $\varphi:\Lawv^{X}\to \Lawv^{Y}$, the associated matrix has shape $!_{\mathrm{deg}(\varphi)}(X)\times Y\to \Lawv$ (as a monomial $\mu_ix+c_{i}$ yields a matrix entry on $!_{\#\mu_i}X\times Y$). Hence, using Proposition \ref{prop:troplinear} 2., we have:
+Observe that, for any tropical polynomial $\varphi:\overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$, the associated matrix has shape $!_{\mathrm{deg}(\varphi)}(X)\times Y\to \overline{\BB R}_{\geq 0}$ (as a monomial $\mu_ix+c_{i}$ yields a matrix entry on $!_{\#\mu_i}X\times Y$). Hence, using Proposition \ref{prop:troplinear} 2., we have:
 \begin{corollary}\label{prop:polylip}
-For any tropical polynomial $\varphi:\Lawv^{X}\to\Lawv$, $\varphi$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
+Any tropical polynomial $\varphi:\overline{\BB R}_{\geq 0}^{X}\to\overline{\BB R}_{\geq 0}$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
 
 We now show that, if we consider the \emph{full} exponential $!$, i.e.~arbitrary tps, we can still prove that a local Lipschitz condition holds. %First observe that, as a consequence of Theorem~\ref{theorem:fepsilon}, the tps with \emph{finitely many} variables are always \emph{locally} Lipschitz on all $(0,\infty)^X$. Yet, for the case of infinitely many variables we need a more general argument.
@@ -181,7 +182,7 @@ Instead of showing how our case fits into such theorems, we prefer to state the 
 %Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} \absv f$.
 %Therefore, since $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$, %and all tps are non-negative, 
 %we immediately have that 
-All tps $f:\Lawv^X\to\Lawv$ are locally Lipschitz on $(0,\infty)^X$.
+All tps $f:\overline{\BB R}_{\geq 0}^X\to\overline{\BB R}_{\geq 0}$ are locally Lipschitz on $(0,\infty)^X$.
 Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} f$.
 \end{theorem}
 \begin{proof}
