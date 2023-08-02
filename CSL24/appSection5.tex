@@ -92,13 +92,15 @@ Let $\C C$ be a symmetric monoidal closed category and $(D, w,c,\epsilon,\delta)
 Let $\model{X}$ be fixed objects of $\C C $, one for each ground type $X$ of $\BSTLC$. 
 
 One lifts the interpretation to types as 
-$\model{!_{n}A\multimap B}=D(n)(\model{A})\multimap \model B$. Moreover, one extends the interpretation to contexts via $\model{x:_{n}A}:= D(n)(\model A)$ and 
+$\model{!_{n}A\multimap B}=D(n)(\model{A})\multimap \model B$. Moreover, one extends the interpretation to contexts via %$\model{x:_{n}A}:= D(n)(\model A)$ and 
+%$\model{\{x_{1}:_{n_{1}}A_{1},\dots, x_{k}:_{n_{k}}A_{k}\}}=
+%\bigotimes_{i=1}^{k}\model{x_{i}:_{n_{i}}A_{i}}$, for $k\geq 1$.
 $\model{\{x_{1}:_{n_{1}}A_{1},\dots, x_{k}:_{n_{k}}A_{k}\}}=
-\bigotimes_{i=1}^{k}\model{x_{i}:_{n_{i}}A_{i}}$.
+\bigotimes_{i=1}^{k} D(n_i)(\model A_i)$.
 
 Then, one inductively defines an interpretation $\model{\Gamma \vdash M:A}\in \C C(\model\Gamma, \model A)$ of $\Gamma \vdash M:A$ by induction as follows:
  \begin{itemize}
-\item $\model{x\in_{1}A\vdash x\in A}=\epsilon_{A}$;
+\item $\model{x:_{1}A\vdash x: A}=\epsilon_{A}$;
 \item $\model{\Gamma,x:_{0}B\vdash M:A} =
 \model{\Gamma \vdash M:A}
 \circ (\model{\Gamma}\otimes  w_{\model B})
