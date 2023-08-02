@@ -1,5 +1,5 @@
 
-In recent years, more and more interest in the programming language community has been directed towards the study of \emph{quantitative} properties of programs like computing the number of computation steps or convergence probabilities, 
+In recent years, more and more interest in the programming language community has been directed towards the study of \emph{quantitative} properties of programs like e.g.~the number of computation steps or the probability of convergence, 
 as opposed to purely \emph{qualitative} properties like termination or program equivalence. 
 Notably, a significant effort has been made to extend, or adapt, well-established qualitative methods, like type systems, relational logics or denotational semantics, to account for quantitative properties. We can mention, for example, 
 intersection type systems aimed at capturing time or space resources \cite{decarvalho2018, Accattoli2022} or convergence probabilities \cite{Breuvart2018, PistoneLICS2022},  relational logics to account for probabilistic properties like e.g.~differential privacy \cite{Barthe_2012} or metric preservation \cite{Reed2010, dallago}, as well as the study of denotational models for 
@@ -10,7 +10,7 @@ The main reason to look for methods relying on (quantitative extensions of) type
 
 Among such quantitative approaches, two have received considerable attention.
 
-On the one hand one there is the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask   whether they compute functions which do not differ \emph{too much}. This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
+On the one hand one one could mention the approach of \emph{program metrics} \cite{Reed2010, Gaboardi2017, Gabo2019} and \emph{quantitative equational theories} \cite{Plotk}: when considering probabilistic or approximate computation, rather than asking whether two programs compute \emph{the same} function, it makes more sense to ask   whether they compute functions which do not differ \emph{too much}. This has motivated the study of denotational frameworks in which types are endowed with a metric, measuring similarity of behavior; this approach has found  applications in e.g.~differential privacy \cite{Reed2010} and coinductive methods \cite{Bonchi2018}, and was recently extended to account for the full $\lambda$-calculus \cite{Geoffroy2020, PistoneLICS, PistoneFSCD2022}.
 
 On the other hand, there is the approach based on \emph{differential} \cite{difflambda} or \emph{resource-aware} \cite{Boudol1993} extensions of the $\lambda$-calculus, which is well-connected to the so-called \emph{relational semantics} \cite{Manzo2012, Manzo2013, dill} and has a syntactic counterpart in the study of \emph{non-idempotent} intersection types \cite{decarvalho2018, Mazza2016}. This family of approaches have been exploited to account for higher-order program differentiation \cite{difflambda}, to establish reasonable \emph{cost-models} for the $\lambda$-calculus \cite{Accattoli2021}, and have also been shown suitable to the probabilistic setting \cite{Manzo2013, Breuvart2018, PistoneLICS2022}. 
 
@@ -21,8 +21,8 @@ By contrast, in the standard semantics of the differential $\lambda$-calculus, l
 
 
 A natural question, at this point, is whether these two apparently unrelated ways of interpreting linearity and duplication can be somehow reconciled. At a first glance, there seems to be a  ``logarithmic'' gap between the two approaches:
-in metric models $n$ times duplication results in a {linear} (hence \emph{Lipschitz}) function $n x$, while in differential models this results in a {polynomial} function $x^{n}$, thus not Lipschitz. The fundamental intuition of this work is then the observation that 
-this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics, where, as we'll see, the monomial $x^{n}$ precisely reads as the linear function $n x$.
+in metric models a program duplicating an input $n$ times yields a {linear} (hence \emph{Lipschitz}) function $n x$, whereas in differential models it would lead to a {polynomial} function $x^{n}$, thus not Lipschitz. The fundamental idea behind this work is the observation that 
+this gap is naturally overcome once we interpret these functions in the framework of tropical mathematics, where, as we will see, the monomial $x^{n}$ precisely reads as the linear function $n x$.
 
 %%
 %%In both approaches the notion of \emph{linearity}, in the sense of linear logic \cite{girardLl} (i.e.~of using inputs exactly once), plays a crucial role.
@@ -114,14 +114,14 @@ $.
 %This is not a \emph{ad-hoc} setting: 
 In the last decades, tropical geometry evolved into a vast and rich research domain, providing a combinatorial counterpart of usual algebraic geometry, with important connections with optimisation theory \cite{Sturmfelds}.
 Computationally speaking, working with $\min$ and $+$ is generally easier than working with standard addition and multiplication; for instance, the fundamental (and generally intractable) problem of finding the roots of a polynomial admits a \emph{linear time} algorithm in the tropical case (and, moreover,  the tropical roots can be used to approximate the actual roots \cite{Noferini2015}).
-The computational nature of tropical notions explains why these are so widely applied in computer science, notably for convex analysis and machine learning (see \cite{Maragos2021} for a recent survey).
+The combinatorial nature of several methods in tropical mathematics explains why these are so widely applied in computer science, notably for convex analysis and machine learning (see \cite{Maragos2021} for a recent survey).
 
 
 Coming back to our discussion on program semantics, tropical mathematics seems to be just  what we look for, as it turns polynomial functions like $x^{n}$ into Lipschitz maps like $n x$.
 At this point, it is worth mentioning that a tropical variant of the usual relational semantics of linear logic and the $\lambda$-calculus has already been considered \cite{Manzo2013}, and shown capable of capturing \emph{best-case} quantitative properties, but has not yet been studied in detail. Furthermore, connections between tropical linear algebra and metric spaces have also been observed \cite{Fuji} within the abstract setting of \emph{quantale-enriched} categories \cite{Hofmann2014, Stubbe2014}.
-However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics has not yet been undertaken. 
+However, a thorough investigation of the interpretation of the $\lambda$-calculus within tropical mathematics and of the potentialities of its applications has not yet been undertaken. 
 
-In this paper we make a first step in such direction, by demonstrating that the relational interpretation of the $\lambda$-calculus based on tropical mathematics does indeed provide the desired bridge between differential and metric semantics, and we suggest how this approach might be used to study probabilistic and non-deterministic programs.% (an aspect that will be developed in more detail in a future paper of this series). 
+In this paper we make a first step in such direction, by demonstrating that the relational interpretation of the $\lambda$-calculus based on tropical mathematics does indeed provide the desired bridge between differential and metric semantics, and suggests new combinatorial methods to study probabilistic and non-deterministic programs.% (an aspect that will be developed in more detail in a future paper of this series). 
 
 %Moreover, we show that the conceptual unification of these two approaches suggests ways in which techniques from resource-analysis could be used in sensitivity analysis and \emph{vice-versa}, paving the way for new  applications of tropical geometry to the  study of higher-order programs.
 
@@ -169,7 +169,7 @@ Our contributions in this paper are the following:
 
 \item We first show that tropical polynomials naturally arise in the {best-case} analysis of probabilistic and non-deterministic programs, turning the study of quantitative program behavior into a purely combinatorial problem. This is in Sections \ref{section2} and \ref{section22}.
 
-\item We study the relational model over the tropical semiring, which provides a semantics of effectful extensions of $\STLC$ (simply typed $\lambda$-calculus) and $\mathrm{PCF}$. Notably, 
+\item We study the relational model over the tropical semiring, which provides a semantics of effectful extensions of the simply typed $\lambda$-calculus ($\STLC$ in the following) and $\mathrm{PCF}$ \cite{Plotkin1977}. Notably, 
  we show that higher-order programs are interpreted by a  
 generalizations of {tropical power series} \cite{Porzio2021}, and we show that these functions are locally Lipschitz-continuous, thus yielding a full-scale metric semantics. This is in Sections \ref{section3} and~\ref{sec:tls}.
  
@@ -181,8 +181,8 @@ This is in Section \ref{sec:TayLip}.
 %measuring convergence log-probabilities. This is in Section~\ref{section5}
 
 \item We conclude 
-by putting the connection between the 
-tropical, differential and metric viewpoints at the right level of abstraction and generality.
+by framing the connection between the 
+tropical, differential and metric viewpoints at a more abstract level.
 We recall a well-known correspondence between Lawvere's \emph{generalized metric spaces} \cite{Lawvere1973, Stubbe2014} and modules over the tropical semi-ring \cite{Russo2007} and we show that it yields a model of the differential $\lambda$-calculus which extends the tropical relational model. This is in Section~\ref{sec:GMS}.
 \end{itemize}
 %

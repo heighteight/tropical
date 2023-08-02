@@ -263,7 +263,8 @@ Finally, we define $!M$ as the infinite biproduct $\prod_{n}!_{n}M$, yielding th
 %
 The construction of $!$ for $\Mod$ generalizes the one for $\LREL$:
 \begin{proposition}\label{prop:pinv3}
-$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{\leq n}(X)}$, $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. In particular, $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
+%$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{\leq n}(X)}$, 
+$!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. In particular, $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
 \end{proposition}
 \begin{proof}
 Let us show that the morphism $h:\Lawv^{\C M_{n}(S)}\to \Lawv^{S\times \dots \times S}$ defined by 
@@ -282,7 +283,9 @@ where $[\sigma](x)(\langle s_{1},\dots, s_{n}\rangle)=x(\langle x_{\sigma(1)},\d
 It is immediate that $h\circ [\sigma]=h\circ [\tau]$, for all $\sigma,\tau\in \F S_{n}$. Let now $k: C\to \Lawv^{S\times \dots \times S}$ satisfy $k\circ [\sigma]=k\circ [\tau]$: then for all $c\in C$, $k(c)(\langle s_{1},\dots, s_{n}\rangle)=k(c)(\langle s_{\sigma(1)},\dots, s_{\sigma(n)}\rangle)$, so $k(c)$ actually defines a unique element of $\Lawv^{\C M_{n}(S)}$, and thus $k$ splits in a unique way as $C \stackrel{k'}{\to} \Lawv^{\C M_{n}(S)} \stackrel{h}{\to}\Lawv^{S\times \dots \times S}$.
 
 Now, observe that 
-$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$ (cf.~\cite[Corollary 4.7.12 ($iii$)]{Russo2007}), and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$.
+$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$ (cf.~\cite[Corollary 4.7.12 ($iii$)]{Russo2007}), and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$. From this we obtain the claim via $!(\Lawv^{X})=\prod_{n}!_{n}(\Lawv^{X})\simeq\prod_{n}\Lawv^{\mathcal M_{n}(X)}\simeq 
+\Lawv^{\coprod_{n}\mathcal M_{n}(X)}\simeq
+\Lawv^{\mathcal{M}_{\mathrm{fin}}(X)}$.
 %    First observe that $\Lawv^{\mathcal M_{\leq n}(X)}$
 %    is isomorphic to $\Lawv^{\mathcal M_{n}(X)}$ via the morphism sending the
 %    multisets $[x_{1},\dots, x_{k}]$, with $k\leq n$, into $ [x_{1},\dots, x_{k}, \infty,\dots, \infty]$. 
