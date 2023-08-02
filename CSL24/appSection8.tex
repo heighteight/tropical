@@ -1,102 +1,102 @@
-
-\subsection{$\Lawv$-modules}
-
-
-A $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
-A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
- 
- 
- 
-
-$\Lawv$ is the most basic example of $\Lawv$-module.
-Any $\Lawv$-module $M$ has a dual $M^{\op}$, with reversed order and (right-)action $x\multimapinv \epsilon= \bigvee\{y\mid \epsilon \star y\succeq x\}$.
- Other basic examples of $\Lawv$-modules are the sets $\Lawv^{X}$, with order and action defined pointwise. 
- 
- 
- While the $\Lawv^{X}$ have a fixed base, for an arbitrary $\Lawv$-module one can retrieve a base via the \emph{Yoneda embedding}
-$\Yon: M \to \Mod(M^{\op},\Lawv)$, where $\Yon(x)(y)=\inf\{\epsilon\mid \epsilon\star y\succeq x\}$. 
-
-
-\begin{proposition}[cf.~\cite{Stubbe2014, Shen2014}]\label{prop:yonemod}
-For any $\Lawv$-module $M$, the Yoneda embedding has a left-adjoint $\sup(f)=\bigvee_{x\in M}f(x)\star x$.
-\end{proposition}
-
-
-Like $\LREL$, the category $\Mod$ has the relevant structure to interpret the linear $\lambda$-calculus:
-\begin{proposition}
-$\Mod$ is a SMCC.
-\end{proposition}
-%\begin{proof}
-The hom-sets $\Mod(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. The tensor product of $\Lawv$-modules $M\otimes N$ can be defined as the quotient of the usual tensor product of sup-lattices under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$ (see e.g.~\cite{Russo2007}).
-Notably, any element of $M\otimes N$ can be identified with a join of basic tensors $x\otimes y$, corresponding to the equivalence class of the pair $\langle x,y\rangle$.
-Beyond the required adjointness of the internal hom and the tensor, one can check that $\Mod$ is actually \emph{$^{*}$-autonomous}, since it satisfies $(M^{\op})^{\op}\simeq M$ and 
-$\Hom(M,N^{\op})\simeq (M\otimes N)^{\op}$.
-Finally, $\Mod$ has \emph{biproducts}: products and coproducts are both given by the Cartesian product of the underlying posets, with action defined pointwise.
 %
-%, similarly to the case of sup-lattices \cite{}, as the quotient of the free sup-lattice $\C P(M\times N)$ under the smallest congruence containing all pairs $((\bigvee A,y),\bigcup_{a\in A}\{(a,y)\})$, for $A\subseteq M, y\in N$, 
-%$((x,\bigvee B),\bigcup_{b\in B}\{(x,b)\})$, for all $x\in A$, $B\subseteq N$, and all pairws $\{
-%\end{proof}
+%\subsection{$\Lawv$-modules}
+%
+%
+%A $\Lawv$-module is a triple $(M,\preceq, \star)$ where $(M, \preceq)$ is a sup-lattice, and $\star: \Lawv \times M \to M$ is a continuous (left-)action of $\Lawv$ on it, where continuous means that $\star$ commutes with both joins in $\Lawv$ and in $M$.% (notice that this is indeed the usual notion of module over the Lawvere quantale $\Lawv$).
+%A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and the $\Lawv$-action. We let $\Mod$ indicate the category of $\Lawv$-modules and their homomorphisms. 
+% 
+% 
+% 
+%
+%$\Lawv$ is the most basic example of $\Lawv$-module.
+%Any $\Lawv$-module $M$ has a dual $M^{\op}$, with reversed order and (right-)action $x\multimapinv \epsilon= \bigvee\{y\mid \epsilon \star y\succeq x\}$.
+% Other basic examples of $\Lawv$-modules are the sets $\Lawv^{X}$, with order and action defined pointwise. 
+% 
+% 
+% While the $\Lawv^{X}$ have a fixed base, for an arbitrary $\Lawv$-module one can retrieve a base via the \emph{Yoneda embedding}
+%$\Yon: M \to \Mod(M^{\op},\Lawv)$, where $\Yon(x)(y)=\inf\{\epsilon\mid \epsilon\star y\succeq x\}$. 
+%
+%
+%\begin{proposition}[cf.~\cite{Stubbe2014, Shen2014}]\label{prop:yonemod}
+%For any $\Lawv$-module $M$, the Yoneda embedding has a left-adjoint $\sup(f)=\bigvee_{x\in M}f(x)\star x$.
+%\end{proposition}
+%
+%
+%Like $\LREL$, the category $\Mod$ has the relevant structure to interpret the linear $\lambda$-calculus:
+%\begin{proposition}
+%$\Mod$ is a SMCC.
+%\end{proposition}
+%%\begin{proof}
+%The hom-sets $\Mod(M,N)$ have a natural $\Lawv$-module structure, defined pointwise. The tensor product of $\Lawv$-modules $M\otimes N$ can be defined as the quotient of the usual tensor product of sup-lattices under the smallest congruence containing all pairs $(\{(\epsilon \star x,y)\},\{(x,\epsilon\star y)\})$ (see e.g.~\cite{Russo2007}).
+%Notably, any element of $M\otimes N$ can be identified with a join of basic tensors $x\otimes y$, corresponding to the equivalence class of the pair $\langle x,y\rangle$.
+%Beyond the required adjointness of the internal hom and the tensor, one can check that $\Mod$ is actually \emph{$^{*}$-autonomous}, since it satisfies $(M^{\op})^{\op}\simeq M$ and 
+%$\Hom(M,N^{\op})\simeq (M\otimes N)^{\op}$.
+%Finally, $\Mod$ has \emph{biproducts}: products and coproducts are both given by the Cartesian product of the underlying posets, with action defined pointwise.
+%%
+%%, similarly to the case of sup-lattices \cite{}, as the quotient of the free sup-lattice $\C P(M\times N)$ under the smallest congruence containing all pairs $((\bigvee A,y),\bigcup_{a\in A}\{(a,y)\})$, for $A\subseteq M, y\in N$, 
+%%$((x,\bigvee B),\bigcup_{b\in B}\{(x,b)\})$, for all $x\in A$, $B\subseteq N$, and all pairws $\{
+%%\end{proof}
+%
+%
+%\begin{remark}
+%The SMCC structure of $\Mod$ coincides with that of $\LREL$ for the modules $\Lawv^{X}$: we already know that $\Mod(\Lawv^{X},\Lawv^{Y})\simeq \Lawv^{X\times Y} $, and 
+%one can prove $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y} $ (cf.~\cite{Russo2007}).% and 
+%%$\Pi_{i\in I}\Lawv^{X_{i}}\simeq \Lawv^{\coprod_{i\in I}X_{i}}$.
+%\end{remark}
+%
+%
+%
+%\subsection{$\Lawv$-categories}
+%
+%Lawvere was the first to observe that a metric space can be described as a \emph{$\Lawv$-enriched} category. Indeed, spelling out the definition, a $\Lawv$-enriched category (in short, a $\Lawv$-category) is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
+%\begin{align}
+%0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
+%X(y,z)+X(x,y)&\geq  X(x,z) \tag{$\Lawv$-cat 2}
+%\end{align}
+%This structure is often referred to as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}. %, or as a \emph{quasi-metric space}. 
+%Notice that a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is just a non-expansive map $f:X\to Y$, as functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
+%
+%A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when 
+%$X(x,y)=0$ implies $x=y$, and 
+% \emph{symmetric} when it coincides with its opposite category $X^{\op}(x,y):=X(y,x)$, i.e.~when $X(x,y)=X(y,x)$. 
+% A metric space, in the usual sense, is thus the same as a skeletal and symmetric $\Lawv$-category.
+%  Notice that any $\Lawv$-category $X$ induces a skeletal category $X^{\sk}$ by quotienting points under $X(x,y)=0$, and a symmetric one by letting $X^{\sym}(x,y)=\max\{X(x,y),X^{\op}(x,y)\}$.
+% 
+% $\Lawv$ has a canonical $\Lawv$-enriched structure given by 
+% $\Lawv(r,s)=s \menus r$ (where ``$\dotdiv$'' indicates truncated subtraction), and the Euclidean distance coincides with its symmetrization $\Lawv^{\sym}(x,y)$.
+% 
+% 
+% 
+% 
+% 
+%
+%For any $\Lawv$-category $X$, the presheafs $[X^{\op},\Lawv]$ on $X$ form another $\Lawv$-category, with metric $[X^{\op},\Lawv](f,g)= \sup_{x\in X}\Lawv(f(x),g(x))$.
+%Notice that, when $X$ has the discrete metric, the metric space $[X,\Lawv]^{\sym}$ coincides with $\Lawv^{X}$ with the $\infty$-norm metric.
+%The \emph{Yoneda embedding} is the faithful functor $\Yon: X\to [X^{\op},\Lawv]$ given by $\Yon(x)(y)=X(y,x)$.
+%
+%
+%
+%Actually, an important example of $\Lawv$-categories are precisely the $\Lawv$-modules:
+%
+%\begin{proposition}
+%Any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
+%\begin{align}
+%M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}
+%\end{align}
+%Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Lawv$-categories.
+%\end{proposition}
+%
+%Observe that, since the distance $M(x,y)$ coincides with the Yoneda embedding $\B Y$ in $\Mod$, the latter also coincides with the Yoneda embedding of the associated $\Lawv$-category (this justifies the use of a unique symbol for both embeddings).
+%
+
+\subsection{Complete $\Lawv$-categories and their $\Lawv$-module structure}
+
+In this subsection we quickly recall the notion of complete $\Lawv$-category and its associated $\Lawv$-module structure.
+
+Functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$.
 
 
-\begin{remark}
-The SMCC structure of $\Mod$ coincides with that of $\LREL$ for the modules $\Lawv^{X}$: we already know that $\Mod(\Lawv^{X},\Lawv^{Y})\simeq \Lawv^{X\times Y} $, and 
-one can prove $\Lawv^{X}\otimes \Lawv^{Y}\simeq \Lawv^{X\times Y} $ (cf.~\cite{Russo2007}).% and 
-%$\Pi_{i\in I}\Lawv^{X_{i}}\simeq \Lawv^{\coprod_{i\in I}X_{i}}$.
-\end{remark}
-
-
-
-\subsection{$\Lawv$-categories}
-
-Lawvere was the first to observe that a metric space can be described as a \emph{$\Lawv$-enriched} category. Indeed, spelling out the definition, a $\Lawv$-enriched category (in short, a $\Lawv$-category) is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
-\begin{align}
-0  & \geq X(x,x) \tag{$\Lawv$-cat 1}\\
-X(y,z)+X(x,y)&\geq  X(x,z) \tag{$\Lawv$-cat 2}
-\end{align}
-This structure is often referred to as a \emph{generalized metric space} \cite{Lawvere1973, Hofmann2014, Stubbe2014}. %, or as a \emph{quasi-metric space}. 
-Notice that a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is just a non-expansive map $f:X\to Y$, as functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
-
-A $\Lawv$-category is \emph{skeletal} \cite{Stubbe2014} when 
-$X(x,y)=0$ implies $x=y$, and 
- \emph{symmetric} when it coincides with its opposite category $X^{\op}(x,y):=X(y,x)$, i.e.~when $X(x,y)=X(y,x)$. 
- A metric space, in the usual sense, is thus the same as a skeletal and symmetric $\Lawv$-category.
-  Notice that any $\Lawv$-category $X$ induces a skeletal category $X^{\sk}$ by quotienting points under $X(x,y)=0$, and a symmetric one by letting $X^{\sym}(x,y)=\max\{X(x,y),X^{\op}(x,y)\}$.
- 
- $\Lawv$ has a canonical $\Lawv$-enriched structure given by 
- $\Lawv(r,s)=s \menus r$ (where ``$\dotdiv$'' indicates truncated subtraction), and the Euclidean distance coincides with its symmetrization $\Lawv^{\sym}(x,y)$.
- 
- 
- 
- 
- 
-
-For any $\Lawv$-category $X$, the presheafs $[X^{\op},\Lawv]$ on $X$ form another $\Lawv$-category, with metric $[X^{\op},\Lawv](f,g)= \sup_{x\in X}\Lawv(f(x),g(x))$.
-Notice that, when $X$ has the discrete metric, the metric space $[X,\Lawv]^{\sym}$ coincides with $\Lawv^{X}$ with the $\infty$-norm metric.
-The \emph{Yoneda embedding} is the faithful functor $\Yon: X\to [X^{\op},\Lawv]$ given by $\Yon(x)(y)=X(y,x)$.
-
-
-
-Actually, an important example of $\Lawv$-categories are precisely the $\Lawv$-modules:
-
-\begin{proposition}
-Any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
-\begin{align}
-M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}
-\end{align}
-Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Lawv$-categories.
-\end{proposition}
-
-Observe that, since the distance $M(x,y)$ coincides with the Yoneda embedding $\B Y$ in $\Mod$, the latter also coincides with the Yoneda embedding of the associated $\Lawv$-category (this justifies the use of a unique symbol for both embeddings).
-
-
-\subsection{Complete $\Lawv$-categories correspond to $\Lawv$-modules}
-
-Lawvere also observed that Cauchy-completeness can be expressed in categorical language as the representability in $X$ of certain presheaves in $[X^{\op},\Lawv]$ \cite{Lawvere1973, Rutten1998}. Category theory suggests a yet stronger notion of completeness, corresponding to the existence of all \emph{weighted colimits} (for a comparison of different notions of completeness on $\Lawv$-categories, see \cite{Willerton2013, Rutten1998}).
-
-First, let us recall that functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$.
-
-
-\begin{definition}
+\begin{definition}[weighted colimits]
 Let $X,Y,Z$ be $\Lawv$-categories,
 $\Phi: Z\pfun Y$ be a distributor and  $f:Y\to X$ be a functor.
 A functor $g:Z\to X$ is the \emph{$\Phi$-weighted colimit of $f$ over $X$}, noted $\colim(\Phi,f)$, if for all $z\in Z$ and $x\in X$
@@ -107,34 +107,33 @@ A functor $f:X\to Y$ is \emph{continuous} if it commutes with all existing weigh
 $X$ is said \emph{categorically complete} (or just \emph{complete}) if all weighted colimits over $X$ exist. 
 \end{definition}
 
-We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors. 
+%We let $\GMet$ indicate the category of complete and skeletal $\Lawv$-categories and continuous functors. 
 
-A useful alternative characterization of complete $\Lawv$-categories is the following:
-\begin{proposition}[cf.~\cite{Stubbe2006, Shen2014}]
-A $\Lawv$-category is complete iff $\Yon$ has a left-adjoint. 
-\end{proposition}
-\begin{proof}
-For one side, if $X$ is complete, one can define $\sup : [X^{\op},\Lawv]\to X$ as a weighted colimit via $X(\sup x,b)=\sup_{a\in X}
-X(a,b)-x_{a}$. Conversely, if a left-adjoint $\sup $ exists, one can define $\mathrm{colim}(\Phi,f):= \sup \Psi$, where $\Psi_{a}=\inf_{b\in X}X(a,f(b))+\Phi_{b}$. 
-\end{proof}
+%A useful alternative characterization of complete $\Lawv$-categories is the following:
+%\begin{proposition}[cf.~\cite{Stubbe2006, Shen2014}]
+%A $\Lawv$-category is complete iff $\Yon$ has a left-adjoint. 
+%\end{proposition}
+%\begin{proof}
+%For one side, if $X$ is complete, one can define $\sup : [X^{\op},\Lawv]\to X$ as a weighted colimit via $X(\sup x,b)=\sup_{a\in X}
+%X(a,b)-x_{a}$. Conversely, if a left-adjoint $\sup $ exists, one can define $\mathrm{colim}(\Phi,f):= \sup \Psi$, where $\Psi_{a}=\inf_{b\in X}X(a,f(b))+\Phi_{b}$. 
+%\end{proof}
+%
+%Indeed, using this fact, together with Proposition \ref{prop:yonemod}, we arrive at the following:
+%\begin{proposition}
+%For any $\Lawv$-module, the associated $\Lawv$-category is complete. 
+%\end{proposition}
 
-Indeed, using this fact, together with Proposition \ref{prop:yonemod}, we arrive at the following:
-\begin{proposition}
-For any $\Lawv$-module, the associated $\Lawv$-category is complete. 
-\end{proposition}
-
-Beyond limits of Cauchy sequences, another important example of colimit is the following:
-\begin{definition}
+An important example of colimit is the following:\begin{definition}[tensors]
 Let $X$ be a $\Lawv$-category, $x\in X$ and $\epsilon \in \Lawv$. The \emph{tensor of $x$ and $\epsilon$}, if it exists, is the colimit $\epsilon \otimes x:= \colim( [\epsilon],\Delta x)$, where
 $[\epsilon]: \{\star\}\pfun \{\star\}$ is the constantly $\epsilon$ distributor
 and $\Delta x:\{\star\}\to X$ is the constant functor. 
 \end{definition}
 
-In a complete $\Lawv$-category all tensors exist and give rise to a $\Lawv$-module structure:
-\begin{proposition}[cf.~\cite{Stubbe2006, Shen2014}]
-Any complete $\Lawv$-category $X$ is a $\Lawv$-module, with order given by $x\preceq_{X}y $ iff $X(y,x)=0$, and 
-action given by tensors $\epsilon \otimes x$. Moreover, a continuous functor between complete $\Lawv$-categories is the same as a homomorphism of the associated $\Lawv$-modules. 
-\end{proposition}
+
+
+The $\Lawv$-module structure of a complete $\Lawv$-category has order given by $x\preceq_{X}y $ iff $X(y,x)=0$, and 
+action given by tensors $\epsilon \otimes x$. 
+
 
 
 To conclude our correspondence between $\Lawv$-modules and complete $\Lawv$-categories, it remains to observe that the 
@@ -145,27 +144,27 @@ Conversely,
 for any complete $\Lawv$-category $X$ and $x,y\in X$, one can check that 
 $X(y,x)=\inf\{ \epsilon \mid X(\epsilon\otimes y,x )=0\}$.
 
-This leads to the following:
-
-
-\begin{theorem}[cf.~\cite{Stubbe2006}]
-$\Mod$ and $\GMet$ are isomorphic categories.
-\end{theorem}
-
-
-Since $\Mod$ (and thus $\GMet$ too) is a SMCC, it is worth making its metric structure explicit. Given complete $\Lawv$-categories $X,Y$, we have that the distance on the hom-set $\Mod(X,Y)$ is given by 
-\begin{align}
-\Mod(X,Y)(f,g)= \sup_{x\in X}Y(f(x),g(x));
-\end{align}
-and the distance on $X\otimes Y$ is given by
-\begin{align}
-(X\otimes Y)(\alpha, \beta)=
-\sup_{i}\inf_{j}\left\{X(x_{i},x'_{j})+Y(y_{j},y'_{j}\right\},
-\end{align}
- where $\alpha=\bigvee_{i}x_{i}\otimes y_{i}$ and 
-$\beta=\bigvee_{j}x'_{j}\otimes y'_{j}$, 
-from which we deduce that, for basic tensors
-$x\otimes y, x'\otimes y'$, their distance is just $X(x,x')+Y(y,y')$.
+%This leads to the following:
+%
+%
+%\begin{theorem}[cf.~\cite{Stubbe2006}]
+%$\Mod$ and $\GMet$ are isomorphic categories.
+%\end{theorem}
+%
+%
+%Since $\Mod$ (and thus $\GMet$ too) is a SMCC, it is worth making its metric structure explicit. Given complete $\Lawv$-categories $X,Y$, we have that the distance on the hom-set $\Mod(X,Y)$ is given by 
+%\begin{align}
+%\Mod(X,Y)(f,g)= \sup_{x\in X}Y(f(x),g(x));
+%\end{align}
+%and the distance on $X\otimes Y$ is given by
+%\begin{align}
+%(X\otimes Y)(\alpha, \beta)=
+%\sup_{i}\inf_{j}\left\{X(x_{i},x'_{j})+Y(y_{j},y'_{j}\right\},
+%\end{align}
+% where $\alpha=\bigvee_{i}x_{i}\otimes y_{i}$ and 
+%$\beta=\bigvee_{j}x'_{j}\otimes y'_{j}$, 
+%from which we deduce that, for basic tensors
+%$x\otimes y, x'\otimes y'$, their distance is just $X(x,x')+Y(y,y')$.
 
 %
 %
@@ -188,308 +187,105 @@ $x\otimes y, x'\otimes y'$, their distance is just $X(x,x')+Y(y,y')$.
 
 
 
-\subsection{Exponential and differential structure}
+\subsection{Exponential and Differential Structure of $\Mod\simeq\GMet$}
+
+In this subsection we show that the category $\Mod\simeq \GMet$ can be endowed with an exponential modality $!$ so that that the coKleisli category $\Mod_{!}$ is a model of the differential $\lambda$-calculus extending the category $\LREL_{!}$. 
+
+First, we need to define a Lafont exponential $!$ over $\Mod$.
+Since $\Mod $ is a SMCC with biproducts, where the latter commute with tensors
+(see e.g.~\cite[Theorem 4.7.11]{Russo2007}), we can apply a well-known recipe from \cite{Mellies2018, Manzo2013}, which yields $!$ as the \emph{free exponential modality} (i.e.~such that $!X$ can be given the structure of the cofree commutative comonoid over $X$). 
 
 
-We now want to show how the correspondence $\Mod\simeq \GMet$ lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
-
-First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, yielding $!$ as the \emph{free exponential modality}: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting suitable properties of $\Mod$, we may define $!$ as the product of the symmetric algebras.  
-
-In the following we sum up the construction of the free exponential modality in $\Mod$. To enhance readability, further technical details are postponed to the next subsection
-
-For any $\Lawv$-module $M$, $n\in \BB N$ and permutation $\sigma\in \F S_{n}$, define the homomorphism $\langle \sigma\rangle: M^{\otimes_{n}}\to M^{\otimes_{n}}$ by letting 
-$\langle\sigma\rangle (x_{1}\otimes \dots \otimes x_{n})=x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$ on basic tensors, and extending by continuity on the whole tensor module. 
-
-
-\begin{definition}[symmetric tensor algebra]
-
-For any $\Lawv$-module $M$ and $n\in \BB N$, let $!_{n}M:=\Sym_{n}(M)$ be the $\Lawv$-module obtained by quotienting 
-$M^{\otimes_{n}}$ via the least congruence generated by the action $\langle \sigma \rangle$ of permutations $\sigma\in \F S_{n}$.
-\end{definition}
-
-
-
-To prove that the map $[x]\mapsto x:\Sym_{n}(M)\to M^{\otimes_{n}} $ is the equalizer of the diagram formed by all morphisms $\langle \sigma\rangle$, it is useful to provide an alternative characterization of it. 
-
-\begin{definition}
-Let $M$ be a $\Lawv$-module and $n\in \BB N$. An element $x\in M^{\otimes_{n}}$ is said \emph{permutation-invariant} (in short, \emph{p-invariant}) if for all $\sigma\in \F S_{n}$, 
-$\langle \sigma \rangle (x)=x$. 
- A \emph{$\Lawv$-multiset} (with $n$ elements) is an element of $M^{\otimes_{n}}$ of the form 
-$ [x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}
- x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$, where $x_{1},\dots, x_{n}\in M$.
-\end{definition} 
-
-\begin{proposition}\label{prop:pinv}
-Any $\Lawv$-multiset is p-invariant. Moreover, the set $!_{n}M$ of p-invariant elements of $M^{\otimes_{n}}$ is a $\Lawv$-submodule of $M^{\otimes_{n}}$, whose elements can be written as joins of $\Lawv$-multisets.
-\end{proposition}
-
-Since $!_{n}M$ is included in $M$, using the properties of p-invariant one can easily deduce that $!_{n}M$ provides the desired equalizer. It suffices then to show that $!_{n}M$ is isomorphic to the symmetric algebra.
-
-
-\begin{proposition}\label{prop:pinv2}
-The inclusion morphism $!_{n}M \to M^{\otimes_{n}}$ is the equalizer of the diagram formed by all $M^{\otimes_{n}}\stackrel{\langle \sigma\rangle}{\to} M^{\otimes_{n}}$. Moreover, 
-$!_{n}M \simeq \Sym_{n}(M)$.
-\end{proposition}
-
-
-The module $!_{n}M$ is a complete $\Lawv$-category with distance function defined on $\Lawv$-multisets as below:
+First, we define the symmetric algebra $!_{n}M:=\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$.
+Notice that each element of $!_{n}M$ can be described as a join of ``multisets''
+$[x_{1},\dots, x_{n}]$, where the latter is the equivalence class of the tensor
+$x_{1}\otimes \dots \otimes x_{n}\in M^{\otimes_{n}}$ under the permutative actions.
+Moreover, the $\Lawv$-module $!_{n}M$ is a complete $\Lawv$-category with distance function defined on basic ``multisets'' as follows:
 \begin{align}
 (!_{n}M)(\alpha,\beta)=
 \sup_{\sigma\in \F S_{n}}\inf_{\tau\in \F S_{n}}\sum_{i=1}^{n}
 X(x_{\sigma(i)},y_{\tau(i)})
 \end{align}
-where $\alpha=[x_{1},\dots, x_{n}]$ and $\beta= [y_{1},\dots, y_{n}]$.
+where $\alpha=[x_{1},\dots, x_{n}]$ and $\beta= [y_{1},\dots, y_{n}]$, and extended to arbitrary elements $\alpha=\bigvee_{i}\alpha_{i}$ and $\beta=\bigvee_{j}\beta_{j}$
+by $(!_{n}M)(\alpha,\beta)=\sup_{i}\inf_{j}(!_{n}M)(\alpha_{i},\beta_{j})$. 
 
 
+ 
+Finally, we define $!M$ as the infinite biproduct $\prod_{n}!_{n}M$, yielding the cofree commutative comonoid over $M$ (cf.~\cite[Proposition 1]{Mellies2018}).
 
 
-Using the fact that $\prod_{i}M_{i}\otimes  N\simeq (\prod_{i}M_{i})\otimes N$ holds in $\Mod$ (see e.g.~\cite{Russo2007}), we obtain the following:
-\begin{theorem}
-The functor $!M:= \prod_{n\in \BB N}!_{n}M$ is a Lafont exponential in $\Mod$.
-Hence, $\Mod_{!}$ (equivalently, $\GMet_{!}$) is cartesian closed. 
-\end{theorem}
-
-Also in the case of exponentials, the constructions for $\Mod$ generalize those of $\LREL$:
-\begin{proposition}\label{prop:pinv3}
-$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{\leq n}(X)}$, $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. In particular, $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
-\end{proposition}
-
-
-
-At this point, \cite[Theorem 21]{LemayCALCO2021}, which states that an additive Lafont category with free exponential modality and finite biproducts is a {differential category}, yields:
-\begin{theorem}\label{thm:linearlemay}
-$\Mod$ (equivalently $\GMet$) is a differential category. 
-\end{theorem} 
-Theorem \ref{thm:lemay} immediately follows from Theorem \ref{thm:linearlemay} via
-{\color{red}CITARE}.
-We make the definition of the differential operator $E$ of $\Mod_{!}$ explicit: for $f:!M\to N$, we let  
-\begin{align}\label{eq:dermod}
-Ef(\alpha)=
-\bigvee\left\{
-f(\beta\cup [x]) \ \Big \vert  \ 
-\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
-\right\}
-\end{align}
-where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
-and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, and $E$ satisfies all required axioms.
-%\end{enumerate}
-
-Notice that, when $f\in \Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$, its derivative $E f$ coincides with the derivative $D_{!}f$ defined for tps in Section \ref{section3}. 
-
-\subsection{Symmetric Algebras in $\Mod$ }
-
-
-
-
-Given $\Lawv$-multisets $A$ and $B$, we define the multiset $A\cup B$ as follows:
-\begin{itemize}
-\item if $A=0$, then $A\cup B=B$;
-\item if $B=0$, then $A\cup B=A$;
-\item if $A=[x_{1},\dots, x_{n}]$ and $B=[y_{1},\dots, y_{m}]$, then $A\cup B=[x_{1},\dots, x_{n},y_{1},\dots, y_{m}]$.
-
-
-\end{itemize}
-
+%
+%then, exploiting suitable properties of $\Mod$, we may define $!$ as the product of the symmetric algebras.  
+%
+%In the following we sum up the construction of the free exponential modality in $\Mod$. To enhance readability, further technical details are postponed to the next subsection
+%
+%For any $\Lawv$-module $M$, $n\in \BB N$ and permutation $\sigma\in \F S_{n}$, define the homomorphism $\langle \sigma\rangle: M^{\otimes_{n}}\to M^{\otimes_{n}}$ by letting 
+%$\langle\sigma\rangle (x_{1}\otimes \dots \otimes x_{n})=x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$ on basic tensors, and extending by continuity on the whole tensor module. 
+%
+%
+%\begin{definition}[symmetric tensor algebra]
+%
+%For any $\Lawv$-module $M$ and $n\in \BB N$, let $!_{n}M:=\Sym_{n}(M)$ be the $\Lawv$-module obtained by quotienting 
+%$M^{\otimes_{n}}$ via the least congruence generated by the action $\langle \sigma \rangle$ of permutations $\sigma\in \F S_{n}$.
+%\end{definition}
+%
+%
+%
+%To prove that the map $[x]\mapsto x:\Sym_{n}(M)\to M^{\otimes_{n}} $ is the equalizer of the diagram formed by all morphisms $\langle \sigma\rangle$, it is useful to provide an alternative characterization of it. 
+%
 %\begin{definition}
 %Let $M$ be a $\Lawv$-module and $n\in \BB N$. An element $x\in M^{\otimes_{n}}$ is said \emph{permutation-invariant} (in short, \emph{p-invariant}) if for all $\sigma\in \F S_{n}$, 
 %$\langle \sigma \rangle (x)=x$. 
-%A \emph{$\Lawv$-multiset} (with $n$ elements) is an element of $M^{\otimes_{n}}$ of the form 
+% A \emph{$\Lawv$-multiset} (with $n$ elements) is an element of $M^{\otimes_{n}}$ of the form 
 %$ [x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}
-%x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$, where $x_{1},\dots, x_{n}\in M$.
+% x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$, where $x_{1},\dots, x_{n}\in M$.
 %\end{definition} 
 %
-%
-%\begin{proposition}
-%Let $X$ be a $\Lawv$-module and $n\in \BB N$. Any $\Lawv$-multiset $[x_{1},\dots, x_{n}]\in X^{\otimes_{n}}$ is p-invariant. Moreover, any p-invariant element $x\in X^{\otimes_{n}}$ can be written as 
-%a join of $\Lawv$-multisets.
+%\begin{proposition}\label{prop:pinv}
+%Any $\Lawv$-multiset is p-invariant. Moreover, the set $!_{n}M$ of p-invariant elements of $M^{\otimes_{n}}$ is a $\Lawv$-submodule of $M^{\otimes_{n}}$, whose elements can be written as joins of $\Lawv$-multisets.
 %\end{proposition}
-\begin{proof}[Proof of Proposition \ref{prop:pinv}]
-For the first claim we have, for all $\sigma\in \F S_{n}$, 
-\begin{align*}
-\langle \sigma \rangle ([x_{1},\dots, x_{n}]) & = 
-\bigvee_{\tau\in \F S_{n}}\langle \sigma \rangle ([x_{\tau(1)},\dots, x_{\tau(n)}])\\
- & = 
-\bigvee_{\tau\in \F S_{n}}[x_{\sigma\tau(1)},\dots, x_{\sigma\tau(n)}])\\
- & = 
-\bigvee_{\tau\in \F S_{n}}[x_{\tau(1)},\dots, x_{\tau(n)}])\\
-&= [x_{1},\dots, x_{n}].
-\end{align*}
-For the second claim, observe that $x$ can always be written as a join of tensors $x=\bigvee_{i}x_{1}^{i}\otimes \dots \otimes x_{n}^{i}$. Moreover, 
-if $x_{1}^{i}\otimes \dots \otimes x_{n}^{i}\leq x$, since $x$ is p-invariant, for all $\sigma \in \F S_{n}$, also
-$x_{\sigma(1)}^{i}\otimes \dots \otimes x_{n}^{i}\leq \langle \sigma\rangle(x)=x$, so we can conclude that 
-$x=\bigvee_{i}[x_{1}^{i},\dots, x_{n}^{i}]$.
-\end{proof}
+%
+%Since $!_{n}M$ is included in $M$, using the properties of p-invariant one can easily deduce that $!_{n}M$ provides the desired equalizer. It suffices then to show that $!_{n}M$ is isomorphic to the symmetric algebra.
+%
+%
+%\begin{proposition}\label{prop:pinv2}
+%The inclusion morphism $!_{n}M \to M^{\otimes_{n}}$ is the equalizer of the diagram formed by all $M^{\otimes_{n}}\stackrel{\langle \sigma\rangle}{\to} M^{\otimes_{n}}$. Moreover, 
+%$!_{n}M \simeq \Sym_{n}(M)$.
+%\end{proposition}
 
 
-
-\begin{proposition}
-For any $\Lawv$-module $X$, the set $!_{n}X\subseteq X$ of p-invariant elements of $X^{\otimes_{n}}$ is a sub-$\Lawv$-module of $X$.
+%
+%Using the fact that $\prod_{i}M_{i}\otimes  N\simeq (\prod_{i}M_{i})\otimes N$ holds in $\Mod$ (see e.g.~\cite{Russo2007}), we obtain the following:
+%\begin{theorem}
+%The functor $!M:= \prod_{n\in \BB N}!_{n}M$ is a Lafont exponential in $\Mod$.
+%Hence, $\Mod_{!}$ (equivalently, $\GMet_{!}$) is cartesian closed. 
+%\end{theorem}
+%
+The construction of $!$ for $\Mod$ generalizes the one for $\LREL$:
+\begin{proposition}\label{prop:pinv3}
+$!_{n}(\Lawv^{X})\simeq \Lawv^{\C M_{\leq n}(X)}$, $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$. In particular, $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
 \end{proposition}
-\begin{proof}
-If $x_{i}\in X^{\otimes_{n}}$ is a family of p-invariant elements, then 
-$x=\bigvee_{i}x_{i}$ is also p-invariant, since $\langle \sigma\rangle (x)=\bigvee_{i}\langle \sigma \rangle (x_{i})=\bigvee_{i}x_{i}=x$. Hence $!_{n}X$ is a sup-lattice.
-Moreover, for all $x\in !_{n}X$ and $\epsilon \in Q$, 
-$x\otimes \epsilon$ is also p-invariant, since $\langle \sigma \rangle (x\otimes \epsilon)= \langle \sigma \rangle (x)\otimes \epsilon=x\otimes \epsilon$. We conclude that $!_{n}X$ is a sup-lattice with a continuous action of $\Lawv$, where both the order and the action are inherited from $X$, so it is a sub-$\Lawv$-module of $X$.
-\end{proof}
-
-Since $!_{n}M$ is included in $M$, using the properties of p-invariants one can easily deduce that $!_{n}M$ provides the desired equalizer. It suffices then to show that $!_{n}M$ is isomorphic to the symmetric algebra.
-
-
-Our goal is now to prove Proposition \ref{prop:pinv2}. 
-The fundamental property of $!_{n}X$ is the following:
-\begin{proposition}
-For any $\Lawv$-module $X$ and $n\in \BB N$, the inclusion morphism 
-$\iota:!_{n}X\longrightarrow X^{\otimes_{n}}$ is the equalizer of the diagram
-$$
-\begin{tikzcd}
-!_{n}X \ar{r}{\iota} & X^{\otimes_{n}} \ar{r}{\langle \sigma\rangle} & X^{\otimes_{n}}
-\end{tikzcd}
-$$
-generated by all actions $\langle \sigma\rangle$, for $\sigma\in \F S_{n}$.
-\end{proposition}
-\begin{proof}
-It is clear that $\langle \sigma \rangle \circ \iota= \langle \tau\rangle \circ \iota$ holds for all $\sigma, \tau \in \F S_{n}$.
-Suppose now $h: C\to X^{\otimes_{n}}$ is another morphism satisfying
-$\langle \sigma \rangle \circ h= \langle \tau\rangle \circ h$ for all $\sigma, \tau \in \F S_{n}$.
-Since $\langle \sigma \rangle \circ h= \langle \mathrm{id}\rangle \circ h=h$, we deduce that $h(c)$ is p-invariant, for all $c\in C$. Hence $h$ splits in a unique way as $C \stackrel{h}{\to} !_{n}X \stackrel{\iota}{\to} X^{\otimes_{n}}$.
-\end{proof}
-
-%\begin{remark}[metric structure of $!_{n}X$]
-%As $!_{n}X$ is a sub-$\Lawv$-module of $X^{\otimes_{n}}$, the distance function can be computed explicitly using Proposition \ref{prop:tensormetric}:
-%\begin{align*}
-%!_{n}X( [x_{1},\dots, x_{n}], [y_{1},\dots, y_{n}]) & = 
-%\sup_{\sigma\in \F S_{n}}\inf_{\tau\in \F S_{n}}
-%\sum_{i=1}^{n}
-%X(x_{\sigma(i)},y_{\tau(i)})
-%\end{align*}
-%\end{remark}
-
-
-We now show that the $\Lawv$-module $!_{n}X$ is isomorphic to the symmetric algebra.
-
-% which is used in the construction of the exponential modality in the relational model.
-%
-%\begin{definition}[symmetric algebra]
-%For any $\Lawv$-module $X$ and $n\in \BB N$, we let $\mathrm{Sym}_{n}(X)$ indicate the $\Lawv$-module defined as 
-%$\mathrm{Sym}_{n}(X):=\frac{X^{\otimes_{n}}}{\sim_{n}}
-%$, where $\sim_{n}$ is the least congruence generated by the action $\langle \sigma\rangle$ of permutations $\sigma\in \F S_{n}$.\end{definition}
-%
-\begin{proposition}
-$!_{n}X\simeq \mathrm{Sym}_{n}(X) $.
-\end{proposition}
-\begin{proof}
-First, observe that for any equivalence class $\alpha\in \mathrm{Sym}_{n}(X)$, the point $\bigvee\alpha$ is p-invariant: 
- since $x\in \alpha$ holds iff $\langle \sigma \rangle (x)\in \alpha$, for all $\sigma\in\F S_{n}$, 
-it follows that $\langle \sigma \rangle (\bigvee \alpha)=\bigvee\{\langle \sigma \rangle (x)\mid x\in \alpha\}=\bigvee \{x\mid x\in \alpha\}=\bigvee \alpha$, and thus $\bigvee\alpha$ is p-invariant.
-
-
-
-
-Now, let us show that for all $x\in X^{\otimes_{n}}$, $x \sim_{n} \bigvee[x]$: for all $y\in [x]$, by definition $x\sim_{n}y$ holds; hence, since $\sim_{n}$ is a congruence, we have that 
-$x=\bigvee_{y\in[x]}x \sim_{n} \bigvee_{y\in [x]}y=\bigvee[x]$.
-Observe that this implies that $[\bigvee[x]]=[x]$.
-
-
-Let us now show that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
-$y\leq x_{0}$ and $z\sim y$ holds, then $z\leq x_{0}$.
-
-We will exploit the fact that $\sim$ is the least congruence containing the relation $\sim_{0}$ induced by the action of permutations. More precisely, $\sim$ can be defined explicitly as 
-$$
-x\sim y  \ \Leftrightarrow \ \exists \alpha . \mathrm{OR}(\alpha) \land x\sim^{(\alpha)}y
-$$
-where $\mathrm{OR}(\alpha)$ is the property ``$\alpha$ is an ordinal'', and the relations $\sim^{(\alpha)}$ are defined by induction as follows:
-\begin{itemize}
-\item $x\sim^{(0)}y$ iff either $x\sim_{0}y$, $x=y$ or $y\sim_{0}x$ holds;
-\item $x\sim^{(\alpha+1)}y$ iff one of the following holds:
-	\begin{itemize}
-	\item for some $z$, $x\sim^{(\alpha)}z$ and $z\sim^{(\alpha)}y$ holds;
-	\item for some set $I$, and families $x_{i},y_{i}$, 
-	$x=\bigvee x_{i}, y=\bigvee_{i}y_{i}$ and $x_{i} \sim^{(\alpha)}y_{i}$ holds for all $i\in I$.
-
-	\end{itemize}
-\item $x\sim^{(\gamma)}y$ iff $x\sim^{(\delta)}y$ holds for some $\delta <\gamma$, for $\gamma$ limit.
-\end{itemize}
-
-We will now prove, by induction on an ordinal $\alpha$, that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
-$y\leq x_{0}$ and $z\sim^{(\alpha)} y$ holds, then $z\leq x_{0}$.
-From this the claim will follow.
-
-\begin{itemize}
-\item if $z\sim^{0} y$, then either $z=y$, in which case the claim follows from the hypothesis, or $z=z_{1}\otimes \dots \otimes z_{n}$ and $y=y_{\sigma(1)}\otimes \dots \otimes y_{\sigma(n)}$; then from $y\leq x_{0}$ we deduce $z=\langle \sigma^{-1} \rangle(y)\leq \langle \sigma^{-1}\rangle(x_{0})=x_{0}$.
-
-\item if $z\sim^{\alpha+1}y$ two possibilities arise:
-	\begin{enumerate}
-	\item if $z\sim^{\alpha}z'\sim^{\alpha}y$, then by IH we have $z'\leq x_{0}$, and again by IH applied to $z'$ we deduce $z\leq x_{0}$;
-	\item $z=\bigvee_{i}z_{i}$ and $y=\bigvee_{i}y_{i}$, with $z_{i}\sim^{\alpha}y_{i}$, then from $y_{i}\leq y\leq x_{0}$, we deduce, by IH, $z_{i}\leq x_{0}$, and thus $z\leq x_{0}$.
-	
-	\end{enumerate}
-
-\item if $z\sim^{\gamma}y$ for $\gamma$ limit, then $z\sim^{\beta}y$ for some $\beta<\gamma$, so by IH we deduce $z\leq x_{0}$.
-
-
-\end{itemize}
-From the argument above we now deduce that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
-$y\leq x_{0}$ and 
-$z\sim_{n}y$ holds, then $z\leq x_{0}$.
-From this we can deduce in turn that for all $x\in X^{\otimes_{n}}$, $\bigvee[x]$ is the smallest p-invariant over $x$: suppose $x_{0}$ is a p-invariant point and $x\leq x_{0}$; then for all $y\in [x]$, we deduce $y\leq x_{0}$ by the argument above, and we can thus conclude that $\bigvee[x]\leq x_{0}$.
-
-Let now $x$ be p-invariant; as $x$ is the smallest p-invariant over $x$, we deduce that $x= \bigvee[x]$.
-
-
-Using the previous facts we can now define an isomorphism $h:!_{n}X\to  \mathrm{Sym}_{n}(X)$ by letting  $h(x)=[x]$, with inverse $k([x])=\bigvee [x]$. Indeed, we have that 
-$k(h(x))=\bigvee[x]=x$, and 
-$h(k([x]))=[\bigvee[x]]=[x]$.
-%
-%First, let us show that for all $x\in !_{n}X\subseteq X^{\otimes_{n}}$, the corresponding equivalence class in $\mathrm{Sym}_{n}(X)$ is a singleton, i.e.~$[x]=\{x\}$. 
-%To prove this, let us first show that for all ordinals $\alpha$ and p-invariant $x$, if $x \sim_{n}^{(\alpha)}y$ then $x=y$, where $\sim_{n}^{(\alpha)}$ is defined as in Proposition \ref{prop:smallestcongruence}. 
-%\begin{itemize}
-%\item $x\sim_{n}^{(0)}y$ holds iff either $x=y$, $x\sim_{n}y$ or $y\sim_{n}x$; if $x\sim_{n}y$, then it must be $x=x_{1}\otimes \dots \otimes x_{n}$ and $y=\langle \sigma\rangle(x)$, but since $x$ is permutation-closed, $x=\langle \mathrm{id}\rangle(x)=\langle \sigma\rangle(x)=y$. 
-%
-%\item $x\sim_{n}^{(\alpha+1)}y$ holds iff either $x\sim_{n}^{(\alpha)}z$ and $z\sim_{n}^{(\alpha)}y$ both hold, or $x=\bigvee_{i}x_{i}$, $y=\bigvee_{i}y_{i}$ and $x_{i}\sim_{n}^{(\alpha)}y_{i}$ all hold.
-%In the first case, by IH we have $x=z$, so $z$ is p-invariant, and by applying again the IH, also $y=z$ holds, and thus $x=y$; 
-%in the second case, {\color{red}by IH we have $x_{i}=y_{i}$ for all index $i$, whence 
-%$x=\bigvee_{i}x_{i}=\bigvee_{i}y_{i}=y$.}
-%
-%\item if $x\sim_{n}^{(\gamma)}y$ for $\gamma$ limit, then
-%$x\sim_{n}^{(\beta)}y$ holds for some $\beta<\gamma$, so by IH, $x=y$.
-%
-%
-%\end{itemize}
-%Now, if $x\sim_{n}y$ holds, then $x\sim_{n}^{(\alpha)}y$ holds for some ordinal $\alpha$, whence $x=y$. 
-%
-%
-%
-%
-%Now, the main claim follows from the existence of the following two morphisms:
-%a morphism $h:!_{n}X\to \mathrm{Sym}_{n}(X)$ given by $h(x)=[x]=\{x\}$ and a morphism $k: \mathrm{Sym}_{n}(X)\to !_{n}X$ given by $k(\alpha)=\bigvee\alpha$. Then $k\circ h(x)=x$ while $h\circ k(\alpha)=[\bigvee \alpha]=\{\bigvee\alpha\}$, so $k$ and $h$ define an isomorphism between $!_{n}X$ and the $\sim$-classes of $\mathrm{Sym}_{n}(X)$.
-\end{proof}
-
-
-Finally, the following lemma leads to establish Proposition \ref{prop:pinv3}.
-\begin{lemma}
-For any set $S$, there exists an isomorphism of $\Lawv$-modules
-$$!_{n}\Lawv^{S} \simeq \Lawv^{\C M_{n}(S)}$$
-where $\C M_{n}(X)$ indicates the set of multisets of $X$ of cardinality $ n$.
-\end{lemma}
 \begin{proof}
 Let us show that the morphism $h:\Lawv^{\C M_{n}(S)}\to \Lawv^{S\times \dots \times S}$ defined by 
-$$
+$
 h(f)(\langle s_{1},\dots, s_{n}\rangle)=h([s_{1},\dots, s_{n}])
-$$
+$
 is the equalizer of the diagram 
-$$
+$
 \begin{tikzcd}
 \Lawv^{\C M_{n}(S)} \ar{r}{h} &\Lawv^{S\times \dots \times S}\ar{r}{[\sigma]} &
 \Lawv^{S\times \dots \times S}
 \end{tikzcd}
-$$
+$, 
 where $[\sigma](x)(\langle s_{1},\dots, s_{n}\rangle)=x(\langle x_{\sigma(1)},\dots, x_{\sigma(n)}\rangle)$, with $\sigma$ varying over $\F S_{n}$.
 
 It is immediate that $h\circ [\sigma]=h\circ [\tau]$, for all $\sigma,\tau\in \F S_{n}$. Let now $k: C\to \Lawv^{S\times \dots \times S}$ satisfy $k\circ [\sigma]=k\circ [\tau]$: then for all $c\in C$, $k(c)(\langle s_{1},\dots, s_{n}\rangle)=k(c)(\langle s_{\sigma(1)},\dots, s_{\sigma(n)}\rangle)$, so $k(c)$ actually defines a unique element of $\Lawv^{\C M_{n}(S)}$, and thus $k$ splits in a unique way as $C \stackrel{k'}{\to} \Lawv^{\C M_{n}(S)} \stackrel{h}{\to}\Lawv^{S\times \dots \times S}$.
 
-
-Now, to conclude it suffices to observe that, by Proposition \ref{prop:Qtensor}, 
-$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$, and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$.
+Now, observe that 
+$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$ (cf.~\cite[Corollary 4.7.12 ($iii$)]{Russo2007}), and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$.
+%    First observe that $\Lawv^{\mathcal M_{\leq n}(X)}$
+%    is isomorphic to $\Lawv^{\mathcal M_{n}(X)}$ via the morphism sending the
+%    multisets $[x_{1},\dots, x_{k}]$, with $k\leq n$, into $ [x_{1},\dots, x_{k}, \infty,\dots, \infty]$. 
 %
 %We define morphisms $h: !_{n}\Lawv^{S}\to \Lawv^{\C M_{n}(S)}$ and 
 %$k: \Lawv^{\C M_{n}(S)}\to !_{n}\Lawv^{S}$ given by 
@@ -506,9 +302,259 @@ $\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$, and then, sinc
 
 
 
-%All this leads then to:
-%\begin{theorem}
-%$\Mod_{!}$ (equivalently, $\GMet_{!}$), equipped with $E$, is a $CC\partial C$.
-%\end{theorem}
+At this point, \cite[Theorem 21]{LemayCALCO2021}, which states that an additive Lafont category with free exponential modality and finite biproducts is a \emph{differential category} \cite{Blute2006}, yields:
+\begin{theorem}\label{thm:linearlemay}
+$\Mod$ (equivalently $\GMet$) is a differential category. 
+\end{theorem} 
+Finally,  from Theorem \ref{thm:linearlemay} we can conclude that $\Mod_{!}$ can be endowed with a differential operator $E$ making it a CC$\partial$C \cite[Proposition 3.2.1]{Blute2009}, i.e.~Theorem \ref{thm:lemay} is proved.
 
+To conclude, we make the definition of the differential operator $E$ of $\Mod_{!}$ explicit: for $f:!M\to N$, we let  
+\begin{align}\label{eq:dermod}
+Ef(\alpha)=
+\bigvee\left\{
+f(\beta\cup [x]) \ \Big \vert  \ 
+\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
+\right\}
+\end{align}
+where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
+and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, and $E$ satisfies all required axioms.
+%\end{enumerate}
 
+One can easily check that, when $f\in \Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$, its derivative $E f$ coincides with the derivative $D_{!}f$ defined for tps in Section \ref{section3}. 
+
+%\subsection{Symmetric Algebras in $\Mod$ }
+%
+%
+%
+%
+%Given $\Lawv$-multisets $A$ and $B$, we define the multiset $A\cup B$ as follows:
+%\begin{itemize}
+%\item if $A=0$, then $A\cup B=B$;
+%\item if $B=0$, then $A\cup B=A$;
+%\item if $A=[x_{1},\dots, x_{n}]$ and $B=[y_{1},\dots, y_{m}]$, then $A\cup B=[x_{1},\dots, x_{n},y_{1},\dots, y_{m}]$.
+%
+%
+%\end{itemize}
+%
+%%\begin{definition}
+%%Let $M$ be a $\Lawv$-module and $n\in \BB N$. An element $x\in M^{\otimes_{n}}$ is said \emph{permutation-invariant} (in short, \emph{p-invariant}) if for all $\sigma\in \F S_{n}$, 
+%%$\langle \sigma \rangle (x)=x$. 
+%%A \emph{$\Lawv$-multiset} (with $n$ elements) is an element of $M^{\otimes_{n}}$ of the form 
+%%$ [x_{1},\dots, x_{n}]:= \bigvee_{\sigma\in \F S_{n}}
+%%x_{\sigma(1)}\otimes \dots \otimes x_{\sigma(n)}$, where $x_{1},\dots, x_{n}\in M$.
+%%\end{definition} 
+%%
+%%
+%%\begin{proposition}
+%%Let $X$ be a $\Lawv$-module and $n\in \BB N$. Any $\Lawv$-multiset $[x_{1},\dots, x_{n}]\in X^{\otimes_{n}}$ is p-invariant. Moreover, any p-invariant element $x\in X^{\otimes_{n}}$ can be written as 
+%%a join of $\Lawv$-multisets.
+%%\end{proposition}
+%\begin{proof}[Proof of Proposition \ref{prop:pinv}]
+%For the first claim we have, for all $\sigma\in \F S_{n}$, 
+%\begin{align*}
+%\langle \sigma \rangle ([x_{1},\dots, x_{n}]) & = 
+%\bigvee_{\tau\in \F S_{n}}\langle \sigma \rangle ([x_{\tau(1)},\dots, x_{\tau(n)}])\\
+% & = 
+%\bigvee_{\tau\in \F S_{n}}[x_{\sigma\tau(1)},\dots, x_{\sigma\tau(n)}])\\
+% & = 
+%\bigvee_{\tau\in \F S_{n}}[x_{\tau(1)},\dots, x_{\tau(n)}])\\
+%&= [x_{1},\dots, x_{n}].
+%\end{align*}
+%For the second claim, observe that $x$ can always be written as a join of tensors $x=\bigvee_{i}x_{1}^{i}\otimes \dots \otimes x_{n}^{i}$. Moreover, 
+%if $x_{1}^{i}\otimes \dots \otimes x_{n}^{i}\leq x$, since $x$ is p-invariant, for all $\sigma \in \F S_{n}$, also
+%$x_{\sigma(1)}^{i}\otimes \dots \otimes x_{n}^{i}\leq \langle \sigma\rangle(x)=x$, so we can conclude that 
+%$x=\bigvee_{i}[x_{1}^{i},\dots, x_{n}^{i}]$.
+%\end{proof}
+%
+%
+%
+%\begin{proposition}
+%For any $\Lawv$-module $X$, the set $!_{n}X\subseteq X$ of p-invariant elements of $X^{\otimes_{n}}$ is a sub-$\Lawv$-module of $X$.
+%\end{proposition}
+%\begin{proof}
+%If $x_{i}\in X^{\otimes_{n}}$ is a family of p-invariant elements, then 
+%$x=\bigvee_{i}x_{i}$ is also p-invariant, since $\langle \sigma\rangle (x)=\bigvee_{i}\langle \sigma \rangle (x_{i})=\bigvee_{i}x_{i}=x$. Hence $!_{n}X$ is a sup-lattice.
+%Moreover, for all $x\in !_{n}X$ and $\epsilon \in Q$, 
+%$x\otimes \epsilon$ is also p-invariant, since $\langle \sigma \rangle (x\otimes \epsilon)= \langle \sigma \rangle (x)\otimes \epsilon=x\otimes \epsilon$. We conclude that $!_{n}X$ is a sup-lattice with a continuous action of $\Lawv$, where both the order and the action are inherited from $X$, so it is a sub-$\Lawv$-module of $X$.
+%\end{proof}
+%
+%Since $!_{n}M$ is included in $M$, using the properties of p-invariants one can easily deduce that $!_{n}M$ provides the desired equalizer. It suffices then to show that $!_{n}M$ is isomorphic to the symmetric algebra.
+%
+%
+%Our goal is now to prove Proposition \ref{prop:pinv2}. 
+%The fundamental property of $!_{n}X$ is the following:
+%\begin{proposition}
+%For any $\Lawv$-module $X$ and $n\in \BB N$, the inclusion morphism 
+%$\iota:!_{n}X\longrightarrow X^{\otimes_{n}}$ is the equalizer of the diagram
+%$$
+%\begin{tikzcd}
+%!_{n}X \ar{r}{\iota} & X^{\otimes_{n}} \ar{r}{\langle \sigma\rangle} & X^{\otimes_{n}}
+%\end{tikzcd}
+%$$
+%generated by all actions $\langle \sigma\rangle$, for $\sigma\in \F S_{n}$.
+%\end{proposition}
+%\begin{proof}
+%It is clear that $\langle \sigma \rangle \circ \iota= \langle \tau\rangle \circ \iota$ holds for all $\sigma, \tau \in \F S_{n}$.
+%Suppose now $h: C\to X^{\otimes_{n}}$ is another morphism satisfying
+%$\langle \sigma \rangle \circ h= \langle \tau\rangle \circ h$ for all $\sigma, \tau \in \F S_{n}$.
+%Since $\langle \sigma \rangle \circ h= \langle \mathrm{id}\rangle \circ h=h$, we deduce that $h(c)$ is p-invariant, for all $c\in C$. Hence $h$ splits in a unique way as $C \stackrel{h}{\to} !_{n}X \stackrel{\iota}{\to} X^{\otimes_{n}}$.
+%\end{proof}
+%
+%%\begin{remark}[metric structure of $!_{n}X$]
+%%As $!_{n}X$ is a sub-$\Lawv$-module of $X^{\otimes_{n}}$, the distance function can be computed explicitly using Proposition \ref{prop:tensormetric}:
+%%\begin{align*}
+%%!_{n}X( [x_{1},\dots, x_{n}], [y_{1},\dots, y_{n}]) & = 
+%%\sup_{\sigma\in \F S_{n}}\inf_{\tau\in \F S_{n}}
+%%\sum_{i=1}^{n}
+%%X(x_{\sigma(i)},y_{\tau(i)})
+%%\end{align*}
+%%\end{remark}
+%
+%
+%We now show that the $\Lawv$-module $!_{n}X$ is isomorphic to the symmetric algebra.
+%
+%% which is used in the construction of the exponential modality in the relational model.
+%%
+%%\begin{definition}[symmetric algebra]
+%%For any $\Lawv$-module $X$ and $n\in \BB N$, we let $\mathrm{Sym}_{n}(X)$ indicate the $\Lawv$-module defined as 
+%%$\mathrm{Sym}_{n}(X):=\frac{X^{\otimes_{n}}}{\sim_{n}}
+%%$, where $\sim_{n}$ is the least congruence generated by the action $\langle \sigma\rangle$ of permutations $\sigma\in \F S_{n}$.\end{definition}
+%%
+%\begin{proposition}
+%$!_{n}X\simeq \mathrm{Sym}_{n}(X) $.
+%\end{proposition}
+%\begin{proof}
+%First, observe that for any equivalence class $\alpha\in \mathrm{Sym}_{n}(X)$, the point $\bigvee\alpha$ is p-invariant: 
+% since $x\in \alpha$ holds iff $\langle \sigma \rangle (x)\in \alpha$, for all $\sigma\in\F S_{n}$, 
+%it follows that $\langle \sigma \rangle (\bigvee \alpha)=\bigvee\{\langle \sigma \rangle (x)\mid x\in \alpha\}=\bigvee \{x\mid x\in \alpha\}=\bigvee \alpha$, and thus $\bigvee\alpha$ is p-invariant.
+%
+%
+%
+%
+%Now, let us show that for all $x\in X^{\otimes_{n}}$, $x \sim_{n} \bigvee[x]$: for all $y\in [x]$, by definition $x\sim_{n}y$ holds; hence, since $\sim_{n}$ is a congruence, we have that 
+%$x=\bigvee_{y\in[x]}x \sim_{n} \bigvee_{y\in [x]}y=\bigvee[x]$.
+%Observe that this implies that $[\bigvee[x]]=[x]$.
+%
+%
+%Let us now show that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
+%$y\leq x_{0}$ and $z\sim y$ holds, then $z\leq x_{0}$.
+%
+%We will exploit the fact that $\sim$ is the least congruence containing the relation $\sim_{0}$ induced by the action of permutations. More precisely, $\sim$ can be defined explicitly as 
+%$$
+%x\sim y  \ \Leftrightarrow \ \exists \alpha . \mathrm{OR}(\alpha) \land x\sim^{(\alpha)}y
+%$$
+%where $\mathrm{OR}(\alpha)$ is the property ``$\alpha$ is an ordinal'', and the relations $\sim^{(\alpha)}$ are defined by induction as follows:
+%\begin{itemize}
+%\item $x\sim^{(0)}y$ iff either $x\sim_{0}y$, $x=y$ or $y\sim_{0}x$ holds;
+%\item $x\sim^{(\alpha+1)}y$ iff one of the following holds:
+%	\begin{itemize}
+%	\item for some $z$, $x\sim^{(\alpha)}z$ and $z\sim^{(\alpha)}y$ holds;
+%	\item for some set $I$, and families $x_{i},y_{i}$, 
+%	$x=\bigvee x_{i}, y=\bigvee_{i}y_{i}$ and $x_{i} \sim^{(\alpha)}y_{i}$ holds for all $i\in I$.
+%
+%	\end{itemize}
+%\item $x\sim^{(\gamma)}y$ iff $x\sim^{(\delta)}y$ holds for some $\delta <\gamma$, for $\gamma$ limit.
+%\end{itemize}
+%
+%We will now prove, by induction on an ordinal $\alpha$, that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
+%$y\leq x_{0}$ and $z\sim^{(\alpha)} y$ holds, then $z\leq x_{0}$.
+%From this the claim will follow.
+%
+%\begin{itemize}
+%\item if $z\sim^{0} y$, then either $z=y$, in which case the claim follows from the hypothesis, or $z=z_{1}\otimes \dots \otimes z_{n}$ and $y=y_{\sigma(1)}\otimes \dots \otimes y_{\sigma(n)}$; then from $y\leq x_{0}$ we deduce $z=\langle \sigma^{-1} \rangle(y)\leq \langle \sigma^{-1}\rangle(x_{0})=x_{0}$.
+%
+%\item if $z\sim^{\alpha+1}y$ two possibilities arise:
+%	\begin{enumerate}
+%	\item if $z\sim^{\alpha}z'\sim^{\alpha}y$, then by IH we have $z'\leq x_{0}$, and again by IH applied to $z'$ we deduce $z\leq x_{0}$;
+%	\item $z=\bigvee_{i}z_{i}$ and $y=\bigvee_{i}y_{i}$, with $z_{i}\sim^{\alpha}y_{i}$, then from $y_{i}\leq y\leq x_{0}$, we deduce, by IH, $z_{i}\leq x_{0}$, and thus $z\leq x_{0}$.
+%	
+%	\end{enumerate}
+%
+%\item if $z\sim^{\gamma}y$ for $\gamma$ limit, then $z\sim^{\beta}y$ for some $\beta<\gamma$, so by IH we deduce $z\leq x_{0}$.
+%
+%
+%\end{itemize}
+%From the argument above we now deduce that for all p-invariant point $x_{0}$, and for all $y,z\in X^{\otimes_{n}}$, if 
+%$y\leq x_{0}$ and 
+%$z\sim_{n}y$ holds, then $z\leq x_{0}$.
+%From this we can deduce in turn that for all $x\in X^{\otimes_{n}}$, $\bigvee[x]$ is the smallest p-invariant over $x$: suppose $x_{0}$ is a p-invariant point and $x\leq x_{0}$; then for all $y\in [x]$, we deduce $y\leq x_{0}$ by the argument above, and we can thus conclude that $\bigvee[x]\leq x_{0}$.
+%
+%Let now $x$ be p-invariant; as $x$ is the smallest p-invariant over $x$, we deduce that $x= \bigvee[x]$.
+%
+%
+%Using the previous facts we can now define an isomorphism $h:!_{n}X\to  \mathrm{Sym}_{n}(X)$ by letting  $h(x)=[x]$, with inverse $k([x])=\bigvee [x]$. Indeed, we have that 
+%$k(h(x))=\bigvee[x]=x$, and 
+%$h(k([x]))=[\bigvee[x]]=[x]$.
+%%
+%%First, let us show that for all $x\in !_{n}X\subseteq X^{\otimes_{n}}$, the corresponding equivalence class in $\mathrm{Sym}_{n}(X)$ is a singleton, i.e.~$[x]=\{x\}$. 
+%%To prove this, let us first show that for all ordinals $\alpha$ and p-invariant $x$, if $x \sim_{n}^{(\alpha)}y$ then $x=y$, where $\sim_{n}^{(\alpha)}$ is defined as in Proposition \ref{prop:smallestcongruence}. 
+%%\begin{itemize}
+%%\item $x\sim_{n}^{(0)}y$ holds iff either $x=y$, $x\sim_{n}y$ or $y\sim_{n}x$; if $x\sim_{n}y$, then it must be $x=x_{1}\otimes \dots \otimes x_{n}$ and $y=\langle \sigma\rangle(x)$, but since $x$ is permutation-closed, $x=\langle \mathrm{id}\rangle(x)=\langle \sigma\rangle(x)=y$. 
+%%
+%%\item $x\sim_{n}^{(\alpha+1)}y$ holds iff either $x\sim_{n}^{(\alpha)}z$ and $z\sim_{n}^{(\alpha)}y$ both hold, or $x=\bigvee_{i}x_{i}$, $y=\bigvee_{i}y_{i}$ and $x_{i}\sim_{n}^{(\alpha)}y_{i}$ all hold.
+%%In the first case, by IH we have $x=z$, so $z$ is p-invariant, and by applying again the IH, also $y=z$ holds, and thus $x=y$; 
+%%in the second case, {\color{red}by IH we have $x_{i}=y_{i}$ for all index $i$, whence 
+%%$x=\bigvee_{i}x_{i}=\bigvee_{i}y_{i}=y$.}
+%%
+%%\item if $x\sim_{n}^{(\gamma)}y$ for $\gamma$ limit, then
+%%$x\sim_{n}^{(\beta)}y$ holds for some $\beta<\gamma$, so by IH, $x=y$.
+%%
+%%
+%%\end{itemize}
+%%Now, if $x\sim_{n}y$ holds, then $x\sim_{n}^{(\alpha)}y$ holds for some ordinal $\alpha$, whence $x=y$. 
+%%
+%%
+%%
+%%
+%%Now, the main claim follows from the existence of the following two morphisms:
+%%a morphism $h:!_{n}X\to \mathrm{Sym}_{n}(X)$ given by $h(x)=[x]=\{x\}$ and a morphism $k: \mathrm{Sym}_{n}(X)\to !_{n}X$ given by $k(\alpha)=\bigvee\alpha$. Then $k\circ h(x)=x$ while $h\circ k(\alpha)=[\bigvee \alpha]=\{\bigvee\alpha\}$, so $k$ and $h$ define an isomorphism between $!_{n}X$ and the $\sim$-classes of $\mathrm{Sym}_{n}(X)$.
+%\end{proof}
+%
+%
+%Finally, the following lemma leads to establish Proposition \ref{prop:pinv3}.
+%\begin{lemma}
+%For any set $S$, there exists an isomorphism of $\Lawv$-modules
+%$$!_{n}\Lawv^{S} \simeq \Lawv^{\C M_{n}(S)}$$
+%where $\C M_{n}(X)$ indicates the set of multisets of $X$ of cardinality $ n$.
+%\end{lemma}
+%\begin{proof}
+%Let us show that the morphism $h:\Lawv^{\C M_{n}(S)}\to \Lawv^{S\times \dots \times S}$ defined by 
+%$$
+%h(f)(\langle s_{1},\dots, s_{n}\rangle)=h([s_{1},\dots, s_{n}])
+%$$
+%is the equalizer of the diagram 
+%$$
+%\begin{tikzcd}
+%\Lawv^{\C M_{n}(S)} \ar{r}{h} &\Lawv^{S\times \dots \times S}\ar{r}{[\sigma]} &
+%\Lawv^{S\times \dots \times S}
+%\end{tikzcd}
+%$$
+%where $[\sigma](x)(\langle s_{1},\dots, s_{n}\rangle)=x(\langle x_{\sigma(1)},\dots, x_{\sigma(n)}\rangle)$, with $\sigma$ varying over $\F S_{n}$.
+%
+%It is immediate that $h\circ [\sigma]=h\circ [\tau]$, for all $\sigma,\tau\in \F S_{n}$. Let now $k: C\to \Lawv^{S\times \dots \times S}$ satisfy $k\circ [\sigma]=k\circ [\tau]$: then for all $c\in C$, $k(c)(\langle s_{1},\dots, s_{n}\rangle)=k(c)(\langle s_{\sigma(1)},\dots, s_{\sigma(n)}\rangle)$, so $k(c)$ actually defines a unique element of $\Lawv^{\C M_{n}(S)}$, and thus $k$ splits in a unique way as $C \stackrel{k'}{\to} \Lawv^{\C M_{n}(S)} \stackrel{h}{\to}\Lawv^{S\times \dots \times S}$.
+%
+%
+%Now, to conclude it suffices to observe that, by Proposition \ref{prop:Qtensor}, 
+%$\Lawv^{S\times \dots \times S}\simeq (\Lawv^{S})^{\otimes_{n}}$, and then, since equalizers are unique up to a unique isomorphism, we obtain an isomorphism $\Lawv^{\C M_{n}(S)}\simeq !_{n}\Lawv^{S}$.
+%%
+%%We define morphisms $h: !_{n}\Lawv^{S}\to \Lawv^{\C M_{n}(S)}$ and 
+%%$k: \Lawv^{\C M_{n}(S)}\to !_{n}\Lawv^{S}$ given by 
+%%\begin{align*}
+%%h([x_{1},\dots, x_{n}])(\{a_{1},\dots, a_{n}\})&=
+%%\sup_{\sigma\in \F S_{n}}\sum_{i=1}^{n}
+%%x_{i}(a_{\sigma(i)})\\
+%%k(f)& = 
+%%\bigvee_{a_{1},\dots, a_{n}\in S}[\B Y(a_{1}),\dots, \B Y(a_{n})]+ f(\{a_{1},\dots, a_{n}\})
+%%\end{align*}
+%%
+%\end{proof}
+%
+%
+%
+%
+%%All this leads then to:
+%%\begin{theorem}
+%%$\Mod_{!}$ (equivalently, $\GMet_{!}$), equipped with $E$, is a $CC\partial C$.
+%%\end{theorem}
+%
+%
