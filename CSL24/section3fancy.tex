@@ -126,52 +126,89 @@ Finally, \cite{Manzo2013} obtained a similar result for a non-deterministic vers
 
 \subparagraph*{$\mathbb N$-Graded Types}\label{sec:BSTLC}
 
-We now show how to interpret in $\LREL_{!}$ a graded version of $\STLC$, that we call $\BSTLC$, indeed a simplified version of the well-studied language $\mathrm{Fuzz}$ \cite{Reed2010}. The main feature of this language is that if $\vdash \lambda x.M:\,!_nA\multimap B$, then $x$ is duplicated \emph{at most} $n$ times in any reduction of $\vdash (\lambda x.M)N :B$ to the normal form.
+We now show how to interpret in $\LREL_{!}$ a graded version of $\STLC$, that we call $\BSTLC$, indeed a simplified version of the well-studied language $\mathrm{Fuzz}$ \cite{Reed2010}.
+This language is based on a graded exponential $!_{n}A$, corresponding to the possibility of using an element of type $A$ \emph{at most} $n$ times. In particular, if a function $ \lambda x.M$ of type $!_nA\multimap B$, then, for any $N$ of type $A$, $x$ is duplicated \emph{at most} $n$ times in any reduction of $(\lambda x.M)N $ to the normal form.
 
-The types of $\BSTLC$ are $A::= o \ \mid  \ !_{n}A \multimap A$, the contexts of the typing judgements are sets of declarations of the form $x :_{n}A$, with $n\in \mathbb N$, and the typing rules are: %given in Fig.~\ref{fig:rules}
-	\[ \scriptsize \arraycolsep=5pt\def\arraystretch{2.8}
-	\begin{array}{cccc}
-		\prooftree
+Graded simple types are defined by $A::= o \ \mid  \ !_{n}A \multimap A$; the contexts of the typing judgements are sets of declarations of the form $x :_{n}A$, with $n\in \mathbb N$;
+given two contexts $\Gamma,\Delta$, we define $\Gamma+\Delta$ recursively as follows: if $\Gamma$ and $\Delta$ have no variable in common, then $\Gamma+\Delta=\Gamma\cup \Delta$; otherwise, we let $(\Gamma, x:_{m} A)+( \Delta, x:_{n} A) =  (\Gamma+\Delta), x:_{m+n}A$. 
+Moreover, for any context $\Gamma$ and $m\in \mathbb N$, we let $m\Gamma$ be made all $x:_{mn}A$ for $(x:_{n}A) \in \Gamma$.  
+The  typing rules of $\BSTLC$ are illustrated in Fig.~\ref{fig:rules}, 
+
+
+%	\[ \scriptsize \arraycolsep=5pt\def\arraystretch{2.8}
+\begin{figure}
+\fbox{
+	\begin{minipage}{0.9\textwidth}
+	\begin{center}
+	$\prooftree
+	\justifies
+	x:_{1}A\vdash x: A
+	\endprooftree$
+	
+	\bigskip
+	
+	\begin{minipage}{0.42\textwidth}
+	\begin{center}
+	$\prooftree
 		\Gamma \vdash M:A
 		\justifies
 		\Gamma, x:_{0}B \vdash M:A
 		\endprooftree 
-		&
-		\prooftree
-		\Gamma, x:_{n}B, y:_{m} B\vdash M:A
-		\justifies
-		\Gamma, x:_{n+m}B\vdash M\{x/y\}:A
-		\endprooftree 
-		&
-		\prooftree
+		$
+		
+	\bigskip
+	
+	$\prooftree
 		\Gamma, x:_{n} A\vdash M: B
 		\justifies
 		\Gamma\vdash \lambda x.M: !_{n}A\multimap B
-		\endprooftree
-		&
-		\prooftree
+		\endprooftree$
+		
+		\medskip
+				
+	\end{center}
+	\end{minipage} \ \ \ \ 
+	\begin{minipage}{0.42\textwidth}
+	\begin{center}
+		
+		$\prooftree
+		\Gamma, x:_{n}B, y:_{m} B\vdash M:A
+		\justifies
+		\Gamma, x:_{n+m}B\vdash M\{x/y\}:A
+		\endprooftree $
+		
+		\bigskip
+		
+		$\prooftree
 		\Gamma \vdash M: !_nA\multimap B
 		\quad
 		\Delta\vdash N: A
 		\justifies
 		\Gamma +n\Delta\vdash MN: B
 		\endprooftree
-	\end{array}
-	\]
-where $\Gamma+\Delta$ is defined letting $(\Gamma, x:_{m} A)+( \Delta, x:_{n} A) =  (\Gamma+\Delta), x:_{m+n}A$, and $m\Gamma$ is made all $x:_{mn}A$ for $(x:_{n}A) \in \Gamma$.  
-The axiom is $x:_{1}A\vdash x: A$.
+		 $
+		 
+		 \medskip
+		 
+	\end{center}
+	\end{minipage}
+	\end{center}
+	\end{minipage}
+	}
+	\caption{Typing rules for $\BSTLC$.}
+	\label{fig:rules}
+	\end{figure}
 
 
 
-
-Now, one can see that the comonad $!$ of $\LREL$ can be ``decomposed'' into a family of ``graded exponentials functors'' $!_n:\LREL\to\LREL$ ($n\in\BB N$), defined on objects by taking multisets of cardinality \emph{at most} $n$. %  lift to functors 
-The sequence $(!_n)_{n\in\N}$ gives rise to a so-called \emph{$\N$-graded linear exponential comonad} on (the SMC) $\LREL$. %satisfying the adjunction: $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
+Now, one can see that the comonad $!$ of $\LREL$ can be ``decomposed'' into a family of ``graded exponentials functors'' $!_n:\LREL\to\LREL$ ($n\in\BB N$), where $!_{n}X$ is the set of multisets on $X$ of cardinality \emph{at most} $n$. %  lift to functors 
+The sequence $(!_n)_{n\in\N}$ gives rise to a so-called \emph{$\N$-graded linear exponential comonad} on (the SMC) $\LREL$ \cite{Katsumata2018}. %satisfying the adjunction: $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
 As such, $(\LREL,(!_n)_{n\in\N})$ yields then a model of $\BSTLC$. Remark that arrow types are interpreted via $\model{!_{n}A\multimap B}:= !_{n}\model A \times \model B$. Notice that, whenever $\model *$ is finite, the set $\model{A}$ is finite for any type $A$ of $\BSTLC$.
 
 
 \subparagraph*{The Differential $\lambda$-Calculus}\label{sec:STDLC}
 
-We recall the interpretation in $\LREL_{!}$ of $\STDLC$,  
+We recall the interpretation in $\LREL_{!}$ of the simply typed \emph{differential} $\lambda$-calculus $\STDLC$,  
  an extension of $\STLC$ ensuring exact control of duplications. The syntax of $\STDLC$ (see \cite[Section 3]{Manzo2010}) is made of \emph{terms} $M$ and \emph{sums} $\mathbb T$, mutually generated by: $M::= x\mid \lambda x.M \mid M\mathbb T \mid \Diff{M}{M}$ and $\mathbb T::= 0 \mid M \mid M+\mathbb T$,
 quotiented by equations that make $+,0$ form a commutative monoid on the set of sums, %, i.e.\ commutativity and associativity of $+$ and neutrality of $0$ w.r.t.\ $+$;
 by linearity of $\lam x.(\_)$, $\Diff{\_}{\_}$ and $(\_)\mathbb T$ (but \emph{not} of $M(\_)$) and by irrelevance of the order of consecutive $\Diff{\_}{\_}$.
@@ -179,32 +216,63 @@ by linearity of $\lam x.(\_)$, $\Diff{\_}{\_}$ and $(\_)\mathbb T$ (but \emph{no
 %This is crucial for the definition of the Taylor expansion.
 We follow the tradition of quotienting also for the idempotency of $+$.
 %Sums are, then, just \emph{finite} sets of terms.
-The typing rules are as follows: %in Figure~\ref{fig:rules}
-	\[ \scriptsize \arraycolsep=5pt\def\arraystretch{2.8}
-	\begin{array}{cccc}
-		\prooftree
+The typing rules are illustrated in Figure~\ref{fig:rules2}, where a context $\Gamma$ is a list of typed variable declarations.
+%The axioms are $\Gamma, x:A \vdash x: A$ and $\Gamma\vdash 0:A$.
+The main feature of this language is that $\Der^n[\lambda x.M,N^n]0$ has a non-zero normal form iff $x$ is duplicated exactly $n$ times during reduction.
+
+\begin{figure}
+\fbox{
+	\begin{minipage}{0.9\textwidth}
+	\begin{center}
+	\begin{minipage}{0.42\textwidth}
+	\begin{center}
+	$\prooftree
+	\justifies
+	\Gamma\vdash 0:A
+	\endprooftree$
+	
+	\bigskip
+	
+	$\prooftree
 		\Gamma, x: A\vdash M: B
 		\justifies
 		\Gamma\vdash \lambda x.M: A\to B
-		\endprooftree 
-		&
-		\prooftree
-		\Gamma \vdash M: A\to B
-		\quad
-		\Gamma\vdash \mathbb T: A
-		\justifies
-		\Gamma \vdash M\mathbb T: B
-		\endprooftree 
-		&
-		\prooftree
+		\endprooftree $
+		
+		\bigskip
+		
+		$ \prooftree
 		\Gamma \vdash M: A\to B
 		\quad
 		\Gamma \vdash N: A
 		\justifies
 		\Gamma \vdash \Diff{M}{N}: A\to B
-		\endprooftree
-		&
-		\prooftree
+		\endprooftree$
+		
+		\medskip
+		
+	\end{center}
+	\end{minipage} \ \ \ \ 
+	\begin{minipage}{0.42\textwidth}
+	\begin{center}
+	$\prooftree 
+	\justifies
+	\Gamma, x:A \vdash x: A
+	\endprooftree $
+	
+	\bigskip
+	
+	$\prooftree
+		\Gamma \vdash M: A\to B
+		\quad
+		\Gamma\vdash \mathbb T: A
+		\justifies
+		\Gamma \vdash M\mathbb T: B
+		\endprooftree $
+		
+		\bigskip
+		
+		$\prooftree
 		\Gamma\vdash M_1: A
 		\,\cdots\,
 		\Gamma \vdash M_n:A
@@ -212,15 +280,23 @@ The typing rules are as follows: %in Figure~\ref{fig:rules}
 		\Gamma \vdash M_1+\cdots +M_n : A
 		\using (n\geq 2)
 		\endprooftree
-	\end{array}
-	\]
-where a context $\Gamma$ is a list of typed variable declarations.
-The axioms are $\Gamma, x:A \vdash x: A$ and $\Gamma\vdash 0:A$.
-The main feature of this language is that $\Der^n[\lambda x.M,N^n]0$ has a non-zero normal form iff $x$ is duplicated exactly $n$ times during reduction.
+		$
+		
+		\medskip
+		
+	\end{center}
+	\end{minipage}
+	\end{center}
+	\end{minipage}
+	}
+	\caption{Typing rules of $\STDLC$.}
+	\label{fig:rules2}
+	\end{figure}
 
 The categorical models of $\STDLC$ are called \emph{cartesian closed
  differential $\lambda$-categories} (CC$\partial\lambda$C)\cite{Manzo2010,Blute2009, Blute2019}. These are CCCs enriched over commutative monoids (i.e.\ morphisms are summable and there is a $0$ morphism), with the cartesian closed structure compatible with the additive structure, 
-and equipped with a certain \emph{differential operator} $D$, generalising the usual notion of differential, see e.g.\ \cite{BluteEhrhTass10}.
+and equipped with a certain \emph{differential operator} $D$, turning a morphism $f:A\to B$ into a morphism $Df: A\times A\to B$, and 
+generalising the usual notion of differential, see e.g.\ \cite{BluteEhrhTass10}.
 An example is the CC$\partial\lambda$C of convenient vector spaces with smooth maps, where $D$ is the ``real'' differential of smooth maps.
 %$Df:\mathbb{V}\times\mathbb{V}\rightarrow \mathbb{W}$, 
 %$Df(x,u):=\dfrac{d}{dt}{\!\Big|_{t=0}} f(x+tu)$, of smooth maps $f:\mathbb{V}\rightarrow \mathbb{W}$.

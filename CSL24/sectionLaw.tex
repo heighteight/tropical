@@ -1,9 +1,12 @@
+% !TEX root = main.tex
 
 
 As we have seen, the morphisms of $\LREL$ can be seen as continuous functions between the $\Lawv$-modules $\Lawv^{X}$, when the latter are taken with the metric induced by the $\infty$-norm. This viewpoint gives a metric flavor to $\LREL$, and allowed us to relate differential and metric structure. Yet, how far can this correspondence be pushed?
 In particular, is this correspondence restricted to $\Lawv$-modules of the form $\Lawv^{X}$ (i.e.~with a fixed base), or does it hold in some sense for arbitrary $\Lawv$-modules? Is this correspondence restricted to the $\infty$-norm metric, or does it hold for other metrics too?
 
-An answer to these questions comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}, that it's certainly worth recalling here, albeit very briefly (more details in the Appendix).
+\subsection{$\Lawv$-Modules and Complete $\Lawv$-Categories}
+
+An answer to the questions above comes from an elegant categorical correspondence between tropical linear algebra and the theory of \emph{generalized metric spaces}, initiated by Lawvere's pioneering work \cite{Lawvere1973}, and at the heart of the emergent field of \emph{monoidal topology} \cite{Hofmann2014, Stubbe2014}.
 
  
 %In this section we first reconstruct this correspondence, by combining some {folklore} results with more abstract ones from recent literature in enriched category theory \cite{Fuji, Stubbe2006, Shen2014}. Then we show that this correspondence can be lifted to a model of the full differential $\lambda$-calculus, by suitably generalizing the construction of the Lafont exponential of $\LREL$.
@@ -62,14 +65,63 @@ A $\Lawv$-module homomorphism is a map $f:M\to N$ commuting with both joins and 
 On the other hand we have Lawvere's \emph{generalized metric spaces}  \cite{Lawvere1973, Hofmann2014, Stubbe2014}:
 Lawvere was the first to observe that a metric space can be described as a \emph{$\Lawv$-enriched} category. Indeed, spelling out the definition, a $\Lawv$-enriched category (in short, a $\Lawv$-category) is given by a set $X$ together with a ``hom-set'' $X(-,-):X\times X\to \Lawv$ satisfying 
 $0  \geq X(x,x)$ and $X(y,z)+X(x,y)\geq  X(x,z)$. 
-This structure clearly generalizes the usual definition of metric spaces, which indeed are the same as skeletal (i.e.~$X(x,y)=0$ implies $x=y$) and symmetric (i.e.~$X(x,y)=X(y,x)$) $\Lawv$-categories.
+This structure clearly generalizes the usual definition of metric spaces, which are indeed precisely the  
+$\Lawv$-categories which are \emph{skeletal} (i.e.~$X(x,y)=0$ implies $x=y$) and \emph{symmetric} (i.e.~$X(x,y)=X^{\mathrm{op}}(x,y)$, where $X^{\mathrm{op}}(x,y)=X(y,x)$).
+A basic example of $\Lawv$-category is $\Lawv$ itself, with the distance $\Lawv(x,y)=y \menus x$. 
+
 Moreover, a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is nothing but a non-expansive map $f:X\to Y$, since functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
+Functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$. Notice that distributors $\Phi: Y\pfun X$ and $\Psi: Z\pfun Y$ can be composed just like 
+ordinary matrices in $\LREL$: $\Psi\diamond \Phi : Z\pfun X$ is given by
+$(\Psi\diamond \Phi)_{z,x}=\inf_{y\in Y}\Psi(z,y)+\Phi(y,x)$. 
 
-Lawvere also observed that the usual notion of Cauchy-completeness can be formulated, in this framework, as the existence of suitable colimits \cite{Lawvere1973}. A $\Lawv$-category is said \emph{complete} when \emph{all} {weighted colimits} exist in $X$. Let $\GMet$ indicate the category of complete $\Lawv$-categories and continuous (i.e.~colimit-preserving) $\Lawv$-enriched functors. 
 
-It turns out that the categories $\Mod$ and $\GMet$ are isomorphic \cite{Stubbe2006}. First,  any $\Lawv$-module $(M,\preceq, \star)$ is a $\Lawv$-category via
-$M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}$. Moreover, a homomorphism of $\Lawv$-modules is a functor of the associated $\Lawv$-categories. Conversely, complete $\Lawv$-categories are \emph{tensored} (cf.~\cite{Stubbe2014}), and thus admit a suitable $\Lawv$-module structure $\epsilon \otimes x$.
-Moreover, a continuous functor between complete $\Lawv$-categories is the same as a homomorphism of the associated $\Lawv$-modules. 
+Lawvere also observed that the usual notion of Cauchy-completeness can be formulated, in this framework, as the existence of suitable colimits \cite{Lawvere1973}. Let us recall the notion of weighted colimit in this context:
+ 
+\begin{definition}[weighted colimits]
+Let $X,Y,Z$ be $\Lawv$-categories,
+$\Phi: Z\pfun Y$ be a distributor and  $f:Y\to X$ be a functor.
+A functor $g:Z\to X$ is the \emph{$\Phi$-weighted colimit of $f$ over $X$}, noted $\colim(\Phi,f)$, if for all $z\in Z$ and $x\in X$
+\begin{align}
+X(g(z),x)= \sup_{y\in Y}\left\{X(f(y),x)\menus \Phi(y,z)\right\}
+\end{align} 
+
+\end{definition}
+
+
+A functor $f:X\to Y$ is said \emph{cocontinuous} if it commutes with all existing weighted colimits in $X$, i.e.~$f(\colim(\Phi,g))=\colim(\Phi,f\circ g)$. A $\Lawv$-enriched category.
+A $\Lawv$-category $X$ is said \emph{cocomplete} if all weighted colimits over $X$ exist. 
+We let $\GMet$ indicate the category of cocomplete $\Lawv$-categories and cocontinuous $\Lawv$-enriched functors as morphisms. 
+
+
+Observe that the usual Cauchy completeness for a $\Lawv$-category $X$ follows from its cocompleteness. Indeed, a Cauchy sequence $(x_{n})_{n\in \mathbb N}$ in $X$ yields two adjoint distributors $\phi^{*}:1\pfun X$ and $\phi_{*}:X\pfun 1$, where 
+$\phi^{*}(x')=\lim_{n\to \infty}X(x_{n},x')$ and
+$\phi_{*}(x')=\lim_{n\to \infty}X(x',x_{n})$. Hence,  
+$\colim(\phi^{*},1_{X}):1\to X$ must be a point $x$ satisfying $0=X(x,x)=\sup_{y\in X}\lim_{n\to \infty}(X(y,x)\menus X(x_{n},y))$, which implies $\lim_{n\to \infty}X(x_{n},x)=0$. 
+
+% to the existence 
+%of weighted colimits of the form $\colim(\phi^{*}, 1_{X}):1\to X$, where $\phi^{*}: 1\pfun X$ is a \emph{left-adjoint} distributor, and $1_{X}:X\to X$ is the identity functor. 
+%That $\phi^{*}$ is left-adjoint means that there exists a distributor $\phi_{*}:X\pfun 1$ such that 
+%$0=  \phi^{*}\diamond \phi_{*}$ and $\phi_{*}\diamond \phi^{*} \geq X$, i.e.~$0=\inf_{x\in X}\phi^{*}(x)+\phi_{*}(x)$ and 
+%$\phi_{*}(x)+\phi^{*}(x')\geq X(x,x')$, for all $x\in X$. 
+
+
+
+
+It turns out that the notions of $\Lawv$-module and cocomplete $\Lawv$-category are indeed equivalent. More precisely, the categories $\Mod$ and $\GMet$ are isomorphic \cite{Stubbe2006}. 
+First, any $\Lawv$-module $(M,\preceq, \star)$ can be endowed with the structure of a $\Lawv$-category by letting
+$M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}$. Moreover, a homomorphism of $\Lawv$-modules induces a cocontinuous functor of the associated $\Lawv$-categories. 
+Conversely, in cocomplete $\Lawv$-categories it is possible to introduce a continuous $\Lawv$-action
+via suitable weighted colimits called \emph{tensors} (cf.~\cite{Stubbe2014}):
+
+\begin{definition}[tensors]
+Let $X$ be a $\Lawv$-category, $x\in X$ and $\epsilon \in \Lawv$. The \emph{tensor of $x$ and $\epsilon$}, if it exists, is the colimit $\epsilon \otimes x:= \colim( [\epsilon],\Delta x)$, where
+$[\epsilon]: \{\star\}\pfun \{\star\}$ is the constantly $\epsilon$ distributor
+and $\Delta x:\{\star\}\to X$ is the constant functor. 
+\end{definition}
+
+A cocomplete $\Lawv$-category can thus be endowed with a $\Lawv$-module structure with order given by  $x\preceq_{X}y $ iff $X(y,x)=0$, and 
+action given by tensors $\epsilon \otimes x$. 
+Moreover, a cocontinuous functor between cocomplete $\Lawv$-categories is the same as a homomorphism of the associated $\Lawv$-modules. 
 %
 %
 %To conclude our correspondence between $\Lawv$-modules and complete $\Lawv$-categories, it remains to observe that the 
@@ -120,16 +172,40 @@ Moreover, a continuous functor between complete $\Lawv$-categories is the same a
 
 
 
+\subsection{Exponential and Differential Structure of $\Mod\simeq\GMet$}
+
+We now show that the correspondence between $\Lawv$-modules and cocomplete $\Lawv$-categories lifts to a model of the differential $\lambda$-calculus, generalizing the co-Kleisli category $\LREL_{!}$. 
+
+In order to define a Lafont exponential $!$ over $\Mod$, we exploit a well-known recipe from \cite{Mellies2018, Manzo2013}.
+The first step is to define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$.
+Notice that each element of $!_{n}M$ can be described as a join of ``multisets''
+$[x_{1},\dots, x_{n}]$, where the latter is the equivalence class of the tensors 
+$x_{1}\otimes \dots \otimes x_{n}\in M^{\otimes_{n}}$ under the action of permutations $\sigma\in \F S_{n}$.
+The $\Lawv$-module $!_{n}M$ is a cocomplete $\Lawv$-category with distance function defined on basic ``multisets'' as follows:
+\begin{align}
+(!_{n}M)(\alpha,\beta)=
+\sup_{\sigma\in \F S_{n}}\inf_{\tau\in \F S_{n}}\sum_{i=1}^{n}
+X(x_{\sigma(i)},y_{\tau(i)})
+\end{align}
+where $\alpha=[x_{1},\dots, x_{n}]$ and $\beta= [y_{1},\dots, y_{n}]$, and extended to arbitrary elements $\alpha=\bigvee_{i}\alpha_{i}$ and $\beta=\bigvee_{j}\beta_{j}$
+by $(!_{n}M)(\alpha,\beta)=\sup_{i}\inf_{j}(!_{n}M)(\alpha_{i},\beta_{j})$. 
 
 
-
-To relate this elegant correspondence with our work on $\LREL_{!}$, we show that it lifts to a model of the differential $\lambda$-calculus, extending the co-Kleisli category $\LREL_{!}$. 
-
-First, we need to define a Lafont exponential $!$ over $\Mod$, and for this we use a well-known recipe from \cite{Mellies2018, Manzo2013}, that is: we first define a symmetric algebra $\Sym_{n}(M)$ as the equalizer of all permutative actions on $n$-tensors $M\otimes \dots \otimes M$; then, exploiting suitable properties of $\Mod$, we may define $!$ as the product of the symmetric algebras.  
-This ensures that the coKleisli category $\Mod_{!}$ is a CCC.
+ 
+Next, we define $!M$ as the infinite biproduct $\prod_{n}!_{n}M$, yielding the cofree commutative comonoid over $M$ (cf.~\cite[Proposition 1]{Mellies2018}).
+Using the fact that biproducts commute with tensors in $\LREL$, by standard results \cite{Mellies2018}, we obtain that the coKleisli category $\Mod_{!}$ is a CCC.
 Moreover, the constructions for $\Mod$ generalize those of $\LREL$, in the sense that $!(\Lawv^{X})\simeq \Lawv^{\multiset(X)}$ and that $\Mod_{!}(\Lawv^{X},\Lawv^{Y})\simeq \LREL_{!}(X,Y)$.
 
-Finally, as the coKleisli category of a Lafont category with biproducts is always a CC$\partial$C \cite[Theorem 21]{LemayCALCO2021}, we can endow $\Mod_{!}$ with a  differential operator $E$ generalizing $D^{!}$ (see the Appendix) so that:
+Finally, since the coKleisli category of a Lafont category with biproducts is always a CC$\partial$C \cite[Theorem 21]{LemayCALCO2021}, we can endow $\Mod_{!}$ with a  differential operator $E$,  generalizing $D^{!}$, given by 
+\begin{align}\label{eq:dermod}
+Ef(\alpha)=
+\bigvee\left\{
+f(\beta\cup [x]) \ \Big \vert  \ 
+\iota_{n}(\beta)\otimes \iota_{1}(x) \leq S(\alpha)
+\right\}
+\end{align}
+where $\iota_{k}: M_{k}\to \prod_{i\in I}M_{i}$ is the injection morphism given by $\iota_{k}(x)( k)=x$ and $\iota_{k}(x)(i\neq k)=\infty$,
+and $S: !(M\times N)\to !M\otimes !N$ is the Seely isomorphism \cite{Mellies2018}, and conclude that:
 \begin{theorem}\label{thm:lemay}
 ($\Mod_{!}/\GMet_{!},E$) is a CC$\partial$C.
 %, when equipped with 
