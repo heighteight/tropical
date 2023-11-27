@@ -1,0 +1,289 @@
+%\subsection{Elements of tropical mathematics}
+%\input{section3new}
+
+%In this section we recall tropical polynomials and power series and we discuss how these naturally arise in the study of \emph{optimal} behavior of probabilistic and non-deterministic programs. 
+
+
+At the basis of our approach is the observation that the \emph{tropical semiring} $([0,\infty], \min, +)$, which is at the heart of tropical mathematics, coincides with the \emph{Lawvere quantale} $\Lawv=([0,\infty], \geq, +)$ \cite{Hofmann2014, Stubbe2014}, the structure at the heart of the categorical study of metric spaces initiated by Lawvere himself \cite{Lawvere1973}.
+Let us recall that a quantale is a complete lattice endowed with a continuous monoid action. In the case of $\Lawv$ the lattice is defined by the reverse order $\geq$ on $\BB R$, and the monoid action is provided by addition. Notice that the lattice join operation of $\Lawv$ coincides with the idempotent semiring operation $\min$. 
+
+%%A consequence of these observations is that, as we discussed below, the tropical approach to linear algebra coincides with the study of ``$\Lawv$-valued matrices'', i.e.~of maps of the form $s: X\times Y\to \Lawv$ .
+%%In particular, a (possibly $\infty$) metric on a set $X$ is nothing but a ``$\Lawv$-valued square matrix'' $d:X\times X\to \Lawv$ satisfying axioms like e.g.~the triangular law (indeed, such distance matrices correspond to $\Lawv$-\emph{enriched categories}, a viewpoint we explicitly take in Section \ref{section6}). 
+%%
+
+%\subsection{Tropical non-linear algebra}\label{sec:4A}
+
+
+Power series and polynomials over the tropical semiring are defined as follows:
+
+
+\begin{definition}
+A \emph{tropical power series} (tps) 
+%\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
+%(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
+in $k$-variables is a function $f:\Lawv^k\to\Lawv$ of shape $f(x)=\inf_{i\in I}\{ix + \matr f(i) \}$, where 
+$I\subseteq\mathbb N^{k}$, $i x$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients.
+When $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
+\end{definition}
+Hence, a unary tps is a function $f:\Lawv\to \Lawv$ of the form $f(x)=\inf_{i\in I}\{ix+a_{i}\}$, with $I\subseteq\mathbb N$ and the $a_{i}\in \Lawv$.
+In Section \ref{section3} we also consider tps in \emph{infinitely many} variables.
+
+A tropical polynomial is always a piece-wise linear function since, e.g.\ in one variable, it has shape $f(x)=\min_{0\leq j\leq n}\{i_{j}x+c_{i_{j}}\}$.
+For example, the polynomials $\varphi_{n}(x)=\min_{0\leq j\leq n}\{jx+2^{-j}\}$
+are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
+
+%\begin{figure}
+%\begin{subfigure}{0.4\textwidth}
+%\begin{tikzpicture}[scale=0.6]
+%\begin{axis}[samples=250]
+%\addplot[yellow,domain=0:0.8] {1+0.02};
+%
+%\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
+%
+%
+%\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
+%\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
+%\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
+%
+%\addplot[violet,domain=0:0.8] {min(
+%10*x+1/1424,
+%9*x+1/712,
+%8*x+1/356,
+%7*x+1/128,
+%6*x+1/64,
+%5*x+1/32,
+%4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
+%
+%
+%\end{axis}
+%
+%\end{tikzpicture}
+%\caption{}
+%\label{fig:plot1}
+%\end{subfigure}
+%\begin{subfigure}{0.4\textwidth}
+%\begin{tikzpicture}[scale=0.6]
+%\begin{axis}[samples=50, view={15}{45}]
+%\addplot3[orange,domain=0:2] {min(2*x, 2*x+y, 3*y)};
+%
+%\end{axis}
+%\end{tikzpicture}
+%\caption{}
+%\label{fig:plot2}
+%\end{subfigure}
+%\label{fig:plot12}
+%\caption{
+%\ref{fig:plot1}
+% (a) Plot of the tropical polynomials $\varphi_{n}$, for $0\leq n\leq 4$ (from top to bottom), and of their limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.
+%\ref{fig:plot2}
+%(b) Plot of $\varphi(x,y)=\min\{2x, 2x+y,3y\}$.
+%}
+%\end{figure} 
+
+\begin{wrapfigure}{r}{0.5\textwidth}%\begin{figure}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[samples=250]
+\addplot[yellow,domain=0:0.8] {1+0.02};
+
+\addplot[orange,domain=0:0.8] {min(x+1/2, 1)+0.01};
+
+
+\addplot[red,domain=0:0.8] {min(2*x+1/4, x+1/2, 1};
+\addplot[blue,domain=0:0.8] {min(3*x+1/8,2*x+1/4, x+1/2, 1)-0.01};
+\addplot[orange,domain=0:0.8] {min(4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-0.02};
+
+\addplot[violet,domain=0:0.8] {min(
+10*x+1/1424,
+9*x+1/712,
+8*x+1/356,
+7*x+1/128,
+6*x+1/64,
+5*x+1/32,
+4*x+1/16,3*x+1/8,2*x+1/4, x+1/2, 1)-.03};
+
+
+\end{axis}
+
+\end{tikzpicture}
+\caption{\small Tropical polynomials $\varphi_0,\dots,\varphi_4$ (top to bottom), and the limit tLs $\varphi$ (in violet). The points where the slope changes are  the tropical roots of $\varphi$, i.e.~the points $x=2^{-(i+1)}$, satisfying $ix+2^{-i}=(i+1)x+2^{-(i+1)}$.}
+\label{fig:plot1}%\end{figure}%
+\end{wrapfigure} %%
+
+A \emph{tropical root} of a tps $\varphi$ is a point $x\in \Lawv$ where $\varphi$ is not differentiable (i.e.~where the slope of $\varphi$ changes). When $\varphi$ is a polynomial, the roots of $\varphi$ coincide with the points where the minimum defining $\varphi$ is attained at least twice (see \autoref{fig:plot1}).
+%For instance, the tropical roots of $\varphi_{n+1}$ are of the form $2^{-(i+1)}$, for $0\leq i \leq n$.
+%Tropical roots yield the usual factorization property of roots: if $x_{0}$ is a root of $f$, this factorizes as $f(x)=k\min\{x,x_{0}\}+ g(x)$.
+Unlike in standard algebra, tropical roots of tropical polynomials can be computed in linear time \cite{Noferini2015}. 
+
+
+%Tropical polynomials and their roots are the main object of study of tropical geometry.
+%
+%A
+% simple calculation shows that this condition corresponds, in the tropical setting, to the usual notion of root. 
+%Tps with more than one variable are defined as $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
+%$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. In Section \ref{section3} we also consider tps with \emph{infinitely many} variables.
+
+
+While tropical polynomials are essentially combinatorial objects, this cannot be said for tps: since $\inf$s are not in general $\min$s, a tps is a ``limit'' of tropical polynomials of higher and higher degree, and its behavior is in general way more difficult to study than that of tropical polynomials~\cite{Porzio2021}. %For instance, tropical roots for tLs (see \cite{Porzio2021}) may also include limit points of their domain.
+E.g., the tLs $\varphi(x):=\inf_{n\in\N}\set{nx+2^{-n}}$ (see Fig.~\ref{fig:plot1}) %that we will take as our running example, 
+is the ``limit'' of the polynomials $\varphi_{n}$.
+
+%
+%
+%We will take as our running example
+%%given respectively by Equation~\ref{eq:polytrop} and Equation~\ref{eq:defTLS}.
+%A positive $x\in[0,\infty)$ is said to be a (finite) \emph{tropical root} of a tropical Laurent series $f:\Lawv\to\Lawv$ iff $f$ is not differentiable at $x$ (w.r.t.\ the usual topology on $\BB R_{\geq0}$.This is equivalent to ask that the $\inf$ defining $f$ at $x$ is obtained \emph{at least} twice.{\color{red} \`e vero anche per TLS o solo per poly questo? Inoltre, Robol parla anche di finite end-points of the domain: nel nostro caso sarebbe $x=0$}
+
+%\begin{example}\label{ex:famous_ex}
+% The function $f:\Lawv\to\Lawv$ defined by $f(x):=\inf\limits_{n\in\N}\set{nx+\frac{1}{2^n}}$ is a tropical Laurent series.
+%\end{example}
+
+%By plotting its graph {\color{red}vogliamo plottarlo?}, we observe several properties that we will lift to the more general case that we will consider in the next lines, and this example will serve as running one.
+
+\begin{remark}\label{rmk:val_trop}
+ There is a well-known relation between tropical polynomial/power series and usual polynomials/power series. 
+Given $Q,L$ semirings with units and zeros, $L$ commutative idempotent, if $L$ is totally ordered by the partial order: $\alpha \preceq \beta$ iff $\alpha +  \beta = \beta$, then one defines a \emph{valuation} \cite{Izhakian2015} to be a map $\mathrm{val}:Q\to L$ s.t.\ $\mathrm{val}(0)=0$, $\mathrm{val}(1)=1$, $\mathrm{val}(ab)=\mathrm{val}(a)\mathrm{val}(b)$, $\mathrm{val}(a+b)\preceq \max\set{\mathrm{val}(a),\mathrm{val}(b)}$.
+For example, the valuation which gives $1\in L$ on all the invertibles of $Q$ and $0$ otherwise, is called the \emph{trivial valuation} $\mathrm{val}_1$.
+%Notice that if $\mathrm{val}:Q\to ([0,+\infty],+,\cdot,0,1)$ is a valuation, then $\mathrm{logval}(x):Q\to ([-\infty,+\infty],\min,+,+\infty,0)$, $\mathrm{logval}(x):=-\log \mathrm{val}(x)$ is a valuation.
+
+Now, for a power series $f(x)=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) with coefficients $a_i$ in a semiring $Q$, and for a fixed valuation $\mathrm{val}:Q\to \Lawv$, one defines the \emph{tropicalisation} $\trop^{\mathrm{val}}f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop^{\mathrm{val}}f(\alpha):=\inf_{i\in I} \set{\mathrm{val}(a_i)+i\alpha}$.
+%Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
+%Remember that a_i \neq 0 by def of formal power series
+%That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
+\end{remark}
+
+%For instance, the tps $\varphi(x,y)=\inf_{n}\{2x+(n+1)y,3x\}$ coincides with the polynomial $\min\{2x+y,3x\}$, since $2x+(n+1)y\geq 2x+y$ holds for all $n$. So the trivial valuation sends both the infinite series $\sum_{n}(x^{2}y^{n+1}+x^{3})$ and the polynomial $x^{2}y+x^{3}$ onto the same map.
+Notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$ and the zero is $\infty$.
+Therefore, for instance, the tropicalisation (w.r.t.\ any valuation) sends the infinite power series $\sum_{n\geq 2} x^n$ to the tps $\varphi(x)=\inf_n (n+2)x$.
+But the latter always coincides with the tropical polynomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
+This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon} below, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
+
+For instance, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
+In particular, %for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, 
+$\varphi$ coincides on $[\epsilon,\infty]$ with $\varphi_{n}$,
+for $\epsilon \geq 2^{-(n+1)}$ (the smallest tropical root of $\varphi_{n}$).
+However, at
+%
+%$x\in [\epsilon,\infty]$, with $\epsilon>0$
+%It can be proven by hand that $\varphi(x)$ is a $\min$ for all $x>0$.
+ $x=0$ we have that $\varphi(x=0)=\inf_{n\in\N} 2^{-n}=0$, and this is the only point where the $\inf$ is \emph{not} a $\min$.
+Also, while the derivative of $f$ is bounded on all $(0,\infty)$, for $x\to 0^+$ it tends to $\infty$.
+In fact, this is a general phenomenon, as showed below:
+%shared by all tps with a finite number of variables, i.e.~of the form $f(x)=\inf_{n\in \mathbb N^{k}}\{nx + \matr f(n) \}$, where 
+%$x\in \Lawv^{k}$, $n\in \mathbb N^{k}$, $nx$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients. 
+% 
+%%This phenomenon is reminiscent of \cite[Example 7]{Ehrhard2005},
+%%%Differentials and Distances in Probabilistic Coherence Spaces. FSCD 2019
+%%which actually motivated our first investigations.
+%In fact, this behavior is shared by all tps with \emph{finitely} many variables, as shown by the following result (we identify $!\set{1,\dots,k}\simeq \N^k$, so the matrix of a tps $f$ with finitely many variables $x=x_1,\dots,x_k$ (and one output variable) is given as a $\matr f:\N^k\to\Lawv$, $f$ having shape $f(x)=\inf_{n\in \N^k}\set{nx+\matr f(n)}$, with $nx$ the scalar product).
+
+\begin{theorem}\label{theorem:fepsilon}
+For all tps $f(x)=\inf_{n\in \mathbb N^{k}}\{n x+\matr f(n)\}$, for all $0<\epsilon<\infty$, there is a \emph{finite} $\C F_\epsilon \subseteq \N^k$ such that 
+% 
+% \begin{enumerate}
+%  \item If $\C F_\epsilon=\emptyset$ then $f=\infty$ on all $\Lawv^k$;
+%  \item If $f(x_0)=\infty$ for some $x_0\in[0,\infty)^k$, then $\C F_\epsilon=\emptyset$;
+  %\item 
+$f$ coincides on all $[\epsilon,\infty]^k$ with $P_\epsilon( x):=\min_{n\in \C F_\epsilon}\set{n x+\matr f(n)}$.
+% \end{enumerate}
+\end{theorem}
+%\begin{proof}[Proof sketch]
+%Let $\C F_\epsilon$ be the set of $n\in\N^{k}$ such that 
+%$\widehat f(n)<\infty$ and $\widehat f(m)> \widehat f(n)+\epsilon$ holds for all $m\prec n$, where $\preceq$ is the pointwise order on $\N^k$.
+%The core of the proof is showing that this set is indeed finite and sufficient for computing $f$.
+%\end{proof}
+As we'll see, the potential of collapsing infinitary objects (i.e.~tps) into combinatorial ones (i.e.~tropical polynomials), is one of the most intriguing features of tropical semantics. 
+
+For the interested reader, we provide the proof of Theorem \ref{theorem:fepsilon} below. Let us first set the following:
+\begin{definition}
+ Let $\preceq$ be the product order on $\N^k$ (i.e.\ for all $ m  , n  \in \N^{K}$, $ m  \preceq  n  $ iff $m_{i}\leq n_{i}$ for all $1\leq i\leq K$).
+ Of course $ m  \prec  n  $ holds exactly when $ m  \preceq  n  $ and $m_{i}<n_{i}$ for at least one $1\leq i\leq K$.
+ Finally, we set $ m  \prec_{1} n  $  iff
+$ m  \prec  n  $ and $\sum_{i=1}^{K}n_{i}-m_{i}=1$ (i.e.\ they differ on exactly one coordinate).
+\end{definition}
+
+
+\begin{remark}\label{rmk:AC}
+If $U\subseteq \N^{K}$ is infinite, then $U$ contains an infinite ascending chain $ m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$.
+This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph $(U,\prec_{1})$, indeed a $K$-branching tree; if there is no infinite ascending chain $  m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$, then in particular there is no infinite ascending chain $  m  _{0}\prec_{1}  m  _{1} \prec_{1}  m  _{2} \prec_{1} \dots$ so the tree $U$ has no infinite ascending chain; then by KL it is finite, contradicting the assumption. 
+\end{remark}
+
+
+%Theorem \ref{theorem:fepsilon} now follows from the following result:
+%\begin{proposition}%[Theorem \ref{theorem:fepsilon}]
+%Let $k\in\N$ and $f:\Lawv^k\to\Lawv$ a tps with matrix $\matr f:\N^k\to\Lawv$.
+% For all $0<\epsilon<\infty$, there is $\C F_\epsilon \subseteq_{\mathrm{fin}} \N^k$ such that:
+%\begin{enumerate}
+%% \item $\C F_\epsilon$ is finite
+% \item if $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \Lawv^k$;
+% \item if $f( x _0) = +\infty$ for some $ x _0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$;
+% \item the restriction of $f$ on $[\epsilon,\infty]^k$ coincides  with  $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{n x+\matr f(n)}$.
+%%where $nx:=\sum_{i=1}^k n_ix_i$.
+%\end{enumerate}
+%\end{proposition}
+\begin{proof}[Proof of Theorem \ref{theorem:fepsilon}]
+We will actually show the existence of $\C F_\epsilon \subseteq_{\mathrm{fin}} \N^k$ such that:
+\begin{enumerate}
+% \item $\C F_\epsilon$ is finite
+ \item if $\mathcal{F}_\epsilon= \emptyset$ then $f( x ) = +\infty$ for all $ x \in \Lawv^k$;
+ \item if $f( x _0) = +\infty$ for some $ x _0\in [\epsilon,\infty)^{K}$ then $\mathcal{F}_\epsilon= \emptyset$;
+ \item the restriction of $f$ on $[\epsilon,\infty]^k$ coincides  with  $P_\epsilon(x):=\min\limits_{n\in \C F_\epsilon}\set{n x+\matr f(n)}$.
+%where $nx:=\sum_{i=1}^k n_ix_i$.
+\end{enumerate}
+Let $\mathcal F_\epsilon$ be the complementary in $\N$ of the set:
+\[
+ \set{ n  \in\N^{K} \mid \textit{either } \hat f ( n  )=+\infty \textit{ or there is }  m  \prec  n  \textit{ s.t.\ } \hat f( m  )\leq\hat f( n  )+\epsilon}.
+\]
+In other words, $ n  \in\mathcal F_\epsilon$ iff $\hat f( n  )<+\infty$ and for all $ m  \prec  n  $, one has $\hat f( m  )>\hat f( n  )+\epsilon$.
+
+
+Suppose that $\mathcal F_\epsilon$ is infinite; then, using Remark~\ref{rmk:AC}, it contains an infinite ascending chain $\set{ m  _0\prec  m  _1\prec\cdots}$.  
+By definition of $\mathcal F_\epsilon$ we have then 
+$+\infty>\hat f( m  _0)>\hat f( m  _1)+\epsilon>\hat f( m  _2)+2\epsilon>\cdots$, 
+so that $+\infty>\hat f( m  _0)>\hat f( m  _{i})+i\epsilon\geq i\epsilon$ for all $i\in\N$.
+This contradicts the Archimedean property of $\R$.
+
+1).
+We show that if $\mathcal F_\epsilon=\emptyset$, then $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+This immediately entails the desired result.
+We go by induction on the well-founded order $\prec$ over $ n  \in\N^{K}$:
+
+- if $ n  =0^{K}\notin\mathcal F_\epsilon$, then $\hat f( n  )=+\infty$, because there is no $ m  \prec n  $.
+
+- if $ n  \notin\mathcal F_\epsilon$, with $ n  \neq 0^{K}$ then either $\hat f( n  )=+\infty$ and we are done, or there is $ m  \prec  n  $ s.t.\ $\hat f( m  )\leq \hat f( n  )+\epsilon$.
+By induction $\hat f( m  )=+\infty$ and, since $\epsilon<+\infty$, this entails $\hat f( n  )=+\infty$.
+
+2).
+If $f( x _0)=+\infty$ with $ x _0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+Therefore, no $ n  \in\N^{K}$ belongs to $\mathcal F_\epsilon$.
+
+3).
+We have to show that $f( x )=P_\epsilon( x )$ for all $ x \in [\epsilon,+\infty]^{K}$.
+By 1), it suffices to show that we can compute $f( x )$ by taking the $\inf$, that is therefore a $\min$, only in $\mathcal F_\epsilon$ (instead of all $\N^{K}$).
+If $\mathcal F_\epsilon=\emptyset$ then by 2) we are done (remember that $\min\emptyset := +\infty$).
+If $\mathcal F_\epsilon\neq\emptyset$, we show that for all $ n  \in\N^{K}$, if $ n   \notin\mathcal F_\epsilon$, then there is $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  )+ n   x $.
+We do it again by induction on $\prec_{1}$:
+
+- if $ n  =0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f( n  )=+\infty$ (because there is no $ n  '\prec n  $).
+So any element of $\mathcal F_\epsilon\neq\emptyset$ works.
+
+- if $ n  \neq 0^{K}$, then we have two cases:
+either $\hat f( n  )=+\infty$, in which case we are done as before by taking any element of $\mathcal F_\epsilon\neq\emptyset$.
+Or $\hat f( n  )<+\infty$, in which case (again by definition of $\mathcal F_\epsilon$) there is $ n  '\prec n  $ such that $ \hat f( n  ')\leq \hat f( n  )+\epsilon$  ($\star$).
+Therefore we have (remark that the following inequalities hold also for the case $x=+\infty$):
+\[\begin{array}{rclr}
+ \hat f( n  ')+ n  ' x  & \leq & \hat f( n  ) + \epsilon +  n' x  & \textit{by }(\star) \\
+ & \leq & \hat f( n  ) + ( n  - n  ') x  +  n  ' x  & \textit{because $\epsilon\leq\min x $ and $\min  x \leq( n  -  n') x $} \\
+ & = & \hat f( n  )+  n   x . &
+\end{array}\]
+Now, if $ n  '\in\mathcal F_\epsilon$ we are done.
+Otherwise $ n  '\notin\mathcal F_\epsilon$ and we can apply the induction hypothesis on it, obtaining an $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  ')+ n  ' x $.
+Therefore this $ m  $ works.
+\end{proof}
+
+
+
+
+
+%\subsection{Log-Probabilities and Tropicalisation through an exemple}\label{sec:proba}
+%\input{section5}
+

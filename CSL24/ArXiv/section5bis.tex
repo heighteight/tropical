@@ -1,0 +1,99 @@
+% !TEX root = /Users/paolopistone/Documents/GitHub/tropicalnew/CSL24/main.tex
+
+In this section, we discuss in some more detail the two approaches to quantitative semantics we mentioned in the Introduction, at the same time providing an overview of how we aim at bridging them using tropical mathematics.
+
+\subparagraph*{Metric Approach: Bounded $\lambda$-Calculus% as Lipschitz functions
+}
+
+
+In many situations (e.g.~when dealing with computationally difficult problems) one does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
+In all these cases, it is common to consider forms of denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which accounts for differences in behavior. 
+A fundamental insight coming from this line of work is that, if one can somehow   \emph{bound} the number of times that a program may duplicate its input, the resulting program will be \emph{Lipschitz-continuous}:  
+if $M$ may duplicate at most $L$ times, then an error $\epsilon$ between two inputs will result in an error less or equal to $L\cdot \epsilon$ in the corresponding outputs \cite{Reed2010, Gaboardi2017}.
+For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which duplicates the functional input $f$, yields a $2$-Lipschitz map between the metric space $\BB R\multimap \BB R$ of non-expansive real functions and itself: if $f,g$ are two non-expansive maps differing by at most $\epsilon$ (i.e.~for which $|f(x)-g(x)|\leq \epsilon$ holds for all $x\in \BB R$), then the application of $M$ to $f$ and $g$ will produce two maps differing by at most $2\epsilon$. 
+
+%
+%By observing that a $r$-Lipschitz map between metric spaces $X$ and $Y$ is the same as a non-expansive map between the \emph{re-scaled} space $r\cdot X$ (i.e.~with distance $d_{r}(x,y)=r\cdot d(x,y)$) and $Y$, the program $M$ above 
+%can thus be interpreted as a non-expansive map from $2\cdot(\BB R\multimap \BB R)$ to $\BB R\multimap \BB R$.
+
+These observations have led to the study of $\lambda$-calculi with \emph{graded} exponentials, like $\mathsf{Fuzz}$ \cite{Reed2010}, inspired from Girard's Bounded Linear Logic \cite{Girard92tcs}, which have been applied to the study of differential privacy \cite{Gaboardi2013, Gaboardi2017}. The types of such systems are defined by combining linear constructors with a \emph{graded linear exponential comonad} $!_{r}(-)$ \cite{Katsumata2018}.
+%In the following sections we will sometimes make reference to a basic graded type system, that we call $\BSTLC$, for bounded higher-order programs, with types defined via $A::= o  \mid   !_{n}A\multimap A  $, 
+%where $n\in \BB N$. Intuitively, $!_{ n}A\multimap B$ is the type of functions from $A$ to $B$ that may use their input \emph{at most} $n$ times. More details about $\BSTLC$ are provided in the Appendix.
+
+
+Yet, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
+More abstractly, it is well-known that the category $\Met$ is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, several cartesian closed \emph{sub-}categories of $\Met$ do exist, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
+Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~over any compact set). Indeed, some cartesian closed categories of locally Lipschitz maps have been produced in the literature \cite{Ehrhard2011, PistoneLICS}, and a new example will be exhibited in this paper.
+
+
+\subparagraph*{Resource Approach: the Differential $\lambda$-Calculus% as polynomials
+}
+
+A different family of approaches to linearity and duplication arises from the study of the \emph{differential $\lambda$-calculus} \cite{difflambda} (and differential linear logic \cite{dill}) and its categorical models. 
+The key ingredient is a \emph{differential constructor} $\Der[\_,\_]$,  added to the usual syntax of the $\lambda$-calculus. The intuition is that, given $M$ of type $A\to B$ and $N$ of type $A$, the program $\Der[M,N]$, still of type $A\to B$, corresponds to the \emph{linear application} of $M$ to $N$: this means that $N$ is passed to $M$ so that the latter may use it exactly once.
+This is also why $\Der[M,N]$ still has type $A\to B$, since $M$ might need \emph{other} copies of an input of type $A$. 
+In particular, the application of $\Der[M,N]$ to an ``error term'' $0$ ensures that $M$ will use $N$ exactly once (we say \emph{linearly}).
+%Interestingly, the categorical study of the operator $\Der$ has led to the introduction of \emph{cartesian differential categories} $C\partial C$ \cite{Blute2009}, a class of categories providing an abstract axiomatization of differentiation, in the usual mathematical sense. More precisely, a cartesian category $\C C$ is a $C\partial C$ when:
+%\begin{itemize}
+%\item $\C C$ is left-additive, i.e.~its hom-sets have the structure of commutative monoids, and the cartesian structure is well-behaved w.r.t.~this monoid structure;
+%\item $\C C$ is equipped with a differential operator $D:
+%\C C(X,Y)\to \C C(X\times X,Y)$ satisfying some axioms which capture usual properties of differentials (e.g.~the linearity of $D$ in one of its two variables, the chain rule, etc.).
+%\end{itemize}
+%
+%Correspondingly, the syntax of the simply typed \emph{differential} $\lambda$-calculus ($\STDLC$) is defined by enriching $\STLC$ with a monoid structure $0,+$ over terms, as well as with $\Der$ and a notion of \emph{linear substitution} (see \cite{difflambda} or the Appendix for details).
+%The models of $\STDLC$ are the 
+%cartesian \emph{closed} differential categories ($CC\partial C$), 
+%which are defined as $C\partial C$ which are also cartesian closed, and in which the monoid structure and the differential operator are both well-behaved with respect to the closed structure \cite{Manzo2012}. 
+
+The reason why $\Der$ is called a ``differential'', is twofold: semantically, its interpretation is a generalisation of the usual differential form analysis (see \autoref{section3}); syntactically, it allows to define the so-called \emph{Taylor expansion} $\C T$ of programs:
+the idea is that one can expand any application $MN$ as an infinite formal sum of \emph{linear} applications
+$\Der^{k}[M,N^k]0$, i.e.~where $N$ is linearly passed exactly $k$ times to $M$; 
+doing this recursively gives rise to the suggestive {Taylor formula} $\Te{MN} :=  \sum_{k=0}^{\infty}\frac{1}{!k}\cdot \Der^{k}[\Te{M},\Te{N}^k]0$.
+In other words, unbounded duplications correspond to some sort of limit of bounded, but arbitrarily large, ones.
+%Actually, we will work with the so-called \emph{qualitative} Taylor expansion, where one quotients for idempotency of the $+$ operator in the series, and thus the Taylor expansion becomes just a set (see \autoref{sec:TayLip}).% (this perspective is made clearer by the related approach of the \emph{resource $\lambda$-calculus} \cite{}).
+
+%More formally, the differential operator $\Der[-]$ transforms a function $M:A\to B$ into a function $\Der[M]: A\to (A\to B)$ which is linear in its first argument. 
+%Since $M$ may rather ask for several copies of $N$, this requires a form of non-determinism: 
+%For example, if $M$ is the term $\lambda fx.f(fx)$ considered before, $\Der[M]$ takes a first input $N$ and passes it linearly to $M$. Notice that there are two ways of doing so, corresponding to the two bound occurrences of $f$ in $M$: either by applying $N$ to $fx$, or by 
+%applying $f$ linearly to $Nx$ (indeed, if $f$ were applied in an unrestricted way, it might duplicate $Nx$, so that $N$ would not be used linearly). This justifies the equation below, in which $\Der[M]$ is identified with the non-deterministic sum of the two possible linear choices:
+%\begin{align}
+%\Der\left[\lambda f x.f(fx)\right]\cdot N = 
+%\lambda fx. N(fx) + \left(\Der[f]\cdot (Nx)\right)(fx)
+%\end{align}
+%More generally, one can define a notion of $k$-bounded application $\Der^{(k)}[M]\cdot N^{k}$, where $\Der^{(0)}[M]\cdot N^{0}= M$ and $\Der^{(k+1)}[M]\cdot N^{k+1}= \Der[ \Der^{(k)}[M]\cdot N^{k}]\cdot N$, corresponding to passing $N$ to $M$ exactly $k$ times.
+%
+%
+%The name ``differential'' for the operator $\Der[-]$ is justified by the fact that it satisfies many properties of the usual differential operator of analysis $\Der[f]:= \lambda xy. \frac{\mathsf df(y)}{\mathsf dy}\cdot x$. Notably, it is additive in its first variable (i.e.~it commutes with the non-deterministic sum operator), and satisfies the chain rule.
+%Most famously, the differential operator can be used to define a Taylor formula for $\lambda$-terms, which decomposes an unrestricted application into a formal non-deterministic sum of bounded applications:
+
+%
+%More generally, the relational semantics interprets unbounded programs as \emph{analytic functions}, that is, as functions admitting a representation as power series. For instance, observing that an analytic map $f: \BB R\to \BB R$, where $f(x)=\sum_{n}\widehat f_{n}\cdot x^{n}$ is uniquely determined by the sequence $\widehat f_{n}$, the program $M_{\infty}:=\lambda fx.fx: (\BB R\To \BB R)\To (\BB R\To \BB R)$ is represented by the power series below:
+%\begin{align}
+%F_{\infty}(f,x)= \sum_{n=0}^{\infty} \widehat f_{n} x^{n}
+%\end{align}
+%By restricting ourselves to bounded applications, the terms in the power series become finite, that is, the interpretation becomes a \emph{polynomial}: for instance, the program $M_{2}:=\lambda fx. \sum_{i=0}^{2}\Der^{(i)}[f]\cdot x^{i}$, corresponding to passing $x$ \emph{at most twice} to $f$, is represented by the polynomial
+%\begin{align}
+%F_{\leq 2}(f,x)=\widehat f_{2} x^{2}  + \widehat f_{1}x +  \widehat f_{0} 
+%\end{align}
+% In this framework the differential operator is naturally represented by formal differentiation of polynomials, where, as one would expect, 
+% $\Der[\sum_{n}a_{n}x^{n}]=\sum_{n}\Der[a_{n}x^{n}]$ and $\Der[a_{0}x^{0}]=0$ and $\Der[a_{n+1}x^{n+1}]= (n+1)a_{n+1}x^{n}$, so that power series can be Taylor expanded. 
+
+
+\subparagraph*{Tropical Mathematics: Lipschitz Meets Taylor}%Outline of the paper}
+
+
+
+At this point, as the Taylor formula decomposes an unbounded application as a limit of bounded ones, one might well ask whether it could be possible to see this formula as interpreting  a $\lambda$-term 
+as a limit of Lipschitz maps, in some sense, thus bridging the metric and differential approaches.  
+Here, a natural direction to look for is the \emph{weighted relational semantics} \cite{Manzo2013}, %i.e.~the somehow canonical ``Taylor'' semantics for $\STDLC$. 
+due to its strict relations with the Taylor expansion of programs.
+However, in this semantics, arbitrary terms correspond to power series, and terms with bounded applications correspond to {polynomials}, hence in any case to functions which are \emph{not} Lipschitz. 
+
+Yet, what if such polynomials were tropical ones, i.e.~piecewise linear functions? This way, the Taylor formula could really be interpreted as a decomposition of $\lambda$-terms via limits (indeed, $\inf$s) of Lipschitz maps. In other words, unbounded term application could be seen 
+as a limit of \emph{more and more sensitive} operations. 
+
+
+This viewpoint, that we develop in the following sections, leads to the somehow unexpected discovery of a bridge between the metric and differential study of higher-order programs.
+This connection not only suggests the application of optimization methods based on tropical mathematics to the study of the $\lambda$-calculus and its quantitative extensions, but it scales to a 
+more abstract level, leading to introduce a 
+differential operator for continuous functors between \emph{generalized} metric spaces (in the sense of \cite{Lawvere1973}), as shown in Section \ref{sec:GMS}. 

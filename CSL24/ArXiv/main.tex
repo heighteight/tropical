@@ -1,0 +1,157 @@
+
+\documentclass[english]{article}
+
+
+\usepackage{eurosym}
+\usepackage{xspace}
+\usepackage{ifthen}
+\setlength\voffset{-1in}
+\setlength\topmargin{1cm}
+\setlength\headheight{1cm}
+\setlength\headsep{1cm}
+\setlength\textheight{22.7cm}
+\setlength\footskip{0.5cm}
+\setlength\hoffset{-1in}
+\setlength\oddsidemargin{3.3cm}
+\setlength\textwidth{15cm}
+\usepackage{titlesec}
+\titlespacing*{\section}{0ex}{1ex}{1.5ex}
+\titlespacing*{\paragraph}{0ex}{1ex}{1.3ex}
+\titlespacing*{\optionalsubsection}{0ex}{1ex}{1ex}
+\usepackage{enumitem}
+\setitemize{itemsep=0pt,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setenumerate{itemsep=0pt,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setdescription{itemsep=0pt,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+
+\usepackage[english]{babel}  
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{bussproofs}
+\EnableBpAbbreviations
+\usepackage{hyperref}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{tikz-cd}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usetikzlibrary{cd}
+\usepackage{mathabx}
+\usepackage{cmll}
+\usepackage{stmaryrd}
+\usepackage{wrapfig}
+\usepackage{relsize}
+
+\usetikzlibrary{intersections,through}
+
+\input{prooftree}
+
+\usepackage{proof}
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+
+
+\input{macros}
+
+\addto\extrasenglish{
+  \def\sectionautorefname{Section}
+}
+
+
+\title{Tropical Mathematics and the Lambda-calculus I:\\
+{\Large Metric and Differential Analysis of Effectful Programs}
+} %TODO Please add
+
+\author{
+Davide {Barbarossa}\\
+{\small Dipartimento di Informatica - Scienza e Ingegneria}, \\
+{\small Universit\`a di Bologna, Italy}\\
+{\small \texttt{davide.barbarossa@unibo.it}}\\
+\ \\
+Paolo {Pistone}\\
+{\small Dipartimento di Informatica - Scienza e Ingegneria}, \\
+{\small Universit\`a di Bologna, %[optional: Address], 
+Italy}\\
+{\small \texttt{paolo.pistone2@unibo.it}}
+}
+\date{}
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We study the interpretation of the lambda-calculus in a framework based on tropical mathematics, and we show that it provides a unifying framework for two well-developed quantitative approaches to program semantics: on the one hand program metrics, based on the analysis of program sensitivity via Lipschitz conditions, on the other hand resource analysis, based on linear logic and higher-order program differentiation. 
+To do that we focus on the semantics arising from the relational model weighted over the tropical semiring, and we discuss its application to the study of “best case” program behavior for languages with probabilistic and non-deterministic effects. Finally, we show that a general foundation for this approach is provided by an abstract correspondence between tropical algebra and Lawvere’s theory of generalized metric spaces.
+\end{abstract}
+
+\section{Introduction}
+\input{section1}
+
+
+\section{A Bridge between Metric and Differential Aspects}\label{section5bis}
+\input{section5bis}
+
+
+\section{Tropical Polynomials and Power Series}\label{section2}
+\input{section2bis}
+
+\section{Tropical Semantics and First Order Effectful Programs}\label{section22}
+\input{section2bisbis}
+
+\section{Tropical Semantics of Higher-Order Programs}\label{section3}
+\input{section3fancy}
+
+
+
+
+\section{On Tropical Power Series}\label{sec:tls}
+\input{section4}
+
+
+\section{Lipschitz Meets Taylor}\label{sec:TayLip}
+\input{sectionTaylip}
+
+\section{Generalized Metric Spaces and $\Lawv$-Modules}\label{sec:GMS}
+\input{sectionLaw}
+
+
+
+
+\section{Related Work}\label{section7} \input{section7}
+
+
+\section{Conclusion and Future Work}\label{section8} \input{section8}
+
+
+
+\bibliography{main}
+
+\appendix
+
+\section{Proofs from \autoref{section2}: Theorem \ref{theorem:fepsilon}}
+\input{appSection3}
+
+\section{Proofs from \autoref{section3}: $(\LREL, !_{n})$ is a model of $\BSTLC$}
+\input{appSection5}
+
+
+\section{Proofs from \autoref{sec:tls}: the Analysis of Tropical Power Series}\label{appsec:tls}
+\input{app_section4}
+
+\section{Proofs from \autoref{sec:TayLip}: Lipschitz meets Taylor}
+\input{appSection7}
+
+
+\section{Proofs of \autoref{sec:GMS}: $\Lawv$-modules and Generalized Metric Spaces}
+\input{appSection8}
+
+\end{document}

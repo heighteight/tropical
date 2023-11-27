@@ -1,0 +1,173 @@
+\subsection{Proof of \autoref{prop:nondecr+conc}}
+
+Remember that a function $f:Q^{X}\to Q^{Y}$ is \emph{concave} if for all $\alpha\in [0,1]$, $ x ,  y  \in Q^{X}$ and $b\in Y$ 
+\[
+f(\alpha\cdot  x +(1-\alpha)\cdot  y  )_{b} \geq \alpha f( x )_{b} + (1-\alpha)f( y  )_{b}
+\]
+
+We now prove \autoref{prop:nondecr+conc}, i.e.\ that $f: Q^{X}\to Q^{Y}$ are non-decreasing and concave.
+
+The fact that $f$ is non-decreasing is clear, since the multiplicities of the multisets and all coordinates of the points are non-negative.
+Let us show the concavity.
+Let us first show that all functions of the form $f( x )_{b}= \mu  x + c$ are concave:
+we have $f(\alpha x + (1-\alpha) y  )_{b}= \mu(\alpha x )+(1-\alpha) y  )+c=
+ \mu(\alpha x )+(1-\alpha) y  )+\alpha c+(1-\alpha)c=
+ \alpha(\mu  x  + c)+(1-\alpha)(\mu  y  +c)=\alpha f( x )_{b}+(1-\alpha) f( x )_{b}$.
+To conclude, let us show that if $(f_{i})_{i\in I}$ is a family of concave functions from $Q^{X}$ to $Q^{Y}$, the function $f=\inf_{i\in I}f_{i}$ is also concave: we have
+$f(\alpha x  +(1-\alpha) y  )_{b}=
+\inf_{i\in I}f_{i}(\alpha x +(1-\alpha) y  )_{b} \geq 
+\inf_{i\in I}\alpha f_{i}( x )_{b}+(1-\alpha)f_{i}( y  )_{b}
+\geq 
+\inf_{i\in I}\alpha f_{i}( x )_{b} + \inf_{j\in I}(1-\alpha)f_{j}( y  )_{b}
+=
+\alpha \cdot (\inf_{i\in I}f_{i}( x )_{b})+ (1-\alpha)\cdot( \inf_{j\in I}f_{j}( y  )_{b})=
+\alpha  f( x )_{b}+(1-\alpha)f( y  )_{b}$, where we used the fact that given families $a_{i},b_{i}$ of reals,
+$\inf_{i}a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{j}b_{j}$.
+This follows from the fact that for all $i\in I$, $a_{i}+b_{i}\geq \inf_{i}a_{i}+\inf_{i}b_{i}$.
+
+
+\subsection{Proof of \autoref{thm:ScottCont}}
+
+The part of \autoref{thm:ScottCont} about tPs immedley follows from the first part of the same theorem.
+Let us quickly recall the basic definitions about cones that we need in order to prove it.
+
+\begin{definition}
+ An \emph{$\overline{\R}_{\geq 0}$-cone} is a commutative $\overline{\R}_{\geq 0}$-semimodule with cancellative addition (i.e.\ $x+y=x+y' \Rightarrow y=y'$).
+\end{definition}
+
+In \cite{Selinger2004} cones are required to also have ``strict addition'', meaning that $x+y=0 \Rightarrow x=y=0$.
+We do not add this requirement since it will automatic hold when considering normed cones.
+
+\begin{remark}
+ The addition of a cone $P$ (which forms a commutative monoid) turns $P$ into a poset by setting:
+ $
+  x \leq y \textit{ iff } y=x+z \textit{, for some }z\in P.
+ $
+ This is called the \emph{cone-order} on $P$
+ By the cancellative property, when such $z$ exists it is unique, and we denote it by $y-x$.
+\end{remark}
+
+\begin{definition}
+ A \emph{normed $\overline{\R}_{\geq 0}$-cone} $P$ is the data of a $\overline{\R}_{\geq 0}$-cone together with a $\leq$-monotone\footnote{I.e.: $x\leq y \Rightarrow \norm{x}\leq \norm y$. Remark that requiring this property (for all $x,y$) is equivalent to requiring that $\norm{x}\leq \norm{x+y}$ for all $x,y$.} norm on it, where a \emph{norm} on $P$ is a map $\norm{.}:P\to \overline{\R}$ satisfying the usual axioms of norms:
+ $\norm x \geq 0$, $\norm x = 0 \Rightarrow x=0$, $\norm{rx}=r\norm x$ and $\norm{x+y}\leq \norm x + \norm y$.
+\end{definition}
+
+In, e.g.~\cite{EhrPagTas2018}, a normed $\overline{\R}_{\geq 0}$-cone is simply called a cone.
+
+Remark that in a normed $\overline{\R}_{\geq 0}$-cone, by monotonicity of the norm, we have: $\norm{x+y}=0 \Rightarrow x=y=0$.
+Therefore, as already mentioned, in a normed cone we have: 
+$x+y=0 \Rightarrow \norm{x+y}=0 \Rightarrow x=y=0$, that is, addition is strict.
+
+\begin{example}
+ $\overline{\R}_{\geq 0}^X$ is a normed cone with the norm $\supnorm{x}:=\sup\limits_{a\in X} x_a\in \overline{\R}_{\geq 0}$.
+\end{example}
+
+\begin{remark}
+ The cone-order on $\overline{\R}_{\geq 0}^X$ is the pointwise usual order on $\overline{\R}_{\geq 0}$.
+% Remark also that tLs have no reason to be linear nor sublinear.
+\end{remark}
+
+A \emph{directed net} in a poset $P$ with indices in a set $I$ is a function $s:I\to P$, denoted by $(s_i)_{i\in I}$, s.t.\ its image is directed.
+We say that a directed net in $P$ \emph{admits a sup} iff its image admits a sup in $P$.
+We say that a directed net $s$ in a normed cone is \emph{bounded} iff the set $\set{\norm{s_i}\,\mid i\in I}$ is bounded in $\R_{\geq 0}$.
+
+Remember the definition of Scott-continuity:
+
+\begin{definition}
+ A function $f:P\to P'$ between posets is \emph{Scott-continuous} iff for all directed net $(s_i)_i$ in $P$ admitting a sup, we have $\exists \bigvee\limits_i f(s_i) = f(\bigvee\limits_i s_i)$ in $P'$. 
+\end{definition}
+
+The fundamental result in order to prove Theorem~\ref{thm:ScottCont} is the following, taken from \cite{Selinger2004}.
+
+\begin{proposition}\label{prop:infsup}
+ Let $P$ be a normed $\overline{\R}_{\geq 0}$-cone s.t.\ every bounded directed net in $P$ admits a sup.
+ Let $(v_i)_{i\in I}$ be a directed net in $P$ with an upper bound $v\in P$.
+ Then $\exists\bigvee\limits_{i\in I} v_i \in P$ and, if $\inf\limits_{i\in I} \norm{v-v_i} =0$, one has: $\bigvee\limits_{i\in I} v_i = v$.
+\end{proposition}
+\begin{proof}
+ Remark that $v-v_i$ exists in $P$ by hypothesis and so does $\bigvee\limits_{i\in I} v_i$. %, thanks to the monotonicity of the norm.
+ Now, since $v\geq v_i$ for all $i$, we have that $v\geq \bigvee\limits_{i\in I} v_i$, and so $v-\bigvee\limits_{i\in I} v_i$ exists in $P$.
+ Fix $i\in I$.
+ Since $v_i\leq \bigvee\limits_{i\in I} v_i$, then $v-\bigvee\limits_{i\in I} v_i\leq v-v_i$ and, by monotonicity of the norm, $\norm{v-\bigvee\limits_{i\in I} v_i}\leq \norm{v-v_i}$.
+ Since this holds for all $i\in I$, we have:
+ $0\leq \norm{v-\bigvee\limits_{i\in I} v_i}\leq \inf\limits_{i\in I} \norm{v-v_i}=0$, where the last equality holds by hypothesis.
+ Thus $\norm{v-\bigvee\limits_{i\in I} v_i}=0$, i.e.\ $v=\bigvee\limits_{i\in I} v_i$.
+\end{proof}
+
+We finally obtain the desired:
+
+\begin{theorem}[Theorem~\ref{thm:ScottCont}]
+  All monotone (w.r.t.\ pointwise order) and $\norm{\cdot}_{\infty}$-continuous functions $f:(0,\infty)^X\to (0,\infty)$ are Scott-continuous.
+\end{theorem}
+\begin{proof}
+ Let $(x_i)_i$ a directed net in $(0,\infty)^X$ s.t.\ $\bigvee\limits_i x^i$ exists in $(0,\infty)^X$.
+ Then $\inf\limits_i \supnorm{\bigvee\limits_i x^i - x^i} =0$, where $\bigvee\limits_i x^i - x^i$ exists because $\bigvee\limits_i x^i \geq x^i$ for all $i$.
+ Since $f$ is $\supnorm{.}$-continuous on $(0,\infty)^X$, then $\inf\limits_i \supnorm{f(\bigvee\limits_i x^i) - f(x^i)} =0$, where $f(\bigvee\limits_i x^i) - f(x^i)$ exists because $f(\bigvee\limits_i x^i) \geq f(x^i)$ for all $i$ being $f$ monotone.
+ We can therefore apply Proposition \ref{prop:infsup} to the directed net $(f(x^i))_i$ in $(0,\infty)$, obtaining that $\bigvee\limits_i f(x^i)$ exists in $(0,\infty)$ and it coincides with $f(\bigvee\limits_i x^i)$.
+\end{proof}
+
+\subsection{Proof of \autoref{thmTLSlocLip}}
+
+\begin{figure}[h]
+\begin{tikzpicture}[thick]
+    \coordinate (u) at (-2,0);
+    \coordinate (v) at (2,0);
+    \coordinate (y) at (-1.2,0);
+    \coordinate (z) at (0,0);
+
+    \draw[name path={u--v}] (u) -- (v);
+    \node [draw,name path=z] at (z) [circle through={(u)}] {};
+
+    \path[name intersections={of=u--v and z,by={int_u,int_v}}]
+      foreach \X in {u,v}{(int_\X) node[below left]{$\X$}};
+
+    \fill   (int_u) circle[radius=2pt]  node [below left] {$u$};
+    \fill   (int_v) circle[radius=2pt]  node [below left] {$v$};
+
+    \fill   (z) circle[radius=0pt]  node [xshift=-1cm, yshift=2.2cm] {$\overline{B_{2\delta}(z)}$};
+
+    \fill   (z) circle[radius=2pt]  node [above] {$z$};
+    \fill   (y) circle[radius=2pt]  node [above] {$y$};
+
+    \coordinate (x) at (-0.7,0.4);
+
+    \draw   (x) circle[radius=1cm] node [above] {$x$};
+    \fill   (x) circle[radius=2pt]  node [xshift=10mm, yshift=10mm] {$\overline{B_{\delta}(x)}$};
+
+    \draw   (x) circle[radius=3cm] node {};
+    \fill   (x) circle[radius=0pt]  node [xshift=-1.7cm, yshift=3cm] {$\overline{B_{3\delta}(x)}$};
+\end{tikzpicture}
+\caption{Drawing of the proof of \autoref{th:locLip}.}
+\label{fig:proof_loc_lip}
+\end{figure}
+
+The main ingredient of the proof, that we mention in the proof sketch of \autoref{thmTLSlocLip}, is the following:
+
+\begin{theorem}\label{th:locLip}
+Let $f:V\subseteq (\BB R^X,\norm\cdot) \to (\BB R,\absv \cdot)$, with $V$ open and convex and $\norm\cdot$ any norm.
+If $f$ is concave and locally bounded, then $f$ is locally Lipschitz.
+Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} \absv f$.
+\end{theorem}
+\begin{proof}
+ Call $\overline{B_{\delta}(x)}:=B_1$, $\overline{B_{3\delta}(x)}:=B_3$.
+ It suffices to show that for all $x\in V$, there is $\delta>0$ s.t.\ $B_3\subseteq \mathrm{interior}(V)$, $K:=\max_{B_3}  \absv f$ exists and $f$ is $(\frac{1}{\delta}\max_{B_3} \absv f)$-Lipschitz on $B_1$.
+ A $\delta$ satisfying the first two conditions exists since $V$ is open and bcause $f$ is locally bounded and $B_3$ is compact.
+ We will show that for all such $\delta$, the third condition already holds.
+
+ For that, fix $y,z\in B_1$ and call $r:=\frac{d(y,z)}{2\delta}\in[0,1]$.
+ We want to show that $\absv{f(y)-f(z)}\leq \frac{K}{\delta}d(y,z)=2Kr$.
+ Wlog $y\neq z$, otherwise there is nothing to show.
+
+ So $r\neq 0$ and we can consider $u:=\frac{1+r}{r}z-\frac{1}{r}y$, $v:=\frac{1}{r}y-\frac{r-1}{r}z$.
+ We have $u,v\in \overline{B_{2\delta}(z)}=:B_2$.
+ Indeed, $d(u,z)=\norm{u-z}=\norm{\frac{z}{r}+z-\frac{y}{r}-z}=\frac{\norm{z-y}}{r}=2\delta$ and similarly $d(v,z)=2\delta$.
+ Geometrically, those are actually the intersections between $B_2$ and the line generated by $y$ and $z$, see \autoref{fig:proof_loc_lip}.
+ Now we have the convex combinations $z=\frac{1}{1+r}y+\frac{r}{1+r}u$ and $y=(1-r)z+rv$, so the concavity of $f$ entails on one hand:
+ $f(z)\geq \frac{1}{1+r}f(y)+\frac{r}{1+r}f(u)\geq \frac{f(y)}{1+r} - \frac{rK}{1+r}$, i.e.\ $f(y)-f(z)\leq r(K+f(z))\leq 2rK$, and on the other hand:
+ $f(y)\geq (1-r)f(z)+rf(v)\geq f(z)-r(f(z)+K)$, i.e.\ $f(z)-f(y)\leq r(f(z)+K)\leq 2rK$.
+ In the previous inequalities we have used that $f(u),f(v)\geq -K$.
+ This follows because $u,v\in B_2\subseteq B_3$, as it can be immediately checked, thus $\absv{f(u)},\absv{f(v)}\leq K$.
+ Putting the final inequalities together, we have $\absv{f(y)-f(z)}\leq 2rK$, i.e.\ the thesis.
+\end{proof}
+
+Therefore, since $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$ and all tps are non-negative, we immediately have \autoref{thmTLSlocLip}.
