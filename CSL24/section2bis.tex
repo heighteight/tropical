@@ -22,7 +22,7 @@ Power series and polynomials over the tropical semiring are defined as follows:
 A \emph{tropical power series} (tps) 
 %\footnote{In analogy with \cite{DanEhrh2011}, we could also call them \emph{tropical entire functions}.} 
 %(tps) of one variable is a function $f:\Lawv\to\Lawv$ of shape $f(x)=\inf_{j\in I}\{i_j x+c_{i_{j}}\}$, with $i_{j}\in\N$, $c_{i_{j}}\in\Lawv$.
-in $k$-variables is a function $f:\Lawv^k\to\Lawv$ of shape $f(x)=\inf_{i\in I}\{ix + \matr f(i) \}$, where 
+in $k$ variables is a function $f:\Lawv^k\to\Lawv$ of shape $f(x)=\inf_{i\in I}\{ix + \matr f(i) \}$, where 
 $I\subseteq\mathbb N^{k}$, $i x$ is the scalar product and $\matr f\in \Lawv^{{\mathbb N}^{k}}$ is a vector of coefficients.
 When $I$ is finite, $f$ is called a \emph{tropical polynomial}. 
 \end{definition}
@@ -155,7 +155,7 @@ Now, for a power series $f(x)=\sum_{i\in I} a_i x^i$ (polynomials being the case
 %For instance, the tps $\varphi(x,y)=\inf_{n}\{2x+(n+1)y,3x\}$ coincides with the polynomial $\min\{2x+y,3x\}$, since $2x+(n+1)y\geq 2x+y$ holds for all $n$. So the trivial valuation sends both the infinite series $\sum_{n}(x^{2}y^{n+1}+x^{3})$ and the polynomial $x^{2}y+x^{3}$ onto the same map.
 Notice that in $\Lawv$ we have that $\preceq$ is $\geq$ and $\max^{\preceq}=\min$ and the zero is $\infty$.
 Therefore, for instance, the tropicalisation (w.r.t.\ any valuation) sends the infinite power series $\sum_{n\geq 2} x^n$ to the tps $\varphi(x)=\inf_n (n+2)x$.
-But the latter always coincides with the tropical polynomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
+Yet the latter always coincides with the tropical polynomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
 This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon} below, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
 
 For instance, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
@@ -203,7 +203,7 @@ $ m  \prec  n  $ and $\sum_{i=1}^{K}n_{i}-m_{i}=1$ (i.e.\ they differ on exactly
 \end{definition}
 
 
-\begin{remark}\label{rmk:AC}
+\begin{remark}\label{rmk:AC2}
 If $U\subseteq \N^{K}$ is infinite, then $U$ contains an infinite ascending chain $ m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$.
 This is a consequence of K\"onig Lemma (KL): consider the directed acyclic graph $(U,\prec_{1})$, indeed a $K$-branching tree; if there is no infinite ascending chain $  m  _{0}\prec  m  _{1} \prec  m  _{2} \prec \dots$, then in particular there is no infinite ascending chain $  m  _{0}\prec_{1}  m  _{1} \prec_{1}  m  _{2} \prec_{1} \dots$ so the tree $U$ has no infinite ascending chain; then by KL it is finite, contradicting the assumption. 
 \end{remark}
@@ -235,39 +235,36 @@ Let $\mathcal F_\epsilon$ be the complementary in $\N$ of the set:
  \set{ n  \in\N^{K} \mid \textit{either } \hat f ( n  )=+\infty \textit{ or there is }  m  \prec  n  \textit{ s.t.\ } \hat f( m  )\leq\hat f( n  )+\epsilon}.
 \]
 In other words, $ n  \in\mathcal F_\epsilon$ iff $\hat f( n  )<+\infty$ and for all $ m  \prec  n  $, one has $\hat f( m  )>\hat f( n  )+\epsilon$.
-
-
-Suppose that $\mathcal F_\epsilon$ is infinite; then, using Remark~\ref{rmk:AC}, it contains an infinite ascending chain $\set{ m  _0\prec  m  _1\prec\cdots}$.  
+Suppose that $\mathcal F_\epsilon$ is infinite; then, using Remark~\ref{rmk:AC2}, it contains an infinite ascending chain $\set{ m  _0\prec  m  _1\prec\cdots}$.  
 By definition of $\mathcal F_\epsilon$ we have then 
 $+\infty>\hat f( m  _0)>\hat f( m  _1)+\epsilon>\hat f( m  _2)+2\epsilon>\cdots$, 
 so that $+\infty>\hat f( m  _0)>\hat f( m  _{i})+i\epsilon\geq i\epsilon$ for all $i\in\N$.
-This contradicts the Archimedean property of $\R$.
+This contradicts the Archimedean property of $\R$. Hence $\mathcal F_{\epsilon}$ is finite.
 
-1).
+\begin{enumerate}
+\item
 We show that if $\mathcal F_\epsilon=\emptyset$, then $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
 This immediately entails the desired result.
 We go by induction on the well-founded order $\prec$ over $ n  \in\N^{K}$:
+\begin{itemize}
+\item if $ n  =0^{K}\notin\mathcal F_\epsilon$, then $\hat f( n  )=+\infty$, because there is no $ m  \prec n  $.
 
-- if $ n  =0^{K}\notin\mathcal F_\epsilon$, then $\hat f( n  )=+\infty$, because there is no $ m  \prec n  $.
-
-- if $ n  \notin\mathcal F_\epsilon$, with $ n  \neq 0^{K}$ then either $\hat f( n  )=+\infty$ and we are done, or there is $ m  \prec  n  $ s.t.\ $\hat f( m  )\leq \hat f( n  )+\epsilon$.
+\item if $ n  \notin\mathcal F_\epsilon$, with $ n  \neq 0^{K}$ then either $\hat f( n  )=+\infty$ and we are done, or there is $ m  \prec  n  $ s.t.\ $\hat f( m  )\leq \hat f( n  )+\epsilon$.
 By induction $\hat f( m  )=+\infty$ and, since $\epsilon<+\infty$, this entails $\hat f( n  )=+\infty$.
-
-2).
-If $f( x _0)=+\infty$ with $ x _0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
+\end{itemize}
+\item If $f( x _0)=+\infty$ with $ x _0\in [\epsilon,\infty)^{K}$, then necessarily $\hat f( n  )=+\infty$ for all $ n  \in\N^{K}$.
 Therefore, no $ n  \in\N^{K}$ belongs to $\mathcal F_\epsilon$.
 
-3).
-We have to show that $f( x )=P_\epsilon( x )$ for all $ x \in [\epsilon,+\infty]^{K}$.
+\item We have to show that $f( x )=P_\epsilon( x )$ for all $ x \in [\epsilon,+\infty]^{K}$.
 By 1), it suffices to show that we can compute $f( x )$ by taking the $\inf$, that is therefore a $\min$, only in $\mathcal F_\epsilon$ (instead of all $\N^{K}$).
 If $\mathcal F_\epsilon=\emptyset$ then by 2) we are done (remember that $\min\emptyset := +\infty$).
 If $\mathcal F_\epsilon\neq\emptyset$, we show that for all $ n  \in\N^{K}$, if $ n   \notin\mathcal F_\epsilon$, then there is $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  )+ n   x $.
 We do it again by induction on $\prec_{1}$:
-
-- if $ n  =0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f( n  )=+\infty$ (because there is no $ n  '\prec n  $).
+\begin{itemize}
+\item if $ n  =0^{K}$, then from $\mathbf  n\notin \mathcal F_{\epsilon}$, by definition of $\mathcal F_\epsilon$, we have $\hat f( n  )=+\infty$ (because there is no $ n  '\prec n  $).
 So any element of $\mathcal F_\epsilon\neq\emptyset$ works.
 
-- if $ n  \neq 0^{K}$, then we have two cases:
+\item if $ n  \neq 0^{K}$, then we have two cases:
 either $\hat f( n  )=+\infty$, in which case we are done as before by taking any element of $\mathcal F_\epsilon\neq\emptyset$.
 Or $\hat f( n  )<+\infty$, in which case (again by definition of $\mathcal F_\epsilon$) there is $ n  '\prec n  $ such that $ \hat f( n  ')\leq \hat f( n  )+\epsilon$  ($\star$).
 Therefore we have (remark that the following inequalities hold also for the case $x=+\infty$):
@@ -279,6 +276,8 @@ Therefore we have (remark that the following inequalities hold also for the case
 Now, if $ n  '\in\mathcal F_\epsilon$ we are done.
 Otherwise $ n  '\notin\mathcal F_\epsilon$ and we can apply the induction hypothesis on it, obtaining an $ m  \in\mathcal F_\epsilon$ s.t.\ $\hat f( m  )+ m   x  \leq \hat f( n  ')+ n  ' x $.
 Therefore this $ m  $ works.
+\end{itemize}
+\end{enumerate}
 \end{proof}
 
 

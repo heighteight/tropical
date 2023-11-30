@@ -34,52 +34,73 @@ $P_{rrl}(p,q)=P_{rlr}(p,q):=q^2p$.
 The polynomial function $Q_{\true}(p,q):=P_{ll}(p,q)+P_{rll}(p,q)+P_{rrr}(p,q)=p^2+p^2q+q^3$ gives instead the probability of the event ``$M\twoheadrightarrow \true$'', and analogously for $Q_{\false}(p,q):=P_{lr}(p,q)+P_{rrl}(p,q)+P_{rlr}(p,q)=pq+2pq^2$.
 
 This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}.
-Typical questions in this case would be, for a fixed $\omega_0$:
+A natural question in this case would be, for a fixed $\omega_0$:
 %
 %The tropical point of view allows now to express two natural questions about this situation:
-\begin{enumerate}
- \item What is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow_{\omega_0} \false$''  (similarly for $\true$)?
- I.e., which is the choice of $p,q$ that maximizes the probability $P_{\omega_0}$?
- \item 
-Knowing that $M$ reached a normal form, %produced $\false$ (similarly for $\true$),
- which is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow_{\omega_0}\false$''? %, knowing that ``$M\twoheadrightarrow \false$''?
-I.e., which is the choice of $p,q$ that makes $\omega_0$ the most likely path %among those leading to $\false$ 
-(i.e.\ that maximizes the conditional probability $\BB P(``M\twoheadrightarrow_{\omega_0} \false'')$?% \mid ``M\twoheadrightarrow \false'')$)?
-\end{enumerate}
+%\begin{enumerate}
+% \item What is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow_{\omega_0} \false$''  (similarly for $\true$)?
+% I.e., which is the choice of $p,q$ that maximizes the probability $P_{\omega_0}$?
+% \item 
+knowing that $M$ reached a normal form, say $\true$, %produced $\false$ (similarly for $\true$),
+ what is the \emph{maximum likelihood estimator} for the event ``$M\twoheadrightarrow_{\omega_0}\true$''? %, knowing that ``$M\twoheadrightarrow \false$''?
+In other words, what is the choice of $p,q$ that maximizes the conditional probability $\BB P(M\twoheadrightarrow_{\omega_0} \true\mid M\twoheadrightarrow \true)$, i.e.~that 
+ makes $\omega_0$ the most likely path among those leading to $\true$?
+% \mid ``M\twoheadrightarrow \false'')$)?
+%\end{enumerate}
+%
+%Answering 1) amounts at solving a constrained maximization problem:
+%\[(p,q)\in\arg\max_{y=1-x} P_{\omega_{0}}(x,y)\] or, equivalently: $p\in\arg\max_{x\in[0,1]} P_{\omega_0}(x,1-x)$,
+%related to the monomial $P_{\omega_{0}}(p,q)$ and for which a tropical transformation does not, in general, help factoring the contraint $q=1-p$ out of the maximization.
+%We will, instead, mainly concentrate on 2).
 
-Answering 1) amounts at solving a contrained maximization problem:
-\[(p,q)\in\arg\max_{y=1-x} P_{\omega_{0}}(x,y)\] or, equivalently: $p\in\arg\max_{x\in[0,1]} P_{\omega_0}(x,1-x)$,
-related to the monomial $P_{\omega_{0}}(p,q)$ and for which a tropical transformation does not, in general, help factoring the contraint $q=1-p$ out of the maximization.
-We will, instead, mainly concentrate on 2).
-This asks for finding a solution to the following contrained maximization problem in the unknown $p\in[0,1]$:
+Answering this question amounts at finding a solution to the following constrained maximization problem in the unknown $p\in[0,1]$:
+%\[
+%P_{\omega_0}(p,q) = \max_\omega P_{\omega}(p,q)
+%
+%
+%\]
+%
+%\[
+%(p,q) \in \arg\max_{y=1-x} P_{\omega_{0}}(x,y)\] or, equivalently: $p\in\arg\max_{x\in[0,1]} P_{\omega_0}(x,1-x)$,
+%
+%\]
+% in the unknown $p\in[0,1]$:
 \[
-P_{\omega_0}(p,1-p) = \max_w P_{\omega}(p,1-p)
+P_{\omega_0}(p,1-p) = \max_\omega P_{\omega}(p,1-p)
 \]
 which is related to the polynomial, say, $Q_{\true}(p,q)$.
-Now, the difficulty raised by the constraint between the two variables of the monomials might be overcome by passing to the associated \emph{tropical} polynomial.
-In fact, since $-\log P_\omega(p,q)=(\trop P)(-\log p,-\log(1-p))$, this is equivalent to the following minimization problem in the unknown $p\in[0,1]$:
-\[
-(\trop P_{\omega_0})(-\log p,-\log(1-p)) = (\trop Q)(-\log p,-\log(1-p))
-\]
-and with a change of variable we can now move the difficult constraint outside the minimization problem, as this is equivalent to finding a solution of the following system of equations in the unknowns $(p,x,y)\in[0,1]\times[0,\infty]\times[0,\infty]$:
-\[
-\trop P_{\omega_0}(x,y) = \trop Q (x,y), \qquad x= -\log p,\qquad y=-\log(1-p).
-\]
-Since studying a tropical polynomial could be a feasable task, the first equation might be easily trasformed into an explicit relation between $x$ and $y$, and this might make it possible to solve the whole system, finally finding our $p$, as the next example shows.
+% the difficulty raised by the constraint between the two variables of the monomials might be overcome by passing to the associated \emph{tropical} polynomial.
+%In fact, 
+Since $-\log P_\omega(p,q)=(\trop P_{\omega})(-\log p,-\log q)$, this is equivalent
+% to the following \emph{minimization} problem in the unknown $p\in[0,1]$:
+%\[
+%(\trop P_{\omega_0})(-\log p,-\log(1-p)) = (\trop Q_{\true})(-\log p,-\log(1-p))
+%\]
+%%With a change of variable we can now move the  constraint outside the minimization problem, as
+%which is in turn equivalent
+ to finding a solution of the following constrained \emph{minimization} problem in the unknowns $(p,x,y)\in[0,1]\times[0,\infty]\times[0,\infty]$:
+\begin{equation}\label{eq:troproot}
+\trop P_{\omega_{0}} (x,y)= \trop Q_{\true}(x,y) , \qquad x= -\log p,\qquad y=-\log(1-p).
+\end{equation}
+Since the first equation can be solved easily (i.e.~in linear time) by computing the tropical roots of $\trop Q_{\true}$, we can obtain an explicit relation between $x$ and $y$ that can be used to solve the whole system, finally finding our $p$, as the next example shows.
 %Problem 1) the maximum values $x,y$ of $P_{rll}(p,q)$ can be computed by finding the \emph{minimum} values of $\mathsf tP_{rll}(-\log p, -\log q)= -2\log p- \log q$ under the contraint $q=1-p$. Notice that the latter is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow_{rll} \false$''.
 \begin{example}
-For our running example $M$, we have $\trop Q_{\true}(x,y)=\min\set{2x,y+2x,3y}$.
-For simplicity, let us suppose that we observed the event ``$M\twoheadrightarrow\true$'', and thus our probabilities are conditioned under this observation.
-It is not difficult to see that $\trop Q_{\true}(x,y)=3y$ iff $y\leq \frac{2}{3}x$, and $\trop Q_{\true}(x,y)=2x$ otherwise.
-Remembering that $3y=\trop P_{rrr}(x,y)$, we can now solve problem 2) for $\omega_0=rrr$:
+For our running example $M$, 
+let us suppose that we observed the event ``$M\twoheadrightarrow\true$'', and thus our probabilities are conditioned under this observation. We have
+\[\trop Q_{\true}(x,y)=\min\set{\trop P_{ll}(x,y),\trop  P_{rll}(x,y),\trop P_{rrr}(x,y)}=\min
+\set{2x,y+2x,3y}.\]
+The tropical roots of $\trop Q_{\true}(x,y)$ are $(0,0)$ and all points of the form $(x,\frac{2}{3}x)$. Recall that these are the points where \autoref{eq:troproot} is satisfied for \emph{at least two} distinct values of $\omega_{0}$. From this it follows that $\trop Q_{\true} (x,y)=\trop P_{rrr}(x,y)=3y$ holds iff $y\leq \frac{2}{3}x$, and  $\trop Q_{\true}(x,y)=2x=\trop P_{ll}(x,y)$ otherwise.
+In this way can find the maximum likelihood estimator for $\omega_0=rrr$:
 via the substitution $x:=-\log p$, $y:=-\log (1-p)$, the condition $y\leq \frac{2}{3}x$ is equivalent to $-\log (1-p)\leq -\frac{2}{3}\log p$, i.e.\ $1-p\geq p^{\frac{2}{3}}$.
-This means that, if $p\in[0,1]$ satisfies $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), then $P_{rrr}(p,1-p) = \max_{\omega=ll, rll, rrr} P_{\omega}(p,1-p)$, i.e.: knowing that $M$ sampled $\true$ in its normal form, the most likely sampled occurrence of $\true$ is the one at the address $rrr$ (the rightmost one) iff $1-p\geq p^{\frac{2}{3}}$.
-Said differently, the maximum likelihood estimator of $p$, with prior knowledge  ``$M\twoheadrightarrow \true$'' and seen the event ``$M\twoheadrightarrow_{\omega_0}\true$'', is any $p$ s.t.\ $1-p\geq p^{\frac{2}{3}}$. We have thus solved problem 2) above for $\omega_0=rrr$, under the additional hypothesis that ``$M\twoheadrightarrow\true$''.
-Remembering that $2x=\trop P_{ll}(x,y)$, in this simple case we can even say that for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled (knowing that a $\true$ has been sampled) is the one at address $ll$, therefore actually solving problem 2), under the same additional hypothesis, for all instances of the reduction path $\omega$ leading to $\true$ (the path $rll$ being the most likely one for no $p$ at all).
+This means that, if $p\in[0,1]$ satisfies $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), then $P_{rrr}(p,1-p) = \max_{\omega=ll, rll, rrr} P_{\omega}(p,1-p)$, i.e.: knowing that $M$ sampled $\true$ in its normal form, the most likely sampled occurrence of $\true$ is the one at the address $rrr$ iff $1-p\geq p^{\frac{2}{3}}$.
+%Said differently, the maximum likelihood estimator of $p$, with prior knowledge  ``$M\twoheadrightarrow \true$'' and seen the event ``$M\twoheadrightarrow_{\omega_0}\true$'', is any $p$ s.t.\ $1-p\geq p^{\frac{2}{3}}$. 
+%Observe that the tropical roots of $\trop Q_{\true}(x,y)$ provide a complete description of the relationship between events and their maximum likelihood estimators. 
+%We have thus solved problem 2) above for $\omega_0=rrr$, under the additional hypothesis that ``$M\twoheadrightarrow\true$''.
+%Remembering that $2x=\trop P_{ll}(x,y)$, in this simple case we can even say that for the other values of $p$ (for example, $p=\frac{1}{2}$), the most likely $\true$ to be sampled (knowing that a $\true$ has been sampled) is the one at address $ll$, therefore actually solving problem 2), under the same additional hypothesis, for all instances of the reduction path $\omega$ leading to $\true$ (the path $rll$ being the most likely one for no $p$ at all).
 \end{example}
 %the maximum values of $Q_{\true}(p,q): [0,1]^{2}\to [0,1]$ can be computed as $e^{-\alpha},e^{-\beta}$, where $\alpha,\beta\in[0,\infty]$ are the \emph{minimum} values of the tropical polynomial $\mathsf t Q_{\true}(\alpha,\beta) = \min \{ 2\alpha, 2\alpha+\beta, 3\beta\}$.
 
-As we'll see in Section \ref{section3}, this analysis extends to PCF-style programs. For example, the program $M=\mathbf Y(\lambda x.\true \oplus_{p} x)$ yields the power series $Q_{\true}(p,q)=\sum_{n=0}^{\infty}pq^{n}=\frac{p}{1-q}$ that sums all \emph{infinitely many} ways in which $M$ may reduce to $\true$. Notice that the tropicalised series $\mathsf tQ_{\true}(-\log p,-\log q)=\inf_{n\in \mathbb N}\{-\log p -n\log q\}=-\log p$ collapses onto a single monomial describing the \emph{unique} most likely reduction path of $M$, namely the one that passes through a coin toss only once. 
+As we'll see in Section \ref{section3}, this analysis extends to PCF-style programs. For example, the program $M=\mathbf Y(\lambda x.\true \oplus_{p} x)$ yields the power series $Q_{\true}(p,q)=\sum_{n=0}^{\infty}pq^{n}=\frac{p}{1-q}$ that sums all \emph{infinitely many} ways in which $M$ may reduce to $\true$. Notice that the tropicalised series $\mathsf tQ_{\true}(-\log p,-\log q)=\inf_{n\in \mathbb N}\{-\log p -n\log q\}=-\log p$ collapses onto a single monomial describing the \emph{unique} most likely reduction path of $M$ leading to $\true$, namely the one that passes through a coin toss only once. 
 %
 %Similar arguments could be done by replacing $\true$ and $\false$ by, respectively, a converging and diverging term (e.g.~in a $\mathrm{PCF}$-style language), so 1) would be about finding maximum likelihood estimators for the event ``$M$ converges''.
 
@@ -102,7 +123,7 @@ The (infinitely many) reduction paths leading to $\true$ can be grouped as follo
 \item right twice, then reduce $\mathtt{Gen}$ $n+1$-times and then left.
 \end{itemize}
 This leads to the tps 
-$\varphi_{M\twoheadrightarrow \true}(\alpha)=\inf_{n\in \mathbb N}\big\{2\alpha+(n+1)\beta, 3\alpha, 3\alpha+(n+1)\beta\big \}= \min\{ 2\alpha+\beta, 3\alpha\}$, which describes all possible behaviors of $M$. Notice that, since $\alpha$ and $\beta$ are always positive, the power series $\varphi_{M\twoheadrightarrow\true}(\alpha)$ is indeed equivalent to the tropical polynomial $\min\{ 2\alpha+\beta, 3\alpha\}$. In other words, of the infinitely many behaviors of $M$, only finitely many have chances to be \emph{optimal}: either left + $\mathtt{Gen}$ + left, or right + left + (left,right). Also in this case, reducing to best-case analysis leads to collapse the infinitary description of \emph{all} behaviors to a purely combinatorial description of the finitely many optimal ones. 
+$\varphi_{M\twoheadrightarrow \true}(\alpha)=\inf_{n\in \mathbb N}\big\{(n+2)\alpha+(n+1)\beta, 3\alpha, (n+3)\alpha+(n+1)\beta\big \}= \min\{ 2\alpha+\beta, 3\alpha\}$, which describes all possible behaviors of $M$. Notice that, since $\alpha$ and $\beta$ are always positive, the power series $\varphi_{M\twoheadrightarrow\true}(\alpha)$ is indeed equivalent to the tropical polynomial $\min\{ 2\alpha+\beta, 3\alpha\}$. In other words, of the infinitely many behaviors of $M$, only finitely many have chances to be \emph{optimal}: either left + $\mathtt{Gen}$ + left, or right + left + (left,right). Also in this case, reducing to best-case analysis leads to collapse the infinitary description of \emph{all} behaviors to a purely combinatorial description of the finitely many optimal ones. 
 
 Once reduced $\varphi_{M\twoheadrightarrow\true}$ to a polynomial, the best behavior among these will depend on the values of $\alpha$ and $\beta$, and by studying the tropical polynomial $\varphi_{M\twoheadrightarrow\true}$ one can thus answer questions analogous to 2) above, that is, what are the best choices of costs $\alpha,\beta$ making a \emph{chosen} reduction of $M$ to $\true$ the cheapest one?
 

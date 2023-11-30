@@ -9,7 +9,7 @@ In this section, we discuss in some more detail the two approaches to quantitati
 In many situations (e.g.~when dealing with computationally difficult problems) one does not look for algorithms to compute a function \emph{exactly}, but rather to approximate it (in an efficient way) within some error bound. In other common situations (e.g.~in differential privacy \cite{Alvim2011, Reed2010}) one needs to verify that an algorithm is not \emph{too sensitive} to errors, that is, that a small error in the input will produce a comparably small error in the output. 
 In all these cases, it is common to consider forms of denotational semantics in which types are endowed with a \emph{behavioral metric}, that is, a metric on programs which accounts for differences in behavior. 
 A fundamental insight coming from this line of work is that, if one can somehow   \emph{bound} the number of times that a program may duplicate its input, the resulting program will be \emph{Lipschitz-continuous}:  
-if $M$ may duplicate at most $L$ times, then an error $\epsilon$ between two inputs will result in an error less or equal to $L\cdot \epsilon$ in the corresponding outputs \cite{Reed2010, Gaboardi2017}.
+if $M$ may duplicate at most $L$ times, then an error $\epsilon$ between two inputs will result in an error less or equal to $L\cdot \epsilon$ in the corresponding outputs \cite{Reed2010, Gaboardi2017} (yet, this property may fail in a concurrent setting, see e.g.~\cite{Gebler2018}).
 For instance, the higher-order program $M=\lambda f.\lambda x.f(f(x))$, which duplicates the functional input $f$, yields a $2$-Lipschitz map between the metric space $\BB R\multimap \BB R$ of non-expansive real functions and itself: if $f,g$ are two non-expansive maps differing by at most $\epsilon$ (i.e.~for which $|f(x)-g(x)|\leq \epsilon$ holds for all $x\in \BB R$), then the application of $M$ to $f$ and $g$ will produce two maps differing by at most $2\epsilon$. 
 
 %
@@ -22,7 +22,7 @@ These observations have led to the study of $\lambda$-calculi with \emph{graded}
 
 
 Yet, what about the good old, ``unbounded'', simply typed $\lambda$-calculus? Actually, by using unbounded duplications, one might lose the Lipschitz property. For instance, while the functions $M_{k}=\lambda x. k\cdot x: \BB R\to \BB R$ are all Lipschitz-continuous, with Lipschitz constant $k$, the function $M=\lambda x.x^{2}$ obtained by ``duplicating'' $x$ is not Lipschitz anymore: $M$ is, so to say, \emph{too} sensitive to errors. 
-More abstractly, it is well-known that the category $\Met$ of pseudo-metric spaces and non-expansive maps, is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, several cartesian closed \emph{sub-}categories of $\Met$ do exist, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
+More abstractly, it is well-known that the category $\Met$ of metric spaces and non-expansive maps, is \emph{not} cartesian closed, so it is not a model of $\STLC$ (yet, several cartesian closed \emph{sub-}categories of $\Met$ do exist, see e.g.~\cite{Clementino2006, PistoneFSCD2022}).
 Still, one might observe that the program $M$ above is actually Lipschitz-continuous, if not globally, at least \emph{locally} (i.e.~over any compact set). Indeed, some cartesian closed categories of locally Lipschitz maps have been produced in the literature \cite{Ehrhard2011, PistoneLICS}, and a new example will be exhibited in this paper.
 
 

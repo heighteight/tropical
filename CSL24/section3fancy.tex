@@ -201,9 +201,11 @@ The  typing rules of $\BSTLC$ are illustrated in Fig.~\ref{fig:rules},
 
 
 
-Now, one can see that the comonad $!$ of $\LREL$ can be ``decomposed'' into a family of ``graded exponentials functors'' $!_n:\LREL\to\LREL$ ($n\in\BB N$), where $!_{n}X$ is the set of multisets on $X$ of cardinality \emph{at most} $n$. %  lift to functors 
+On the side of $\LREL$, one can check that the comonad $!$ of $\LREL$ can be ``decomposed'' into a family of ``graded exponentials functors'' $!_n:\LREL\to\LREL$ ($n\in\BB N$), where $!_{n}X$ is the set of multisets on $X$ of cardinality \emph{at most} $n$. %  lift to functors 
 The sequence $(!_n)_{n\in\N}$ gives rise to a so-called \emph{$\N$-graded linear exponential comonad} on (the SMC) $\LREL$ \cite{Katsumata2018}. %satisfying the adjunction: $\LREL(Z\otimes !_{n}X,Y) \simeq \LREL(Z, !_{n}X\multimap Y)$.
-As such, $(\LREL,(!_n)_{n\in\N})$ yields then a model of $\BSTLC$. Remark that arrow types are interpreted via $\model{!_{n}A\multimap B}:= !_{n}\model A \times \model B$. Notice that, whenever $\model *$ is finite, the set $\model{A}$ is finite for any type $A$ of $\BSTLC$.
+As such, $(\LREL,(!_n)_{n\in\N})$ yields then a model of $\BSTLC$. More details can be found in the extended version of this article.
+
+Notice that arrow types are interpreted via $\model{!_{n}A\multimap B}:= !_{n}\model A \times \model B$ and that, whenever $\model *$ is finite, the set $\model{A}$ is finite for any type $A$ of $\BSTLC$.
 
 
 \subparagraph*{The Differential $\lambda$-Calculus}\label{sec:STDLC}
@@ -309,9 +311,10 @@ An example is the CC$\partial\lambda$C of convenient vector spaces with smooth m
 
 Applying \cite[Theorem 6.1]{lemay2020} one can check that
 %\begin{proposition}[{\color{red}LEMAY??}]\label{thm:LREL!CCDC}
- $\LREL_!$ is a CC$\partial\lambda$C (see Section \ref{section5bis}) when equipped with $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X\& X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (using the iso $(\mu,\rho)\in !Z\times !Z'\mapsto\mu\oplus\rho \in !(Z+Z')$).
+ $\LREL_!$ is a CC$\partial\lambda$C when equipped with $D:\HOM{\LREL}{!X}{Y}\to \HOM{\LREL}{!(X\& X)}{Y}$ defined as $(Dt)_{\mu\oplus\rho,b}=t_{\rho+\mu,b}$ if $\#\mu=1$ and as $\infty$ otherwise (using the isomorphism $(\mu,\rho)\in !Z\times !Z'\mapsto\mu\oplus\rho \in !(Z+Z')$).
  The differential operator $D$ of $\LREL_{!}$ translates into a differential operator $D_{!}$ turing a tps $f:\Lawv^{X}\to \Lawv^{Y}$ into a tps $D_{!}f:\Lawv^{X}\times \Lawv^{X}\to \Lawv^{Y}$, linear in its first variable, and given by 
-$D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a}+x_{a}+\mu y\right\}$. One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
+$D_{!}f(x,y)_{b}=\inf_{a\in X, \mu\in !X}\left\{\matr f_{\mu+a,b}+x_{a}+\mu y\right\}$. %, where $\hat f \in \LREL^{!X\times Y}$ is the matrix associated with $f$.
+One can check that, when $f$ is a tropical polynomial, $D_{!}f$ coincides with the standard tropical derivative (see e.g.~\cite{Grigoriev2017}).
 %Moreover, the Taylor formula \eqref{eq:taylorcat} yields a ``tropical'' Taylor formula for tps of the form 
 %$f(x)=\inf_{n}\left\{D_{!}^{(n)}(f)(!_{n}x,\infty)\right\}$. 
 %\end{proposition}

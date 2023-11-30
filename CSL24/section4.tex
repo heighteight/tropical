@@ -2,8 +2,8 @@
 
 
 As seen in Section \ref{section2}, tropical polynomials are piecewise-linear functions, hence concave and Lipschitz-continuous. Moreover, tps in finitely many variables are locally equivalent to tropical polynomials (except at some singular points), and are thus also concave and locally Lipschitz-continuous.
-In this section we show that much of these properties extend also to tps with infinitely many variables, as those arising from the tropical relational model, %establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
-and by a tropical polynomial or power series we mean one with possibly infintely many variables.
+In this section we show that much of these properties extend also to tps with infinitely many variables, as those arising from the tropical relational model. %establish some topological and metric properties of tps, this way highlighting the rich and interesting topological and metric structure of the category $\LREL_{!}$.
+%and by a tropical polynomial or power series we mean one with possibly infintely many variables.
 The literature on tropical power series is often recent (e.g.~\cite{Porzio2021}), and several results we prove in this section are, to our knowledge, new.
 %
 %Remark that the map $(\_)^!$ is a surjective homomorphism (w.r.t.\ coKleisli composition and identity and function composition and identiy) on its image. {\color{red}In Ehrhard-Danos fanno vedere (Lemma 14) che \`e anche iniettivo. Non riesco a capire se anche a noi lo \`e, ma non vedo perch\'e non dovrebbe.}
@@ -73,7 +73,7 @@ In this section we consider tps w.r.t.\ this structure.
 
 \subparagraph*{Continuity of tps}\label{subsec:cont}%$\Lawv^{X}$ as a normed cone}
 
-Looking at Fig~\ref{fig:plot1}, we see that $\varphi$, just like the polynomials $\varphi_{n}$, is non-decreasing and concave.
+Looking at Fig.~\ref{fig:plot1}, we see that $\varphi$, just like the polynomials $\varphi_{n}$, is non-decreasing and concave.
 This is indeed always the case:
 
 \begin{proposition}\label{prop:nondecr+conc}
@@ -124,9 +124,11 @@ The result below is in analogy with what happens in the usual metric semantics o
 linear functions are non-expansive and $n$-bounded functions are $n$-Lipschitz \cite{Reed2010}.
 
 
+
+
 \begin{proposition}\label{prop:troplinear}
 \begin{enumerate}
-\item If a tps $f: \overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$ arises from a matrix $\matr f:X\times Y\to \overline{\BB R}_{\geq 0}$ (i.e.~it is tropical linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
+\item If a tps $f: \overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$ arises from a matrix $\matr f:X\times Y\to \overline{\BB R}_{\geq 0}$ (i.e.~it is linear), then $f$ is non-expansive (i.e.\ $1$-Lipschitz).  
 \item If  $f: \overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$ arises from a matrix $\matr f: \ !_{n}X\times Y\to \overline{\BB R}_{\geq 0}$, then $f$ is $n$-Lipschitz-continuous.
 \end{enumerate}
 \end{proposition}
@@ -168,7 +170,8 @@ In general one has $\| f-g\|_{\infty}\geq d_\infty(f,g)$, the equality holding w
 %\end{proof}
 %This result is perfectly analogous to what happens in the metric models discussed in Section \ref{section2}, the bounded exponentials $!_{n}$ playing the role of the re-scaling trick.
 
-For any tropical polynomial $\varphi:\overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$, the associated matrix has shape $!_{\mathrm{deg}(\varphi)}(X)\times Y\to \overline{\BB R}_{\geq 0}$ (as a monomial $\mu_ix+c_{i}$ yields a matrix entry on $!_{\#\mu_i}X\times Y$). Hence, using Proposition \ref{prop:troplinear} 2., we have:
+When a tps is expressed as an $\inf$ of finitely many monomials we simply call it a tropical polynomial. 
+For any such tropical polynomial $\varphi:\overline{\BB R}_{\geq 0}^{X}\to \overline{\BB R}_{\geq 0}^{Y}$, the associated matrix has shape $!_{\mathrm{deg}(\varphi)}(X)\times Y\to \overline{\BB R}_{\geq 0}$ (as a monomial $\mu_ix+c_{i}$ yields a matrix entry on $!_{\#\mu_i}X\times Y$). Hence, using Proposition \ref{prop:troplinear} 2., we have:
 \begin{corollary}\label{prop:polylip}
 Any tropical polynomial $\varphi:\overline{\BB R}_{\geq 0}^{X}\to\overline{\BB R}_{\geq 0}$ is $\mathrm{deg}(\varphi)$-Lipschitz continuous.
 \end{corollary}
@@ -191,10 +194,15 @@ Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be cho
 %By observing that $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$, we apply the result that for all $f:V\subseteq (\BB R^X,d) \to (\BB R,\absv \cdot)$ concave and locally bounded, with $V$ open and convex and $d$ any metric, $f$ is locally Lipschitz, with the stated Lipschitz constant on $\overline{B_{\delta}(x)}$. %
 % Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be chosen to be $\frac{1}{\delta}\max_{\overline{B_{3\delta}(x)}} \absv f$.
 %\end{proof}
-This crucial ingredient of the proof of this result is the following \autoref{th:locLip}, from which \autoref{thmTLSlocLip} immediately follows, since $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$ and all tps are non-negative.
+The fundamental ingredient of the proof of this result is the following \autoref{th:locLip}, from which \autoref{thmTLSlocLip} immediately follows, since $(0,\infty)^X$ is open and convex in $(\BB R^X,\norm\cdot)$ and all tps are non-negative.
 
-\begin{wrapfigure}{r}{0.5\textwidth}%\begin{figure}
-\begin{tikzpicture}[thick,scale=0.9]
+ %%
+ 
+ 
+% \begin{wrapfigure}{r}{0.5\textwidth}%\begin{figure}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[thick,scale=0.7]
     \coordinate (u) at (-2,0);
     \coordinate (v) at (2,0);
     \coordinate (y) at (-1.2,0);
@@ -209,7 +217,7 @@ This crucial ingredient of the proof of this result is the following \autoref{th
     \fill   (int_u) circle[radius=2pt]  node [below left] {$u$};
     \fill   (int_v) circle[radius=2pt]  node [below left] {$v$};
 
-    \fill   (z) circle[radius=0pt]  node [xshift=-1cm, yshift=2.2cm] {$\overline{B_{2\delta}(z)}$};
+    \fill   (z) circle[radius=0pt]  node [xshift=-1cm, yshift=1.6cm] {$\overline{B_{2\delta}(z)}$};
 
     \fill   (z) circle[radius=2pt]  node [above] {$z$};
     \fill   (y) circle[radius=2pt]  node [above] {$y$};
@@ -217,14 +225,16 @@ This crucial ingredient of the proof of this result is the following \autoref{th
     \coordinate (x) at (-0.7,0.4);
 
     \draw   (x) circle[radius=1cm] node [above] {$x$};
-    \fill   (x) circle[radius=2pt]  node [xshift=10mm, yshift=10mm] {$\overline{B_{\delta}(x)}$};
+    \fill   (x) circle[radius=2pt]  node [xshift=10mm, yshift=7mm] {$\overline{B_{\delta}(x)}$};
 
     \draw   (x) circle[radius=3cm] node {};
-    \fill   (x) circle[radius=0pt]  node [xshift=-1.7cm, yshift=3cm] {$\overline{B_{3\delta}(x)}$};
+    \fill   (x) circle[radius=0pt]  node [xshift=-1.7cm, yshift=2cm] {$\overline{B_{3\delta}(x)}$};
 \end{tikzpicture}
+\end{center}
 \caption{Drawing of the proof of \autoref{th:locLip}.}
 \label{fig:proof_loc_lip}
-\end{wrapfigure} %%
+\end{figure}
+%\end{wrapfigure}
 
 \begin{theorem}\label{th:locLip}
 Let $f:V\subseteq (\BB R^X,\norm\cdot) \to (\BB R,\absv \cdot)$, with $V$ open and convex and $\norm\cdot$ any norm.
@@ -234,7 +244,7 @@ Moreover, the Lipschitz constant of $f$ on $\overline{B_{\delta}(x)}$ can be cho
 \begin{proof}
  Call $\overline{B_{\delta}(x)}:=B_1$, $\overline{B_{3\delta}(x)}:=B_3$.
  It suffices to show that for all $x\in V$, there is $\delta>0$ s.t.\ $B_3\subseteq \mathrm{interior}(V)$, $K:=\max_{B_3}  \absv f$ exists and $f$ is $\frac{K}{\delta}$-Lipschitz on $B_1$.
-A $\delta$ satisfying the first two conditions exists since $V$ is open and bcause $f$ is locally bounded and $B_3$ is compact.
+A $\delta$ satisfying the first two conditions exists since $V$ is open and because $f$ is locally bounded and $B_3$ is compact.
 We show that the third condition holds for all such $\delta$.
  For that, fix $y,z\in B_1$ and call $r:=\frac{d(y,z)}{2\delta}\in[0,1]$.
  We want to show that $\absv{f(y)-f(z)}\leq \frac{K}{\delta}d(y,z)=2Kr$.
@@ -250,7 +260,7 @@ We show that the third condition holds for all such $\delta$.
  In the previous inequalities we have used that $f(u),f(v)\geq -K$.
  This follows from the fact that $u,v\in B_2\subseteq B_3$, as it can be immediately checked, thus $\absv{f(u)},\absv{f(v)}\leq K$.
  Putting the final inequalities together, we have $\absv{f(y)-f(z)}\leq 2rK$, i.e.\ the thesis.
-\end{proof}
+ \end{proof}
 %\begin{proof}[Proof]
 % Call $\overline{B_{\delta}(x)}:=B_1$, $\overline{B_{3\delta}(x)}:=B_3$.
 % It suffices to show that for all $x\in V$, there is $\delta>0$ s.t.\ $B_3\subseteq \mathrm{interior}(V)$, $K:=\max_{B_3}  \absv f$ exists and $f_{\big|_{B_1}}$ is $(\frac{1}{\delta}\max_{B_3} \absv f)$-Lipschitz.
