@@ -61,7 +61,7 @@ $\model{\Gamma \vdash M:A}\in \LREL_{!}(\model{\Gamma}, \model{A})$, and thus to
 \begin{example}\label{ex:zxx}
 The evaluation morphism $\mathsf{ev}\in\LREL_{!}((!X\times Y) + X, Y)$ yields the tps  
 $\mathsf{ev}^{!}: \Lawv^{!X\times Y}\times \Lawv^{X}\to \Lawv^{Y}$ given by 
-$b\in Y \mapsto \mathsf{ev}^{!}(F,x)_{b}= \inf_{\mu,b}\{ F_{\mu,b}+ \mu x\}$. So, for instance, supposing the ground type $o$ of $\STLC$ is interpreted as the singleton set $\{*\}$, and recalling the identification $!\{*\}\simeq \mathbb N$, the interpretation of the term $x:o, z:(o\to o\to o) \vdash zxx:o$, involving two consecutive evaluations, yields the tps $\varphi:\Lawv\times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ given by $\varphi(x,z)=\inf_{n,n'}\{z_{[(n,n')]}+(n+n')x\}$. 
+$b\in Y \mapsto \mathsf{ev}^{!}(F,x)_{b}= \inf_{\mu}\{ F_{\mu,b}+ \mu x\}$. So, for instance, supposing the ground type $o$ of $\STLC$ is interpreted as the singleton set $\{*\}$, and recalling the identification $!\{*\}\simeq \mathbb N$, the interpretation of the term $x:o, z:(o\to o\to o) \vdash zxx:o$, involving two consecutive evaluations, yields the tps $\varphi:\Lawv\times \Lawv^{\mathcal M_{\mathrm{fin}}(\mathbb N\times \mathbb N)}\to \Lawv$ given by $\varphi(x,z)=\inf_{n,n'}\{z_{[(n,n')]}+(n+n')x\}$. 
 \end{example}
 This interpretation extends to $\mathrm{PCF}$ by interpreting the fixpoint combinator $\mathbf Y$ via the matrices $\mathrm{fix}^{X}= \inf_{n}\big\{\mathrm{fix}^{X}_{n}\big\} \in \Lawv^{  !(!X\times X) \times X  }$, where 
  $\mathrm{fix}^{X}_{0}=0$ and $\mathrm{fix}^{X}_{n+1}= \RM{ev}\circ_{!}\langle \mathrm{fix}_{n}^{X}, \RM{id} \rangle $.
