@@ -84,7 +84,7 @@ are illustrated in Fig.~\ref{fig:plot1} for $0\leq n \leq 4$.
 %\begin{wrapfigure}{r}{0.5\textwidth}%
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
+\begin{tikzpicture}[scale=0.7]
 \begin{axis}[samples=250]
 \addplot[yellow,domain=0:0.8] {1+0.02};
 
@@ -149,7 +149,7 @@ is the ``limit'' of the polynomials $\varphi_{n}$.
 %For example, the valuation which gives $1\in L$ on all the invertibles of $Q$ and $0$ otherwise, is called the \emph{trivial valuation} $\mathrm{val}_1$.
 %Notice that if $\mathrm{val}:Q\to ([0,+\infty],+,\cdot,0,1)$ is a valuation, then $\mathrm{logval}(x):Q\to ([-\infty,+\infty],\min,+,+\infty,0)$, $\mathrm{logval}(x):=-\log \mathrm{val}(x)$ is a valuation.
 For a power series $f(x)=\sum_{i\in I} a_i x^i$ (polynomials being the case for $I$ finite) defined on $[0,1]$ and coefficients $a_i$ in $[0,1]$, %and for a fixed valuation $\mathrm{val}:Q\to \Lawv$, 
-one defines the \emph{tropicalisation} $\trop f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop f(\alpha):=\inf_{i\in I} \set{-\log(a_i)+i\alpha}$.
+one can define the \emph{tropicalisation} $\trop f:\Lawv \to \Lawv$ of $f$ as the tropical polynomial/power series function $\trop f(\alpha):=\inf_{i\in I} \set{-\log(a_i)+i\alpha}$.
 %Remark that tropicalising w.r.t.\ the trivial valuation gives $\trop^{\mathrm{val}_1} \sum_{i\in I} a_i x^i = \inf_{i\in I} \set{i\alpha} = \trop^{\mathrm{val}} \sum_{i\in I\subseteq\N} x^i$ for all valuation $\mathrm{val}$, because in $\Lawv$ the unit is $0$. %and the zero is $\infty$.
 %Remember that a_i \neq 0 by def of formal power series
 %That is, it corresponds to quotienting the coefficients in $Q$ for the idempotency of $+$.
@@ -163,7 +163,7 @@ For instance, the tropicalisation sends the infinite power series $\sum_{n\geq 2
 Yet the latter always coincides with the tropical monomial $\varphi(x)=2x$, since $nx\geq 0$ for all $n\in\N$, which is in turn the tropicalisation of the polynomial $x^2$.
 This shows that tropicalisation is \emph{not} in general an injective operation and in fact, as we show in \autoref{theorem:fepsilon} below, tps (in finitely many variables) have a tendency to collapse, if not globally at least locally, onto tropical polynomials.
 
-For instance, by looking at Fig~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
+For instance, by looking at Fig.~\ref{fig:plot1} it appears that, \emph{far from $0$}, $\varphi$ behaves like some of the polynomials $\varphi_{n}$.
 In particular, %for all $\epsilon >0$, $f$ coincides on $[\epsilon,\infty]$ with some polynomial $\varphi_{n}$. More, precisely, 
 $\varphi$ coincides on $[\epsilon,\infty]$ with $\varphi_{n}$,
 for $\epsilon \geq 2^{-(n+1)}$ (the smallest tropical root of $\varphi_{n}$).

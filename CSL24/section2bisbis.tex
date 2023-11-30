@@ -34,7 +34,7 @@ $P_{rrl}(p,q)=P_{rlr}(p,q):=q^2p$.
 The polynomial function $Q_{\true}(p,q):=P_{ll}(p,q)+P_{rll}(p,q)+P_{rrr}(p,q)=p^2+p^2q+q^3$ gives instead the probability of the event ``$M\twoheadrightarrow \true$'', and analogously for $Q_{\false}(p,q):=P_{lr}(p,q)+P_{rrl}(p,q)+P_{rlr}(p,q)=pq+2pq^2$.
 
 This way, the probabilistic evaluation of $M$ is presented as a \emph{hidden Markov model} \cite{Baum1966}, a fundamental statistical model, and notably one to which tropical methods are generally applied \cite{Pachter2004}.
-A natural question in this case would be, for a fixed $\omega_0$:
+Then, a natural question in this case, for a fixed $\omega_0$, is the following:
 %
 %The tropical point of view allows now to express two natural questions about this situation:
 %\begin{enumerate}
@@ -81,18 +81,19 @@ Since $-\log P_\omega(p,q)=(\trop P_{\omega})(-\log p,-\log q)$, this is equival
  to finding a solution of the following constrained \emph{minimization} problem in the unknowns $(p,x,y)\in[0,1]\times[0,\infty]\times[0,\infty]$:
 \begin{equation}\label{eq:troproot}
 \trop P_{\omega_{0}} (x,y)= \trop Q_{\true}(x,y) , \qquad x= -\log p,\qquad y=-\log(1-p).
+\tag{$\star$}
 \end{equation}
 Since the first equation can be solved easily (i.e.~in linear time) by computing the tropical roots of $\trop Q_{\true}$, we can obtain an explicit relation between $x$ and $y$ that can be used to solve the whole system, finally finding our $p$, as the next example shows.
 %Problem 1) the maximum values $x,y$ of $P_{rll}(p,q)$ can be computed by finding the \emph{minimum} values of $\mathsf tP_{rll}(-\log p, -\log q)= -2\log p- \log q$ under the contraint $q=1-p$. Notice that the latter is precisely the \emph{negative log-probability} of the event ``$M\twoheadrightarrow_{rll} \false$''.
 \begin{example}
 For our running example $M$, 
-let us suppose that we observed the event ``$M\twoheadrightarrow\true$'', and thus our probabilities are conditioned under this observation. We have
+let us suppose that we observed the event ``$M\twoheadrightarrow\true$'', so that our probabilities are conditioned under this observation. We have
 \[\trop Q_{\true}(x,y)=\min\set{\trop P_{ll}(x,y),\trop  P_{rll}(x,y),\trop P_{rrr}(x,y)}=\min
 \set{2x,y+2x,3y}.\]
-The tropical roots of $\trop Q_{\true}(x,y)$ are $(0,0)$ and all points of the form $(x,\frac{2}{3}x)$. Recall that these are the points where \autoref{eq:troproot} is satisfied for \emph{at least two} distinct values of $\omega_{0}$. From this it follows that $\trop Q_{\true} (x,y)=\trop P_{rrr}(x,y)=3y$ holds iff $y\leq \frac{2}{3}x$, and  $\trop Q_{\true}(x,y)=2x=\trop P_{ll}(x,y)$ otherwise.
+The tropical roots of $\trop Q_{\true}(x,y)$ are all the points of the form $(x,\frac{2}{3}x)$. Recall that these are the points where \eqref{eq:troproot} is satisfied for \emph{at least two} distinct values of $\omega_{0}$ (indeed for $\omega_{0}\in \{ll, rrr\}$). From this it follows that $\trop Q_{\true} (x,y)=\trop P_{rrr}(x,y)=3y$ holds iff $y\leq \frac{2}{3}x$, and  $\trop Q_{\true}(x,y)=2x=\trop P_{ll}(x,y)$ otherwise.
 In this way can find the maximum likelihood estimator for $\omega_0=rrr$:
 via the substitution $x:=-\log p$, $y:=-\log (1-p)$, the condition $y\leq \frac{2}{3}x$ is equivalent to $-\log (1-p)\leq -\frac{2}{3}\log p$, i.e.\ $1-p\geq p^{\frac{2}{3}}$.
-This means that, if $p\in[0,1]$ satisfies $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), then $P_{rrr}(p,1-p) = \max_{\omega=ll, rll, rrr} P_{\omega}(p,1-p)$, i.e.: knowing that $M$ sampled $\true$ in its normal form, the most likely sampled occurrence of $\true$ is the one at the address $rrr$ iff $1-p\geq p^{\frac{2}{3}}$.
+This means that, if $p\in[0,1]$ satisfies $1-p\geq p^{\frac{2}{3}}$ (for example, $p=\frac{1}{4}$), then $P_{rrr}(p,1-p) = \max_{\omega=ll, rll, rrr} P_{\omega}(p,1-p)$. In other words, knowing that $M$ sampled $\true$ in its normal form, the most likely sampled occurrence of $\true$ is the one at the address $rrr$ iff $1-p\geq p^{\frac{2}{3}}$.
 %Said differently, the maximum likelihood estimator of $p$, with prior knowledge  ``$M\twoheadrightarrow \true$'' and seen the event ``$M\twoheadrightarrow_{\omega_0}\true$'', is any $p$ s.t.\ $1-p\geq p^{\frac{2}{3}}$. 
 %Observe that the tropical roots of $\trop Q_{\true}(x,y)$ provide a complete description of the relationship between events and their maximum likelihood estimators. 
 %We have thus solved problem 2) above for $\omega_0=rrr$, under the additional hypothesis that ``$M\twoheadrightarrow\true$''.

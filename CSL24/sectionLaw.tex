@@ -70,9 +70,9 @@ $\Lawv$-categories which are \emph{skeletal} (i.e.~$X(x,y)=0$ implies $x=y$) and
 A basic example of $\Lawv$-category is $\Lawv$ itself, with the distance $\Lawv(x,y)=y \menus x$. 
 
 Moreover, a $\Lawv$-enriched \emph{functor} between $\Lawv$-categories is nothing but a non-expansive map $f:X\to Y$, since functoriality reads as $Y(f(x),f(y))\leq X(x,y)$.
-Functors of shape $\Phi: X\times Y^{\op}\to \Lawv$ are called \emph{distributors} and usually noted $\Phi: Y \pfun X$. Notice that distributors $\Phi: Y\pfun X$ and $\Psi: Z\pfun Y$ can be composed just like 
+Functors of shape $\Phi:  Y^{\op}\times X\to \Lawv$ are called \emph{distributors} and noted $\Phi: X \pfun Y$. Two distributors $\Phi: Y\pfun X$ and $\Psi: Z\pfun Y$ can be composed just like 
 ordinary matrices in $\LREL$: $\Psi\diamond \Phi : Z\pfun X$ is given by
-$(\Psi\diamond \Phi)_{z,x}=\inf_{y\in Y}\Psi(z,y)+\Phi(y,x)$. 
+$(\Psi\diamond \Phi)_{x,z}=\inf_{y\in Y}\{\Psi(y,z)+\Phi(x,y)\}$. 
 
 
 Lawvere also observed that the usual notion of Cauchy-completeness can be formulated, in this framework, as the existence of suitable colimits \cite{Lawvere1973}. Let us recall the notion of weighted colimit in this context:
@@ -81,9 +81,9 @@ Lawvere also observed that the usual notion of Cauchy-completeness can be formul
 Let $X,Y,Z$ be $\Lawv$-categories,
 $\Phi: Z\pfun Y$ be a distributor and  $f:Y\to X$ be a functor.
 A functor $g:Z\to X$ is the \emph{$\Phi$-weighted colimit of $f$ over $X$}, noted $\colim(\Phi,f)$, if for all $z\in Z$ and $x\in X$
-\begin{align}
+\begin{align*}
 X(g(z),x)= \sup_{y\in Y}\left\{X(f(y),x)\menus \Phi(y,z)\right\}
-\end{align} 
+\end{align*} 
 
 \end{definition}
 
@@ -93,10 +93,10 @@ A $\Lawv$-category $X$ is said \emph{cocomplete} if all weighted colimits over $
 We let $\GMet$ indicate the category of cocomplete $\Lawv$-categories and cocontinuous $\Lawv$-enriched functors as morphisms. 
 
 
-Observe that the usual Cauchy completeness for a $\Lawv$-category $X$ follows from its cocompleteness. Indeed, a Cauchy sequence $(x_{n})_{n\in \mathbb N}$ in $X$ yields two adjoint distributors $\phi^{*}:1\pfun X$ and $\phi_{*}:X\pfun 1$, where 
-$\phi^{*}(x')=\lim_{n\to \infty}X(x_{n},x')$ and
-$\phi_{*}(x')=\lim_{n\to \infty}X(x',x_{n})$. Hence,  
-$\colim(\phi^{*},1_{X}):1\to X$ must be a point $x$ satisfying $0=X(x,x)=\sup_{y\in X}\lim_{n\to \infty}(X(y,x)\menus X(x_{n},y))$, which implies $\lim_{n\to \infty}X(x_{n},x)=0$. 
+Observe that cocompleteness for a symmetric $\Lawv$-category $X$ implies the usual Cauchy completeness. Indeed, a Cauchy sequence $(x_{n})_{n\in \mathbb N}$ in $X$ yields two adjoint distributors $\phi^{*}:1\pfun X$ and $\phi_{*}:X\pfun 1$, where 
+$\phi^{*}(x')=\lim_{n\to \infty}X(x',x_{n},)$ and
+$\phi_{*}(x')=\lim_{n\to \infty}X(x_{n},x')$. Hence,  
+$\colim(\phi^{*},1_{X}):1\to X$ must be a point $x$ satisfying $0=X(x,x)=\sup_{y\in X}\lim_{n\to \infty}(X(y,x)\menus X(y,x_{n}))$, which implies $\lim_{n\to \infty}X(x_{n},x)=0$. 
 
 % to the existence 
 %of weighted colimits of the form $\colim(\phi^{*}, 1_{X}):1\to X$, where $\phi^{*}: 1\pfun X$ is a \emph{left-adjoint} distributor, and $1_{X}:X\to X$ is the identity functor. 
@@ -111,12 +111,11 @@ It turns out that the notions of $\Lawv$-module and cocomplete $\Lawv$-category 
 First, any $\Lawv$-module $(M,\preceq, \star)$ can be endowed with the structure of a $\Lawv$-category by letting
 $M(x,y) = \inf\left\{ \epsilon \mid \epsilon \star x\geq y\right\}$. Moreover, a homomorphism of $\Lawv$-modules induces a cocontinuous functor of the associated $\Lawv$-categories. 
 Conversely, in cocomplete $\Lawv$-categories it is possible to introduce a continuous $\Lawv$-action
-via suitable weighted colimits called \emph{tensors} (cf.~\cite{Stubbe2014}):
-
-\begin{definition}[tensors]
+via suitable weighted colimits called \emph{tensors}:
+\begin{definition}[tensors, cf.~\cite{Stubbe2014}]
 Let $X$ be a $\Lawv$-category, $x\in X$ and $\epsilon \in \Lawv$. The \emph{tensor of $x$ and $\epsilon$}, if it exists, is the colimit $\epsilon \otimes x:= \colim( [\epsilon],\Delta x)$, where
-$[\epsilon]: \{\star\}\pfun \{\star\}$ is the constantly $\epsilon$ distributor
-and $\Delta x:\{\star\}\to X$ is the constant functor. 
+$[\epsilon]:1\pfun1$ is the constantly $\epsilon$ distributor
+and $\Delta x:1\to X$ is the constant functor. 
 \end{definition}
 
 A cocomplete $\Lawv$-category can thus be endowed with a $\Lawv$-module structure with order given by  $x\preceq_{X}y $ iff $X(y,x)=0$, and 
